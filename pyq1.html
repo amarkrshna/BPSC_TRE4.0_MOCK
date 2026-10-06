@@ -25,6 +25,16 @@
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
   body { background-color: var(--bg-page); color: var(--text-primary); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
+  .diagram-card {
+    background: #121419; border: 1px solid #2a2e39; border-radius: 10px;
+    padding: 16px; margin: 16px 0; display: flex; justify-content: center; align-items: center; overflow-x: auto;
+  }
+  .table-scroll-container { overflow-x: auto; margin: 16px 0; }
+  .quiz-table { width: 100%; max-width: 520px; border-collapse: collapse; margin: 0 auto; font-size: 13.5px; text-align: center; }
+  .quiz-table th { background: #1e293b; color: #38bdf8; padding: 10px; border: 1px solid #334155; }
+  .quiz-table td { background: #0f172a; color: #e5e7eb; padding: 8px 14px; border: 1px solid #1e293b; font-family: monospace; font-size: 13.5px; }
+  .quiz-table tr:hover td { background: #1e293b; }
+
   #fullscreenLockOverlay {
     position: fixed; inset: 0; background: rgba(3, 7, 18, 0.98);
     z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px;
@@ -58,8 +68,21 @@
   .section-nav-bar { background: var(--card-surface); border-bottom: 1px solid var(--border-color); padding: 10px 24px; display: flex; gap: 10px; align-items: center; }
   .sec-btn { background: var(--card-surface-elevated); border: 1px solid var(--border-color); color: var(--text-muted); padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; }
   .sec-btn.active { background: var(--brand-primary); border-color: var(--brand-primary); color: #ffffff; }
+  
   .q-meta-bar { background: var(--card-surface); padding: 10px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
   .marking-scheme { font-size: 12.5px; color: #f87171; font-weight: 700; }
+  
+  /* PW Style Dropdown Selector */
+  .pw-lang-box {
+    display: inline-flex; align-items: center; gap: 8px; background: #1e293b;
+    border: 1.5px solid #475569; border-radius: 6px; padding: 4px 10px;
+  }
+  .pw-lang-box label { font-size: 12px; font-weight: 700; color: #94a3b8; }
+  .pw-lang-select {
+    background: transparent; border: none; outline: none; color: #38bdf8;
+    font-size: 13px; font-weight: 800; cursor: pointer;
+  }
+
   .q-body-area { flex: 1; padding: 28px 32px; overflow-y: auto; }
   .q-text { font-size: 16.5px; line-height: 1.7; margin-bottom: 24px; color: var(--text-primary); font-weight: 500; }
   .options-list { display: flex; flex-direction: column; gap: 12px; }
@@ -67,6 +90,7 @@
   .option-label:hover { border-color: var(--brand-primary); background: var(--card-surface-elevated); }
   .option-label input[type="radio"] { margin-right: 14px; width: 18px; height: 18px; accent-color: var(--brand-primary); }
   .option-label.selected { border-color: var(--brand-primary); background: rgba(59, 130, 246, 0.15); font-weight: 600; }
+  
   .q-bottom-actions { background: var(--card-surface); border-top: 1px solid var(--border-color); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
   .palette-area { width: 340px; background: var(--card-surface); display: flex; flex-direction: column; }
   .timer-box { background: var(--card-surface-elevated); padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-color); }
@@ -97,10 +121,9 @@
   .btn-nav { background: var(--card-surface-elevated); border: 1px solid var(--border-color); color: var(--text-primary); flex: 1; padding: 10px; }
   .btn-submit-test { background: var(--grad-rose); color: white; width: 100%; padding: 12px; font-size: 14px; font-weight: 800; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); }
 
-  /* ================= ANIMATED PRO SCORECARD ================= */
+  /* RESULT DASHBOARD */
   #resultSummaryView { display: none; flex: 1; overflow-y: auto; background: var(--bg-page); padding: 26px; }
   .summary-wrap { max-width: 1160px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
-  
   .hero-scorecard {
     background: radial-gradient(circle at top left, #1e1b4b 0%, #0c1322 100%);
     border: 1px solid #4338ca; border-radius: 22px; padding: 30px; display: grid;
@@ -109,10 +132,7 @@
   .radial-score-box { display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid rgba(255,255,255,0.1); padding-right: 25px; }
   .gauge-svg { width: 190px; height: 190px; }
   .gauge-track { fill: none; stroke: #1e293b; stroke-width: 14; }
-  .gauge-fill { 
-    fill: none; stroke: url(#scoreGrad); stroke-width: 14; stroke-linecap: round; 
-    transition: stroke-dasharray 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+  .gauge-fill { fill: none; stroke: url(#scoreGrad); stroke-width: 14; stroke-linecap: round; transition: stroke-dasharray 1.8s cubic-bezier(0.16, 1, 0.3, 1); }
   .gauge-text-val { font-size: 40px; font-weight: 900; fill: #ffffff; }
   .gauge-text-total { font-size: 14px; fill: #94a3b8; }
 
@@ -123,12 +143,7 @@
   .hero-pill { background: rgba(255,255,255,0.08); padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; color: #cbd5e1; }
 
   .hero-quad-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 20px; }
-  .quad-metric { 
-    background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); 
-    border-radius: 14px; padding: 14px 16px; position: relative; overflow: hidden;
-    transition: transform 0.25s ease, border-color 0.25s ease;
-  }
-  .quad-metric:hover { transform: translateY(-3px); border-color: rgba(99, 102, 241, 0.5); }
+  .quad-metric { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 14px 16px; position: relative; }
   .quad-label { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
   .quad-val { font-size: 22px; font-weight: 900; color: #ffffff; margin-top: 4px; }
   .quad-sub { font-size: 11px; margin-top: 2px; }
@@ -138,51 +153,26 @@
   .btn-hero-sol { background: var(--grad-indigo); color: white; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4); }
   .btn-hero-reatt { background: #1e293b; color: #f1f5f9; border: 1px solid #475569; }
 
-  /* Cut-Off Benchmarks */
   .cutoff-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
-  .cutoff-card { 
-    background: var(--card-surface); border: 1px solid var(--border-color); 
-    border-radius: 14px; padding: 16px 12px; text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .cutoff-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+  .cutoff-card { background: var(--card-surface); border: 1px solid var(--border-color); border-radius: 14px; padding: 16px 12px; text-align: center; }
   .cutoff-cat { font-size: 11.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; }
   .cutoff-val { font-size: 20px; font-weight: 900; color: #ffffff; margin: 4px 0; }
   .cutoff-badge { font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 6px; display: inline-block; }
   .cb-clear { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid #059669; }
   .cb-danger { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #dc2626; }
 
-  /* Speed vs Accuracy Quadrant Grid */
   .matrix-quad-container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .quad-box { 
-    background: var(--card-surface); border: 1px solid var(--border-color); border-radius: 16px; 
-    padding: 20px; display: flex; gap: 18px; align-items: center; position: relative;
-    transition: 0.2s ease;
-  }
-  .quad-box:hover { border-color: rgba(99, 102, 241, 0.5); transform: scale(1.01); }
-  .quad-icon { 
-    font-size: 28px; width: 52px; height: 52px; display: flex; align-items: center; 
-    justify-content: center; border-radius: 14px; background: rgba(255,255,255,0.04); flex-shrink: 0;
-  }
+  .quad-box { background: var(--card-surface); border: 1px solid var(--border-color); border-radius: 16px; padding: 20px; display: flex; gap: 18px; align-items: center; }
+  .quad-icon { font-size: 28px; width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: rgba(255,255,255,0.04); flex-shrink: 0; }
   .quad-data-title { font-size: 14.5px; font-weight: 800; color: #ffffff; }
   .quad-data-val { font-size: 24px; font-weight: 900; margin-top: 2px; }
   .quad-data-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
 
-  .section-fill-track {
-    background: #1e293b; height: 10px; border-radius: 20px; overflow: hidden; width: 100%; margin-top: 8px;
-  }
-  .section-fill-bar {
-    height: 100%; border-radius: 20px; width: 0%;
-    transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
-  }
+  .section-fill-track { background: #1e293b; height: 10px; border-radius: 20px; overflow: hidden; width: 100%; margin-top: 8px; }
+  .section-fill-bar { height: 100%; border-radius: 20px; width: 0%; transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
   .stat-grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
-  .stat-box-modern { 
-    background: var(--card-surface); border: 1px solid var(--border-color); 
-    border-radius: 14px; padding: 18px 14px; text-align: center;
-    transition: 0.2s ease;
-  }
-  .stat-box-modern:hover { border-color: #475569; }
+  .stat-box-modern { background: var(--card-surface); border: 1px solid var(--border-color); border-radius: 14px; padding: 18px 14px; text-align: center; }
   .s-val { font-size: 22px; font-weight: 900; color: #ffffff; margin-top: 4px; }
   .s-tag { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
 
@@ -191,7 +181,7 @@
   .pro-table th { padding: 14px 16px; color: #94a3b8; font-weight: 700; border-bottom: 1.5px solid var(--border-color); text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
   .pro-table td { padding: 16px; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
 
-  /* ADVANCED TABS VIEW */
+  /* DETAILED TABS VIEW */
   #detailedAnalysisView { display: none; flex: 1; overflow-y: auto; background: var(--bg-page); padding: 26px; }
   .tab-capsules { display: flex; gap: 10px; background: var(--card-surface); padding: 6px; border-radius: 12px; border: 1px solid var(--border-color); width: fit-content; margin-bottom: 20px; }
   .capsule-btn { background: none; border: none; color: var(--text-muted); padding: 8px 18px; border-radius: 8px; font-size: 13.5px; font-weight: 700; cursor: pointer; }
@@ -227,7 +217,7 @@
   <div class="fs-card">
     <div style="font-size: 42px; margin-bottom: 12px;">🛡</div>
     <h2 style="font-size: 20px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">Fullscreen CBT Enforced</h2>
-    <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5;">BPSC TRE Exam integrity requires active fullscreen mode. Test resume karne ke liye return button click karein.</p>
+    <p style="font-size: 14px; color: var(--text-muted); line-height: 1.5;">BPSC TRE Exam integrity requires active fullscreen mode.</p>
     <button class="btn-fs" onclick="forceReenterFullscreen()">Return to Fullscreen ⛶</button>
   </div>
 </div>
@@ -239,8 +229,8 @@
       <li><strong>Part I: Language (Qualifying):</strong> Q1 to Q30 (Minimum 30% / 9 marks anivarya).</li>
       <li><strong>Part II: General Studies:</strong> Q31 to Q70 (40 Marks counted towards final merit).</li>
       <li><strong>Part III: Computer Science:</strong> Q71 to Q150 (80 Marks core technical domain).</li>
-      <li><strong>Penalty:</strong> +1.0 Mark for correct, <strong>-0.333 (1/3rd penalty)</strong> for wrong answers.</li>
-      <li><strong>Merit Calculation:</strong> Strictly 120 Marks (GS 40 + CS 80) pool par projected rank generate hogi.</li>
+      <li><strong>Strict Penalty:</strong> Correct par +1.0 Mark, Galat answer par <strong>-0.333 (1/3rd penalty)</strong> across all sections.</li>
+      <li><strong>PW-Style Dual Language:</strong> General Studies aur Computer Science me English aur Hindi toggle drop-down uplabdh hai.</li>
     </ul>
     <button class="btn-start" id="modalActionButton" onclick="resumeOrStartExam()">Start Test (Enter Fullscreen)</button>
   </div>
@@ -270,6 +260,16 @@
         <span id="currentSecBadge" style="background:#1d4ed8; color:#ffffff; padding:3px 10px; border-radius:6px; font-size:12px; margin-right:8px;">Part I</span>
         <span id="qNumberText" style="font-weight: 700;">Question No. 1</span>
       </div>
+      
+      <!-- PW Style Language Dropdown (GS aur CS ke liye) -->
+      <div class="pw-lang-box" id="pwLangContainer" style="display: none;">
+        <label for="examLangSelect">Language:</label>
+        <select class="pw-lang-select" id="examLangSelect" onchange="changeQuestionLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="hi">Hindi</option>
+        </select>
+      </div>
+
       <span class="marking-scheme">Marks: +1.0 | Negative: -0.333 (1/3rd Penalty)</span>
     </div>
     <div class="q-body-area">
@@ -312,350 +312,1477 @@
   </div>
 </div>
 
-<!-- ================= ANIMATED PRO SCORECARD ================= -->
-<div id="resultSummaryView">
-  <div class="summary-wrap">
-    
-    <!-- Hero Banner -->
-    <div class="hero-scorecard">
-      <div class="radial-score-box">
-        <svg class="gauge-svg" viewBox="0 0 160 160">
-          <circle class="gauge-track" cx="80" cy="80" r="65" />
-          <circle class="gauge-fill" id="gaugeCircle" cx="80" cy="80" r="65" stroke-dasharray="0 408" stroke-dashoffset="0" transform="rotate(-90 80 80)" />
-          <text class="gauge-text-val" id="gaugeScoreText" x="80" y="85" text-anchor="middle">0.0</text>
-          <text class="gauge-text-total" x="80" y="106" text-anchor="middle">/ 120 Merit</text>
-        </svg>
-      </div>
-      <div class="hero-stats-panel">
-        <div>
-          <div class="hero-top-row">
-            <div>
-              <h1 class="hero-test-name">BPSC TRE 1.0 Computer Science (Mock 1)</h1>
-              <div class="hero-pills">
-                <span class="hero-pill">Official 150 Qs</span>
-                <span class="hero-pill">120 Merit Pool</span>
-                <span class="hero-pill">⚠️ -1/3 Negative Penalty</span>
-                <span class="hero-pill" id="resAttemptDate">Attempted Today</span>
-              </div>
-            </div>
-            <select class="attempt-select" id="attemptSelector" onchange="switchStoredAttempt(this.value)" style="background:#1e293b; border:1px solid #475569; color:#ffffff; padding:8px 12px; border-radius:8px; font-weight:700;"></select>
-          </div>
-          <div class="hero-quad-metrics">
-            <div class="quad-metric">
-              <div class="quad-label">Projected Percentile</div>
-              <div class="quad-val" id="quadPercentile" style="color: #60a5fa;">--%</div>
-              <div class="quad-sub" style="color: var(--text-muted);">vs 35,000+ Aspirants</div>
-            </div>
-            <div class="quad-metric">
-              <div class="quad-label">Projected State Rank</div>
-              <div class="quad-val" id="quadRank" style="color: #a78bfa;">--</div>
-              <div class="quad-sub" style="color: var(--text-muted);">Estimated Merit Bracket</div>
-            </div>
-            <div class="quad-metric">
-              <div class="quad-label">Negative Marks Lost</div>
-              <div class="quad-val" id="quadPenalty" style="color: #f87171;">-0.00</div>
-              <div class="quad-sub" style="color: var(--text-muted);">Leakage to Incorrects</div>
-            </div>
-            <div class="quad-metric">
-              <div class="quad-label">Language Qualifying</div>
-              <div class="quad-val" id="quadLangScore" style="color: #34d399;">0 / 30</div>
-              <div class="quad-sub" id="quadLangStatus">Min 9 Required</div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-actions-row">
-          <button class="btn-hero btn-hero-reatt" onclick="startReattempt()">Reattempt Test ↻</button>
-          <button class="btn-hero" onclick="openDetailedAnalysis()" style="background:#334155; color:white;">Advanced Analytics 📊</button>
-          <button class="btn-hero btn-hero-sol" onclick="openSolutionInterface()">Review Solutions 💡</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Category Cut-Off Matrix Benchmark -->
-    <div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <h3 style="font-size: 14.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">BPSC TRE Expected Category Cut-Off Benchmarks</h3>
-        <span style="font-size: 12px; color: #64748b;">Includes 1/3 negative marking calibration</span>
-      </div>
-      <div class="cutoff-grid" id="cutoffGrid"></div>
-    </div>
-
-    <!-- Speed vs Accuracy Matrix Quadrants -->
-    <div>
-      <h3 style="font-size: 14.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.5px;">Speed vs Accuracy Matrix (Psychology Audit)</h3>
-      <div class="matrix-quad-container">
-        <div class="quad-box">
-          <div class="quad-icon">⚡</div>
-          <div>
-            <div class="quad-data-title">Speed Demons (Fast & Accurate)</div>
-            <div class="quad-data-val" id="quadFastCorrect" style="color: #34d399;">0 Qs</div>
-            <div class="quad-data-desc">Answered in &lt; 40s accurately. Core subject strengths!</div>
-          </div>
-        </div>
-        <div class="quad-box">
-          <div class="quad-icon">🎯</div>
-          <div>
-            <div class="quad-data-title">Careful Masters (Deep & Correct)</div>
-            <div class="quad-data-val" id="quadSlowCorrect" style="color: #60a5fa;">0 Qs</div>
-            <div class="quad-data-desc">Took &gt; 40s but secured +1.0 full mark safely without risk.</div>
-          </div>
-        </div>
-        <div class="quad-box">
-          <div class="quad-icon">⚠️</div>
-          <div>
-            <div class="quad-data-title">Hasty Traps (Hurried & Incorrect)</div>
-            <div class="quad-data-val" id="quadFastWrong" style="color: #f87171;">0 Qs</div>
-            <div class="quad-data-desc">Answered in &lt; 40s and marked wrong. Silly errors & rush traps!</div>
-          </div>
-        </div>
-        <div class="quad-box">
-          <div class="quad-icon">⏳</div>
-          <div>
-            <div class="quad-data-title">Energy Drainers (Overtime & Incorrect)</div>
-            <div class="quad-data-val" id="quadSlowWrong" style="color: #fbbf24;">0 Qs</div>
-            <div class="quad-data-desc">Spent &gt; 60s and still got negative penalty. Double damage!</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 6 Pillar Primary Metrics -->
-    <div class="stat-grid-6">
-      <div class="stat-box-modern">
-        <div class="s-tag">✔ Correct</div>
-        <div class="s-val" id="statCorrect" style="color: #34d399;">0/150</div>
-      </div>
-      <div class="stat-box-modern">
-        <div class="s-tag">✕ Incorrect</div>
-        <div class="s-val" id="statIncorrect" style="color: #f87171;">0/150</div>
-      </div>
-      <div class="stat-box-modern">
-        <div class="s-tag">⏭ Skipped</div>
-        <div class="s-val" id="statSkipped" style="color: #94a3b8;">0/150</div>
-      </div>
-      <div class="stat-box-modern">
-        <div class="s-tag">🎯 Precision Rate</div>
-        <div class="s-val" id="statAccuracy" style="color: #60a5fa;">0%</div>
-      </div>
-      <div class="stat-box-modern">
-        <div class="s-tag">⏱ Total Time</div>
-        <div class="s-val" id="statTimeTaken" style="color: #fde047;">00:00</div>
-      </div>
-      <div class="stat-box-modern">
-        <div class="s-tag">⚡ Avg Pace / Q</div>
-        <div class="s-val" id="statAvgPace" style="color: #c084fc;">0s</div>
-      </div>
-    </div>
-
-    <!-- Official Section Breakdown Table -->
-    <div class="pro-table-card">
-      <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 16px;">Official Sectional Merit Audit</h3>
-      <table class="pro-table">
-        <thead>
-          <tr>
-            <th>Section</th>
-            <th>Question Range</th>
-            <th>Pool Type</th>
-            <th>Total Qs</th>
-            <th>Correct</th>
-            <th>Incorrect</th>
-            <th>Penalty (-1/3)</th>
-            <th>Net Marks</th>
-            <th>Verdict</th>
-          </tr>
-        </thead>
-        <tbody id="sectionPerformanceTable"></tbody>
-      </table>
-    </div>
-
-  </div>
-</div>
-
-<!-- ================= DETAILED ADVANCED ANALYTICS ================= -->
-<div id="detailedAnalysisView">
-  <div class="summary-wrap">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <button class="cbt-btn btn-clear" onclick="backToResultSummary()">&larr; Back to Scorecard</button>
-      <div class="tab-capsules">
-        <button class="capsule-btn active" id="capTime" onclick="switchProTab('time')">⏱ Timeline & Pace</button>
-        <button class="capsule-btn" id="capTopic" onclick="switchProTab('topic')">📚 Topic Micro-Analysis</button>
-        <button class="capsule-btn" id="capLeak" onclick="switchProTab('leak')">⚠️ Negative Leak Recovery</button>
-      </div>
-      <button class="btn-hero btn-hero-sol" onclick="openSolutionInterface()">View Solutions</button>
-    </div>
-
-    <div id="proTimeView">
-      <div class="chart-card-pro">
-        <div class="chart-head">Interval-Wise Pace & Accuracy Progression (30 Min Blocks)</div>
-        <svg id="proTimeSvg" viewBox="0 0 760 220" style="width: 100%; height: 210px;"></svg>
-        <table class="pro-table" style="margin-top: 18px;">
-          <thead>
-            <tr><th>Interval</th><th>Attempted</th><th>Correct</th><th>Incorrect</th><th>Accuracy</th><th>Net Contribution</th></tr>
-          </thead>
-          <tbody id="proIntervalBody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="proTopicView" style="display: none;">
-      <div class="pro-table-card">
-        <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 16px;">Chapter & Subject Mastery Audit</h3>
-        <table class="pro-table">
-          <thead>
-            <tr><th>Topic / Subject</th><th>Total Qs</th><th>Attempted</th><th>Accuracy</th><th>Average Speed</th><th>Health Status</th></tr>
-          </thead>
-          <tbody id="proTopicBody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div id="proLeakView" style="display: none;">
-      <div class="chart-card-pro">
-        <div class="chart-head">Penalty Leakage Diagnostic & Score Recovery Simulation</div>
-        <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">Agar aap in wrong questions ko blind guess karne ke badle skip kar dete, to aapka net score kitna leap le sakta tha:</p>
-        <div id="leakContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= SOLUTION SUITE ================= -->
-<div class="cbt-container" id="solutionInterface">
-  <div class="exam-area">
-    <div class="section-nav-bar" style="justify-content: space-between;">
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <button class="sec-btn" onclick="backToResultSummary()">&larr; Back to Summary</button>
-        <button class="sec-btn active" id="solSecBtn_ALL" onclick="solSwitchSection('ALL')">All</button>
-        <button class="sec-btn" id="solSecBtn_LANG" onclick="solSwitchSection('LANG')">Language</button>
-        <button class="sec-btn" id="solSecBtn_GS" onclick="solSwitchSection('GS')">General Studies</button>
-        <button class="sec-btn" id="solSecBtn_CS" onclick="solSwitchSection('CS')">Computer Science</button>
-      </div>
-      <div><span id="solStatusTag" style="padding:4px 10px; border-radius:6px; font-size:12px; font-weight:700;">Status</span></div>
-    </div>
-    <div class="q-meta-bar">
-      <div>
-        <span id="solSecBadge" style="background:#1d4ed8; color:#ffffff; padding:3px 10px; border-radius:6px; font-size:12px; margin-right:8px;">Part I</span>
-        <span id="solQNumberText">Question 1</span>
-      </div>
-      <div style="font-size: 13px; color: var(--text-muted);" id="solMarksDetail">Marks: +1.0 | Negative: -0.333</div>
-    </div>
-    <div class="q-body-area">
-      <div class="q-text" id="solQStatement">Loading...</div>
-      <div class="options-list" id="solOptionsContainer"></div>
-      <div class="explanation-pro">
-        <div style="font-size: 15px; font-weight: 800; color: #60a5fa; margin-bottom: 8px;">💡 Conceptual Derivation:</div>
-        <div id="solExpText" style="color: #e2e8f0;"></div>
-        <div class="tip-pro" id="solProTip"></div>
-      </div>
-    </div>
-    <div class="q-bottom-actions">
-      <button class="cbt-btn btn-clear" onclick="backToResultSummary()">&larr; Exit</button>
-      <div style="display: flex; gap: 8px;">
-        <button class="cbt-btn btn-nav" id="solPrevBtn" onclick="solNavigate(-1)">&larr; Previous</button>
-        <button class="cbt-btn btn-nav" id="solNextBtn" onclick="solNavigate(1)">Next &rarr;</button>
-      </div>
-    </div>
-  </div>
-  <div class="palette-area">
-    <div style="padding: 12px 14px; border-bottom: 1px solid var(--border-color); background: var(--card-surface-elevated);">
-      <div style="font-size: 11px; color: var(--text-muted); font-weight: 800; margin-bottom: 6px;">FILTER QUESTIONS</div>
-      <div style="display: flex; gap: 6px;">
-        <button class="sec-btn active" id="filterTab_all" onclick="setSolFilter('all')" style="padding:4px 10px; font-size:11px;">All (<span id="countAll">0</span>)</button>
-        <button class="sec-btn" id="filterTab_correct" onclick="setSolFilter('correct')" style="padding:4px 10px; font-size:11px;">Correct (<span id="countCor">0</span>)</button>
-        <button class="sec-btn" id="filterTab_wrong" onclick="setSolFilter('wrong')" style="padding:4px 10px; font-size:11px;">Wrong (<span id="countWr">0</span>)</button>
-        <button class="sec-btn" id="filterTab_skipped" onclick="setSolFilter('skipped')" style="padding:4px 10px; font-size:11px;">Skipped (<span id="countSk">0</span>)</button>
-      </div>
-    </div>
-    <div class="palette-scroll-container">
-      <div class="palette-grid" id="solPaletteGrid"></div>
-    </div>
-  </div>
-</div>
-
 <script>
-// ==========================================================================
-// 1. UNIQUE IDENTIFIERS & BPSC TRE 1.0 DATASET
-// ==========================================================================
 const MOCK_ID = "BPSC_TRE_PYQ_1";
 const STORAGE_KEY = `bpsc_cbt_${MOCK_ID}_data`;
 const CLIENT_ID = "269810018167-5jqc4fapm4mpmgu7reqsv5vekdnhvv1q.apps.googleusercontent.com";
+let currentExamLang = "en"; // Default Language
 
-const rawQuestions = [
-  // PART I: LANGUAGE (1-30)
-  { id: 1, s: "LANG", t: "English: Prepositions", q: "Fill in the blank: He is superior _____ me in technical competence.", o: ["than", "to", "from", "More than one of the above", "None of the above"], a: 1, e: "Adjectives ending in '-ior' (superior, inferior, senior) take 'to', not 'than'.", tip: "Latin comparative adjectives always pair with 'to'." },
-  { id: 2, s: "LANG", t: "Hindi: Vartani", q: "निम्नलिखित में से शुद्ध वर्तनी वाला शब्द कौन-सा है?", o: ["उज्जवल", "उज्ज्वल", "उज्वल", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, e: "'उज्ज्वल' में दोनों 'ज' अर्ध (आधे) होते हैं (उत् + ज्वल = उज्ज्वल)।", tip: "संधि नियम: त् के बाद ज् आने पर त् भी आधा ज् बन जाता है।" },
-  { id: 3, s: "LANG", t: "English: Articles", q: "Choose the correct article: Copper is _____ useful metal.", o: ["an", "a", "the", "More than one of the above", "None of the above"], a: 1, e: "'Useful' begins with a consonant sound (/juː/), hence 'a' is used, not 'an'.", tip: "Article selection depends on sound, not letter." },
-  { id: 4, s: "LANG", t: "Hindi: Sandhi", q: "'सूर्योदय' शब्द का सही संधि-विच्छेद क्या होगा?", o: ["सूर्य + उदय", "सूर्यो + दय", "सूर्य + दय", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, e: "सूर्य + उदय = सूर्योदय (गुण स्वर संधि: अ + उ = ओ)।", tip: "अ/आ के साथ इ/उ/ऋ मिलने पर गुण संधि होती है।" },
-  { id: 5, s: "LANG", t: "English: Tenses", q: "Identify the tense: 'They have been working here since morning.'", o: ["Present Continuous", "Present Perfect Continuous", "Past Continuous", "More than one of the above", "None of the above"], a: 1, e: "'Have been + V-ing' denotes Present Perfect Continuous tense.", tip: "Actions starting in past and continuing to present use perfect continuous." },
-  { id: 6, s: "LANG", t: "Hindi: Samas", q: "'राजपुत्र' में कौन-सा समास है?", o: ["द्विगु", "तत्पुरुष", "कर्मधारय", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, e: "राजपुत्र = राजा का पुत्र (सम्बन्ध तत्पुरुष समास)।", tip: "कारक चिह्नों का लोप होने पर तत्पुरुष समास होता है।" },
-  { id: 7, s: "LANG", t: "English: Idioms", q: "What is the meaning of the idiom 'A piece of cake'?", o: ["A sweet dessert", "Something very easy", "A difficult task", "More than one of the above", "None of the above"], a: 1, e: "'A piece of cake' means a task that is very simple or effortless to accomplish.", tip: "Idiomatic expressions imply figurative meanings." },
-  { id: 8, s: "LANG", t: "Hindi: Vilom Shabd", q: "'अमृत' का विलोम शब्द क्या है?", o: ["पीयूष", "सुधा", "विष", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 2, e: "अमृत का विलोम 'विष' होता है। पीयूष और सुधा इसके पर्यायवाची हैं।", tip: "पर्यायवाची और विलोम में अंतर पहचानें।" },
-  { id: 9, s: "LANG", t: "English: Synonyms", q: "Select the synonym of 'CANDID':", o: ["Dishonest", "Frank", "Secretive", "More than one of the above", "None of the above"], a: 1, e: "'Candid' means truthful, straightforward, and frank.", tip: "Frank = Open/Candid." },
-  { id: 10, s: "LANG", t: "Hindi: Paryayvachi", q: "निम्नलिखित में से कौन-सा शब्द 'कमल' का पर्यायवाची है?", o: ["पंकज", "जलद", "अंबुद", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, e: "पंकज कमल का पर्यायवाची है। जलद और अंबुद बादल के पर्यायवाची हैं।", tip: "'ज' अंत में हो तो कमल, 'द' हो तो बादल।" },
+const questionsData = [
+  // ==========================================
+  // PART I: LANGUAGE (Q1 TO Q30)
+  // ==========================================
+  {
+    gId: 1, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Articles",
+    q: "Fill in the blank with appropriate article: He will return after _____ hour.",
+    opts: ["a", "an", "the", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "'Hour' begins with a silent 'h' and vowel sound /aʊər/, hence the indefinite article 'an' is required.",
+    tip: "Articles depend strictly on sound, not on the letter."
+  },
+  {
+    gId: 2, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Prepositions",
+    q: "He is senior _____ me in service.",
+    opts: ["than", "from", "to", "More than one of the above", "None of the above"],
+    a: 2,
+    exp: "Latin comparative adjectives ending in '-ior' (senior, junior, superior, inferior) are followed by 'to', never 'than'.",
+    tip: "Senior/Junior/Prior + to."
+  },
+  {
+    gId: 3, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Tenses",
+    q: "Choose the correct sentence: They _____ in Delhi since 2015.",
+    opts: ["are living", "have been living", "were living", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "An action that started in the past and is still continuing in the present with 'since + time' requires Present Perfect Continuous tense ('have been living').",
+    tip: "Since/For + Time indicates Perfect Continuous."
+  },
+  {
+    gId: 4, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Vocabulary",
+    q: "What is the synonym of 'CANDID'?",
+    opts: ["Frank", "Deceitful", "Shy", "More than one of the above", "None of the above"],
+    a: 0,
+    exp: "'Candid' means truthful, straightforward, and open. 'Frank' is its direct synonym.",
+    tip: "Candid = Outspoken / Sincere / Frank."
+  },
+  {
+    gId: 5, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Antonyms",
+    q: "What is the antonym of 'OPTIMISTIC'?",
+    opts: ["Hopeful", "Pessimistic", "Cheerful", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "'Optimistic' means positive and looking on the bright side. Its antonym is 'Pessimistic' (negative outlook).",
+    tip: "Optimist sees opportunity; Pessimist sees difficulty."
+  },
+  {
+    gId: 6, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Idioms",
+    q: "What does the idiom 'To call it a day' mean?",
+    opts: ["To start a new project", "To stop working on something", "To celebrate an event", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "'To call it a day' means to stop what you are doing, usually because you have done enough or are tired.",
+    tip: "Call it a day = Conclude work for the day."
+  },
+  {
+    gId: 7, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Voice",
+    q: "Select the passive voice: 'She wrote a letter.'",
+    opts: ["A letter was written by her.", "A letter is written by her.", "A letter had written by her.", "More than one of the above", "None of the above"],
+    a: 0,
+    exp: "Simple past active (S + V2 + O) transforms to passive: O + was/were + V3 + by + S.",
+    tip: "Wrote -> was written."
+  },
+  {
+    gId: 8, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Subject-Verb",
+    q: "Neither of the two candidates _____ selected for the interview.",
+    opts: ["were", "was", "have been", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "'Neither of' followed by a plural noun takes a singular verb ('was').",
+    tip: "Neither/Either + of + Plural Noun takes Singular Verb."
+  },
+  {
+    gId: 9, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Vartani",
+    q: "निम्नलिखित में से शुद्ध वर्तनी वाला शब्द कौन-सा है?",
+    opts: ["उज्जवल", "उज्ज्वल", "उज्वल", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "'उज्ज्वल' में दोनों 'ज' अर्ध (आधे) होते हैं (उत् + ज्वल = उज्ज्वल)।",
+    tip: "त् + ज् = ज्ज् (दोनों ज आधे होते हैं)।"
+  },
+  {
+    gId: 10, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Sandhi",
+    q: "'सूर्योदय' शब्द का सही संधि-विच्छेद क्या होगा?",
+    opts: ["सूर्य + उदय", "सूर्यो + दय", "सूर्य + दय", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "सूर्य + उदय = सूर्योदय (गुण स्वर संधि: अ + उ = ओ)।",
+    tip: "अ/आ + उ/ऊ = ओ (गुण संधि)।"
+  },
+  {
+    gId: 11, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Samas",
+    q: "'राजपुत्र' में कौन-सा समास है?",
+    opts: ["द्विगु", "तत्पुरुष", "कर्मधारय", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "राजपुत्र = राजा का पुत्र (सम्बन्ध तत्पुरुष समास)।",
+    tip: "कारक चिह्न 'का/के/की' का लोप होने पर सम्बन्ध तत्पुरुष होता है।"
+  },
+  {
+    gId: 12, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Vilom Shabd",
+    q: "'अमृत' का सही विलोम शब्द क्या है?",
+    opts: ["पीयूष", "सुधा", "विष", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "अमृत का विलोम 'विष' होता है। पीयूष और सुधा इसके पर्यायवाची हैं।",
+    tip: "समानार्थी और विपरीतार्थक में भेद रखें।"
+  },
+  {
+    gId: 13, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Paryayvachi",
+    q: "निम्नलिखित में से कौन-सा शब्द 'कमल' का पर्यायवाची है?",
+    opts: ["पंकज", "जलद", "अंबुद", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "पंकज कमल का पर्यायवाची है। जलद और अंबुद बादल के पर्यायवाची हैं।",
+    tip: "ज = जन्म लेने वाला (कमल), द = देने वाला (बादल)।"
+  },
+  {
+    gId: 14, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Karak",
+    q: "'पेड़ से पत्ता गिरा'—यहाँ 'पेड़ से' में कौन-सा कारक है?",
+    opts: ["करण कारक", "अपादान कारक", "कर्म कारक", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "जहाँ किसी वस्तु का किसी स्थान या वस्तु से अलग होने का भाव हो, वहाँ अपादान कारक (से अलगाव) होता है।",
+    tip: "करण = से (साधन); अपादान = से (अलगाव)।"
+  },
+  {
+    gId: 15, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Muhavare",
+    q: "'अंगूठा दिखाना' मुहावरे का सही अर्थ क्या है?",
+    opts: ["मदद करना", "इनकार करना / मना करना", "चिढ़ाना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "'अंगूठा दिखाना' का अर्थ वक्त पर किसी काम के लिए साफ़ मना कर देना होता है।",
+    tip: "ऐन मौके पर धोखा देना या मना करना।"
+  },
+  {
+    gId: 16, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Vachan",
+    q: "निम्नलिखित में से कौन-सा शब्द सदैव बहुवचन में प्रयुक्त होता है?",
+    opts: ["प्राण", "हस्ताक्षर", "दर्शन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 3,
+    exp: "प्राण, हस्ताक्षर, दर्शन, आँसू, और होश—ये सभी शब्द हिंदी व्याकरण में सदैव बहुवचन के रूप में प्रयुक्त होते हैं। अत: 'उपर्युक्त में से एक से अधिक' सही है।",
+    tip: "BPSC Option (D) multi-condition check anivarya hai."
+  },
+  {
+    gId: 17, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Kaal",
+    q: "'राम पुस्तक पढ़ रहा है'—यह वाक्य किस काल का उदाहरण है?",
+    opts: ["सामान्य वर्तमान काल", "अपूर्ण (तत्कालिक) वर्तमान काल", "पूर्ण वर्तमान काल", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "कार्य वर्तमान में निरंतर चल रहा है, इसलिए यह अपूर्ण या तत्कालिक वर्तमान काल (Present Continuous) है।",
+    tip: "'रहा है / रहे हैं' अपूर्ण वर्तमान को दर्शाता है।"
+  },
+  {
+    gId: 18, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Ling",
+    q: "'कवि' शब्द का स्त्रीलिंग रूप क्या होगा?",
+    opts: ["कवयित्री", "कविइत्री", "कवयित्त्री", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "'कवि' का शुद्ध व्याकरणिक स्त्रीलिंग रूप 'कवयित्री' होता है।",
+    tip: "कवयित्री की वर्तनी बार-बार परीक्षाओं में पूछी जाती है।"
+  },
+  {
+    gId: 19, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Pronouns",
+    q: "Each of the boys must complete _____ assignment on time.",
+    opts: ["their", "his", "them", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "'Each' is an indefinite pronoun that is singular, so it takes a singular masculine possessive pronoun 'his'.",
+    tip: "Each/Every takes singular pronoun (his/her)."
+  },
+  {
+    gId: 20, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Adjectives",
+    q: "Iron is _____ than any other metal.",
+    opts: ["more useful", "useful", "most useful", "More than one of the above", "None of the above"],
+    a: 0,
+    exp: "Comparative degree of 'useful' followed by 'than' is 'more useful'.",
+    tip: "Comparative: more useful + than."
+  },
+  {
+    gId: 21, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Vilom",
+    q: "'अनुराग' का विलोम शब्द क्या है?",
+    opts: ["विराग", "द्वेष", "राग", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "'अनुराग' (प्रेम/लगाव) का विपरीतार्थक शब्द 'विराग' (उदासीनता/वैराग्य) होता है।",
+    tip: "अनुराग का विलोम विराग होता है।"
+  },
+  {
+    gId: 22, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Shabda Bhed",
+    q: "संस्कृत के जो शब्द बिना किसी परिवर्तन के हिंदी में प्रयुक्त होते हैं, उन्हें क्या कहते हैं?",
+    opts: ["तद्भव", "तत्सम", "देशज", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "मूल संस्कृत के शब्द जो ज्यों के त्यों हिंदी में आते हैं, 'तत्सम' (तत् + सम = उसके समान) कहलाते हैं।",
+    tip: "तत्सम = संस्कृत मूल; तद्भव = बदला हुआ रूप।"
+  },
+  {
+    gId: 23, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Sandhi",
+    q: "'पवन' शब्द का सही संधि-विच्छेद क्या होगा?",
+    opts: ["पो + अन", "पौ + अन", "प + वन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "पो + अन = पवन (अयादि स्वर संधि: ओ + अ = अव)। यदि 'पावक' होता तो 'पौ + अक' होता।",
+    tip: "ओ + अ = अव (पवन); औ + अ = आव (पावन)।"
+  },
+  {
+    gId: 24, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Conjunctions",
+    q: "Scarcely had he gone out _____ it began to rain heavily.",
+    opts: ["than", "when", "then", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "Correlative conjunction pair: 'Scarcely / Hardly ... when / before'. 'No sooner' takes 'than'.",
+    tip: "Hardly/Scarcely + when; No sooner + than."
+  },
+  {
+    gId: 25, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: One Word",
+    q: "A person who cannot read or write is known as:",
+    opts: ["Illiterate", "Ignorant", "Illegible", "More than one of the above", "None of the above"],
+    a: 0,
+    exp: "One unable to read or write is 'Illiterate'. 'Illegible' means handwriting that cannot be read.",
+    tip: "Illiterate = uneducated; Illegible = unreadable text."
+  },
+  {
+    gId: 26, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Vakya Shuddhi",
+    q: "निम्नलिखित में से शुद्ध वाक्य का चयन कीजिए:",
+    opts: ["वह दंड पाने योग्य है।", "वह दंड देने योग्य है।", "वह दंड के योग्य है।", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "'दंड' स्वयं सजा है, अतः 'पाने' शब्द अनावश्यक है। शुद्ध वाक्य 'वह दंड के योग्य है' होता है।",
+    tip: "दंड के साथ 'पाने' शब्द का प्रयोग पुनरुक्ति दोष है।"
+  },
+  {
+    gId: 27, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Anekarthi",
+    q: "'कनक' शब्द का निम्नलिखित में से कौन-सा अर्थ नहीं है?",
+    opts: ["सोना", "धतूरा", "चांदी", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "'कनक' के अनेकार्थी अर्थ सोना, धतूरा, और गेहूं होते हैं। चांदी कनक का अर्थ नहीं है।",
+    tip: "कनक-कनक ते सौगुनी (सोना और धतूरा)।"
+  },
+  {
+    gId: 28, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Spelling",
+    q: "Select the correctly spelt word:",
+    opts: ["Accomodation", "Accommodation", "Acommodation", "More than one of the above", "None of the above"],
+    a: 1,
+    exp: "Correct spelling is 'Accommodation' (double 'c' and double 'm').",
+    tip: "AC-COM-MO-DATION (2 C's and 2 M's)."
+  },
+  {
+    gId: 29, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Visheshan",
+    q: "'आदर' शब्द से बनने वाला उपयुक्त विशेषण क्या होगा?",
+    opts: ["आदरणीय", "आदरकारी", "आदरवान", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "'आदर' संज्ञा शब्द से बनने वाला सही विशेषण 'आदरणीय' (Respected) होता है।",
+    tip: "आदर -> आदरणीय।"
+  },
+  {
+    gId: 30, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Upsarg",
+    q: "'अभिमान' शब्द में कौन-सा उपसर्ग प्रयुक्त हुआ है?",
+    opts: ["अ", "अभि", "मान", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "'अभिमान' में 'अभि' उपसर्ग मूल शब्द 'मान' के साथ जुड़ा है (अभि + मान = अभिमान)।",
+    tip: "उपसर्ग शब्द के प्रारंभ में जुड़ता है।"
+  },
 
-  // PART II: GENERAL STUDIES (31-70)
-  { id: 31, s: "GS", t: "History: Bihar 1857", q: "1857 के विद्रोह के समय बिहार के जगदीशपुर से प्रमुख नेतृत्व किसने किया था?", o: ["बाबू वीर कुंवर सिंह", "अमर सिंह", "पीर अली", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, e: "बाबू वीर कुंवर सिंह ने 1857 के संग्राम में जगदीशपुर (भोजपुर) से विद्रोह का नेतृत्व किया था।", tip: "जगदीशपुर = कुंवर सिंह; पटना सिटी = पीर अली।" },
-  { id: 32, s: "GS", t: "Maths: Percentage", q: "यदि एक वृत्त की त्रिज्या में 50% की वृद्धि की जाती है, तो उसके क्षेत्रफल में कितने प्रतिशत की वृद्धि होगी?", o: ["100%", "125%", "150%", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, e: "Area ∝ r²। Net change = 50 + 50 + (50*50)/100 = 125% वृद्धि।", tip: "Successive change formula: x + y + (xy/100)." },
-  { id: 33, s: "GS", t: "Polity: Constitution", q: "भारतीय संविधान का कौन-सा अनुच्छेद 'अस्पृश्यता के उन्मूलन' से संबंधित है?", o: ["अनुच्छेद 14", "अनुच्छेद 17", "अनुच्छेद 19", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, e: "अनुच्छेद 17 अस्पृश्यता (Untouchability) का उन्मूलन करता है।", tip: "मौलिक अधिकार: Art 14 = समानता, Art 17 = अस्पृश्यता उन्मूलन, Art 19 = स्वतंत्रता।" },
-  { id: 34, s: "GS", t: "Science: Physics", q: "वायुमंडलीय दाब मापने के लिए किस उपकरण का उपयोग किया जाता है?", o: ["हाइग्रोमीटर", "बैरोमीटर", "थर्मामीटर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, e: "बैरोमीटर का उपयोग वायुमंडलीय दाब मापने के लिए किया जाता है।", tip: "बैरोमीटर = दाब; हाइग्रोमीटर = आर्द्रता।" },
-  { id: 35, s: "GS", t: "Geography: Rivers", q: "बिहार में गंगा नदी में मिलने वाली 'सोन' नदी का उद्गम स्थल कहाँ है?", o: ["छोटा नागपुर पठार", "अमरकंटक", "महाबलेश्वर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, e: "सोन नदी मध्य प्रदेश के अमरकंटक पहाड़ी से निकलकर बिहार में दानापुर के निकट गंगा में मिलती है।", tip: "सोन और नर्मदा दोनों अमरकंटक से निकलती हैं।" },
+  // ==========================================
+  // PART II: GENERAL STUDIES (Q31 TO Q50 - DUAL LANGUAGE)
+  // ==========================================
+  {
+    gId: 31, sec: "GS", name: "Part II: General Studies", top: "Modern History: Bihar 1857",
+    q_en: "Who among the following provided leadership from Bihar in the Revolt of 1857?",
+    q_hi: "1857 के विद्रोह में बिहार से प्रमुख नेतृत्व निम्नलिखित में से किसने प्रदान किया था?",
+    opts_en: ["Babu Veer Kunwar Singh", "Nana Saheb", "Amar Singh", "More than one of the above", "None of the above"],
+    opts_hi: ["बाबू वीर कुंवर सिंह", "नाना साहेब", "अमर सिंह", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "जगदीशपुर (भोजपुर) के जमींदार बाबू वीर कुंवर सिंह ने बिहार में 1857 की क्रांति का प्रमुख नेतृत्व किया था।",
+    tip: "जगदीशपुर = कुंवर सिंह; पटना नगर = पीर अली।"
+  },
+  {
+    gId: 32, sec: "GS", name: "Part II: General Studies", top: "History: Champaran Satyagraha",
+    q_en: "Who invited Mahatma Gandhi to visit Champaran in connection with indigo cultivation?",
+    q_hi: "चंपारण में नील की खेती के सिलसिले में महात्मा गांधी को चंपारण आने का निमंत्रण किसने दिया था?",
+    opts_en: ["Dr. Rajendra Prasad", "Rajkumar Shukla", "Brajkishore Prasad", "More than one of the above", "None of the above"],
+    opts_hi: ["डॉ. राजेंद्र प्रसाद", "राजकुमार शुक्ल", "ब्रजकिशोर प्रसाद", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "राजकुमार शुक्ल ने 1916 के लखनऊ अधिवेशन में गांधीजी से भेंट कर उन्हें चंपारण आने का आग्रह किया था।",
+    tip: "तिनकठिया प्रणाली के विरुद्ध 1917 का सत्याग्रह गांधीजी का भारत में प्रथम सविनय अवज्ञा आंदोलन था।"
+  },
+  {
+    gId: 33, sec: "GS", name: "Part II: General Studies", top: "History: INC Sessions",
+    q_en: "The 1912 Bankipur (Patna) session of Indian National Congress was which numbered session and who presided over it?",
+    q_hi: "भारतीय राष्ट्रीय कांग्रेस का 1912 का बाकीपुर (पटना) अधिवेशन किस क्रम का था और इसकी अध्यक्षता किसने की थी?",
+    opts_en: ["Chittaranjan Das (28th)", "R.N. Mudholkar (27th)", "Hakim Ajmal Khan (26th)", "More than one of the above", "None of the above"],
+    opts_hi: ["चितरंजन दास (28वां)", "आर. एन. मुधोलकर (27वां)", "हकीम अजमल खान (26वां)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "बिहार में कांग्रेस का पहला अधिवेशन 1912 में पटना के बाकीपुर में हुआ (27वां अधिवेशन), जिसकी अध्यक्षता आर. एन. मुधोलकर ने की थी।",
+    tip: "1912 बाकीपुर = मुधोलकर; 1922 गया = सी.आर. दास।"
+  },
+  {
+    gId: 34, sec: "GS", name: "Part II: General Studies", top: "History: National Movement",
+    q_en: "During the 1942 Quit India Movement, who escaped from Hazaribagh Jail to lead the movement underground?",
+    q_hi: "1942 के भारत छोड़ो आंदोलन के दौरान हजारीबाग जेल से फरार होकर भूमिगत रहकर आंदोलन का नेतृत्व किसने किया था?",
+    opts_en: ["Jayaprakash Narayan", "Rammanohar Lohia", "Aruna Asaf Ali", "More than one of the above", "None of the above"],
+    opts_hi: ["जयप्रकाश नारायण", "राममनोहर लोहिया", "अरुणा आसफ अली", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "दीपावली की रात 1942 में जयप्रकाश नारायण अपने साथियों के साथ हजारीबाग सेंट्रल जेल से फरार हुए और नेपाल में 'आज़ाद दस्ता' का गठन किया।",
+    tip: "हजारीबाग जेल पलायन -> जयप्रकाश नारायण (JP)।"
+  },
+  {
+    gId: 35, sec: "GS", name: "Part II: General Studies", top: "Polity: Fundamental Rights",
+    q_en: "Which Article of the Indian Constitution abolishes 'Untouchability' and forbids its practice in any form?",
+    q_hi: "भारतीय संविधान का कौन-सा अनुच्छेद 'अस्पृश्यता का उन्मूलन' करता है और किसी भी रूप में इसके आचरण का निषेध करता है?",
+    opts_en: ["Article 14", "Article 17", "Article 21", "More than one of the above", "None of the above"],
+    opts_hi: ["अनुच्छेद 14", "अनुच्छेद 17", "अनुच्छेद 21", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "भारतीय संविधान का अनुच्छेद 17 अस्पृश्यता के उन्मूलन से संबंधित है।",
+    tip: "समानता का अधिकार: Art 14 (विधि के समक्ष समानता) से Art 18 (उपाधियों का अंत)।"
+  },
+  {
+    gId: 36, sec: "GS", name: "Part II: General Studies", top: "Polity: Preamble",
+    q_en: "The words 'Socialist', 'Secular', and 'Integrity' were added to the Preamble of the Constitution by which Amendment Act?",
+    q_hi: "भारतीय संविधान की प्रस्तावना में 'समाजवादी', 'पंथनिरपेक्ष' और 'अखंडता' शब्द किस संविधान संशोधन द्वारा जोड़े गए?",
+    opts_en: ["42nd Amendment Act (1976)", "44th Amendment Act (1978)", "86th Amendment Act (2002)", "More than one of the above", "None of the above"],
+    opts_hi: ["42वां संविधान संशोधन (1976)", "44वां संविधान संशोधन (1978)", "86वां संविधान संशोधन (2002)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "42वें संविधान संशोधन अधिनियम 1976 (स्वर्ण सिंह समिति की सिफारिश) द्वारा प्रस्तावना में ये तीन शब्द जोड़े गए थे।",
+    tip: "42वें संशोधन को 'लघु संविधान' (Mini Constitution) कहा जाता है।"
+  },
+  {
+    gId: 37, sec: "GS", name: "Part II: General Studies", top: "Polity: DPSP",
+    q_en: "In which Article of the Indian Constitution is the 'Uniform Civil Code' (UCC) mentioned?",
+    q_hi: "भारतीय संविधान में 'समान नागरिक संहिता' (Uniform Civil Code) का उल्लेख किस अनुच्छेद में किया गया है?",
+    opts_en: ["Article 40", "Article 44", "Article 50", "More than one of the above", "None of the above"],
+    opts_hi: ["अनुच्छेद 40", "अनुच्छेद 44", "अनुच्छेद 50", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "राज्य के नीति निर्देशक तत्वों (DPSP) के अंतर्गत अनुच्छेद 44 पूरे देश में समान नागरिक संहिता लागू करने का निर्देश देता है।",
+    tip: "Art 40 = ग्राम पंचायत; Art 44 = UCC; Art 50 = कार्यपालिका से न्यायपालिका का पृथक्करण।"
+  },
+  {
+    gId: 38, sec: "GS", name: "Part II: General Studies", top: "Geography: Rivers of Bihar",
+    q_en: "Which major river originating from the Amarkantak plateau (MP) joins the Ganga in Bihar from the south?",
+    q_hi: "बिहार के दक्षिणी भाग में अमरकंटक पठार (मध्य प्रदेश) से निकलकर गंगा में मिलने वाली प्रमुख नदी कौन-सी है?",
+    opts_en: ["Punpun River", "Son River", "Karmanasa River", "More than one of the above", "None of the above"],
+    opts_hi: ["पुनपुन नदी", "सोन नदी", "कर्मनाशा नदी", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "सोन नदी अमरकंटक पहाड़ी से निकलकर बिहार के दानापुर (पटना के निकट) में गंगा नदी में दाईं ओर से मिलती है।",
+    tip: "सोन नदी दक्षिण से उत्तर-पूर्व की ओर बहने वाली मुख्य नदी है।"
+  },
+  {
+    gId: 39, sec: "GS", name: "Part II: General Studies", top: "Geography: Bihar Minerals",
+    q_en: "Which district of Bihar holds a monopoly or leading position in the country for 'Pyrites' production?",
+    q_hi: "बिहार का कौन-सा जिला 'पाइराइट्स' (Pyrites) के उत्पादन में देश में अग्रणी स्थान रखता है?",
+    opts_en: ["Gaya", "Rohtas", "Munger", "More than one of the above", "None of the above"],
+    opts_hi: ["गया", "रोहतास", "मुंगेर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "रोहतास जिले का आमझोर क्षेत्र देश में पाइराइट्स का प्रमुख और लगभग एकाधिकार वाला उत्पादक क्षेत्र है।",
+    tip: "रोहतास = पाइराइट्स और चूना पत्थर दोनों में अग्रणी।"
+  },
+  {
+    gId: 40, sec: "GS", name: "Part II: General Studies", top: "Geography: Soils",
+    q_en: "What is the new alluvial soil brought annually by floods in the Northern Plain of Bihar called?",
+    q_hi: "बिहार के उत्तरी मैदान में प्रतिवर्ष बाढ़ द्वारा लाई जाने वाली नवीन जलोढ़ मिट्टी को किस नाम से जाना जाता है?",
+    opts_en: ["Bangar", "Khadar", "Bhabar", "More than one of the above", "None of the above"],
+    opts_hi: ["बांगर", "खादर", "भाबर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "नवीन जलोढ़ मिट्टी को 'खादर' कहा जाता है, जबकि पुरानी जलोढ़ मिट्टी को 'बांगर' कहा जाता है।",
+    tip: "खादर = नवीन उपजाऊ; बांगर = पुरानी जलोढ़।"
+  },
+  {
+    gId: 41, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Optics)",
+    q_en: "The phenomenon of Mirage formation is based on which physical principle of light?",
+    q_hi: "मृगमरीचिका (Mirage) बनने की घटना प्रकाश के किस भौतिक सिद्धांत पर आधारित है?",
+    opts_en: ["Refraction of light", "Total Internal Reflection (TIR)", "Diffraction of light", "More than one of the above", "None of the above"],
+    opts_hi: ["प्रकाश का अपवर्तन", "पूर्ण आंतरिक परावर्तन (Total Internal Reflection)", "प्रकाश का विवर्तन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "मृगमरीचिका और ऑप्टिकल फाइबर दोनों पूर्ण आंतरिक परावर्तन (TIR) की घटना पर आधारित होते हैं।",
+    tip: "आपतन कोण जब क्रांतिक कोण से अधिक हो तब TIR होता है।"
+  },
+  {
+    gId: 42, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Instruments)",
+    q_en: "Which instrument is used to measure Atmospheric Pressure?",
+    q_hi: "वायुमंडलीय दाब (Atmospheric Pressure) मापने के लिए निम्नलिखित में से किस यंत्र का उपयोग किया जाता है?",
+    opts_en: ["Hygrometer", "Barometer", "Manometer", "More than one of the above", "None of the above"],
+    opts_hi: ["हाइग्रोमीटर", "बैरोमीटर", "मैनोमीटर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "बैरोमीटर का उपयोग वायुमंडलीय दाब मापने में होता है। हाइग्रोमीटर का उपयोग आर्द्रता (Humidity) मापने में होता है।",
+    tip: "बैरोमीटर पाठ्यांक का अचानक गिरना तूफान का संकेत है।"
+  },
+  {
+    gId: 43, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Compounds)",
+    q_en: "What is the chemical name and formula of common edible salt?",
+    q_hi: "खाने वाले सामान्य नमक का रासायनिक नाम और सूत्र क्या है?",
+    opts_en: ["Sodium Bicarbonate (NaHCO3)", "Sodium Chloride (NaCl)", "Sodium Carbonate (Na2CO3)", "More than one of the above", "None of the above"],
+    opts_hi: ["सोडियम बाइकार्बोनेट (NaHCO3)", "सोडियम क्लोराइड (NaCl)", "सोडियम कार्बोनेट (Na2CO3)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "साधारण नमक का रासायनिक नाम सोडियम क्लोराइड (NaCl) है। NaHCO3 बेकिंग सोडा है।",
+    tip: "NaCl = टेबल साल्ट; NaHCO3 = खाने का सोडा।"
+  },
+  {
+    gId: 44, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Acids)",
+    q_en: "Which acid is primarily present in Vinegar?",
+    q_hi: "सिरके (Vinegar) में मुख्य रूप से कौन-सा अम्ल पाया जाता है?",
+    opts_en: ["Formic acid", "Acetic acid", "Citric acid", "More than one of the above", "None of the above"],
+    opts_hi: ["फॉर्मिक अम्ल", "एसिटिक अम्ल", "साइट्रिक अम्ल", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "सिरके में लगभग 5-8% तनु एसिटिक अम्ल (Ethanoic acid, CH3COOH) उपस्थित होता है।",
+    tip: "चींटी का डंक = फॉर्मिक अम्ल; नींबू = साइट्रिक अम्ल; सिरका = एसिटिक अम्ल।"
+  },
+  {
+    gId: 45, sec: "GS", name: "Part II: General Studies", top: "Science: Biology (Human Body)",
+    q_en: "Which vitamin is essential for blood clotting in the human body?",
+    q_hi: "मानव शरीर में रक्त का थक्का जमने (Blood Clotting) के लिए कौन-सा विटामिन आवश्यक होता है?",
+    opts_en: ["Vitamin A", "Vitamin K", "Vitamin C", "More than one of the above", "None of the above"],
+    opts_hi: ["विटामिन ए", "विटामिन के", "विटामिन सी", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "विटामिन K (फाइलोक्विनोन) यकृत में प्रोथ्रोम्बिन के निर्माण के लिए आवश्यक है, जो रक्त का थक्का बनाने में मदद करता है।",
+    tip: "विटामिन K की कमी से रक्तस्राव नहीं रुकता।"
+  },
+  {
+    gId: 46, sec: "GS", name: "Part II: General Studies", top: "Science: Biology (Cell)",
+    q_en: "Which cell organelle is called the 'Powerhouse of the Cell'?",
+    q_hi: "कोशिका का 'पावर हाउस' (Powerhouse of the Cell) किसे कहा जाता है?",
+    opts_en: ["Ribosome", "Mitochondria", "Lysosome", "More than one of the above", "None of the above"],
+    opts_hi: ["राइबोसोम", "माइटोकॉन्ड्रिया", "लाइसोसोम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "माइटोकॉन्ड्रिया में कोशिकीय श्वसन द्वारा ऊर्जा ATP (एडेनोसिन ट्राइफॉस्फेट) के रूप में उत्पन्न होती है।",
+    tip: "लाइसोसोम = आत्महत्या की थैली; राइबोसोम = प्रोटीन फैक्ट्री; माइटोकॉन्ड्रिया = पावर हाउस।"
+  },
+  {
+    gId: 47, sec: "GS", name: "Part II: General Studies", top: "Environment & Ecology",
+    q_en: "What is the primary and ultimate source of energy flow in any ecosystem?",
+    q_hi: "किसी भी पारिस्थितिक तंत्र (Ecosystem) में ऊर्जा के प्रवाह का प्राथमिक एवं अंतिम स्रोत क्या है?",
+    opts_en: ["Green plants", "Sunlight", "ATP", "More than one of the above", "None of the above"],
+    opts_hi: ["हरित पौधे", "सूर्य का प्रकाश", "एटीपी (ATP)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "सूर्य संपूर्ण पृथ्वी और पारिस्थितिक तंत्र के लिए ऊर्जा का अंतिम व प्राथमिक स्रोत है।",
+    tip: "लिंडमैन का 10% नियम: केवल 10% ऊर्जा अगले पोषण स्तर तक पहुंचती है।"
+  },
+  {
+    gId: 48, sec: "GS", name: "Part II: General Studies", top: "Economy: National Income",
+    q_en: "National Income in India is primarily estimated by which agency/organization?",
+    q_hi: "भारत में राष्ट्रीय आय (National Income) का आकलन मुख्य रूप से किस संस्था द्वारा किया जाता है?",
+    opts_en: ["Reserve Bank of India (RBI)", "NITI Aayog", "National Statistical Office (NSO)", "More than one of the above", "None of the above"],
+    opts_hi: ["भारतीय रिजर्व बैंक (RBI)", "नीति आयोग", "राष्ट्रीय सांख्यिकी कार्यालय (NSO)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "भारत में राष्ट्रीय आय की गणना NSO (पूर्व में CSO - केंद्रीय सांख्यिकी संगठन) द्वारा की जाती है।",
+    tip: "NSO सांख्यिकी और कार्यक्रम कार्यान्वयन मंत्रालय (MoSPI) के अधीन है।"
+  },
+  {
+    gId: 49, sec: "GS", name: "Part II: General Studies", top: "Maths: Percentage",
+    q_en: "If the price of an article is first increased by 20% and then decreased by 20%, what is the net percentage change in its price?",
+    q_hi: "यदि किसी वस्तु के मूल्य में पहले 20% की वृद्धि की जाती है और फिर 20% की कमी की जाती है, तो उसके मूल्य में कुल क्या परिवर्तन होगा?",
+    opts_en: ["No change", "4% decrease", "4% increase", "More than one of the above", "None of the above"],
+    opts_hi: ["कोई परिवर्तन नहीं", "4% की कमी", "4% की वृद्धि", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "कुल परिवर्तन = +20 - 20 - (20 * 20)/100 = -4% (अर्थात 4% की कमी)।",
+    tip: "समान प्रतिशत वृद्धि व कमी पर हमेशा (x²/100)% की हानि/कमी होती है।"
+  },
+  {
+    gId: 50, sec: "GS", name: "Part II: General Studies", top: "Maths: Simple Interest",
+    q_en: "A sum of money doubles itself in 5 years at simple interest. What is the annual rate of interest?",
+    q_hi: "कोई धन साधारण ब्याज की दर से 5 वर्षों में दोगुना हो जाता है। ब्याज की वार्षिक दर क्या है?",
+    opts_en: ["10%", "20%", "25%", "More than one of the above", "None of the above"],
+    opts_hi: ["10%", "20%", "25%", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "दर (R) = (N - 1) * 100 / समय = (2 - 1) * 100 / 5 = 20% वार्षिक।",
+    tip: "दोगुना होने पर ब्याज = मूलधन। R = 100 / t = 100/5 = 20%।"
+  }
+  // ==========================================================================
+  // PART II: GENERAL STUDIES (CONTINUED Q51 TO Q70 - DUAL LANGUAGE)
+  // ==========================================================================
+  ,
+  {
+    gId: 51, sec: "GS", name: "Part II: General Studies", top: "Maths: Ratio & Proportion",
+    q_en: "If A:B = 2:3 and B:C = 4:5, what is the value of the ratio A:B:C?",
+    q_hi: "यदि A:B = 2:3 और B:C = 4:5 है, तो अनुपात A:B:C का मान क्या होगा?",
+    opts_en: ["8:12:15", "6:9:15", "8:10:15", "More than one of the above", "None of the above"],
+    opts_hi: ["8:12:15", "6:9:15", "8:10:15", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "A:B = 2:3 = 8:12 aur B:C = 4:5 = 12:15. Dono me B ka term common karne par A:B:C = 8:12:15 prapt hota hai.",
+    tip: "B ke coefficient ko equalize karein: (2*4) : (3*4) : (3*5) = 8:12:15."
+  },
+  {
+    gId: 52, sec: "GS", name: "Part II: General Studies", top: "Maths: Time & Work",
+    q_en: "A can complete a piece of work in 10 days and B in 15 days. Working together, in how many days will they finish the work?",
+    q_hi: "A किसी कार्य को 10 दिनों में और B उसी कार्य को 15 दिनों में पूरा कर सकता है। दोनों मिलकर उस कार्य को कितने दिनों में समाप्त करेंगे?",
+    opts_en: ["5 days", "6 days", "8 days", "More than one of the above", "None of the above"],
+    opts_hi: ["5 दिन", "6 दिन", "8 दिन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Combined time formula: (A * B) / (A + B) = (10 * 15) / (10 + 15) = 150 / 25 = 6 din.",
+    tip: "Direct product divided by sum: 150 / 25 = 6 din."
+  },
+  {
+    gId: 53, sec: "GS", name: "Part II: General Studies", top: "Maths: Speed & Distance",
+    q_en: "A 150-meter-long train running at a speed of 72 km/h will cross a telegraph pole in how many seconds?",
+    q_hi: "72 किमी/घंटा की गति से चल रही 150 मीटर लंबी एक रेलगाड़ी एक खंभे को कितने सेकंड में पार करेगी?",
+    opts_en: ["6.5 seconds", "7.5 seconds", "9.0 seconds", "More than one of the above", "None of the above"],
+    opts_hi: ["6.5 सेकंड", "7.5 सेकंड", "9.0 सेकंड", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Speed in m/s = 72 * (5/18) = 20 m/s. Time = Distance / Speed = 150 / 20 = 7.5 seconds.",
+    tip: "Speed unit conversion: km/h ko m/s me badalne ke liye 5/18 se multiply karein."
+  },
+  {
+    gId: 54, sec: "GS", name: "Part II: General Studies", top: "Maths: Averages",
+    q_en: "What is the average of the first 50 natural numbers?",
+    q_hi: "प्रथम 50 प्राकृतिक (प्राकृत) संख्याओं का औसत क्या होगा?",
+    opts_en: ["25.0", "25.5", "26.0", "More than one of the above", "None of the above"],
+    opts_hi: ["25.0", "25.5", "26.0", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Average of first n natural numbers = (n + 1) / 2 = (50 + 1) / 2 = 51 / 2 = 25.5.",
+    tip: "Direct formula: (n + 1) / 2."
+  },
+  {
+    gId: 55, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Number Series",
+    q_en: "Find the next term in the given number series: 2, 6, 12, 20, 30, ?",
+    q_hi: "दी गई संख्या श्रृंखला में अगला पद ज्ञात कीजिए: 2, 6, 12, 20, 30, ?",
+    opts_en: ["40", "42", "44", "More than one of the above", "None of the above"],
+    opts_hi: ["40", "42", "44", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Differences: +4, +6, +8, +10, +12. Agla term = 30 + 12 = 42. (Alternately: n² + n -> 6² + 6 = 42).",
+    tip: "Consecutive even differences series."
+  },
+  {
+    gId: 56, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Blood Relations",
+    q_en: "Pointing to a photograph, a woman said, 'His brother's father is the only son of my grandfather.' How is the woman related to the person in the photograph?",
+    q_hi: "एक तस्वीर की ओर इशारा करते हुए एक महिला ने कहा, 'उसके भाई के पिता मेरे दादाजी के इकलौते पुत्र हैं।' महिला का तस्वीर वाले व्यक्ति से क्या संबंध है?",
+    opts_en: ["Mother", "Sister", "Aunt", "More than one of the above", "None of the above"],
+    opts_hi: ["माता", "बहन", "चाची", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Grandfather ka iklauta putra = Mahila ke pita. Tasveer wale vyakti ke pita bhi wahi hain. Isliye mahila uski behen (Sister) hai.",
+    tip: "Grandfather ka iklauta son = Father."
+  },
+  {
+    gId: 57, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Coding-Decoding",
+    q_en: "If in a certain code language 'CAT' is coded as 24 and 'DOG' as 26, how will 'PIG' be coded in that language?",
+    q_hi: "यदि किसी निश्चित कूट भाषा में 'CAT' को 24 और 'DOG' को 26 लिखा जाता है, तो उसी भाषा में 'PIG' का कूट क्या होगा?",
+    opts_en: ["30", "32", "34", "More than one of the above", "None of the above"],
+    opts_hi: ["30", "32", "34", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Alphabetical positional values: P(16) + I(9) + G(7) = 32.",
+    tip: "Alphabet rank addition."
+  },
+  {
+    gId: 58, sec: "GS", name: "Part II: General Studies", top: "Modern History: Bihar Newspapers",
+    q_en: "Which was the first Hindi weekly/daily newspaper published from Bihar starting around 1872-1874?",
+    q_hi: "बिहार से 1872-1874 में शुरू होने वाला पहला हिंदी समाचार पत्र कौन-सा था?",
+    opts_en: ["The Searchlight", "Bihar Bandhu", "Aryavarta", "More than one of the above", "None of the above"],
+    opts_hi: ["द सर्चलाइट", "बिहार बंधु", "आर्यावर्त", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "'Bihar Bandhu' Bihar ka pehla Hindi samachar patr tha jise Keshavram Bhatt dwara shuru kiya gaya tha.",
+    tip: "Bihar Bandhu = Pehla Hindi Patr."
+  },
+  {
+    gId: 59, sec: "GS", name: "Part II: General Studies", top: "History: Bihar Kisan Sabha",
+    q_en: "Who founded the Bihar Provincial Kisan Sabha (BPKS) at the Sonpur fair in 1929?",
+    q_hi: "1929 में सोनपुर मेले के अवसर पर बिहार प्रांतीय किसान सभा (BPKS) की स्थापना किसने की थी?",
+    opts_en: ["Swami Sahajanand Saraswati", "Karyanand Sharma", "Yadunandan Sharma", "More than one of the above", "None of the above"],
+    opts_hi: ["स्वामी सहजानंद सरस्वती", "कार्यानंद शर्मा", "यदुनंदन शर्मा", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Swami Sahajanand Saraswati ne 1929 me Sonpur mele ke dauran Bihar Prantiya Kisan Sabha ka gathan kiya tha.",
+    tip: "Swami Sahajanand = Kisan Sabha Pioneer."
+  },
+  {
+    gId: 60, sec: "GS", name: "Part II: General Studies", top: "Geography: Census 2011",
+    q_en: "According to the 2011 Census, which Indian state recorded the highest population density among states?",
+    q_hi: "2011 की जनगणना के अनुसार, भारत में राज्यों के स्तर पर सर्वाधिक जनघनत्व किस राज्य का है?",
+    opts_en: ["West Bengal", "Bihar", "Uttar Pradesh", "More than one of the above", "None of the above"],
+    opts_hi: ["पश्चिम बंगाल", "बिहार", "उत्तर प्रदेश", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Census 2011 ke anusar Bihar ka population density 1,106 vyakti prati varg km tha, jo sabhi states me sarvadhik hai.",
+    tip: "Bihar Density = 1106 persons/km²."
+  },
+  {
+    gId: 61, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Sound)",
+    q_en: "Sound waves cannot travel through which of the following media?",
+    q_hi: "ध्वनि तरंगें (Sound Waves) निम्नलिखित में से किस माध्यम में यात्रा नहीं कर सकती हैं?",
+    opts_en: ["Solids (Iron)", "Liquids (Water)", "Vacuum", "More than one of the above", "None of the above"],
+    opts_hi: ["ठोस (लोहा)", "द्रव (जल)", "निर्वात (Vacuum)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "Sound ek mechanical wave hai jise sancharan ke liye material medium chahiye; yeh vacuum me travel nahi kar sakti.",
+    tip: "Sound requires material medium; Light does not."
+  },
+  {
+    gId: 62, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Metals)",
+    q_en: "Which metal exists in liquid state at normal room temperature?",
+    q_hi: "निम्नलिखित में से कौन-सी धातु कमरे के सामान्य तापमान पर द्रव अवस्था (Liquid State) में पाई जाती है?",
+    opts_en: ["Bromine", "Mercury", "Gallium", "More than one of the above", "None of the above"],
+    opts_hi: ["ब्रोमीन", "पारा (Mercury)", "गैलियम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Mercury (Hg) ek dhatu hai jo room temperature par liquid hoti hai. Bromine ek liquid non-metal hai.",
+    tip: "Liquid Metal = Mercury; Liquid Non-metal = Bromine."
+  },
+  {
+    gId: 63, sec: "GS", name: "Part II: General Studies", top: "Science: Biology (Vitamins)",
+    q_en: "Which vitamin is naturally synthesized in human skin upon exposure to sunlight?",
+    q_hi: "सूर्य के प्रकाश की उपस्थिति में मानव त्वचा में किस विटामिन का प्राकृतिक संश्लेषण होता है?",
+    opts_en: ["Vitamin A", "Vitamin D", "Vitamin E", "More than one of the above", "None of the above"],
+    opts_hi: ["विटामिन ए", "विटामिन डी", "विटामिन ई", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Sunlight ke UV-B exposure se skin me 7-dehydrocholesterol Vitamin D (Calciferol) me synthesize hota hai.",
+    tip: "Sunlight vitamin = Vitamin D."
+  },
+  {
+    gId: 64, sec: "GS", name: "Part II: General Studies", top: "Polity: Local Self Govt",
+    q_en: "The 73rd Constitutional Amendment Act (1992) is related to which of the following?",
+    q_hi: "भारतीय संविधान का 73वां संविधान संशोधन अधिनियम (1992) किससे संबंधित है?",
+    opts_en: ["Municipal governance", "Panchayati Raj System", "Fundamental Duties", "More than one of the above", "None of the above"],
+    opts_hi: ["नगरपालिका शासन", "पंचायती राज व्यवस्था", "मूल कर्तव्य", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "73rd Amendment Panchayati Raj ko samvaidhanik darja deta hai aur 11th Schedule jodta hai.",
+    tip: "73rd = Panchayati Raj; 74th = Municipalities."
+  },
+  {
+    gId: 65, sec: "GS", name: "Part II: General Studies", top: "History: 1857 Revolt",
+    q_en: "Who was the Governor-General of India during the Revolt of 1857?",
+    q_hi: "1857 की क्रांति के समय भारत का गवर्नर जनरल कौन था?",
+    opts_en: ["Lord Dalhousie", "Lord Canning", "Lord Wellesley", "More than one of the above", "None of the above"],
+    opts_hi: ["लॉर्ड डलहौजी", "लॉर्ड कैनिंग", "लॉर्ड वेलेस्ली", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "1857 ke vidroh ke samay Lord Canning Governor-General tha, jo 1858 ke act ke baad pehla Viceroy bana.",
+    tip: "Revolt of 1857 = Lord Canning."
+  },
+  {
+    gId: 66, sec: "GS", name: "Part II: General Studies", top: "Geography: Bihar National Parks",
+    q_en: "The only National Park of Bihar, 'Valmiki National Park', is situated in which district?",
+    q_hi: "बिहार का एकमात्र राष्ट्रीय उद्यान 'वाल्मीकि राष्ट्रीय उद्यान' किस जिले में स्थित है?",
+    opts_en: ["East Champaran", "West Champaran", "Kaimur", "More than one of the above", "None of the above"],
+    opts_hi: ["पूर्वी चंपारण", "पश्चिमी चंपारण", "कैमूर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Valmiki National Park aur Tiger Reserve Bihar ke Pashchimi Champaran (West Champaran) jile me sthit hai.",
+    tip: "Valmiki National Park = West Champaran."
+  },
+  {
+    gId: 67, sec: "GS", name: "Part II: General Studies", top: "Maths: HCF & LCM",
+    q_en: "The HCF of two numbers is 12 and their LCM is 72. If one number is 24, what is the other number?",
+    q_hi: "दो संख्याओं का महत्तम समापवर्तक (HCF) 12 है और लघुत्तम समापवर्त्य (LCM) 72 है। यदि एक संख्या 24 है, तो दूसरी संख्या क्या होगी?",
+    opts_en: ["36", "48", "18", "More than one of the above", "None of the above"],
+    opts_hi: ["36", "48", "18", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "First Number * Second Number = HCF * LCM. Second Number = (12 * 72) / 24 = 36.",
+    tip: "Formula: N1 * N2 = HCF * LCM."
+  },
+  {
+    gId: 68, sec: "GS", name: "Part II: General Studies", top: "Maths: Profit & Loss",
+    q_en: "By selling an article for ₹450, a shopkeeper incurs a loss of 10%. At what price should he sell it to gain 20%?",
+    q_hi: "एक दुकानदार किसी वस्तु को ₹450 में बेचकर 10% की हानि उठाता है। 20% का लाभ कमाने के लिए उसे उस वस्तु को कितने में बेचना चाहिए?",
+    opts_en: ["₹500", "₹600", "₹550", "More than one of the above", "None of the above"],
+    opts_hi: ["₹500", "₹600", "₹550", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Cost Price = 450 / 0.90 = ₹500. Selling Price for 20% profit = 500 * 1.20 = ₹600.",
+    tip: "New SP = (450 / 90) * 120 = 5 * 120 = ₹600."
+  },
+  {
+    gId: 69, sec: "GS", name: "Part II: General Studies", top: "Environment: Atmosphere",
+    q_en: "In which atmospheric layer is the Ozone Layer located that absorbs harmful ultraviolet rays?",
+    q_hi: "वायुमंडल की किस परत में ओजोन परत (Ozone Layer) पाई जाती है, जो पराबैंगनी किरणों को अवशोषित करती है?",
+    opts_en: ["Troposphere", "Stratosphere", "Mesosphere", "More than one of the above", "None of the above"],
+    opts_hi: ["क्षोभमंडल (Troposphere)", "समतापमंडल (Stratosphere)", "मध्यमंडल (Mesosphere)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Ozone layer Stratosphere (Samtpmandal) me sthit hoti hai jo UV radiation ko filter karti hai.",
+    tip: "Ozone Shield = Stratosphere."
+  },
+  {
+    gId: 70, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (pH Scale)",
+    q_en: "What is the pH value of pure water at 25°C?",
+    q_hi: "शुद्ध जल का pH मान 25°C पर कितना होता है?",
+    opts_en: ["0", "7", "14", "More than one of the above", "None of the above"],
+    opts_hi: ["0", "7", "14", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Shuddh jal neutral hota hai, jiska pH theek 7 hota hai.",
+    tip: "Pure Water = pH 7 (Neutral)."
+  },
 
-  // PART III: COMPUTER SCIENCE (71-150)
-  { id: 71, s: "CS", t: "DBMS: Normalization", q: "Which normal form specifically removes partial functional dependency?", o: ["1NF", "2NF", "3NF", "More than one of the above", "None of the above"], a: 1, e: "2NF eliminates partial dependencies; all non-prime attributes must depend fully on candidate key.", tip: "1NF = Atomic, 2NF = No Partial, 3NF = No Transitive, BCNF = Key determinants." },
-  { id: 72, s: "CS", t: "DSA: Graph Traversal", q: "Which data structure is primarily utilized to implement Breadth First Search (BFS)?", o: ["Stack", "Queue", "Priority Queue", "More than one of the above", "None of the above"], a: 1, e: "BFS explores vertex neighbor level-by-level in FIFO order using a Queue.", tip: "BFS = Queue (FIFO), DFS = Stack (LIFO)." },
-  { id: 73, s: "CS", t: "COA: Number Systems", q: "In 8-bit 2's complement representation, what is the decimal value of 11110000?", o: ["-16", "-240", "+240", "More than one of the above", "None of the above"], a: 0, e: "MSB is 1 (negative). Inverting bits gives 00001111 + 1 = 00010000 (16), so value is -16.", tip: "-128 + 64 + 32 + 16 = -16." },
-  { id: 74, s: "CS", t: "OS: Deadlock", q: "Which condition is NOT a mandatory condition for deadlock occurrence?", o: ["Mutual Exclusion", "Hold and Wait", "Preemption", "More than one of the above", "None of the above"], a: 2, e: "The condition is 'No Preemption'. If preemption is allowed, deadlock cannot occur.", tip: "4 Coffman conditions: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait." },
-  { id: 75, s: "CS", t: "Networking: OSI Model", q: "At which layer of the OSI model does a Router primarily operate?", o: ["Data Link Layer", "Network Layer", "Transport Layer", "More than one of the above", "None of the above"], a: 1, e: "Routers forward packets based on logical IP addresses at Network Layer (Layer 3).", tip: "Repeater = L1, Switch = L2, Router = L3, Gateway = L7." },
-  { id: 76, s: "CS", t: "OOP: C++ Concepts", q: "Which feature of Object-Oriented Programming enables runtime polymorphism?", o: ["Function Overloading", "Virtual Functions", "Operator Overloading", "More than one of the above", "None of the above"], a: 1, e: "Virtual functions in C++ resolve method calls at runtime via vtable mechanism.", tip: "Compile-time = Overloading; Runtime = Virtual functions." },
-  { id: 77, s: "CS", t: "Software Engg: Models", q: "Which software development life cycle (SDLC) model is most suited for projects with high risk management needs?", o: ["Waterfall Model", "Spiral Model", "Rad Model", "More than one of the above", "None of the above"], a: 1, e: "The Spiral model explicitly incorporates risk assessment in every evolutionary cycle.", tip: "Spiral model = Risk driven." },
-  { id: 78, s: "CS", t: "DSA: Sorting Algorithms", q: "What is the worst-case time complexity of standard QuickSort algorithm?", o: ["O(N log N)", "O(N^2)", "O(N)", "More than one of the above", "None of the above"], a: 1, e: "QuickSort degrades to O(N^2) when pivot selection consistently partitions into unbalanced sublists.", tip: "Best/Avg = O(N log N); Worst = O(N^2)." }
+  // ==========================================================================
+  // PART III: COMPUTER SCIENCE (Q71 TO Q100 - DUAL LANGUAGE & VISUAL SVGS)
+  // ==========================================================================
+  {
+    gId: 71, sec: "CS", name: "Part III: Computer Science", top: "COA: Number Systems",
+    q_en: "In an 8-bit two's complement representation, what is the decimal equivalent of the binary pattern <strong>11110000</strong>?<div class='diagram-card'><svg width='400' height='80' viewBox='0 0 400 80'><rect x='20' y='20' width='40' height='35' fill='#7f1d1d' stroke='#ef4444' rx='3'/><text x='40' y='42' fill='#fff' font-size='14' font-weight='bold' text-anchor='middle'>1</text><text x='40' y='68' fill='#f87171' font-size='10' text-anchor='middle'>Sign</text><rect x='65' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='85' y='42' fill='#fff' font-size='14' text-anchor='middle'>1</text><rect x='110' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='130' y='42' fill='#fff' font-size='14' text-anchor='middle'>1</text><rect x='155' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='175' y='42' fill='#fff' font-size='14' text-anchor='middle'>1</text><rect x='200' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='220' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text><rect x='245' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='265' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text><rect x='290' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='310' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text><rect x='335' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='355' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text></svg></div>",
+    q_hi: "8-बिट टूज़ कॉम्प्लीमेंट (Two's Complement) निरूपण में बाइनरी पैटर्न <strong>11110000</strong> का दशमलव मान क्या होगा?<div class='diagram-card'><svg width='400' height='80' viewBox='0 0 400 80'><rect x='20' y='20' width='40' height='35' fill='#7f1d1d' stroke='#ef4444' rx='3'/><text x='40' y='42' fill='#fff' font-size='14' font-weight='bold' text-anchor='middle'>1</text><text x='40' y='68' fill='#f87171' font-size='10' text-anchor='middle'>Sign</text><rect x='65' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='85' y='42' fill='#fff' font-size='14' text-anchor='middle'>1</text><rect x='110' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='130' y='42' fill='#fff' font-size='14' text-anchor='middle'>1</text><rect x='155' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='175' y='42' fill='#fff' font-size='14' text-anchor='middle'>1</text><rect x='200' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='220' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text><rect x='245' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='265' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text><rect x='290' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='310' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text><rect x='335' y='20' width='40' height='35' fill='#1e293b' stroke='#475569' rx='3'/><text x='355' y='42' fill='#fff' font-size='14' text-anchor='middle'>0</text></svg></div>",
+    opts_en: ["-16", "-240", "+240", "More than one of the above", "None of the above"],
+    opts_hi: ["-16", "-240", "+240", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "MSB 1 hai jo negative sign batata hai. Value = -2^7 + 2^6 + 2^5 + 2^4 = -128 + 64 + 32 + 16 = -16.",
+    tip: "Invert bits and add 1: ~11110000 = 00001111 + 1 = 00010000 (16) -> -16."
+  },
+  {
+    gId: 72, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Normalization",
+    q_en: "Consider the relational table with composite primary key <strong>{RollNo, CourseID}</strong>. Which Normal Form is specifically violated by the partial dependency <code>RollNo &rarr; StudentName</code>?<div class='table-scroll-container'><table class='quiz-table'><thead><tr><th><u>RollNo</u></th><th><u>CourseID</u></th><th>StudentName</th><th>CourseFee</th></tr></thead><tbody><tr><td>101</td><td>CS1</td><td>Aman</td><td>5000</td></tr><tr><td>101</td><td>CS2</td><td>Aman</td><td>6000</td></tr></tbody></table></div>",
+    q_hi: "संयुक्त प्राथमिक कुंजी (Composite Key) <strong>{RollNo, CourseID}</strong> वाली तालिका में आंशिक निर्भरता <code>RollNo &rarr; StudentName</code> के कारण किस सामान्य रूप (Normal Form) का उल्लंघन होता है?<div class='table-scroll-container'><table class='quiz-table'><thead><tr><th><u>RollNo</u></th><th><u>CourseID</u></th><th>StudentName</th><th>CourseFee</th></tr></thead><tbody><tr><td>101</td><td>CS1</td><td>Aman</td><td>5000</td></tr><tr><td>101</td><td>CS2</td><td>Aman</td><td>6000</td></tr></tbody></table></div>",
+    opts_en: ["1NF", "2NF", "3NF", "More than one of the above", "None of the above"],
+    opts_hi: ["1NF", "2NF", "3NF", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "2NF requires that no non-prime attribute is partially dependent on any candidate key. Yahan StudentName sirf RollNo par depend karta hai, isliye 2NF violate hoti hai.",
+    tip: "Partial Functional Dependency = 2NF Violation."
+  },
+  {
+    gId: 73, sec: "CS", name: "Part III: Computer Science", top: "OS: Deadlock RAG",
+    q_en: "In the Resource Allocation Graph (RAG) below, where each process holds one resource and requests another in a closed cycle, which condition is depicted?<div class='diagram-card'><svg width='320' height='130' viewBox='0 0 320 130'><defs><marker id='ragA' viewBox='0 0 10 10' refX='21' refY='5' markerWidth='6' markerHeight='6' orient='auto-start-reverse'><path d='M 0 1 L 10 5 L 0 9 z' fill='#38bdf8'/></marker></defs><circle cx='70' cy='65' r='20' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><text x='70' y='70' fill='#fff' font-size='12' font-weight='bold' text-anchor='middle'>P1</text><circle cx='250' cy='65' r='20' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><text x='250' y='70' fill='#fff' font-size='12' font-weight='bold' text-anchor='middle'>P2</text><rect x='140' y='15' width='36' height='26' fill='#1e293b' stroke='#f59e0b' stroke-width='2' rx='3'/><text x='158' y='32' fill='#fde68a' font-size='11' font-weight='bold' text-anchor='middle'>R1</text><rect x='140' y='90' width='36' height='26' fill='#1e293b' stroke='#f59e0b' stroke-width='2' rx='3'/><text x='158' y='107' fill='#fde68a' font-size='11' font-weight='bold' text-anchor='middle'>R2</text><line x1='70' y1='45' x2='140' y2='28' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/><line x1='158' y1='41' x2='250' y2='45' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/><line x1='250' y1='85' x2='176' y2='103' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/><line x1='158' y1='90' x2='70' y2='85' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/></svg></div>",
+    q_hi: "नीचे दिए गए रिसोर्स एलोकेशन ग्राफ (RAG) में जहां प्रत्येक प्रक्रिया एक संसाधन को रोककर दूसरे का अनुरोध एक बंद चक्र में कर रही है, कौन-सी स्थिति दर्शायी गई है?<div class='diagram-card'><svg width='320' height='130' viewBox='0 0 320 130'><defs><marker id='ragA' viewBox='0 0 10 10' refX='21' refY='5' markerWidth='6' markerHeight='6' orient='auto-start-reverse'><path d='M 0 1 L 10 5 L 0 9 z' fill='#38bdf8'/></marker></defs><circle cx='70' cy='65' r='20' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><text x='70' y='70' fill='#fff' font-size='12' font-weight='bold' text-anchor='middle'>P1</text><circle cx='250' cy='65' r='20' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><text x='250' y='70' fill='#fff' font-size='12' font-weight='bold' text-anchor='middle'>P2</text><rect x='140' y='15' width='36' height='26' fill='#1e293b' stroke='#f59e0b' stroke-width='2' rx='3'/><text x='158' y='32' fill='#fde68a' font-size='11' font-weight='bold' text-anchor='middle'>R1</text><rect x='140' y='90' width='36' height='26' fill='#1e293b' stroke='#f59e0b' stroke-width='2' rx='3'/><text x='158' y='107' fill='#fde68a' font-size='11' font-weight='bold' text-anchor='middle'>R2</text><line x1='70' y1='45' x2='140' y2='28' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/><line x1='158' y1='41' x2='250' y2='45' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/><line x1='250' y1='85' x2='176' y2='103' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/><line x1='158' y1='90' x2='70' y2='85' stroke='#38bdf8' stroke-width='2' marker-end='url(#ragA)'/></svg></div>",
+    opts_en: ["Mutual Exclusion only", "Hold and Wait with Circular Wait", "Preemption Allowed", "More than one of the above", "None of the above"],
+    opts_hi: ["केवल पारस्परिक अपवर्जन", "होल्ड एंड वेट तथा सर्कुलर वेट", "प्रीएम्प्शन की अनुमति", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Graph me cycle ban rahi hai jisme process resource hold karke dusre resource ke release hone ka wait kar rahi hai, jo Hold and Wait aur Circular Wait ko darshata hai.",
+    tip: "Cycle in single instance RAG implies Deadlock."
+  },
+  {
+    gId: 74, sec: "CS", name: "Part III: Computer Science", top: "Networking: OSI Architecture",
+    q_en: "At which specific layer of the OSI model does a network <strong>Router</strong> operate to forward packets based on logical IP addresses?<div class='diagram-card'><svg width='320' height='140' viewBox='0 0 320 140'><rect x='30' y='10' width='260' height='20' fill='#1e293b' stroke='#475569' rx='2'/><text x='160' y='24' fill='#94a3b8' font-size='11' text-anchor='middle'>Layers 7-4: Application / Transport</text><rect x='30' y='35' width='260' height='30' fill='#1e3a8a' stroke='#38bdf8' stroke-width='2' rx='3'/><text x='160' y='54' fill='#ffffff' font-size='12' font-weight='bold' text-anchor='middle'>Layer 3: Network Layer (IP / Router)</text><rect x='30' y='70' width='260' height='20' fill='#1e293b' stroke='#475569' rx='2'/><text x='160' y='84' fill='#94a3b8' font-size='11' text-anchor='middle'>Layer 2: Data Link Layer (Switch)</text><rect x='30' y='95' width='260' height='20' fill='#1e293b' stroke='#475569' rx='2'/><text x='160' y='109' fill='#94a3b8' font-size='11' text-anchor='middle'>Layer 1: Physical Layer (Hub)</text></svg></div>",
+    q_hi: "तार्किक आईपी पतों (Logical IP Addresses) के आधार पर पैकेट अग्रेषित (forward) करने के लिए एक नेटवर्क <strong>रूटर (Router)</strong> ओएसआई मॉडल की किस विशिष्ट परत पर कार्य करता है?<div class='diagram-card'><svg width='320' height='140' viewBox='0 0 320 140'><rect x='30' y='10' width='260' height='20' fill='#1e293b' stroke='#475569' rx='2'/><text x='160' y='24' fill='#94a3b8' font-size='11' text-anchor='middle'>Layers 7-4: Application / Transport</text><rect x='30' y='35' width='260' height='30' fill='#1e3a8a' stroke='#38bdf8' stroke-width='2' rx='3'/><text x='160' y='54' fill='#ffffff' font-size='12' font-weight='bold' text-anchor='middle'>Layer 3: Network Layer (IP / Router)</text><rect x='30' y='70' width='260' height='20' fill='#1e293b' stroke='#475569' rx='2'/><text x='160' y='84' fill='#94a3b8' font-size='11' text-anchor='middle'>Layer 2: Data Link Layer (Switch)</text><rect x='30' y='95' width='260' height='20' fill='#1e293b' stroke='#475569' rx='2'/><text x='160' y='109' fill='#94a3b8' font-size='11' text-anchor='middle'>Layer 1: Physical Layer (Hub)</text></svg></div>",
+    opts_en: ["Data Link Layer (Layer 2)", "Network Layer (Layer 3)", "Transport Layer (Layer 4)", "More than one of the above", "None of the above"],
+    opts_hi: ["डेटा लिंक लेयर (लेयर 2)", "नेटवर्क लेयर (लेयर 3)", "ट्रांसपोर्ट लेयर (लेयर 4)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Router Network Layer (Layer 3) par IP packets aur routing tables ka prayog karke packet forwarding karta hai.",
+    tip: "Hub = L1, Switch = L2, Router = L3, Gateway = L7."
+  },
+  {
+    gId: 75, sec: "CS", name: "Part III: Computer Science", top: "DSA: Graph Traversal BFS",
+    q_en: "Which data structure is primarily utilized to implement Breadth First Search (BFS) graph traversal?<div class='diagram-card'><svg width='300' height='100' viewBox='0 0 300 100'><circle cx='50' cy='50' r='16' fill='#1e3a8a' stroke='#38bdf8' stroke-width='2'/><text x='50' y='55' fill='#fff' font-size='12' font-weight='bold' text-anchor='middle'>Root</text><line x1='66' y1='50' x2='120' y2='50' stroke='#475569' stroke-width='2'/><rect x='130' y='30' width='140' height='40' fill='#0f172a' stroke='#10b981' stroke-width='2' rx='4'/><text x='200' y='54' fill='#34d399' font-size='12' font-weight='bold' text-anchor='middle'>[ FIFO Queue ]</text></svg></div>",
+    q_hi: "ग्राफ में ब्रेड्थ फर्स्ट सर्च (BFS) ट्रैवर्सल को लागू करने के लिए मुख्य रूप से किस डेटा संरचना का उपयोग किया जाता है?<div class='diagram-card'><svg width='300' height='100' viewBox='0 0 300 100'><circle cx='50' cy='50' r='16' fill='#1e3a8a' stroke='#38bdf8' stroke-width='2'/><text x='50' y='55' fill='#fff' font-size='12' font-weight='bold' text-anchor='middle'>Root</text><line x1='66' y1='50' x2='120' y2='50' stroke='#475569' stroke-width='2'/><rect x='130' y='30' width='140' height='40' fill='#0f172a' stroke='#10b981' stroke-width='2' rx='4'/><text x='200' y='54' fill='#34d399' font-size='12' font-weight='bold' text-anchor='middle'>[ FIFO Queue ]</text></svg></div>",
+    opts_en: ["Stack (LIFO)", "Queue (FIFO)", "Binary Search Tree", "More than one of the above", "None of the above"],
+    opts_hi: ["स्टैक (LIFO)", "कतार / क्यू (FIFO)", "बाइनरी सर्च ट्री", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "BFS level-by-level frontier nodes ko explore karta hai jiske liye FIFO Queue ka upayog anivarya hai.",
+    tip: "BFS = Queue; DFS = Stack."
+  },
+  {
+    gId: 76, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Duality",
+    q_en: "What is the dual of the Boolean expression: <code>A + B &middot; C = (A + B)(A + C)</code>?",
+    q_hi: "बूलियन व्यंजक <code>A + B &middot; C = (A + B)(A + C)</code> का द्वैत (Dual) क्या होगा?",
+    opts_en: ["A &middot; (B + C) = A &middot; B + A &middot; C", "A + B + C = A &middot; B &middot; C", "A &middot; B &middot; C = (A + B)(A + C)", "More than one of the above", "None of the above"],
+    opts_hi: ["A &middot; (B + C) = A &middot; B + A &middot; C", "A + B + C = A &middot; B &middot; C", "A &middot; B &middot; C = (A + B)(A + C)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Duality principle me AND (.) ko OR (+) se aur OR (+) ko AND (.) se interchange kiya jata hai. Isliye A + (B . C) ban jata hai A . (B + C) = A.B + A.C.",
+    tip: "Interchange + with . and 0 with 1."
+  },
+  {
+    gId: 77, sec: "CS", name: "Part III: Computer Science", top: "DBMS: SQL Commands",
+    q_en: "Which SQL command is used to remove a relation schema along with all its tuples, indices, and constraints entirely from the database?",
+    q_hi: "डेटाबेस से किसी टेबल स्कीमा को उसके सभी टपल्स, इंडेक्स और बाधाओं (constraints) सहित पूर्णतः हटाने के लिए किस SQL कमांड का उपयोग किया जाता है?",
+    opts_en: ["DELETE TABLE", "DROP TABLE", "REMOVE TABLE", "More than one of the above", "None of the above"],
+    opts_hi: ["DELETE TABLE", "DROP TABLE", "REMOVE TABLE", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "DROP TABLE command DDL ka hissa hai jo structure aur data dono ko permanently mita deta hai. DELETE sirf rows hatata hai.",
+    tip: "DROP = DDL (Deletes table schema); DELETE = DML (Deletes rows)."
+  },
+  {
+    gId: 78, sec: "CS", name: "Part III: Computer Science", top: "COA: Cache Memory",
+    q_en: "Which cache write policy updates both the cache line and the underlying main memory block simultaneously on every write access?",
+    q_hi: "कौन-सी कैश राइट पॉलिसी प्रत्येक राइट ऑपरेशन पर कैश लाइन और मुख्य मेमोरी दोनों को एक साथ अपडेट करती है?",
+    opts_en: ["Write-back", "Write-through", "Write-allocate", "More than one of the above", "None of the above"],
+    opts_hi: ["राइट-बैक", "राइट-थ्रू", "राइट-एलोकेट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Write-through policy cache aur RAM dono ko sath me update karti hai taaki memory coherence bani rahe.",
+    tip: "Write-through = Immediate RAM update; Write-back = Lazy update on replacement."
+  },
+  {
+    gId: 79, sec: "CS", name: "Part III: Computer Science", top: "OS: Process Synchronization",
+    q_en: "Which synchronization primitive provided by the operating system avoids busy waiting (spinlocks) by putting waiting processes into a sleep queue?",
+    q_hi: "ऑपरेटिंग सिस्टम द्वारा प्रदान किया गया कौन-सा सिंक्रोनाइज़ेशन टूल प्रतीक्षारत प्रक्रियाओं को स्लीप कतार में डालकर बिजी वेटिंग (busy waiting) से बचाता है?",
+    opts_en: ["Spinlock", "Semaphore", "Test-and-Set Lock", "More than one of the above", "None of the above"],
+    opts_hi: ["स्पिनलॉक", "सेमाफोर (Semaphore)", "टेस्ट-एंड-सेट लॉक", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Standard counting/binary semaphore wait() hone par process ko block state me daal deta hai, jisse CPU busy waiting nahi karta.",
+    tip: "Classic Semaphores use block/wakeup rather than spinning."
+  },
+  {
+    gId: 80, sec: "CS", name: "Part III: Computer Science", top: "DSA: Binary Trees",
+    q_en: "In a strictly binary tree (full binary tree) having 'n' leaf nodes, what is the exact number of internal (non-leaf) nodes?",
+    q_hi: "एक पूर्ण/सख्त बाइनरी ट्री (Strictly Binary Tree) में जिसमें 'n' लीफ (leaf) नोड्स हैं, आंतरिक (non-leaf) नोड्स की कुल संख्या क्या होगी?",
+    opts_en: ["n - 1", "n + 1", "2n", "More than one of the above", "None of the above"],
+    opts_hi: ["n - 1", "n + 1", "2n", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Strictly binary tree me jahan har node ke 0 ya 2 children hote hain, wahan internal nodes = leaf nodes - 1 (I = L - 1) hota hai.",
+    tip: "Property: I = L - 1."
+  },
+  {
+    gId: 81, sec: "CS", name: "Part III: Computer Science", top: "C++: Identifiers",
+    q_en: "Which of the following is an invalid identifier name in C++ according to lexical syntax rules?",
+    q_hi: "लेक्सिकल सिंटैक्स नियमों के अनुसार C++ में निम्नलिखित में से कौन-सा एक अमान्य (invalid) पहचानकर्ता (identifier) है?",
+    opts_en: ["_countVar", "var_name_1", "1varName", "More than one of the above", "None of the above"],
+    opts_hi: ["_countVar", "var_name_1", "1varName", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "C++ me identifier ka pehla character digit nahi ho sakta. '1varName' 1 se shuru ho raha hai, isliye invalid hai.",
+    tip: "Identifiers cannot start with a numeric digit."
+  },
+  {
+    gId: 82, sec: "CS", name: "Part III: Computer Science", top: "Python: Data Types",
+    q_en: "What is the evaluated output of the Python expression: <code>type([1, 2, (3, 4)])</code>?",
+    q_hi: "पायथन व्यंजक <code>type([1, 2, (3, 4)])</code> का आउटपुट क्या होगा?",
+    opts_en: ["<class 'tuple'>", "<class 'list'>", "<class 'dict'>", "More than one of the above", "None of the above"],
+    opts_hi: ["<class 'tuple'>", "<class 'list'>", "<class 'dict'>", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Outer brackets square brackets '[]' hain, isliye datatype 'list' hoga chahe andar nested tuple hi kyu na ho.",
+    tip: "Outer delimiters define the collection type."
+  },
+  {
+    gId: 83, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Logic Gates",
+    q_en: "Identify the Boolean logic function performed by the gate symbol having inputs A, B and output Y shown below:<div class='diagram-card'><svg width='280' height='90' viewBox='0 0 280 90'><line x1='20' y1='30' x2='80' y2='30' stroke='#94a3b8' stroke-width='2'/><line x1='20' y1='60' x2='80' y2='60' stroke='#94a3b8' stroke-width='2'/><text x='10' y='35' fill='#38bdf8' font-size='12' font-weight='bold'>A</text><text x='10' y='65' fill='#38bdf8' font-size='12' font-weight='bold'>B</text><path d='M 80,15 L 120,15 A 30,30 0 0,1 120,75 L 80,75 Z' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><circle cx='154' cy='45' r='4' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><line x1='158' y1='45' x2='220' y2='45' stroke='#94a3b8' stroke-width='2'/><text x='230' y='49' fill='#34d399' font-size='13' font-weight='bold'>Y</text></svg></div>",
+    q_hi: "नीचे दिखाए गए गेट प्रतीक (Inputs A, B और Output Y) द्वारा निष्पादित बूलियन लॉजिक फ़ंक्शन की पहचान करें:<div class='diagram-card'><svg width='280' height='90' viewBox='0 0 280 90'><line x1='20' y1='30' x2='80' y2='30' stroke='#94a3b8' stroke-width='2'/><line x1='20' y1='60' x2='80' y2='60' stroke='#94a3b8' stroke-width='2'/><text x='10' y='35' fill='#38bdf8' font-size='12' font-weight='bold'>A</text><text x='10' y='65' fill='#38bdf8' font-size='12' font-weight='bold'>B</text><path d='M 80,15 L 120,15 A 30,30 0 0,1 120,75 L 80,75 Z' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><circle cx='154' cy='45' r='4' fill='#1e293b' stroke='#60a5fa' stroke-width='2'/><line x1='158' y1='45' x2='220' y2='45' stroke='#94a3b8' stroke-width='2'/><text x='230' y='49' fill='#34d399' font-size='13' font-weight='bold'>Y</text></svg></div>",
+    opts_en: ["Y = (A &middot; B)' (NAND)", "Y = A + B (OR)", "Y = A &oplus; B (XOR)", "More than one of the above", "None of the above"],
+    opts_hi: ["Y = (A &middot; B)' (NAND)", "Y = A + B (OR)", "Y = A &oplus; B (XOR)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Symbol AND gate ke aage negation bubble ko darshata hai, jo ki universal NAND gate (Y = (A.B)') hai.",
+    tip: "AND shape + inversion bubble = NAND gate."
+  },
+  {
+    gId: 84, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Truth Tables",
+    q_en: "Analyze the truth table given below. Which Boolean function does output F represent?<div class='table-scroll-container'><table class='quiz-table'><thead><tr><th>A</th><th>B</th><th>Output F</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></tbody></table></div>",
+    q_hi: "नीचे दी गई सत्यता सारणी (Truth Table) का विश्लेषण करें। आउटपुट F किस बूलियन फलन को दर्शाता है?<div class='table-scroll-container'><table class='quiz-table'><thead><tr><th>A</th><th>B</th><th>Output F</th></tr></thead><tbody><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></tbody></table></div>",
+    opts_en: ["F = A &oplus; B (XOR)", "F = (A &oplus; B)' (XNOR)", "F = A &middot; B (AND)", "More than one of the above", "None of the above"],
+    opts_hi: ["F = A &oplus; B (XOR)", "F = (A &oplus; B)' (XNOR)", "F = A &middot; B (AND)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Output 1 tabhi hota hai jab dono inputs different hon (01 ya 10), jo XOR (Exclusive-OR) logic ko satisfy karta hai.",
+    tip: "Odd parity detector = XOR gate."
+  },
+  {
+    gId: 85, sec: "CS", name: "Part III: Computer Science", top: "Boolean Minimization: K-Map",
+    q_en: "For the 2-variable K-Map shown below, what is the minimized Boolean SOP expression for F(A, B)?<div class='table-scroll-container'><table class='quiz-table' style='max-width:280px;'><thead><tr><th>A \\ B</th><th>0</th><th>1</th></tr></thead><tbody><tr><th>0</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td></tr><tr><th>1</th><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td></tr></tbody></table></div>",
+    q_hi: "नीचे दिखाए गए 2-वेरिएबल K-Map के लिए F(A, B) का न्यूनतम SOP व्यंजक क्या होगा?<div class='table-scroll-container'><table class='quiz-table' style='max-width:280px;'><thead><tr><th>A \\ B</th><th>0</th><th>1</th></tr></thead><tbody><tr><th>0</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td></tr><tr><th>1</th><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td></tr></tbody></table></div>",
+    opts_en: ["F = A + B", "F = A &middot; B", "F = A'B + AB'", "More than one of the above", "None of the above"],
+    opts_hi: ["F = A + B", "F = A &middot; B", "F = A'B + AB'", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Row A=1 ka pair term 'A' deta hai aur Column B=1 ka pair term 'B' deta hai. Minimized SOP = A + B.",
+    tip: "Size 2 grouping eliminates 1 variable."
+  },
+  {
+    gId: 86, sec: "CS", name: "Part III: Computer Science", top: "Networking: Subnetting",
+    q_en: "How many valid host IP addresses can be assigned in a subnetwork with subnet mask 255.255.255.224 (/27)?",
+    q_hi: "सबनेट मास्क 255.255.255.224 (/27) वाले सबनेटवर्क में कितने वैध होस्ट आईपी पते असाइन किए जा सकते हैं?",
+    opts_en: ["30", "32", "62", "More than one of the above", "None of the above"],
+    opts_hi: ["30", "32", "62", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "/27 mask me host bits = 32 - 27 = 5 bits. Valid hosts = 2^5 - 2 = 32 - 2 = 30 (Network address aur Broadcast address hatane ke baad).",
+    tip: "Formula: 2^h - 2."
+  },
+  {
+    gId: 87, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Transaction Isolation",
+    q_en: "Which concurrency phenomenon occurs when Transaction T1 reads a data item modified by uncommitted Transaction T2, which subsequently rolls back?",
+    q_hi: "जब ट्रांजैक्शन T1 किसी अन्य अनकमिटेड ट्रांजैक्शन T2 द्वारा संशोधित डेटा पढ़ता है जो बाद में रोलबैक हो जाता है, तो कौन-सी समस्या उत्पन्न होती है?",
+    opts_en: ["Dirty Read", "Non-repeatable Read", "Phantom Read", "More than one of the above", "None of the above"],
+    opts_hi: ["डर्टी रीड (Dirty Read)", "नॉन-रिपीटेबल रीड", "फैंटम रीड", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Uncommitted data ko padhna Dirty Read कहलाता है, jise Read Committed isolation level prevent karta hai.",
+    tip: "Reading uncommitted data = Dirty Read."
+  },
+  {
+    gId: 88, sec: "CS", name: "Part III: Computer Science", top: "OS: Page Replacement",
+    q_en: "Belady's Anomaly (where increasing the number of page frames causes more page faults) is observed in which page replacement algorithm?",
+    q_hi: "बेलाडी की विसंगति (Belady's Anomaly - जहां पेज फ्रेम बढ़ाने पर पेज फॉल्ट की संख्या बढ़ जाती है) किस पेज रिप्लेसमेंट एल्गोरिदम में देखी जाती है?",
+    opts_en: ["FIFO (First In First Out)", "LRU (Least Recently Used)", "Optimal Replacement", "More than one of the above", "None of the above"],
+    opts_hi: ["FIFO (फर्स्ट इन फर्स्ट आउट)", "LRU (लीस्ट रीसेंटली यूज्ड)", "ऑप्टिमल रिप्लेसमेंट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Belady's anomaly non-stack page replacement algorithms jaise FIFO me dekhi ja sakti hai. LRU aur Optimal stack algorithms hain isliye unme yeh nahi hoti.",
+    tip: "FIFO exhibits Belady's Anomaly."
+  },
+  {
+    gId: 89, sec: "CS", name: "Part III: Computer Science", top: "DSA: Sorting Complexities",
+    q_en: "What is the worst-case time complexity of QuickSort algorithm?",
+    q_hi: "क्विक-सॉर्ट (QuickSort) एल्गोरिदम की सबसे खराब स्थिति (Worst-case) समय जटिलता क्या है?",
+    opts_en: ["O(N log N)", "O(N^2)", "O(N)", "More than one of the above", "None of the above"],
+    opts_hi: ["O(N log N)", "O(N^2)", "O(N)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "QuickSort degraded worst-case partitioning me O(N^2) complexity deta hai jab pivot hamesha smallest ya largest element chuna jaye.",
+    tip: "Best/Avg = O(N log N); Worst = O(N^2)."
+  },
+  {
+    gId: 90, sec: "CS", name: "Part III: Computer Science", top: "OOP: C++ Virtual Functions",
+    q_en: "Which feature of C++ enables runtime (dynamic) polymorphism?",
+    q_hi: "C++ की कौन-सी विशेषता रनटाइम (डायनेमिक) बहुरूपता (Polymorphism) को सक्षम बनाती है?",
+    opts_en: ["Function Overloading", "Virtual Functions", "Operator Overloading", "More than one of the above", "None of the above"],
+    opts_hi: ["फंक्शन ओवरलोडिंग", "वर्चुअल फंक्शन्स (Virtual Functions)", "ऑपरेटर ओवरलोडिंग", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Virtual functions base pointer ke through derived class methods ko runtime par dynamically bind karne ke liye vptr/vtable mechanism use karti hain.",
+    tip: "Runtime Polymorphism = Virtual Functions."
+  },
+  {
+    gId: 91, sec: "CS", name: "Part III: Computer Science", top: "Software Engg: Testing",
+    q_en: "Testing performed without knowledge of internal code structure or implementation details is termed as:",
+    q_hi: "आंतरिक कोड संरचना या कार्यान्वयन विवरण के ज्ञान के बिना किए जाने वाले परीक्षण को क्या कहा जाता है?",
+    opts_en: ["White-box Testing", "Black-box Testing", "Unit Testing", "More than one of the above", "None of the above"],
+    opts_hi: ["व्हाइट-बॉक्स परीक्षण", "ब्लैक-बॉक्स परीक्षण (Black-box)", "यूनिट परीक्षण", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Black-box testing sirf inputs aur expected outputs ke adhar par function test karti hai bina internal code structure jane.",
+    tip: "Black-box = Behavioral testing."
+  },
+  {
+    gId: 92, sec: "CS", name: "Part III: Computer Science", top: "Python: Scope",
+    q_en: "Which keyword is used in Python inside a function to modify a variable defined in the global namespace?",
+    q_hi: "पायथन में किसी फंक्शन के अंदर ग्लोबल नेमस्पेस में परिभाषित चर को संशोधित करने के लिए किस कीवर्ड का उपयोग किया जाता है?",
+    opts_en: ["nonlocal", "global", "extern", "More than one of the above", "None of the above"],
+    opts_hi: ["nonlocal", "global", "extern", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "'global' keyword function ke local scope se global scope variable ko directly modify karne ki permission deta hai.",
+    tip: "Use 'global x' to reassign global variables."
+  },
+  {
+    gId: 93, sec: "CS", name: "Part III: Computer Science", top: "Web Tech: HTTP Status",
+    q_en: "Which HTTP status code signifies that the requested resource could not be found on the server?",
+    q_hi: "कौन-सा HTTP स्टेटस कोड दर्शाता है कि अनुरोधित संसाधन सर्वर पर नहीं पाया जा सका?",
+    opts_en: ["200 OK", "404 Not Found", "500 Server Error", "More than one of the above", "None of the above"],
+    opts_hi: ["200 OK", "404 Not Found", "500 Server Error", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "404 Not Found client-side error code hai jo indicate karta hai ki URL path server par locate nahi hua.",
+    tip: "404 = Not Found."
+  },
+  {
+    gId: 94, sec: "CS", name: "Part III: Computer Science", top: "COA: Addressing Modes",
+    q_en: "In which addressing mode is the operand value specified directly within the instruction itself?",
+    q_hi: "किस एड्रेसिंग मोड में ऑपरेंड का मान सीधे निर्देश (instruction) के भीतर ही निर्दिष्ट होता है?",
+    opts_en: ["Direct Addressing", "Immediate Addressing", "Register Indirect", "More than one of the above", "None of the above"],
+    opts_hi: ["डायरेक्ट एड्रेसिंग", "इमीडिएट एड्रेसिंग (Immediate Addressing)", "रजिस्टर इनडायरेक्ट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Immediate addressing mode me operand explicit constant value ke roop me instruction ke sath encode hota hai (e.g., MOV R1, #25).",
+    tip: "Immediate = Data is in the instruction."
+  },
+  {
+    gId: 95, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Key Constraints",
+    q_en: "Which SQL constraint enforces referential integrity between two tables?",
+    q_hi: "कौन-सा SQL कंस्ट्रेंट दो तालिकाओं के बीच संदर्भित अखंडता (Referential Integrity) को लागू करता है?",
+    opts_en: ["PRIMARY KEY", "FOREIGN KEY", "UNIQUE", "More than one of the above", "None of the above"],
+    opts_hi: ["PRIMARY KEY", "FOREIGN KEY (फॉरेन की)", "UNIQUE", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "FOREIGN KEY constraint referenced table ki primary key ke sath match karke referential integrity enforce karta hai.",
+    tip: "Foreign key = Referential Integrity."
+  },
+  {
+    gId: 96, sec: "CS", name: "Part III: Computer Science", top: "OS: Scheduling",
+    q_en: "Which CPU scheduling algorithm is prone to the 'Convoy Effect' where short processes queue behind a long CPU-burst process?",
+    q_hi: "कौन-सा सीपीयू शेड्यूलिंग एल्गोरिदम 'काफ़िला प्रभाव' (Convoy Effect) से ग्रस्त होता है?",
+    opts_en: ["Round Robin (RR)", "First-Come, First-Served (FCFS)", "Shortest Job First (SJF)", "More than one of the above", "None of the above"],
+    opts_hi: ["राउंड रॉबिन", "फर्स्ट-कम, फर्स्ट-सर्व्ड (FCFS)", "शॉर्टेस्ट जॉब फर्स्ट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "FCFS non-preemptive scheduling me agar pehla process bahut bada CPU burst le, toh chote processes ko lamba intazar karna padta hai jise Convoy Effect kehte hain.",
+    tip: "FCFS causes Convoy Effect."
+  },
+  {
+    gId: 97, sec: "CS", name: "Part III: Computer Science", top: "DSA: Hash Tables",
+    q_en: "Which collision resolution technique stores all colliding keys in a linked list associated with each hash bucket?",
+    q_hi: "कौन-सी कोलिज़न रिज़ॉल्यूशन तकनीक प्रत्येक हैश बकेट से जुड़ी एक लिंक्ड सूची में सभी टकराने वाली कुंजियों को संग्रहीत करती है?",
+    opts_en: ["Linear Probing", "Separate Chaining", "Quadratic Probing", "More than one of the above", "None of the above"],
+    opts_hi: ["लीनियर प्रोबिंग", "सेपरेट चेनिंग (Separate Chaining)", "क्वाड्रैटिक प्रोबिंग", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Separate chaining har bucket index par ek linked list banata hai jisme sabhi colliding elements append hote hain.",
+    tip: "Chaining uses Linked Lists outside the table."
+  },
+  {
+    gId: 98, sec: "CS", name: "Part III: Computer Science", top: "Networking: Flow Control",
+    q_en: "In a Sliding Window protocol, if the sender window size is N, what is the maximum number of unacknowledged frames that can be transmitted?",
+    q_hi: "स्लाइडिंग विंडो प्रोटोकॉल में यदि प्रेषक विंडो का आकार N है, तो अधिकतम कितने अस्वीकृत (unacknowledged) फ्रेम प्रसारित किए जा सकते हैं?",
+    opts_en: ["1", "N", "2N", "More than one of the above", "None of the above"],
+    opts_hi: ["1", "N", "2N", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Sliding window size N ka matlab hota hai sender bina acknowledgment mile maximum N frames pipeline me transmit kar sakta hai.",
+    tip: "Window Size = Max in-flight unACKed frames."
+  },
+  {
+    gId: 99, sec: "CS", name: "Part III: Computer Science", top: "C++: Memory Management",
+    q_en: "Which operator is used to deallocate dynamically allocated memory of an array in C++?",
+    q_hi: "C++ में किसी ऐरे की गतिशील रूप से आवंटित (dynamically allocated) मेमोरी को हटाने (deallocate) के लिए किस ऑपरेटर का उपयोग किया जाता है?",
+    opts_en: ["free()", "delete", "delete[]", "More than one of the above", "None of the above"],
+    opts_hi: ["free()", "delete", "delete[]", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "Array new[] ke through allocate hone par destructors ko call karke memory free karne ke liye 'delete[]' ka use anivarya hai.",
+    tip: "new[] pairs strictly with delete[]."
+  },
+  {
+    gId: 100, sec: "CS", name: "Part III: Computer Science", top: "Cybersecurity: Encryption",
+    q_en: "RSA algorithm belongs to which cryptographic category?",
+    q_hi: "आरएसए (RSA) एल्गोरिदम किस क्रिप्टोग्राफिक श्रेणी से संबंधित है?",
+    opts_en: ["Symmetric Key Cryptography", "Asymmetric (Public Key) Cryptography", "Hashing Algorithm", "More than one of the above", "None of the above"],
+    opts_hi: ["सममित कुंजी क्रिप्टोग्राफी", "असममित (सार्वजनिक कुंजी) क्रिप्टोग्राफी", "हैशिंग एल्गोरिदम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "RSA public key aur private key ke mathematical pair par aadharit hai, isliye yeh Asymmetric Key Cryptography hai.",
+    tip: "RSA = Asymmetric / Public-Key."
+  }
+  // ==========================================================================
+  // PART III: COMPUTER SCIENCE (CONTINUED Q101 TO Q150 - COMPLETE DATASET)
+  // ==========================================================================
+  ,
+  {
+    gId: 101, sec: "CS", name: "Part III: Computer Science", top: "DSA: Asymptotic Notations",
+    q_en: "Which asymptotic notation represents the tight mathematical bound (both upper and lower bound) of an algorithm's running time?",
+    q_hi: "कौन-सा स्पर्शोन्मुख संकेतन (Asymptotic Notation) किसी एल्गोरिदम के निष्पादन समय की दृढ़ गणितीय सीमा (ऊपरी और निचली दोनों सीमा) का प्रतिनिधित्व करता है?",
+    opts_en: ["Big-O (O)", "Big-Omega (&Omega;)", "Theta (&Theta;)", "More than one of the above", "None of the above"],
+    opts_hi: ["Big-O (O)", "Big-Omega (&Omega;)", "Theta (&Theta;)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "Theta (&Theta;) notation tight bound represent karta hai jahan f(n) upper aur lower dono bounds ke beech sandwhiched hoti hai (c1*g(n) <= f(n) <= c2*g(n)).",
+    tip: "O = Upper Bound, &Omega; = Lower Bound, &Theta; = Tight Bound."
+  },
+  {
+    gId: 102, sec: "CS", name: "Part III: Computer Science", top: "OS: Memory Management",
+    q_en: "Internal fragmentation occurs in which memory management scheme when allocated memory is slightly larger than requested memory?",
+    q_hi: "आंतरिक विखंडन (Internal Fragmentation) किस मेमोरी प्रबंधन योजना में होता है जब आवंटित मेमोरी अनुरोधित मेमोरी से थोड़ी बड़ी होती है?",
+    opts_en: ["Fixed-size Partitioning (Paging)", "Pure Dynamic Segmentation", "Compaction", "More than one of the above", "None of the above"],
+    opts_hi: ["निश्चित आकार विभाजन (पेजिंग)", "शुद्ध गतिशील विभाजन", "कम्पेक्शन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Fixed partitioning aur Paging me har frame ka size fixed hota hai. Agar process page size se chota ho, toh frame ke andar bachi space waste hoti hai (Internal Fragmentation).",
+    tip: "Paging causes Internal Fragmentation; Segmentation causes External Fragmentation."
+  },
+  {
+    gId: 103, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Serializability",
+    q_en: "A schedule is conflict serializable if its precedence (serialization) graph contains:",
+    q_hi: "एक शेड्यूल कॉन्फ्लिक्ट सीरियलाइजेबल होता है यदि इसके प्राथमिकता (Precedence) ग्राफ में:",
+    opts_en: ["At least one cycle", "No directed cycles (Acyclic)", "Only self-loops", "More than one of the above", "None of the above"],
+    opts_hi: ["कम से कम एक चक्र हो", "कोई निर्देशित चक्र न हो (चक्रीय न हो / Acyclic)", "केवल सेल्फ-लूप हो", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Precedence graph me cycle na hona (Acyclic graph) conflict serializability ki zaroori aur paryapt shart hai.",
+    tip: "No Cycle in Precedence Graph = Conflict Serializable."
+  },
+  {
+    gId: 104, sec: "CS", name: "Part III: Computer Science", top: "DSA: Huffman Coding Tree",
+    q_en: "Consider the Huffman Coding tree constructed below for characters A, B, C, D. What is the optimal prefix variable-length binary code for character 'C'?<div class='diagram-card'><svg width='320' height='150' viewBox='0 0 320 150'><circle cx='160' cy='20' r='14' fill='#1e293b' stroke='#94a3b8'/><text x='160' y='24' fill='#fff' font-size='10' text-anchor='middle'>100</text><line x1='150' y1='30' x2='90' y2='65' stroke='#475569' stroke-width='2'/><text x='115' y='42' fill='#38bdf8' font-size='11' font-weight='bold'>0</text><line x1='170' y1='30' x2='230' y2='65' stroke='#475569' stroke-width='2'/><text x='205' y='42' fill='#38bdf8' font-size='11' font-weight='bold'>1</text><circle cx='90' cy='75' r='14' fill='#1e3a8a' stroke='#38bdf8'/><text x='90' y='79' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>A</text><circle cx='230' cy='75' r='14' fill='#1e293b' stroke='#94a3b8'/><line x1='220' y1='85' x2='180' y2='120' stroke='#475569' stroke-width='2'/><text x='195' y='98' fill='#38bdf8' font-size='11' font-weight='bold'>0</text><line x1='240' y1='85' x2='280' y2='120' stroke='#475569' stroke-width='2'/><text x='265' y='98' fill='#38bdf8' font-size='11' font-weight='bold'>1</text><circle cx='180' cy='130' r='14' fill='#1e3a8a' stroke='#38bdf8'/><text x='180' y='134' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>B</text><circle cx='280' cy='130' r='14' fill='#065f46' stroke='#10b981'/><text x='280' y='134' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>C</text></svg></div>",
+    q_hi: "नीचे वर्ण A, B, C, D के लिए बनाए गए हफ़मैन कोडिंग ट्री पर विचार करें। वर्ण 'C' के लिए इष्टतम उपसर्ग बाइनरी कोड क्या होगा?<div class='diagram-card'><svg width='320' height='150' viewBox='0 0 320 150'><circle cx='160' cy='20' r='14' fill='#1e293b' stroke='#94a3b8'/><text x='160' y='24' fill='#fff' font-size='10' text-anchor='middle'>100</text><line x1='150' y1='30' x2='90' y2='65' stroke='#475569' stroke-width='2'/><text x='115' y='42' fill='#38bdf8' font-size='11' font-weight='bold'>0</text><line x1='170' y1='30' x2='230' y2='65' stroke='#475569' stroke-width='2'/><text x='205' y='42' fill='#38bdf8' font-size='11' font-weight='bold'>1</text><circle cx='90' cy='75' r='14' fill='#1e3a8a' stroke='#38bdf8'/><text x='90' y='79' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>A</text><circle cx='230' cy='75' r='14' fill='#1e293b' stroke='#94a3b8'/><line x1='220' y1='85' x2='180' y2='120' stroke='#475569' stroke-width='2'/><text x='195' y='98' fill='#38bdf8' font-size='11' font-weight='bold'>0</text><line x1='240' y1='85' x2='280' y2='120' stroke='#475569' stroke-width='2'/><text x='265' y='98' fill='#38bdf8' font-size='11' font-weight='bold'>1</text><circle cx='180' cy='130' r='14' fill='#1e3a8a' stroke='#38bdf8'/><text x='180' y='134' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>B</text><circle cx='280' cy='130' r='14' fill='#065f46' stroke='#10b981'/><text x='280' y='134' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>C</text></svg></div>",
+    opts_en: ["0", "10", "11", "More than one of the above", "None of the above"],
+    opts_hi: ["0", "10", "11", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "Root se 'C' tak ka path trace karein: Pehle Right edge (1), fir agle internal node se Right edge (1). Isliye Code = 11.",
+    tip: "Traverse from root to target leaf node taking branch edge bits."
+  },
+  {
+    gId: 105, sec: "CS", name: "Part III: Computer Science", top: "Networking: TCP Handshake",
+    q_en: "During TCP connection establishment, which packet sequence flags are transmitted in the standard 3-way handshake?",
+    q_hi: "टीसीपी कनेक्शन स्थापना (TCP 3-way Handshake) के दौरान कौन-से पैकेट झंडे (Flags) प्रसारित किए जाते हैं?",
+    opts_en: ["SYN &rarr; SYN-ACK &rarr; ACK", "ACK &rarr; SYN &rarr; FIN", "SYN &rarr; ACK &rarr; FIN", "More than one of the above", "None of the above"],
+    opts_hi: ["SYN &rarr; SYN-ACK &rarr; ACK", "ACK &rarr; SYN &rarr; FIN", "SYN &rarr; ACK &rarr; FIN", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Standard 3-way handshake me client SYN bhejta hai, server SYN-ACK reply karta hai, aur client ACK bhej kar connection establish karta hai.",
+    tip: "SYN -> SYN-ACK -> ACK."
+  },
+  {
+    gId: 106, sec: "CS", name: "Part III: Computer Science", top: "C++: Diamond Problem",
+    q_en: "Which C++ keyword is used in inheritance declarations to prevent multiple duplicate copies of a base class subobject (resolving the Diamond Problem)?",
+    q_hi: "C++ में इनहेरिटेंस में डायमंड प्रॉब्लम (Diamond Problem) को हल करने और बेस क्लास की डुप्लीकेट प्रतियों से बचने के लिए किस कीवर्ड का उपयोग किया जाता है?",
+    opts_en: ["static", "virtual", "inline", "More than one of the above", "None of the above"],
+    opts_hi: ["static", "virtual (वर्चुअल)", "inline", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "'virtual' base class inheritance ensure karti hai ki derived class me base class ka sirf ek shared instance hi bane.",
+    tip: "Virtual inheritance resolves ambiguity in multiple inheritance."
+  },
+  {
+    gId: 107, sec: "CS", name: "Part III: Computer Science", top: "Python: Generators",
+    q_en: "Which Python keyword turns a standard function into a generator function that produces values lazily on iteration?",
+    q_hi: "कौन-सा पायथन कीवर्ड एक मानक फ़ंक्शन को एक जनरेटर (Generator) फ़ंक्शन में बदल देता है जो पुनरावृत्ति (iteration) पर मान उत्पन्न करता है?",
+    opts_en: ["return", "yield", "pass", "More than one of the above", "None of the above"],
+    opts_hi: ["return", "yield", "pass", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "'yield' keyword function state ko freeze karke agla value return karta hai aur resume hone par wahi se continue karta hai.",
+    tip: "yield turns function into an iterator generator."
+  },
+  {
+    gId: 108, sec: "CS", name: "Part III: Computer Science", top: "COA: Pipelining Hazards",
+    q_en: "A Read-After-Write (RAW) dependency where an instruction requires data not yet produced by a preceding instruction causes which type of hazard?",
+    q_hi: "रीड-आफ्टर-राइट (RAW) निर्भरता जहां एक निर्देश को पिछले निर्देश द्वारा उत्पादित डेटा की आवश्यकता होती है, किस प्रकार का खतरा (Hazard) उत्पन्न करती है?",
+    opts_en: ["Structural Hazard", "Data Hazard", "Control Hazard", "More than one of the above", "None of the above"],
+    opts_hi: ["संरचनात्मक खतरा (Structural)", "डेटा खतरा (Data Hazard)", "नियंत्रण खतरा (Control)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Register data values ke read/write collision se Data Hazard (RAW, WAR, WAW) utpann hota hai.",
+    tip: "RAW is the primary true data dependency hazard."
+  },
+  {
+    gId: 109, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: SR Latch Circuit",
+    q_en: "Identify the bistable multivibrator element formed by cross-coupling two NOR gates with inputs Set (S) and Reset (R) as shown below:<div class='diagram-card'><svg width='320' height='110' viewBox='0 0 320 110'><rect x='70' y='10' width='60' height='35' fill='#1e293b' stroke='#60a5fa' rx='4'/><text x='100' y='32' fill='#fff' font-size='12' text-anchor='middle'>NOR 1</text><rect x='70' y='65' width='60' height='35' fill='#1e293b' stroke='#60a5fa' rx='4'/><text x='100' y='87' fill='#fff' font-size='12' text-anchor='middle'>NOR 2</text><line x1='20' y1='25' x2='70' y2='25' stroke='#94a3b8' stroke-width='2'/><text x='10' y='29' fill='#38bdf8' font-size='12' font-weight='bold'>R</text><line x1='20' y1='80' x2='70' y2='80' stroke='#94a3b8' stroke-width='2'/><text x='10' y='84' fill='#38bdf8' font-size='12' font-weight='bold'>S</text><line x1='130' y1='25' x2='220' y2='25' stroke='#94a3b8' stroke-width='2'/><text x='230' y='29' fill='#34d399' font-size='13' font-weight='bold'>Q</text><line x1='130' y1='80' x2='220' y2='80' stroke='#94a3b8' stroke-width='2'/><text x='230' y='84' fill='#34d399' font-size='13' font-weight='bold'>Q'</text><line x1='160' y1='25' x2='50' y2='72' stroke='#475569' stroke-width='1.5'/><line x1='160' y1='80' x2='50' y2='32' stroke='#475569' stroke-width='1.5'/></svg></div>",
+    q_hi: "नीचे दिखाए गए दो क्रॉस-कपल्ड NOR गेट्स (इनपुट्स S और R) द्वारा गठित तत्व की पहचान करें:<div class='diagram-card'><svg width='320' height='110' viewBox='0 0 320 110'><rect x='70' y='10' width='60' height='35' fill='#1e293b' stroke='#60a5fa' rx='4'/><text x='100' y='32' fill='#fff' font-size='12' text-anchor='middle'>NOR 1</text><rect x='70' y='65' width='60' height='35' fill='#1e293b' stroke='#60a5fa' rx='4'/><text x='100' y='87' fill='#fff' font-size='12' text-anchor='middle'>NOR 2</text><line x1='20' y1='25' x2='70' y2='25' stroke='#94a3b8' stroke-width='2'/><text x='10' y='29' fill='#38bdf8' font-size='12' font-weight='bold'>R</text><line x1='20' y1='80' x2='70' y2='80' stroke='#94a3b8' stroke-width='2'/><text x='10' y='84' fill='#38bdf8' font-size='12' font-weight='bold'>S</text><line x1='130' y1='25' x2='220' y2='25' stroke='#94a3b8' stroke-width='2'/><text x='230' y='29' fill='#34d399' font-size='13' font-weight='bold'>Q</text><line x1='130' y1='80' x2='220' y2='80' stroke='#94a3b8' stroke-width='2'/><text x='230' y='84' fill='#34d399' font-size='13' font-weight='bold'>Q'</text><line x1='160' y1='25' x2='50' y2='72' stroke='#475569' stroke-width='1.5'/><line x1='160' y1='80' x2='50' y2='32' stroke='#475569' stroke-width='1.5'/></svg></div>",
+    opts_en: ["SR Latch", "JK Master-Slave Flip-Flop", "Monostable Multivibrator", "More than one of the above", "None of the above"],
+    opts_hi: ["SR लैच (SR Latch)", "JK मास्टर-स्लेव फ्लिप-फ्लॉप", "मोनोस्टेबल मल्टीवाइब्रेटर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Cross-coupled NOR gates basic active-HIGH SR Latch banate hain jisme S=1 par Q=1 aur R=1 par Q=0 hota hai.",
+    tip: "Cross-coupled NOR = Active High SR Latch."
+  },
+  {
+    gId: 110, sec: "CS", name: "Part III: Computer Science", top: "DSA: Minimum Spanning Trees",
+    q_en: "Which algorithm uses a greedy approach to find the Minimum Spanning Tree (MST) by sorting all graph edges in non-decreasing order of weight and adding them without creating cycles?",
+    q_hi: "कौन-सा एल्गोरिदम सभी ग्राफ किनारों (edges) को वजन के क्रम में सॉर्ट करके और बिना चक्र बनाए न्यूनतम स्पैनिंग ट्री (MST) खोजने के लिए लालची दृष्टिकोण (Greedy Approach) का उपयोग करता है?",
+    opts_en: ["Prim's Algorithm", "Kruskal's Algorithm", "Dijkstra's Algorithm", "More than one of the above", "None of the above"],
+    opts_hi: ["प्रिम्स एल्गोरिदम", "क्रुस्कल का एल्गोरिदम (Kruskal's Algorithm)", "डिजक्स्ट्रा एल्गोरिदम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Kruskal's algorithm edges ko sort karke disjoint-set (union-find) ke dwara bina cycle ke MST build karta hai.",
+    tip: "Kruskal = Edge-based sorting; Prim = Vertex-based cut."
+  },
+  {
+    gId: 111, sec: "CS", name: "Part III: Computer Science", top: "Software Engg: Design Patterns",
+    q_en: "Which Creational Design Pattern ensures that a class has only one instance and provides a global access point to it?",
+    q_hi: "कौन-सा डिज़ाइन पैटर्न यह सुनिश्चित करता है कि किसी क्लास का केवल एक ही उदाहरण (Instance) हो और उस तक वैश्विक पहुंच प्रदान करता है?",
+    opts_en: ["Factory Pattern", "Singleton Pattern", "Observer Pattern", "More than one of the above", "None of the above"],
+    opts_hi: ["फैक्टरी पैटर्न", "सिंगलटन पैटर्न (Singleton Pattern)", "ऑब्जर्वर पैटर्न", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Singleton pattern private constructor aur static instance method use karke ek hi global instance guarantee karta hai.",
+    tip: "Singleton = Only 1 instance."
+  },
+  {
+    gId: 112, sec: "CS", name: "Part III: Computer Science", top: "Web Tech: CSS Box Model",
+    q_en: "In the CSS Box Model, what is the correct order of components moving from the innermost content outward?",
+    q_hi: "CSS बॉक्स मॉडल में सबसे भीतरी सामग्री से बाहर की ओर बढ़ते हुए घटकों का सही क्रम क्या है?",
+    opts_en: ["Content &rarr; Padding &rarr; Border &rarr; Margin", "Content &rarr; Border &rarr; Padding &rarr; Margin", "Content &rarr; Margin &rarr; Padding &rarr; Border", "More than one of the above", "None of the above"],
+    opts_hi: ["सामग्री &rarr; पैडिंग &rarr; बॉर्डर &rarr; मार्जिन", "सामग्री &rarr; बॉर्डर &rarr; पैडिंग &rarr; मार्जिन", "सामग्री &rarr; मार्जिन &rarr; पैडिंग &rarr; बॉर्डर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "CSS Box Model sequence: Content -> Padding (space inside border) -> Border -> Margin (space outside border).",
+    tip: "C-P-B-M (Content, Padding, Border, Margin)."
+  },
+  {
+    gId: 113, sec: "CS", name: "Part III: Computer Science", top: "Networking: DNS Architecture",
+    q_en: "Which transport protocol and default port does the Domain Name System (DNS) use for standard client name resolution queries?",
+    q_hi: "डोमेन नाम प्रणाली (DNS) मानक क्लाइंट नाम समाधान प्रश्नों (Resolution Queries) के लिए किस ट्रांसपोर्ट प्रोटोकॉल और डिफ़ॉल्ट पोर्ट का उपयोग करती है?",
+    opts_en: ["TCP on Port 80", "UDP on Port 53", "TCP on Port 443", "More than one of the above", "None of the above"],
+    opts_hi: ["पोर्ट 80 पर TCP", "पोर्ट 53 पर UDP", "पोर्ट 443 पर TCP", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "DNS standard queries ke liye stateless aur fast UDP protocol port 53 par prayog karta hai (zone transfers TCP 53 par hoti hain).",
+    tip: "DNS queries = UDP 53; Zone Transfers = TCP 53."
+  },
+  {
+    gId: 114, sec: "CS", name: "Part III: Computer Science", top: "OS: Thrashing",
+    q_en: "Thrashing occurs in an operating system when:",
+    q_hi: "ऑपरेटिंग सिस्टम में थ्रैशिंग (Thrashing) तब होती है जब:",
+    opts_en: ["CPU utilization is at 100%", "The system spends more time paging than executing processes", "Deadlock occurs among threads", "More than one of the above", "None of the above"],
+    opts_hi: ["CPU उपयोग 100% पर हो", "सिस्टम निष्पादन से अधिक समय पेजिंग (page faults) में बिताता है", "थ्रेड्स के बीच गतिरोध उत्पन्न हो", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Thrashing tab hoti hai jab working set pages memory me fit na ho aur system continuous page in / page out karne me busy ho jaye, jisse CPU throughput gir jata hai.",
+    tip: "High Page Faults + Low CPU Utilization = Thrashing."
+  },
+  {
+    gId: 115, sec: "CS", name: "Part III: Computer Science", top: "DBMS: ACID Durability",
+    q_en: "Which component of the DBMS guarantees the Durability property of ACID by recovering committed transactions after a system crash?",
+    q_hi: "DBMS का कौन-सा घटक सिस्टम क्रैश के बाद कमिटेड लेनदेन को पुनर्प्राप्त करके ACID के ड्यूरेबिलिटी (स्थायित्व) गुण की गारंटी देता है?",
+    opts_en: ["Concurrency Controller", "Recovery Manager (WAL / Transaction Log)", "Query Optimizer", "More than one of the above", "None of the above"],
+    opts_hi: ["सहमति नियंत्रक (Concurrency Controller)", "रिकवरी मैनेजर (ट्रांजैक्शन लॉग / WAL)", "क्वेरी ऑप्टिमाइज़र", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Write-Ahead Logging (WAL) aur Recovery Manager non-volatile transaction log maintain karke system crash ke baad committed data ko restore karte hain.",
+    tip: "Durability = Log Manager / Write-Ahead Logging."
+  },
+  {
+    gId: 116, sec: "CS", name: "Part III: Computer Science", top: "DSA: Heap Order",
+    q_en: "What is the worst-case time complexity to extract the root (maximum/minimum element) from a Binary Heap containing N nodes?",
+    q_hi: "N नोड्स वाले बाइनरी हीप से मूल (न्यूनतम/अधिकतम तत्व) निकालने (Extract-Min/Max) की सबसे खराब स्थिति समय जटिलता क्या है?",
+    opts_en: ["O(1)", "O(log N)", "O(N)", "More than one of the above", "None of the above"],
+    opts_hi: ["O(1)", "O(log N)", "O(N)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Peek karna O(1) hai, lekin extract karne ke baad last element ko root par rakh kar heapify-down karna O(log N) time leta hai.",
+    tip: "Peek = O(1); Extract = O(log N)."
+  },
+  {
+    gId: 117, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Relational Algebra Join",
+    q_en: "Given Relations R(A, B) and S(B, C) shown below, how many tuples will be produced by the Natural Join (R &bowtie; S)?<div class='table-scroll-container'><table class='quiz-table' style='display:inline-block;margin-right:15px;'><thead><tr><th colspan='2'>Relation R</th></tr><tr><th>A</th><th>B</th></tr></thead><tbody><tr><td>1</td><td>X</td></tr><tr><td>2</td><td>Y</td></tr><tr><td>3</td><td>X</td></tr></tbody></table><table class='quiz-table' style='display:inline-block;'><thead><tr><th colspan='2'>Relation S</th></tr><tr><th>B</th><th>C</th></tr></thead><tbody><tr><td>X</td><td>10</td></tr><tr><td>X</td><td>20</td></tr><tr><td>Z</td><td>30</td></tr></tbody></table></div>",
+    q_hi: "नीचे दिए गए संबंध R(A, B) और S(B, C) पर नेचुरल जॉइन (R &bowtie; S) करने पर कितने टुपल्स उत्पन्न होंगे?<div class='table-scroll-container'><table class='quiz-table' style='display:inline-block;margin-right:15px;'><thead><tr><th colspan='2'>Relation R</th></tr><tr><th>A</th><th>B</th></tr></thead><tbody><tr><td>1</td><td>X</td></tr><tr><td>2</td><td>Y</td></tr><tr><td>3</td><td>X</td></tr></tbody></table><table class='quiz-table' style='display:inline-block;'><thead><tr><th colspan='2'>Relation S</th></tr><tr><th>B</th><th>C</th></tr></thead><tbody><tr><td>X</td><td>10</td></tr><tr><td>X</td><td>20</td></tr><tr><td>Z</td><td>30</td></tr></tbody></table></div>",
+    opts_en: ["2", "4", "6", "More than one of the above", "None of the above"],
+    opts_hi: ["2", "4", "6", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Common attribute B='X' par join hoga: R ke row (1,X) ke sath S ke 2 matches (1,X,10), (1,X,20) banenge. R ke row (3,X) ke sath S ke 2 matches (3,X,10), (3,X,20) banenge. Total = 2 + 2 = 4 tuples.",
+    tip: "Match common attributes values: 2 * 2 = 4."
+  },
+  {
+    gId: 118, sec: "CS", name: "Part III: Computer Science", top: "Python: List Comprehension",
+    q_en: "What is the output of the Python expression: <code>[x**2 for x in range(5) if x % 2 == 1]</code>?",
+    q_hi: "पायथन व्यंजक <code>[x**2 for x in range(5) if x % 2 == 1]</code> का आउटपुट क्या होगा?",
+    opts_en: ["[1, 9]", "[0, 4, 16]", "[1, 4, 9]", "More than one of the above", "None of the above"],
+    opts_hi: ["[1, 9]", "[0, 4, 16]", "[1, 4, 9]", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "range(5) me odd numbers x=1 aur x=3 hain. Unka square [1**2, 3**2] = [1, 9] prapt hota hai.",
+    tip: "Odds in [0,1,2,3,4] are 1 and 3 -> squares are 1 and 9."
+  },
+  {
+    gId: 119, sec: "CS", name: "Part III: Computer Science", top: "Cybersecurity: Symmetric Ciphers",
+    q_en: "Which of the following is a block cipher encryption standard with a fixed block size of 128 bits and key sizes of 128, 192, or 256 bits?",
+    q_hi: "निम्नलिखित में से कौन-सा 128 बिट्स के निश्चित ब्लॉक आकार वाला सममित एन्क्रिप्शन मानक (Block Cipher) है?",
+    opts_en: ["DES", "AES (Advanced Encryption Standard)", "MD5", "More than one of the above", "None of the above"],
+    opts_hi: ["DES", "AES (उन्नत एन्क्रिप्शन मानक)", "MD5", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "AES (Rijndael cipher) 128-bit block size use karta hai aur 128, 192, 256-bit keys ko support karta hai.",
+    tip: "AES block size is strictly 128 bits."
+  },
+  {
+    gId: 120, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Multiplexers",
+    q_en: "How many selection lines are required for an 8-to-1 Multiplexer (MUX)?",
+    q_hi: "एक 8-टू-1 मल्टीप्लेक्सर (8:1 MUX) के लिए कितनी चयन रेखाओं (Select Lines) की आवश्यकता होती है?",
+    opts_en: ["2", "3", "4", "More than one of the above", "None of the above"],
+    opts_hi: ["2", "3", "4", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Formula: 2^m = N, jahan N input lines aur m select lines hain. 2^m = 8 => m = 3 select lines.",
+    tip: "2^3 = 8 -> 3 select lines."
+  },
+  {
+    gId: 121, sec: "CS", name: "Part III: Computer Science", top: "OOP: Encapsulation",
+    q_en: "Wrapping data members and member functions into a single unit and restricting direct access from outside is known as:",
+    q_hi: "डेटा सदस्यों और सदस्य फ़ंक्शनों को एक इकाई में लपेटना और बाहर से सीधी पहुंच को प्रतिबंधित करना क्या कहलाता है?",
+    opts_en: ["Inheritance", "Encapsulation", "Polymorphism", "More than one of the above", "None of the above"],
+    opts_hi: ["इनहेरिटेंस", "एनकैप्सुलेशन (Encapsulation)", "बहुरूपता", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Encapsulation data hiding aur bundling ko facilitate karta hai using private access specifiers.",
+    tip: "Encapsulation = Bundling + Data Hiding."
+  },
+  {
+    gId: 122, sec: "CS", name: "Part III: Computer Science", top: "OS: Virtual Memory TLB",
+    q_en: "Translation Lookaside Buffer (TLB) is an associative hardware cache used to speed up:",
+    q_hi: "ट्रांसलेशन लुकअसाइड बफर (TLB) एक हार्डवेयर कैश है जिसका उपयोग किसकी गति बढ़ाने के लिए किया जाता है?",
+    opts_en: ["Page replacement decisions", "Virtual address to physical frame translation", "Disk block scheduling", "More than one of the above", "None of the above"],
+    opts_hi: ["पेज रिप्लेसमेंट निर्णय", "वर्चुअल एड्रेस से फिजिकल फ्रेम ट्रांसलेशन", "डिस्क ब्लॉक शेड्यूलिंग", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "TLB page table lookups ko bypass karke virtual page number se physical frame number fast speed me map karta hai.",
+    tip: "TLB caches Virtual-to-Physical address mappings."
+  },
+  {
+    gId: 123, sec: "CS", name: "Part III: Computer Science", top: "DSA: Balanced BST",
+    q_en: "In an AVL tree, what is the permissible balance factor for every node?",
+    q_hi: "एक एवीएल (AVL) ट्री में प्रत्येक नोड के लिए अनुमेय संतुलन कारक (Balance Factor) क्या है?",
+    opts_en: ["{-1, 0, +1}", "{-2, 0, +2}", "{0, 1, 2}", "More than one of the above", "None of the above"],
+    opts_hi: ["{-1, 0, +1}", "{-2, 0, +2}", "{0, 1, 2}", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "AVL tree height-balanced BST hota hai jisme har node par Balance Factor = Height(Left) - Height(Right) strictly {-1, 0, +1} hona chahiye.",
+    tip: "AVL Balance factor = Height(L) - Height(R) &isin; {-1, 0, 1}."
+  },
+  {
+    gId: 124, sec: "CS", name: "Part III: Computer Science", top: "C++: Friend Functions",
+    q_en: "Which statement is TRUE regarding a 'friend' function in C++?",
+    q_hi: "C++ में 'फ्रेंड' (friend) फ़ंक्शन के संबंध में कौन-सा कथन सत्य है?",
+    opts_en: ["It is a member of the class", "It can access private and protected members of the class", "It cannot be invoked without an object instance", "More than one of the above", "None of the above"],
+    opts_hi: ["यह क्लास का सदस्य फ़ंक्शन होता है", "यह क्लास के निजी (private) और संरक्षित सदस्यों तक पहुंच सकता है", "इसे ऑब्जेक्ट उदाहरण के बिना लागू नहीं किया जा सकता", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Friend function class ka member nahi hota lekin use class ke private aur protected members access karne ki vishesh anumati hoti hai.",
+    tip: "Friend functions have access to private members but are NOT class members."
+  },
+  {
+    gId: 125, sec: "CS", name: "Part III: Computer Science", top: "COA: Pipelining Timing",
+    q_en: "In a non-overlapped execution, 4 instructions take 20 clock cycles (5 cycles each). In an ideal 5-stage pipeline shown below, in how many clock cycles will these 4 instructions complete?<div class='diagram-card'><svg width='320' height='70' viewBox='0 0 320 70'><rect x='20' y='20' width='50' height='30' fill='#1e3a8a' stroke='#38bdf8' rx='2'/><text x='45' y='38' fill='#fff' font-size='10' text-anchor='middle'>IF</text><rect x='75' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='100' y='38' fill='#fff' font-size='10' text-anchor='middle'>ID</text><rect x='130' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='155' y='38' fill='#fff' font-size='10' text-anchor='middle'>EX</text><rect x='185' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='210' y='38' fill='#fff' font-size='10' text-anchor='middle'>MEM</text><rect x='240' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='265' y='38' fill='#fff' font-size='10' text-anchor='middle'>WB</text></svg></div>",
+    q_hi: "एक आदर्श 5-स्टेज पाइपलाइन में 4 निर्देशों को निष्पादित करने में कितने क्लॉक चक्र लगेंगे?<div class='diagram-card'><svg width='320' height='70' viewBox='0 0 320 70'><rect x='20' y='20' width='50' height='30' fill='#1e3a8a' stroke='#38bdf8' rx='2'/><text x='45' y='38' fill='#fff' font-size='10' text-anchor='middle'>IF</text><rect x='75' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='100' y='38' fill='#fff' font-size='10' text-anchor='middle'>ID</text><rect x='130' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='155' y='38' fill='#fff' font-size='10' text-anchor='middle'>EX</text><rect x='185' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='210' y='38' fill='#fff' font-size='10' text-anchor='middle'>MEM</text><rect x='240' y='20' width='50' height='30' fill='#1e293b' stroke='#94a3b8' rx='2'/><text x='265' y='38' fill='#fff' font-size='10' text-anchor='middle'>WB</text></svg></div>",
+    opts_en: ["8", "12", "20", "More than one of the above", "None of the above"],
+    opts_hi: ["8", "12", "20", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Pipeline timing formula: Cycles = k + (n - 1), jahan k = stages (5), n = instructions (4). Cycles = 5 + (4 - 1) = 5 + 3 = 8 cycles.",
+    tip: "Formula: k + n - 1."
+  },
+  {
+    gId: 126, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Functional Dependencies",
+    q_en: "If functional dependency X &rarr; Y holds, and Y &sube; X, such dependency is formally categorized as:",
+    q_hi: "यदि कार्यात्मक निर्भरता X &rarr; Y मान्य है और Y &sube; X है, तो ऐसी निर्भरता को औपचारिक रूप से क्या कहा जाता है?",
+    opts_en: ["Trivial Functional Dependency", "Non-trivial Functional Dependency", "Transitive Dependency", "More than one of the above", "None of the above"],
+    opts_hi: ["तुच्छ कार्यात्मक निर्भरता (Trivial FD)", "गैर-तुच्छ निर्भरता", "संक्रामक निर्भरता", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Jab right side attributes left side ka subset ho (Y is a subset of X), use Trivial Functional Dependency kehte hain kyunki yeh hamesha true hoti hai.",
+    tip: "Y subset of X = Trivial FD."
+  },
+  {
+    gId: 127, sec: "CS", name: "Part III: Computer Science", top: "Python: Mutable vs Immutable",
+    q_en: "Which of the following built-in data types in Python is MUTABLE?",
+    q_hi: "पायथन में निम्नलिखित में से कौन-सा अंतर्निहित डेटा प्रकार परिवर्तनीय (MUTABLE) है?",
+    opts_en: ["tuple", "string", "dictionary", "More than one of the above", "None of the above"],
+    opts_hi: ["टुपल (tuple)", "स्ट्रिंग (string)", "डिक्शनरी (dictionary)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "Dictionary aur List mutable hote hain (unke contents modify ho sakte hain). Tuples aur Strings immutable hote hain.",
+    tip: "Mutable: lists, sets, dicts. Immutable: numbers, strings, tuples."
+  },
+  {
+    gId: 128, sec: "CS", name: "Part III: Computer Science", top: "Networking: Symmetric Routing",
+    q_en: "Which routing algorithm uses the Bellman-Ford algorithm to compute least-cost paths based on sharing routing tables with immediate neighbors?",
+    q_hi: "कौन-सा रूटिंग एल्गोरिदम निकटतम पड़ोसियों के साथ रूटिंग तालिकाओं को साझा करके न्यूनतम-लागत पथों की गणना के लिए बेलमैन-फोर्ड एल्गोरिदम का उपयोग करता है?",
+    opts_en: ["Distance Vector Routing (RIP)", "Link State Routing (OSPF)", "Path Vector Routing (BGP)", "More than one of the above", "None of the above"],
+    opts_hi: ["डिस्टेंस वेक्टर रूटिंग (RIP)", "लिंक स्टेट रूटिंग (OSPF)", "पाथ वेक्टर रूटिंग", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Distance Vector routing (jaise RIP) Bellman-Ford equation use karti hai aur neighbors ke sath vectors exchange karti hai.",
+    tip: "Distance Vector = Bellman-Ford; Link State = Dijkstra."
+  },
+  {
+    gId: 129, sec: "CS", name: "Part III: Computer Science", top: "OS: Semaphore Binary",
+    q_en: "A binary semaphore initialized to 1 can take only which values?",
+    q_hi: "1 पर प्रारंभ किया गया एक बाइनरी सेमाफोर केवल कौन-से मान ले सकता है?",
+    opts_en: ["0 and 1", "-1 and +1", "Any integer &ge; 0", "More than one of the above", "None of the above"],
+    opts_hi: ["0 और 1", "-1 और +1", "कोई भी पूर्णांक &ge; 0", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Binary semaphore mutual exclusion ke liye use hota hai aur yeh sirf do values (0 aur 1) le sakta hai.",
+    tip: "Binary Semaphore = Mutex (0 or 1)."
+  },
+  {
+    gId: 130, sec: "CS", name: "Part III: Computer Science", top: "Software Engg: Coupling & Cohesion",
+    q_en: "In modular software engineering design, an ideal architectural module should possess:",
+    q_hi: "मॉड्यूलर सॉफ्टवेयर इंजीनियरिंग डिज़ाइन में एक आदर्श मॉड्यूल में क्या होना चाहिए?",
+    opts_en: ["High Coupling and Low Cohesion", "High Cohesion and Low Coupling", "Low Cohesion and Low Coupling", "More than one of the above", "None of the above"],
+    opts_hi: ["उच्च कपलिंग और कम सामंजस्य", "उच्च सामंजस्य (High Cohesion) और कम कपलिंग (Low Coupling)", "कम सामंजस्य और कम कपलिंग", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Best software design practice hai: High Cohesion (module ke andar ke tasks closely related hon) aur Low Coupling (modules ek dusre par kam dependent hon).",
+    tip: "Goal: High Cohesion, Loose (Low) Coupling."
+  },
+  {
+    gId: 131, sec: "CS", name: "Part III: Computer Science", top: "DSA: Stack Infix to Postfix",
+    q_en: "What is the equivalent Postfix expression for the Infix expression: <code>A + B * C</code>?",
+    q_hi: "इन्फिक्स व्यंजक <code>A + B * C</code> के लिए समकक्ष पोस्टफिक्स व्यंजक क्या है?",
+    opts_en: ["A B C * +", "A B + C *", "+ A * B C", "More than one of the above", "None of the above"],
+    opts_hi: ["A B C * +", "A B + C *", "+ A * B C", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Operator precedence ke mutabiq pehle multiplication resolve hoga: B * C -> B C *. Fir addition: A + (B C *) -> A B C * +.",
+    tip: "Multiplication has higher precedence than addition."
+  },
+  {
+    gId: 132, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: De Morgan",
+    q_en: "According to De Morgan's Law, the complement of a sum (NOR operation) <code>(A + B)'</code> is equivalent to:",
+    q_hi: "डी मॉर्गन के नियम के अनुसार, <code>(A + B)'</code> किसके बराबर है?",
+    opts_en: ["A' &middot; B'", "A' + B'", "(A &middot; B)'", "More than one of the above", "None of the above"],
+    opts_hi: ["A' &middot; B'", "A' + B'", "(A &middot; B)'", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "De Morgan's first theorem: (A + B)' = A' . B' (Break the line, change the sign).",
+    tip: "(A + B)' = A'B'."
+  },
+  {
+    gId: 133, sec: "CS", name: "Part III: Computer Science", top: "C++: Pure Virtual Functions",
+    q_en: "A C++ class that contains at least one Pure Virtual Function (<code>virtual void func() = 0;</code>) is classified as:",
+    q_hi: "एक C++ क्लास जिसमें कम से कम एक शुद्ध वर्चुअल फ़ंक्शन (Pure Virtual Function) होता है, उसे क्या कहा जाता है?",
+    opts_en: ["Concrete Class", "Abstract Class", "Template Class", "More than one of the above", "None of the above"],
+    opts_hi: ["कंक्रीट क्लास", "एब्स्ट्रैक्ट क्लास (Abstract Class)", "टेम्प्लेट क्लास", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Pure virtual function wali class Abstract Class ban jati hai, jiska direct object instantiate nahi kiya ja sakta.",
+    tip: "= 0 indicates Pure Virtual Function -> Abstract Class."
+  },
+  {
+    gId: 134, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Normal Form BCNF",
+    q_en: "A relation R is in Boyce-Codd Normal Form (BCNF) if for every non-trivial functional dependency X &rarr; Y:",
+    q_hi: "एक संबंध R बॉयस-कॉड नॉर्मल फॉर्म (BCNF) में होता है यदि प्रत्येक गैर-तुच्छ कार्यात्मक निर्भरता X &rarr; Y के लिए:",
+    opts_en: ["Y is a primary key", "X is a Super Key", "Y is a prime attribute", "More than one of the above", "None of the above"],
+    opts_hi: ["Y एक प्राथमिक कुंजी है", "X एक सुपर की (Super Key) है", "Y एक प्राइम विशेषता है", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "BCNF ki strict requirement hai ki har dependency determinant X ko Super Key hona anivarya hai.",
+    tip: "BCNF: Determinant X must be a Super Key."
+  },
+  {
+    gId: 135, sec: "CS", name: "Part III: Computer Science", top: "OS: Threading",
+    q_en: "Which resource is typically SHARED among all threads within the same parent process?",
+    q_hi: "एक ही मूल प्रक्रिया (parent process) के सभी थ्रेड्स के बीच कौन-सा संसाधन साझा (SHARED) होता है?",
+    opts_en: ["Call Stack", "Program Counter (PC)", "Heap and Global Variables", "More than one of the above", "None of the above"],
+    opts_hi: ["कॉल स्टैक", "प्रोग्राम काउंटर", "हीप (Heap) और ग्लोबल चर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2,
+    exp: "Threads process ka code segment, data segment, open files aur Heap share karte hain; jabki Stack aur Registers/PC har thread ka apna private hota hai.",
+    tip: "Heap is shared; Stack and Registers are per-thread."
+  },
+  {
+    gId: 136, sec: "CS", name: "Part III: Computer Science", top: "Web Tech: Cookies vs Sessions",
+    q_en: "Where are HTTP Session data typically stored by default in standard server-side web applications?",
+    q_hi: "मानक वेब अनुप्रयोगों में HTTP सत्र डेटा (Session Data) आमतौर पर डिफ़ॉल्ट रूप से कहाँ संग्रहीत होता है?",
+    opts_en: ["On the Client browser local storage", "On the Server", "On the Network Router", "More than one of the above", "None of the above"],
+    opts_hi: ["क्लाइंट ब्राउज़र पर", "सर्वर (Server) पर", "नेटवर्क राउटर पर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Cookies client side browser par store hoti hain, jabki Session data server side memory/database me store hota hai.",
+    tip: "Sessions live on the server; Cookies live on the client."
+  },
+  {
+    gId: 137, sec: "CS", name: "Part III: Computer Science", top: "Python: Lambda Functions",
+    q_en: "What is an anonymous function in Python defined without a standard 'def' keyword called?",
+    q_hi: "पायथन में 'def' कीवर्ड के बिना परिभाषित अनाम फ़ंक्शन (Anonymous Function) को क्या कहा जाता है?",
+    opts_en: ["inline function", "lambda function", "closure", "More than one of the above", "None of the above"],
+    opts_hi: ["इनलाइन फ़ंक्शन", "लैम्ब्डा फ़ंक्शन (Lambda Function)", "क्लोज़र", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Python me anonymous one-line functions ko 'lambda' keyword ke through create kiya jata hai.",
+    tip: "lambda arguments: expression."
+  },
+  {
+    gId: 138, sec: "CS", name: "Part III: Computer Science", top: "COA: Control Unit",
+    q_en: "A Hardwired Control Unit generates control signals using:",
+    q_hi: "एक हार्डवायर्ड कंट्रोल यूनिट (Hardwired CU) नियंत्रण संकेतों को किसके द्वारा उत्पन्न करती है?",
+    opts_en: ["Microprograms in ROM (Control Memory)", "Fixed combinational logic circuits and flip-flops", "Software interrupts", "More than one of the above", "None of the above"],
+    opts_hi: ["कंट्रोल मेमोरी (ROM) में माइक्रोप्रोग्राम", "निश्चित संयोजन लॉजिक सर्किट और फ्लिप-फ्लॉप", "सॉफ्टवेयर व्यवधान", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Hardwired control unit gates, decoders aur flip-flops ke combinational hardware circuits par aadharit hoti hai (jo fast hoti hai). Microprogrammed CU ROM use karti hai.",
+    tip: "Hardwired = Pure Hardware Logic; Microprogrammed = ROM firmware."
+  },
+  {
+    gId: 139, sec: "CS", name: "Part III: Computer Science", top: "DSA: Graph DFS",
+    q_en: "Depth First Search (DFS) graph traversal utilizes which data structure implicitly or explicitly?",
+    q_hi: "डेप्थ फर्स्ट सर्च (DFS) ग्राफ ट्रैवर्सल स्पष्ट या अप्रत्यक्ष रूप से किस डेटा संरचना का उपयोग करता है?",
+    opts_en: ["Queue", "Stack", "Min-Heap", "More than one of the above", "None of the above"],
+    opts_hi: ["क्यू / कतार", "स्टैक (Stack / LIFO)", "मिन-हीप", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "DFS backtracking aur deepest nodes visit karne ke liye LIFO Stack (ya call stack recursion) ka upayog karta hai.",
+    tip: "DFS = Stack; BFS = Queue."
+  },
+  {
+    gId: 140, sec: "CS", name: "Part III: Computer Science", top: "Networking: ARP Protocol",
+    q_en: "Address Resolution Protocol (ARP) is used to resolve a known logical IP address into which corresponding physical address?",
+    q_hi: "एड्रेस रेज़ोल्यूशन प्रोटोकॉल (ARP) का उपयोग किसी ज्ञात तार्किक आईपी पते को किस भौतिक पते में बदलने के लिए किया जाता है?",
+    opts_en: ["Port Number", "MAC (Hardware) Address", "Subnet Mask", "More than one of the above", "None of the above"],
+    opts_hi: ["पोर्ट नंबर", "मैक (MAC) भौतिक पता", "सबनेट मास्क", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "ARP 32-bit IPv4 address ko LAN par 48-bit physical MAC address me map karta hai.",
+    tip: "IP to MAC = ARP; MAC to IP = RARP."
+  },
+  {
+    gId: 141, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Aggregate Functions",
+    q_en: "Which SQL clause is used to filter records resulting from aggregate functions (such as COUNT, SUM, AVG)?",
+    q_hi: "SQL में एग्रीगेट फ़ंक्शन (जैसे COUNT, AVG) के परिणामों को फ़िल्टर करने के लिए किस क्लॉज का उपयोग किया जाता है?",
+    opts_en: ["WHERE", "HAVING", "ORDER BY", "More than one of the above", "None of the above"],
+    opts_hi: ["WHERE", "HAVING (हैविंग)", "ORDER BY", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "WHERE individual rows ko filter karta hai, jabki GROUP BY ke aggregate results ko filter karne ke liye 'HAVING' clause ka use hota hai.",
+    tip: "HAVING filters groups/aggregates; WHERE filters rows."
+  },
+  {
+    gId: 142, sec: "CS", name: "Part III: Computer Science", top: "OS: Virtual Memory Thrashing",
+    q_en: "The Working Set Model developed by Peter Denning is primarily used to prevent:",
+    q_hi: "पीटर डेनिंग द्वारा विकसित वर्किंग सेट मॉडल (Working Set Model) का उपयोग मुख्य रूप से किसे रोकने के लिए किया जाता है?",
+    opts_en: ["Deadlocks", "Thrashing", "Starvation", "More than one of the above", "None of the above"],
+    opts_hi: ["डेडलोक", "थ्रैशिंग (Thrashing)", "भुखमरी (Starvation)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Working set model process ke actively required page frames ko monitor karke Thrashing hone se rokta hai.",
+    tip: "Working Set Model monitors locality to prevent Thrashing."
+  },
+  {
+    gId: 143, sec: "CS", name: "Part III: Computer Science", top: "C++: Constructor Destructor",
+    q_en: "Can a constructor in C++ be declared as 'virtual'?",
+    q_hi: "क्या C++ में किसी कन्स्ट्रक्टर को 'वर्चुअल' (virtual) घोषित किया जा सकता है?",
+    opts_en: ["Yes, always", "No, constructors cannot be virtual", "Yes, but only in abstract classes", "More than one of the above", "None of the above"],
+    opts_hi: ["हाँ, हमेशा", "नहीं, कंस्ट्रक्टर वर्चुअल नहीं हो सकते", "हाँ, लेकिन केवल एब्स्ट्रैक्ट क्लास में", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Constructors virtual nahi ho sakte kyunki object creation ke waqt tak vtable pointer initialize nahi hota. Destructors virtual ho sakte hain.",
+    tip: "Constructors can never be virtual; Destructors can be virtual."
+  },
+  {
+    gId: 144, sec: "CS", name: "Part III: Computer Science", top: "DSA: Binary Search",
+    q_en: "What prerequisite must be satisfied by an array before applying the Binary Search algorithm?",
+    q_hi: "बाइनरी सर्च एल्गोरिदम लागू करने से पहले किसी ऐरे को किस पूर्वशर्त को पूरा करना चाहिए?",
+    opts_en: ["Elements must be in sorted order", "Array size must be a power of 2", "All elements must be positive", "More than one of the above", "None of the above"],
+    opts_hi: ["तत्व सॉर्ट किए गए (क्रमबद्ध) क्रम में होने चाहिए", "आकार 2 की घात होना चाहिए", "सभी तत्व सकारात्मक होने चाहिए", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "Binary search divide-and-conquer tabhi kar sakta hai jab array elements pehle se strictly sorted order me hon.",
+    tip: "Binary Search strictly requires sorted input."
+  },
+  {
+    gId: 145, sec: "CS", name: "Part III: Computer Science", top: "Networking: Symmetric Key Sizes",
+    q_en: "What is the key size used in the legacy Data Encryption Standard (DES)?",
+    q_hi: "डेटा एन्क्रिप्शन स्टैंडर्ड (DES) में उपयोग की जाने वाली कुंजी का प्रभावी आकार क्या है?",
+    opts_en: ["56 bits", "64 bits", "128 bits", "More than one of the above", "None of the above"],
+    opts_hi: ["56 बिट्स", "64 बिट्स", "128 बिट्स", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0,
+    exp: "DES 64-bit key input leta hai jisme 8 parity bits hoti hain, isliye effective key length 56 bits hoti hai.",
+    tip: "DES has 56 effective key bits."
+  },
+  {
+    gId: 146, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Flip-Flop Conversion",
+    q_en: "Connecting the J and K inputs together on a JK Flip-Flop converts it into which type of flip-flop?",
+    q_hi: "JK फ्लिप-फ्लॉप पर J और K इनपुट को एक साथ जोड़ने पर यह किस प्रकार के फ्लिप-फ्लॉप में परिवर्तित हो जाता है?",
+    opts_en: ["D Flip-Flop", "T (Toggle) Flip-Flop", "SR Flip-Flop", "More than one of the above", "None of the above"],
+    opts_hi: ["D फ्लिप-फ्लॉप", "T (टॉगल) फ्लिप-फ्लॉप", "SR फ्लिप-फ्लॉप", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Jab J=K=T connect ho jata hai, tab T=1 hone par output toggle hota hai aur T=0 par hold hota hai, jo T (Toggle) flip-flop hai.",
+    tip: "J=K tied together = T Flip-Flop."
+  },
+  {
+    gId: 147, sec: "CS", name: "Part III: Computer Science", top: "Python: Slicing",
+    q_en: "What is the output of the Python code: <code>s = 'BPSC_TRE'; print(s[::-1])</code>?",
+    q_hi: "पायथन कोड <code>s = 'BPSC_TRE'; print(s[::-1])</code> का आउटपुट क्या होगा?",
+    opts_en: ["BPSC_TRE", "ERT_CSPB", "TRE_BPSC", "More than one of the above", "None of the above"],
+    opts_hi: ["BPSC_TRE", "ERT_CSPB", "TRE_BPSC", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Slicing syntax [::-1] string ko right-to-left reverse kar deta hai. 'BPSC_TRE' reverse hokar 'ERT_CSPB' ban jata hai.",
+    tip: "[::-1] reverses sequence in Python."
+  },
+  {
+    gId: 148, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Views",
+    q_en: "A 'View' in SQL is categorized as:",
+    q_hi: "SQL में एक 'व्यू' (View) को किस रूप में वर्गीकृत किया गया है?",
+    opts_en: ["Physical Base Table", "Virtual Table", "Clustered Index", "More than one of the above", "None of the above"],
+    opts_hi: ["भौतिक आधार तालिका", "आभासी तालिका (Virtual Table)", "क्लस्टर्ड इंडेक्स", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "View ek virtual table hai jo query ke result set par banti hai aur database me separate data rows store nahi karti.",
+    tip: "View = Virtual Table based on SQL query."
+  },
+  {
+    gId: 149, sec: "CS", name: "Part III: Computer Science", top: "OS: Deadlock Recovery",
+    q_en: "Which method recovers a system from a detected deadlock state?",
+    q_hi: "कौन-सी विधि सिस्टम को गतिरोध (Deadlock) स्थिति से पुनर्प्राप्त करती है?",
+    opts_en: ["Process Termination (Aborting)", "Resource Preemption", "Banker's Algorithm", "More than one of the above", "None of the above"],
+    opts_hi: ["प्रक्रिया समाप्ति (Aborting)", "संसाधन प्रीएम्प्शन", "बैंकर का एल्गोरिदम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 3,
+    exp: "Deadlock recover karne ke do main methods hain: Process ko terminate karna ya resources preempt karna. Isliye (D) 'More than one of the above' sahi hai (Banker's avoidance hai, recovery nahi).",
+    tip: "Recovery = Abort process OR preempt resources -> Option (D)."
+  },
+  {
+    gId: 150, sec: "CS", name: "Part III: Computer Science", top: "Software Engg: SDLC Spiral",
+    q_en: "Which software development life cycle (SDLC) model explicitly integrates iterative prototyping with formal risk analysis at every evolutionary phase?",
+    q_hi: "कौन-सा सॉफ्टवेयर विकास चक्र (SDLC) मॉडल प्रत्येक चरण में औपचारिक जोखिम विश्लेषण (Risk Analysis) को एकीकृत करता है?",
+    opts_en: ["Waterfall Model", "Spiral Model (Boehm)", "V-Model", "More than one of the above", "None of the above"],
+    opts_hi: ["वॉटरफॉल मॉडल", "स्पाइरल मॉडल (Spiral Model)", "वी-मॉडल", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1,
+    exp: "Barry Boehm ka Spiral Model explicitly risk management aur iterative development par aadharit hai.",
+    tip: "Spiral Model = Risk-driven SDLC."
+  }
 ];
 
-const questionsData = [];
-for (let i = 1; i <= 150; i++) {
-  const custom = rawQuestions.find(x => x.id === i);
-  if (custom) {
-    questionsData.push({
-      gId: custom.id,
-      sec: custom.s,
-      name: custom.s === "LANG" ? "Part I: Language (Qualifying)" : custom.s === "GS" ? "Part II: General Studies" : "Part III: Computer Science",
-      top: custom.t,
-      q: custom.q,
-      opts: custom.o,
-      a: custom.a,
-      exp: custom.e,
-      tip: custom.tip
-    });
-  } else {
-    let s = i <= 30 ? "LANG" : i <= 70 ? "GS" : "CS";
-    let n = s === "LANG" ? "Part I: Language (Qualifying)" : s === "GS" ? "Part II: General Studies" : "Part III: Computer Science";
-    let t = s === "LANG" ? `Language Grammar Topic ${i}` : s === "GS" ? `General Studies Domain ${i - 30}` : `Computer Science Core Topic ${i - 70}`;
-    let qTxt = s === "LANG" 
-      ? `BPSC TRE 1.0 Official Language Question ${i}: Select the grammatically appropriate response based on standard rules.`
-      : s === "GS"
-      ? `BPSC TRE 1.0 Official General Studies Question ${i}: Identify the factually correct statement per Bihar GS & General Science.`
-      : `BPSC TRE 1.0 Computer Science Technical Question ${i}: Identify the correct technical property regarding Computer Science Systems & Algorithms.`;
-    
-    questionsData.push({
-      gId: i,
-      sec: s,
-      name: n,
-      top: t,
-      q: qTxt,
-      opts: [
-        "Primary correct conceptual assertion",
-        "Alternative secondary assertion",
-        "Contradictory technical property",
-        "More than one of the above",
-        "None of the above"
-      ],
-      a: (i % 3 === 0) ? 0 : (i % 3 === 1) ? 1 : 2,
-      exp: `Standard official verification for TRE 1.0 Question ${i} based on official BPSC key.`,
-      tip: `Remember BPSC 5-option format where D is 'More than one' and E is 'None'.`
-    });
-  }
-}
-
+// ==========================================================================
+// CBT ENGINE: LIFECYCLE & DUAL-LANGUAGE LOCALIZATION
+// ==========================================================================
 let examState = null;
 let currentIdx = 0;
 let currentSec = "LANG";
@@ -759,7 +1886,7 @@ function pauseExam() {
     <li><strong>Time Left:</strong> <span style="color:#60a5fa; font-family:monospace; font-size:16px;">${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}</span></li>
     <li><strong>Answered:</strong> ${ans} / ${questionsData.length}</li>
     <li><strong>Remaining:</strong> ${rem} Questions</li>
-    <li>Click <strong>"Resume Exam"</strong> to re-lock fullscreen simulation.</li>
+    <li>Click <strong>"Resume Exam"</strong> to lock fullscreen.</li>
   `;
   const b = document.getElementById("modalActionButton");
   b.innerText = "Resume Exam (Lock Fullscreen)";
@@ -784,6 +1911,11 @@ function startTimer() {
   }, 1000);
 }
 
+function changeQuestionLanguage(lang) {
+  currentExamLang = lang;
+  loadQuestion(currentIdx);
+}
+
 function loadQuestion(i) {
   currentIdx = i;
   const q = questionsData[i];
@@ -793,16 +1925,35 @@ function loadQuestion(i) {
     document.getElementById(`secBtn_${currentSec}`).classList.add("active");
   }
 
+  // Toggle PW Language Dropdown (Hidden for Language Part I, Visible for GS & CS)
+  const langBox = document.getElementById("pwLangContainer");
+  if (q.sec === "LANG") {
+    langBox.style.display = "none";
+  } else {
+    langBox.style.display = "inline-flex";
+    document.getElementById("examLangSelect").value = currentExamLang;
+  }
+
   document.getElementById("currentSecBadge").innerText = q.name;
   document.getElementById("qNumberText").innerText = `Question No. ${q.gId}`;
-  document.getElementById("qStatement").innerText = `${q.gId}. ${q.q}`;
+
+  // Localized Question Text & Options
+  let qText = q.q;
+  let opts = q.opts;
+
+  if (q.sec !== "LANG") {
+    qText = (currentExamLang === "hi" && q.q_hi) ? q.q_hi : q.q_en;
+    opts = (currentExamLang === "hi" && q.opts_hi) ? q.opts_hi : q.opts_en;
+  }
+
+  document.getElementById("qStatement").innerHTML = `<strong>${q.gId}.</strong> ${qText}`;
 
   const c = document.getElementById("optionsContainer");
   c.innerHTML = "";
   const ol = ["(A)", "(B)", "(C)", "(D)", "(E)"];
   const cur = examState[i].to !== null ? examState[i].to : examState[i].so;
 
-  q.opts.forEach((t, o) => {
+  opts.forEach((t, o) => {
     const l = document.createElement("label");
     l.className = "option-label";
     if (cur === o) l.classList.add("selected");
@@ -935,9 +2086,6 @@ function finalizeTest() {
   if (accessToken) syncToGoogleDrive();
 }
 
-// ==========================================================================
-// 2. ANIMATED RESULTS & REALISTIC BENCHMARKS
-// ==========================================================================
 function displayAttemptResult(idx) {
   const att = allAttempts[idx];
   if (!att) return;
@@ -992,6 +2140,7 @@ function displayAttemptResult(idx) {
     }
   });
 
+  // STRICT 1/3RD PENALTY AUDIT
   const totPen = tw * (1 / 3);
   const lPen = ss.LANG.wr * (1 / 3);
   const lNet = Math.max(0, ss.LANG.cor - lPen);
@@ -1005,7 +2154,6 @@ function displayAttemptResult(idx) {
   const acc = totA > 0 ? ((tc / totA) * 100).toFixed(1) : 0;
   const avgP = totA > 0 ? Math.round(totalSeconds / totA) : 0;
 
-  // Animated Radial Gauge with Smooth Easing
   const circ = 2 * Math.PI * 65; // ~408.4
   const ratio = Math.min(1, Math.max(0, mNet / 120));
   const dashArr = `${(ratio * circ).toFixed(1)} ${circ}`;
@@ -1016,16 +2164,13 @@ function displayAttemptResult(idx) {
     gCircle.setAttribute("stroke-dasharray", dashArr);
   }, 100);
 
-  // Animated Score Counter
   animateCounter("gaugeScoreText", 0, mNet, 1500, 1);
 
-  // Speed-Accuracy Quadrants
   document.getElementById("quadFastCorrect").innerText = `${qFastCor} Qs`;
   document.getElementById("quadSlowCorrect").innerText = `${qSlowCor} Qs`;
   document.getElementById("quadFastWrong").innerText = `${qFastWr} Qs`;
   document.getElementById("quadSlowWrong").innerText = `${qSlowWr} Qs`;
 
-  // Realistic Balanced Category Benchmarks
   const cutoffs = [
     { cat: "UR (Male)", cut: 79.0 },
     { cat: "UR (Female)", cut: 74.0 },
@@ -1054,7 +2199,6 @@ function displayAttemptResult(idx) {
     cGrid.appendChild(card);
   });
 
-  // Balanced Percentile Calibration for 1/3 Negative Marking
   let pct = 0;
   if (ratio <= 0.35) pct = Math.max(5, (ratio / 0.35) * 35);
   else if (ratio <= 0.60) pct = 35 + ((ratio - 0.35) / 0.25) * 38;
@@ -1067,9 +2211,8 @@ function displayAttemptResult(idx) {
   document.getElementById("quadRank").innerText = isLQ ? `~#${rk}` : "N/A";
   document.getElementById("quadPenalty").innerText = `-${mPen.toFixed(2)}`;
   document.getElementById("quadLangScore").innerText = `${lNet.toFixed(1)} / 30`;
-  document.getElementById("quadLangStatus").innerHTML = isLQ ? `<span style="color:#34d399; font-weight:700;">PASSED (>= 9.0) ✔</span>` : `<span style="color:#f87171; font-weight:700;">FAILED (< 9.0) ✕</span>`;
+  document.getElementById("quadLangStatus").innerHTML = isLQ ? `<span style="color:#34d399; font-weight:700;">PASSED (&ge; 9.0) ✔</span>` : `<span style="color:#f87171; font-weight:700;">FAILED (&lt; 9.0) ✕</span>`;
 
-  // 6 Primary Panels
   document.getElementById("statCorrect").innerText = `${tc}/150`;
   document.getElementById("statIncorrect").innerText = `${tw}/150`;
   document.getElementById("statSkipped").innerText = `${ts}/150`;
@@ -1079,7 +2222,6 @@ function displayAttemptResult(idx) {
   document.getElementById("statTimeTaken").innerText = `${um < 10 ? '0' : ''}${um}:${us < 10 ? '0' : ''}${us}`;
   document.getElementById("statAvgPace").innerText = `${avgP}s/q`;
 
-  // Section Breakdown Table with Animated Progress Fillers
   const tb = document.getElementById("sectionPerformanceTable");
   tb.innerHTML = "";
   Object.keys(ss).forEach((k, idx) => {
@@ -1142,7 +2284,6 @@ function animateCounter(id, start, end, duration, decimals) {
 }
 
 function buildAdvancedAnalytics(resState, mNet, mPen) {
-  // 1. Time Intervals
   const inv = [
     { l: "0-30 Mins", att: 0, cor: 0, wr: 0, m: 0, acc: 0 },
     { l: "30-60 Mins", att: 0, cor: 0, wr: 0, m: 0, acc: 0 },
@@ -1171,7 +2312,6 @@ function buildAdvancedAnalytics(resState, mNet, mPen) {
     ib.appendChild(tr);
   });
 
-  // 2. Topic Micro-Audit
   const tm = {};
   questionsData.forEach((q, i) => {
     if (!tm[q.top]) tm[q.top] = { tot: 0, att: 0, cor: 0, wr: 0, t: 0 };
@@ -1196,7 +2336,7 @@ function buildAdvancedAnalytics(resState, mNet, mPen) {
     if (it.wr > 0) {
       const lost = it.wr * (1/3);
       leaks.push({ topic: k, wrong: it.wr, lost: lost });
-      if (ac < 60) badge = "<span style='color:#f87171; font-weight:700;'>⚠ Negative Trap</span>";
+      if (ac < 60) badge = "<span style='color:#f87171; font-weight:700;'>⚠️ Negative Trap</span>";
       else badge = "<span style='color:#fbbf24; font-weight:700;'>🟡 Moderate</span>";
     }
 
@@ -1205,7 +2345,6 @@ function buildAdvancedAnalytics(resState, mNet, mPen) {
     tpb.appendChild(tr);
   });
 
-  // 3. Negative Leakage & Recovery Simulator
   const lkCont = document.getElementById("leakContainer");
   lkCont.innerHTML = "";
   
@@ -1408,12 +2547,20 @@ function loadSolutionQuestion(i) {
 
   document.getElementById("solSecBadge").innerText = q.name;
   document.getElementById("solQNumberText").innerText = `Question ${q.gId} of 150`;
-  document.getElementById("solQStatement").innerText = `${q.gId}. ${q.q}`;
+
+  let qText = q.q;
+  let opts = q.opts;
+  if (q.sec !== "LANG") {
+    qText = (currentExamLang === "hi" && q.q_hi) ? q.q_hi : q.q_en;
+    opts = (currentExamLang === "hi" && q.opts_hi) ? q.opts_hi : q.opts_en;
+  }
+
+  document.getElementById("solQStatement").innerHTML = `<strong>${q.gId}.</strong> ${qText}`;
 
   const cont = document.getElementById("solOptionsContainer");
   cont.innerHTML = "";
 
-  q.opts.forEach((t, o) => {
+  opts.forEach((t, o) => {
     const row = document.createElement("div");
     row.className = "sol-opt-row";
     let pf = `${ol[o]} ${t}`;
@@ -1431,9 +2578,9 @@ function loadSolutionQuestion(i) {
   });
 
   document.getElementById("solExpText").innerHTML = q.exp;
-  document.getElementById("solProTip").innerHTML = `<strong>⚡ BPSC Strategy Tip:</strong> ${q.tip}`;
+  document.getElementById("solProTip").innerHTML = `<strong>⚡ BPSC Strategy Tip:</strong> ${q.tip || "Standard negative marking awareness."}`;
   document.getElementById("solPrevBtn").disabled = (i === 0);
-  document.getElementById("solNextBtn").disabled = (i === questionsData.length - 1);
+  document.getElementById("nextBtn").disabled = (i === questionsData.length - 1);
 
   renderSolutionPalette();
 }
@@ -1456,7 +2603,7 @@ function startReattempt() {
     document.getElementById("modalRulesList").innerHTML = `
       <li><strong>Part I: Language:</strong> Q1 to Q30 (Qualifying min 9 marks).</li>
       <li><strong>Part II & III: GS & CS:</strong> Q31 to Q150 (120 Merit Pool).</li>
-      <li><strong>Negative Penalty:</strong> -1/3rd (-0.333) for incorrect choices.</li>
+      <li><strong>Negative Penalty:</strong> -1/3rd (-0.333) for incorrect choices across all sections.</li>
     `;
     const b = document.getElementById("modalActionButton");
     b.innerText = "Start Exam (Enter Fullscreen)";
