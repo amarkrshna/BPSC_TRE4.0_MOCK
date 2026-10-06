@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BPSC TRE 2.0 CS Official Paper (Mock 2) | Motion Pro CBT</title>
+<title>BPSC TRE CS - Full Mock Test 2 | Motion Pro CBT</title>
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
   :root {
@@ -72,7 +72,6 @@
   .q-meta-bar { background: var(--card-surface); padding: 10px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
   .marking-scheme { font-size: 12.5px; color: #f87171; font-weight: 700; }
   
-  /* PW Style Dropdown Selector */
   .pw-lang-box { display: inline-flex; align-items: center; gap: 8px; background: #1e293b; border: 1.5px solid #475569; border-radius: 6px; padding: 4px 10px; }
   .pw-lang-box label { font-size: 12px; font-weight: 700; color: #94a3b8; }
   .pw-lang-select { background: transparent; border: none; outline: none; color: #38bdf8; font-size: 13px; font-weight: 800; cursor: pointer; }
@@ -218,7 +217,7 @@
 
 <div id="instructionModal">
   <div class="modal-card">
-    <div class="modal-title" id="modalHeading">🚀 BPSC TRE 2.0 CS Official Paper (Mock 2)</div>
+    <div class="modal-title" id="modalHeading">🚀 BPSC TRE Computer Science - Full Mock Test 2</div>
     <ul class="modal-rules" id="modalRulesList">
       <li><strong>Part I: Language (Qualifying):</strong> Q1 to Q30 (Minimum 30% / 9 marks compulsory).</li>
       <li><strong>Part II: General Studies:</strong> Q31 to Q70 (40 Marks counted towards final merit).</li>
@@ -232,7 +231,7 @@
 
 <div class="cbt-header" id="topHeaderBar">
   <div class="exam-title">
-    BPSC TRE 2.0 Computer Science (Mock 2)
+    BPSC TRE CS - Full Mock Test 2
     <span class="exam-tag">150 Qs | 120 Merit Pool</span>
   </div>
   <div class="candidate-info">
@@ -321,11 +320,11 @@
         <div>
           <div class="hero-top-row">
             <div>
-              <h1 class="hero-test-name">BPSC TRE 2.0 Computer Science (Mock 2)</h1>
+              <h1 class="hero-test-name">BPSC TRE Computer Science - Mock Test 2</h1>
               <div class="hero-pills">
                 <span class="hero-pill">Official 150 Qs</span>
                 <span class="hero-pill">120 Merit Pool</span>
-                <span class="hero-pill">⚠️️ -1/3 Negative Penalty</span>
+                <span class="hero-pill">⚠ -1/3 Negative Penalty</span>
                 <span class="hero-pill" id="resAttemptDate">Attempted Today</span>
               </div>
             </div>
@@ -364,7 +363,7 @@
 
     <div>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-        <h3 style="font-size: 14.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">BPSC TRE 2.0 Category Cut-Off Benchmarks</h3>
+        <h3 style="font-size: 14.5px; font-weight: 800; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px;">BPSC TRE Expected Category Cut-Off Benchmarks</h3>
         <span style="font-size: 12px; color: #64748b;">Includes 1/3 negative marking calibration</span>
       </div>
       <div class="cutoff-grid" id="cutoffGrid"></div>
@@ -567,14 +566,14 @@
 </div>
 
 <script>
-const MOCK_ID = "BPSC_TRE_PYQ_2";
+const MOCK_ID = "BPSC_TRE_MOCK_2";
 const STORAGE_KEY = `bpsc_cbt_${MOCK_ID}_data`;
 const CLIENT_ID = "269810018167-5jqc4fapm4mpmgu7reqsv5vekdnhvv1q.apps.googleusercontent.com";
 let currentExamLang = "en";
 
 // ==========================================================================
-// BPSC TRE 2.0 (ADVT 27/2023) REAL QUESTIONS REGISTRY (PART 1: Q1 TO Q75)
-// ==========================================
+// 150 BPSC TRE COMPUTER SCIENCE QUESTIONS REGISTRY (FULL DATASET)
+// ==========================================================================
 const questionsData = [
   // PART I: LANGUAGE (Q1 TO Q30)
   { gId: 1, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Articles", q: "Fill in the blank: She has _____ unique perspective on the subject.", opts: ["a", "an", "the", "More than one of the above", "None of the above"], a: 0, exp: "'Unique' starts with a consonant glide sound (/juː/), hence 'a' is used, not 'an'.", tip: "Sound rule: 'a unique', 'a university'." },
@@ -609,334 +608,55 @@ const questionsData = [
   { gId: 30, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Sandhi", q: "'निराधार' का सही संधि-विच्छेद क्या होगा?", opts: ["निः + आधार", "निरा + धार", "निर् + आधार", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "निः + आधार = निराधार (विसर्ग संधि: विसर्ग का 'र्' में परिवर्तन)।", tip: "विसर्ग संधि।" },
 
   // PART II: GENERAL STUDIES (Q31 TO Q70 - DUAL LANGUAGE)
-  {
-    gId: 31, sec: "GS", name: "Part II: General Studies", top: "History: Bihar 1942",
-    q_en: "On 11 August 1942, seven students were martyred while trying to hoist the National Flag at the Secretariat in Patna. Who was the District Magistrate of Patna at that time?",
-    q_hi: "11 अगस्त 1942 को पटना सचिवालय के सामने झंडा फहराने के क्रम में सात छात्र शहीद हुए थे। उस समय पटना के जिलाधिकारी (DM) कौन थे?",
-    opts_en: ["W. G. Archer", "Robert Clive", "Lord Linlithgow", "More than one of the above", "None of the above"],
-    opts_hi: ["डब्ल्यू. जी. आर्चर", "रॉबर्ट क्लाइव", "लॉर्ड लिनलिथगो", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Patna Secretariat firing ke samay DM W. G. Archer tha jisne goli chalane ka aadesh diya tha.", tip: "Archer was the Patna DM in 1942."
-  },
-  {
-    gId: 32, sec: "GS", name: "Part II: General Studies", top: "History: Champaran 1917",
-    q_en: "Who saved Mahatma Gandhi's life from a food poisoning attempt in Champaran in 1917?",
-    q_hi: "1917 में चंपारण में महात्मा गांधी की जान भोजन में जहर देकर मारने के प्रयास से किसने बचाई थी?",
-    opts_en: ["Batakh Mian", "Rajkumar Shukla", "Peer Ali", "More than one of the above", "None of the above"],
-    opts_hi: ["बतख मियां", "राजकुमार शुक्ल", "पीर अली", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Batakh Mian ne Erwin ke rasoiye ke roop me poison mila doodh dene se inkar karke Gandhiji ki jaan bachai thi.", tip: "Batakh Mian saved Gandhiji."
-  },
-  {
-    gId: 33, sec: "GS", name: "Part II: General Studies", top: "Polity: Fundamental Rights",
-    q_en: "Which Fundamental Right in the Indian Constitution is referred to as the 'Heart and Soul of the Constitution' by Dr. B. R. Ambedkar?",
-    q_hi: "डॉ. बी. आर. अम्बेडकर ने भारतीय संविधान के किस मौलिक अधिकार को 'संविधान का हृदय और आत्मा' कहा था?",
-    opts_en: ["Right to Equality (Article 14)", "Right to Freedom of Speech (Article 19)", "Right to Constitutional Remedies (Article 32)", "More than one of the above", "None of the above"],
-    opts_hi: ["समानता का अधिकार (अनुच्छेद 14)", "अभिव्यक्ति की स्वतंत्रता (अनुच्छेद 19)", "संवैधानिक उपचारों का अधिकार (अनुच्छेद 32)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2, exp: "Dr. Ambedkar ne Article 32 (Constitutional Remedies) ko samvidhan ka dil aur aatma bataya tha.", tip: "Article 32 = Heart & Soul."
-  },
-  {
-    gId: 34, sec: "GS", name: "Part II: General Studies", top: "Polity: CAG",
-    q_en: "Under which Article of the Constitution of India is the Comptroller and Auditor General (CAG) appointed?",
-    q_hi: "भारतीय संविधान के किस अनुच्छेद के तहत भारत के नियंत्रक एवं महालेखापरीक्षक (CAG) की नियुक्ति की जाती है?",
-    opts_en: ["Article 148", "Article 280", "Article 324", "More than one of the above", "None of the above"],
-    opts_hi: ["अनुच्छेद 148", "अनुच्छेद 280", "अनुच्छेद 324", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Article 148 CAG ke pad aur niyukti ka pravdhan karta hai.", tip: "CAG = Article 148; Finance Commission = 280; Election Commission = 324."
-  },
-  {
-    gId: 35, sec: "GS", name: "Part II: General Studies", top: "Geography: Bihar Boundary",
-    q_en: "Which district of Bihar shares borders with both Nepal and the state of West Bengal?",
-    q_hi: "बिहार का कौन-सा जिला नेपाल और पश्चिम बंगाल दोनों के साथ सीमा साझा करता है?",
-    opts_en: ["Araria", "Kishanganj", "Purnia", "More than one of the above", "None of the above"],
-    opts_hi: ["अररिया", "किशनगंज", "पूर्णिया", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Kishanganj uttar me Nepal aur poorv me West Bengal dono se touch karta hai.", tip: "Kishanganj borders Nepal & West Bengal."
-  },
-  {
-    gId: 36, sec: "GS", name: "Part II: General Studies", top: "Geography: Bihar Agriculture",
-    q_en: "Which district of Bihar is the largest producer of 'Makhana' (Fox nuts)?",
-    q_hi: "बिहार का कौन-सा जिला मखाना उत्पादन में देश में अग्रणी/शीर्ष स्थान रखता है?",
-    opts_en: ["Madhubani", "Darbhanga", "Muzaffarpur", "More than one of the above", "None of the above"],
-    opts_hi: ["मधुबनी", "दरभंगा", "मुजफ्फरपुर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 3, exp: "Madhubani aur Darbhanga dono Mithila belt ke pramukh makhana utpadak zile hain, isliye (D) 'More than one' sahi hai.", tip: "Mithila Makhana belt = Darbhanga & Madhubani."
-  },
-  {
-    gId: 37, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Energy)",
-    q_en: "A commercial electrical unit (1 kWh) is equal to how many Joules?",
-    q_hi: "1 किलोवाट घंटा (1 kWh) विद्युत ऊर्जा कितने जूल के बराबर होती है?",
-    opts_en: ["3.6 &times; 10^5 J", "3.6 &times; 10^6 J", "3.6 &times; 10^7 J", "More than one of the above", "None of the above"],
-    opts_hi: ["3.6 &times; 10^5 J", "3.6 &times; 10^6 J", "3.6 &times; 10^7 J", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "1 kWh = 1000 W * 3600 s = 3.6 * 10^6 Joules.", tip: "1 kWh = 3.6 MJ."
-  },
-  {
-    gId: 38, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Plaster of Paris)",
-    q_en: "What is the correct chemical formula of Plaster of Paris (POP)?",
-    q_hi: "प्लास्टर ऑफ पेरिस (POP) का सही रासायनिक सूत्र क्या है?",
-    opts_en: ["CaSO4 &middot; 2H2O", "CaSO4 &middot; &frac12;H2O", "CuSO4 &middot; 5H2O", "More than one of the above", "None of the above"],
-    opts_hi: ["CaSO4 &middot; 2H2O", "CaSO4 &middot; &frac12;H2O", "CuSO4 &middot; 5H2O", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "POP Calcium Sulphate Hemihydrate (CaSO4 . 1/2 H2O) hota hai. Gypsum CaSO4 . 2H2O hota hai.", tip: "POP = Half hydrate; Gypsum = Dihydrate."
-  },
-  {
-    gId: 39, sec: "GS", name: "Part II: General Studies", top: "Science: Biology (Endocrine)",
-    q_en: "Which hormone is secreted by the Beta cells of the Islets of Langerhans in the pancreas?",
-    q_hi: "अग्न्याशय (Pancreas) में लैंगरहैंस के द्वीप समूह की बीटा कोशिकाओं द्वारा कौन-सा हार्मोन स्रावित होता है?",
-    opts_en: ["Glucagon", "Insulin", "Somatostatin", "More than one of the above", "None of the above"],
-    opts_hi: ["ग्लूकागॉन", "इंसुलिन (Insulin)", "सोमैटोस्टैटिन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Beta cells Insulin release karti hain jo blood glucose ko regulate karta hai.", tip: "Beta cells = Insulin; Alpha cells = Glucagon."
-  },
-  {
-    gId: 40, sec: "GS", name: "Part II: General Studies", top: "Environment: Green House Gases",
-    q_en: "Which gas has the highest concentration and heat-trapping contribution among greenhouse gases in Earth's atmosphere?",
-    q_hi: "पृथ्वी के वायुमंडल में ग्रीनहाउस प्रभाव में सर्वाधिक योगदान देने वाला मुख्य घटक कौन-सा है?",
-    opts_en: ["Carbon Dioxide (CO2)", "Water Vapor (H2O)", "Methane (CH4)", "More than one of the above", "None of the above"],
-    opts_hi: ["कार्बन डाइऑक्साइड", "जलवाष्प (Water Vapor)", "मीथेन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Overall greenhouse effect me jalvaashp (Water Vapor) ka contribution sabse jyada (36-70%) hota hai.", tip: "Water Vapor contributes the most."
-  },
-  {
-    gId: 41, sec: "GS", name: "Part II: General Studies", top: "Maths: Compound Interest",
-    q_en: "What will be the compound interest on ₹8000 at 10% per annum for 2 years, compounded annually?",
-    q_hi: "₹8000 की राशि पर 10% वार्षिक दर से 2 वर्ष का चक्रवृद्धि ब्याज क्या होगा?",
-    opts_en: ["₹1600", "₹1680", "₹1720", "More than one of the above", "None of the above"],
-    opts_hi: ["₹1600", "₹1680", "₹1720", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Amount = 8000 * (1.1)^2 = 8000 * 1.21 = ₹9680. CI = 9680 - 8000 = ₹1680.", tip: "8000 * 21% = 1680."
-  },
-  {
-    gId: 42, sec: "GS", name: "Part II: General Studies", top: "Maths: Geometry",
-    q_en: "If the radius of a sphere is doubled, its volume increases by what factor?",
-    q_hi: "यदि किसी गोले की त्रिज्या को दोगुना कर दिया जाए, तो उसका आयतन कितने गुना बढ़ जाएगा?",
-    opts_en: ["2 times", "4 times", "8 times", "More than one of the above", "None of the above"],
-    opts_hi: ["2 गुना", "4 गुना", "8 गुना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2, exp: "Volume ∝ r³. Agar radius 2r ho jaye toh volume (2)³ = 8 guna ho jayega.", tip: "r cubed factor = 2^3 = 8."
-  },
-  {
-    gId: 43, sec: "GS", name: "Part II: General Studies", top: "Maths: Work and Pipes",
-    q_en: "Pipe A can fill a tank in 12 hours and Pipe B can empty it in 18 hours. If both pipes are opened together, in how many hours will the tank be full?",
-    q_hi: "पाइप A एक टंकी को 12 घंटे में भर सकता है और पाइप B इसे 18 घंटे में खाली कर सकता है। दोनों पाइप एक साथ खोलने पर टंकी कितने समय में भरेगी?",
-    opts_en: ["30 hours", "36 hours", "42 hours", "More than one of the above", "None of the above"],
-    opts_hi: ["30 घंटे", "36 घंटे", "42 घंटे", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Net filling rate = 1/12 - 1/18 = (3 - 2)/36 = 1/36 per hour. Total time = 36 hours.", tip: "(12 * 18) / (18 - 12) = 216 / 6 = 36."
-  },
-  {
-    gId: 44, sec: "GS", name: "Part II: General Studies", top: "Maths: Linear Equations",
-    q_en: "The sum of ages of a father and his son is 50 years. Five years ago, father's age was 7 times the son's age. What is father's present age?",
-    q_hi: "पिता और पुत्र की वर्तमान आयु का योग 50 वर्ष है। 5 वर्ष पूर्व पिता की आयु पुत्र की आयु की 7 गुनी थी। पिता की वर्तमान आयु क्या है?",
-    opts_en: ["35 years", "40 years", "45 years", "More than one of the above", "None of the above"],
-    opts_hi: ["35 वर्ष", "40 वर्ष", "45 वर्ष", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "5 saal pehle sum = 50 - 10 = 40. Father = 7x, Son = x -> 8x = 40 => x = 5. Father 5 saal pehle = 35. Present age = 35 + 5 = 40 years.", tip: "Present = 40, Son = 10."
-  },
-  {
-    gId: 45, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Direction Sense",
-    q_en: "A man walks 5 km North, turns right and walks 3 km, then turns right again and walks 5 km. How far and in which direction is he from the starting point?",
-    q_hi: "एक व्यक्ति उत्तर की ओर 5 किमी चलता है, दाएं मुड़कर 3 किमी चलता है, फिर दाएं मुड़कर 5 किमी चलता है। वह प्रारंभिक बिंदु से कितनी दूरी और किस दिशा में है?",
-    opts_en: ["3 km East", "3 km West", "5 km South", "More than one of the above", "None of the above"],
-    opts_hi: ["3 किमी पूर्व", "3 किमी पश्चिम", "5 किमी दक्षिण", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "5 km North ja kar 5 km South wapas aaya, horizontal displacement 3 km East hai.", tip: "3 km East."
-  },
-  {
-    gId: 46, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Syllogisms",
-    q_en: "Statements: All cats are dogs. All dogs are birds. Conclusion: I. All cats are birds. II. Some birds are cats.",
-    q_hi: "कथन: सभी बिल्लियाँ कुत्ते हैं। सभी कुत्ते पक्षी हैं। निष्कर्ष: I. सभी बिल्लियाँ पक्षी हैं। II. कुछ पक्षी बिल्लियाँ हैं।",
-    opts_en: ["Only conclusion I follows", "Only conclusion II follows", "Both conclusions I and II follow", "More than one of the above", "None of the above"],
-    opts_hi: ["केवल निष्कर्ष I निकलता है", "केवल निष्कर्ष II निकलता है", "दोनों निष्कर्ष I और II निकलते हैं", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2, exp: "Cats &sube; Dogs &sube; Birds. Dono conclusions (All cats are birds & Some birds are cats) valid hain.", tip: "Both follow."
-  },
-  {
-    gId: 47, sec: "GS", name: "Part II: General Studies", top: "History: Bihar Congress Socialist",
-    q_en: "In which year was the Bihar Socialist Party officially formed at Anjuman Islamia Hall in Patna?",
-    q_hi: "पटना के अंजुमन इस्लामिया हॉल में बिहार सोशलिस्ट पार्टी का औपचारिक गठन किस वर्ष हुआ था?",
-    opts_en: ["1931", "1934", "1939", "More than one of the above", "None of the above"],
-    opts_hi: ["1931", "1934", "1939", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "1934 me Acharya Narendra Dev (President) aur Jayaprakash Narayan (Secretary) ke netritva me gathan hua.", tip: "1934 = Official Anjuman Islamia Hall meeting."
-  },
-  {
-    gId: 48, sec: "GS", name: "Part II: General Studies", top: "Economy: Five Year Plans",
-    q_en: "The Second Five Year Plan of India was based on which economic development model?",
-    q_hi: "भारत की द्वितीय पंचवर्षीय योजना किस आर्थिक मॉडल पर आधारित थी?",
-    opts_en: ["Harrod-Domar Model", "P. C. Mahalanobis Model", "Gadgil Yojana", "More than one of the above", "None of the above"],
-    opts_hi: ["हैरोड-डोमर मॉडल", "पी. सी. महालनोबिस मॉडल", "गाडगिल योजना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "2nd Plan (1956-61) Mahalanobis heavy industrialization model par based tha.", tip: "Second Plan = Mahalanobis."
-  },
-  {
-    gId: 49, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Electricity)",
-    q_en: "If two resistors of 6 &Omega; and 3 &Omega; are connected in parallel, what is their equivalent resistance?",
-    q_hi: "यदि 6 &Omega; और 3 &Omega; के दो प्रतिरोध समानांतर (Parallel) क्रम में जुड़े हैं, तो तुल्य प्रतिरोध क्या होगा?",
-    opts_en: ["2 &Omega;", "4.5 &Omega;", "9 &Omega;", "More than one of the above", "None of the above"],
-    opts_hi: ["2 &Omega;", "4.5 &Omega;", "9 &Omega;", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "1/R = 1/6 + 1/3 = 3/6 = 1/2 => R = 2 &Omega;.", tip: "(6 * 3) / (6 + 3) = 18 / 9 = 2 &Omega;."
-  },
-  {
-    gId: 50, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Reactivity)",
-    q_en: "Which metal among the following is the MOST reactive in the electrochemical reactivity series?",
-    q_hi: "विद्युत रासायनिक अभिक्रियाशीलता श्रेणी में निम्नलिखित में से कौन-सी धातु सर्वाधिक अभिक्रियाशील है?",
-    opts_en: ["Iron (Fe)", "Potassium (K)", "Copper (Cu)", "More than one of the above", "None of the above"],
-    opts_hi: ["लोहा (Fe)", "पोटैशियम (K)", "तांबा (Cu)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Potassium (K) reactivity series me sabse upar sthit hota hai.", tip: "K > Na > Ca > Mg."
-  },
-  {
-    gId: 51, sec: "GS", name: "Part II: General Studies", top: "Geography: World Straits",
-    q_en: "Which strait connects the Atlantic Ocean to the Mediterranean Sea?",
-    q_hi: "कौन-सा जलडमरूमध्य अटलांटिक महासागर को भूमध्य सागर से जोड़ता है?",
-    opts_en: ["Strait of Malacca", "Strait of Gibraltar", "Bering Strait", "More than one of the above", "None of the above"],
-    opts_hi: ["मलक्का जलडमरूमध्य", "जिब्राल्टर जलडमरूमध्य", "बेरिंग जलडमरूमध्य", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Strait of Gibraltar Spain aur Morocco ke beech Atlantic aur Mediterranean ko connect karta hai.", tip: "Key of Mediterranean = Gibraltar."
-  },
-  {
-    gId: 52, sec: "GS", name: "Part II: General Studies", top: "Polity: Rajya Sabha",
-    q_en: "Who is the ex-officio Chairman of the Rajya Sabha in India?",
-    q_hi: "भारत में राज्य सभा का पदेन सभापति कौन होता है?",
-    opts_en: ["President of India", "Vice-President of India", "Prime Minister", "More than one of the above", "None of the above"],
-    opts_hi: ["भारत के राष्ट्रपति", "भारत के उपराष्ट्रपति", "प्रधानमंत्री", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Article 64 ke anusar Vice-President Rajya Sabha ka ex-officio chairman hota hai.", tip: "Vice President = Ex-officio Chairman."
-  },
-  {
-    gId: 53, sec: "GS", name: "Part II: General Studies", top: "History: Battle of Buxar",
-    q_en: "In which year was the historic Battle of Buxar fought?",
-    q_hi: "ऐतिहासिक बक्सर का युद्ध किस वर्ष लड़ा गया था?",
-    opts_en: ["1757", "1764", "1765", "More than one of the above", "None of the above"],
-    opts_hi: ["1757", "1764", "1765", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Battle of Buxar 22 October 1764 ko Hector Munro aur sanyukt sena ke beech hua.", tip: "Plassey = 1757; Buxar = 1764."
-  },
-  {
-    gId: 54, sec: "GS", name: "Part II: General Studies", top: "Maths: Profit & Loss",
-    q_en: "If the cost price of 12 pens is equal to the selling price of 8 pens, what is the profit percentage?",
-    q_hi: "यदि 12 पेनों का क्रय मूल्य 8 पेनों के विक्रय मूल्य के बराबर है, तो लाभ प्रतिशत क्या होगा?",
-    opts_en: ["33.33%", "50%", "66.66%", "More than one of the above", "None of the above"],
-    opts_hi: ["33.33%", "50%", "66.66%", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "12 CP = 8 SP => SP/CP = 12/8 = 3/2. Profit = (3 - 2)/2 * 100 = 50%.", tip: "Profit % = (12 - 8)/8 * 100 = 50%."
-  },
-  {
-    gId: 55, sec: "GS", name: "Part II: General Studies", top: "Maths: Probability",
-    q_en: "Two coins are tossed simultaneously. What is the probability of getting at least one head?",
-    q_hi: "दो सिक्कों को एक साथ उछाला जाता है। कम से कम एक चित (Head) आने की प्रायिकता क्या है?",
-    opts_en: ["1/4", "1/2", "3/4", "More than one of the above", "None of the above"],
-    opts_hi: ["1/4", "1/2", "3/4", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2, exp: "Sample space = {HH, HT, TH, TT}. Favorable = {HH, HT, TH} = 3. P = 3/4.", tip: "1 - P(no head) = 1 - 1/4 = 3/4."
-  },
-  {
-    gId: 56, sec: "GS", name: "Part II: General Studies", top: "Science: Biology (Genetics)",
-    q_en: "Who is known as the 'Father of Genetics' for his pioneering work on pea plants?",
-    q_hi: "मटर के पौधों पर अपने अग्रणी प्रयोगों के लिए 'आनुवंशिकी का जनक' किसे कहा जाता है?",
-    opts_en: ["Charles Darwin", "Gregor Johann Mendel", "Thomas Hunt Morgan", "More than one of the above", "None of the above"],
-    opts_hi: ["चार्ल्स डार्विन", "ग्रेगर जोहान मेंडल", "थॉमस हंट मॉर्गन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Mendel ne garden pea (Pisum sativum) par laws of inheritance diye.", tip: "Father of Genetics = Mendel."
-  },
-  {
-    gId: 57, sec: "GS", name: "Part II: General Studies", top: "Geography: Indian Rivers",
-    q_en: "Which river is known as the 'Sorrow of Bihar' due to its frequent devastating floods and course-shifting?",
-    q_hi: "अक्सर मार्ग बदलने और विनाशकारी बाढ़ के कारण किस नदी को 'बिहार का शोक' कहा जाता है?",
-    opts_en: ["Gandak River", "Kosi River", "Kamala River", "More than one of the above", "None of the above"],
-    opts_hi: ["गंडक नदी", "कोसी नदी", "कमला नदी", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Kosi river shifting course aur flood ke karan Sorrow of Bihar kahlati hai.", tip: "Kosi = Sorrow of Bihar."
-  },
-  {
-    gId: 58, sec: "GS", name: "Part II: General Studies", top: "Polity: Writs",
-    q_en: "Which writ literally translates to 'We Command' in Latin, issued to a public official to perform a statutory duty?",
-    q_hi: "किस रिट का लैटिन में शाब्दिक अर्थ 'हम आदेश देते हैं' (We Command) होता है, जो सार्वजनिक कर्तव्य के निष्पादन के लिए जारी की जाती है?",
-    opts_en: ["Habeas Corpus", "Mandamus", "Quo-Warranto", "More than one of the above", "None of the above"],
-    opts_hi: ["बंदी प्रत्यक्षीकरण", "परमादेश (Mandamus)", "अधिकार पृच्छा", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Mandamus ka arth hota hai 'We Command' (Paramaadesh).", tip: "Mandamus = We Command."
-  },
-  {
-    gId: 59, sec: "GS", name: "Part II: General Studies", top: "History: Al-Hilal",
-    q_en: "Who founded the Urdu weekly newspaper 'Al-Hilal' in 1912?",
-    q_hi: "1912 में उर्दू साप्ताहिक समाचार पत्र 'अल-हिलाल' की स्थापना किसने की थी?",
-    opts_en: ["Maulana Abul Kalam Azad", "Sir Syed Ahmad Khan", "Muhammad Ali Jinnah", "More than one of the above", "None of the above"],
-    opts_hi: ["मौलाना अबुल कलाम आजाद", "सर सैयद अहमद खान", "मोहम्मद अली जिन्ना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Maulana Abul Kalam Azad ne Calcutta se Al-Hilal shuru kiya tha.", tip: "Al-Hilal = Abul Kalam Azad."
-  },
-  {
-    gId: 60, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Sound)",
-    q_en: "What is the audible frequency range of sound for a normal healthy human ear?",
-    q_hi: "सामान्य स्वस्थ मानव कान के लिए ध्वनि की श्रव्य आवृत्ति सीमा (Audible frequency range) क्या है?",
-    opts_en: ["20 Hz to 20,000 Hz", "5 Hz to 5,000 Hz", "20,000 Hz to 40,000 Hz", "More than one of the above", "None of the above"],
-    opts_hi: ["20 Hz से 20,000 Hz", "5 Hz से 5,000 Hz", "20,000 Hz से 40,000 Hz", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Human audible range strictly 20 Hz se 20 kHz hoti hai.", tip: "Audible = 20 Hz - 20 kHz."
-  },
-  {
-    gId: 61, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Calendar",
-    q_en: "If 1st January 2024 was a Monday, what day of the week was 31st December 2024?",
-    q_hi: "यदि 1 जनवरी 2024 को सोमवार था, तो 31 दिसंबर 2024 को सप्ताह का कौन-सा दिन था?",
-    opts_en: ["Monday", "Tuesday", "Wednesday", "More than one of the above", "None of the above"],
-    opts_hi: ["सोमवार", "मंगलवार", "बुधवार", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "2024 leap year hai (366 din). Leap year me last day pehle din se 1 din aage hota hai. Monday + 1 = Tuesday.", tip: "Leap year starts and ends on consecutive days."
-  },
-  {
-    gId: 62, sec: "GS", name: "Part II: General Studies", top: "Maths: Number Systems",
-    q_en: "What is the remainder when (7^19 + 2) is divided by 6?",
-    q_hi: "जब (7^19 + 2) को 6 से विभाजित किया जाता है, तो शेषफल क्या होगा?",
-    opts_en: ["1", "2", "3", "More than one of the above", "None of the above"],
-    opts_hi: ["1", "2", "3", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2, exp: "7 mod 6 = 1. (1^19 + 2) mod 6 = (1 + 2) mod 6 = 3.", tip: "Remainder = 1 + 2 = 3."
-  },
-  {
-    gId: 63, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Isotopes)",
-    q_en: "Isotopes of an element possess identical number of protons but differ in the number of:",
-    q_hi: "किसी तत्व के समस्थानिकों (Isotopes) में प्रोटॉनों की संख्या समान होती है लेकिन किसकी संख्या भिन्न होती है?",
-    opts_en: ["Electrons", "Neutrons", "Positrons", "More than one of the above", "None of the above"],
-    opts_hi: ["इलेक्ट्रॉन", "न्यूट्रॉन", "पॉज़िट्रॉन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Isotopes have same atomic number Z (protons) but different neutron count.", tip: "Isotopes = Different neutrons."
-  },
-  {
-    gId: 64, sec: "GS", name: "Part II: General Studies", top: "Environment: Ramsar Sites",
-    q_en: "Which wetland in Begusarai district is recognized as Bihar's first Ramsar site?",
-    q_hi: "बेगूसराय जिले में स्थित कौन-सी आर्द्रभूमि बिहार का पहला रामसर स्थल घोषित की गई है?",
-    opts_en: ["Kanwar Lake (Kabartal)", "Kusheshwar Asthan", "Baraila Lake", "More than one of the above", "None of the above"],
-    opts_hi: ["कंवर झील (काबरताल)", "कुशेश्वर अस्थान", "बरैला झील", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Kabartal (Kanwar Lake) Begusarai me Bihar ka pehla Ramsar site hai.", tip: "Kabartal = First Ramsar site of Bihar."
-  },
-  {
-    gId: 65, sec: "GS", name: "Part II: General Studies", top: "History: Hunter Commission",
-    q_en: "The Hunter Commission (1919) was appointed by the British government to investigate which tragic event?",
-    q_hi: "हंटर आयोग (1919) का गठन ब्रिटिश सरकार द्वारा किस दुखद घटना की जांच के लिए किया गया था?",
-    opts_en: ["Chauri Chaura incident", "Jallianwala Bagh Massacre", "Kakori train robbery", "More than one of the above", "None of the above"],
-    opts_hi: ["चौरी चौरा कांड", "जलियांवाला बाग नरसंहार", "काकोरी ट्रेन डकैती", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "13 April 1919 ke Jallianwala Bagh massacre ki inquiry ke liye Hunter committee bani.", tip: "Hunter Commission = Jallianwala Bagh."
-  },
-  {
-    gId: 66, sec: "GS", name: "Part II: General Studies", top: "Polity: Emergency Provisions",
-    q_en: "Under which Article of the Constitution can the President impose Financial Emergency in India?",
-    q_hi: "संविधान के किस अनुच्छेद के तहत राष्ट्रपति भारत में वित्तीय आपातकाल (Financial Emergency) लागू कर सकते हैं?",
-    opts_en: ["Article 352", "Article 356", "Article 360", "More than one of the above", "None of the above"],
-    opts_hi: ["अनुच्छेद 352", "अनुच्छेद 356", "अनुच्छेद 360", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2, exp: "National Emergency = 352; State Emergency = 356; Financial Emergency = 360.", tip: "Article 360 = Financial Emergency."
-  },
-  {
-    gId: 67, sec: "GS", name: "Part II: General Studies", top: "Geography: Highest Peak",
-    q_en: "Which is the highest peak in the Someshwar mountain range situated in Bihar?",
-    q_hi: "बिहार में स्थित सोमेश्वर पर्वत श्रेणी की सबसे ऊंची चोटी कौन-सी है?",
-    opts_en: ["Fort Someshwar Peak", "Kaimur Top", "Pretshila", "More than one of the above", "None of the above"],
-    opts_hi: ["सोमेश्वर किला चोटी (880 मी)", "कैमूर शीर्ष", "प्रेतशिला", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Fort Someshwar (लगभग 880 मीटर) West Champaran me Bihar ki sabse unchi choti hai.", tip: "Someshwar Fort = 880m."
-  },
-  {
-    gId: 68, sec: "GS", name: "Part II: General Studies", top: "Maths: Set Theory",
-    q_en: "If set A has 5 elements and set B has 3 elements, what is the MAXIMUM possible number of elements in A &cap; B?",
-    q_hi: "यदि समुच्चय A में 5 अवयव हैं और समुच्चय B में 3 अवयव हैं, तो A &cap; B में अवयवों की अधिकतम संभव संख्या क्या होगी?",
-    opts_en: ["3", "5", "8", "More than one of the above", "None of the above"],
-    opts_hi: ["3", "5", "8", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Max intersection = min(n(A), n(B)) = min(5, 3) = 3.", tip: "Max intersection is 3."
-  },
-  {
-    gId: 69, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Units)",
-    q_en: "Which unit is used to express astronomical distances corresponding to approximately 9.46 &times; 10^12 km?",
-    q_hi: "लगभग 9.46 &times; 10^12 किमी की खगोलीय दूरी को व्यक्त करने के लिए किस इकाई का उपयोग किया जाता है?",
-    opts_en: ["Astronomical Unit (AU)", "Light Year", "Parsec", "More than one of the above", "None of the above"],
-    opts_hi: ["खगोलीय इकाई (AU)", "प्रकाश वर्ष (Light Year)", "पारसेक", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "1 Light Year = distance traveled by light in 1 year = ~9.46 * 10^12 km.", tip: "Light Year."
-  },
-  {
-    gId: 70, sec: "GS", name: "Part II: General Studies", top: "Economy: Inflation",
-    q_en: "A situation characterized by stagnant economic growth, high unemployment, and high inflation simultaneously is known as:",
-    q_hi: "धीमी आर्थिक वृद्धि, उच्च बेरोजगारी और उच्च मुद्रास्फीति की एक साथ उपस्थिति वाली स्थिति को क्या कहा जाता है?",
-    opts_en: ["Deflation", "Stagflation", "Reflation", "More than one of the above", "None of the above"],
-    opts_hi: ["अवस्फीति", "स्टैगफ्लेशन (Stagflation)", "रिफ्लेशन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Stagnation + Inflation = Stagflation.", tip: "Stagflation." },
+  { gId: 31, sec: "GS", name: "Part II: General Studies", top: "History: Bihar 1942", q_en: "On 11 August 1942, seven students were martyred in Patna. Who was the District Magistrate of Patna at that time?", q_hi: "11 अगस्त 1942 को पटना में सात छात्र शहीद हुए थे। उस समय पटना के जिलाधिकारी (DM) कौन थे?", opts_en: ["W. G. Archer", "Robert Clive", "Lord Linlithgow", "More than one of the above", "None of the above"], opts_hi: ["डब्ल्यू. जी. आर्चर", "रॉबर्ट क्लाइव", "लॉर्ड लिनलिथगो", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Patna DM W. G. Archer ordered the firing on students outside the Secretariat.", tip: "Archer was the Patna DM in 1942." },
+  { gId: 32, sec: "GS", name: "Part II: General Studies", top: "History: Champaran 1917", q_en: "Who saved Mahatma Gandhi's life from a food poisoning attempt in Champaran in 1917?", q_hi: "1917 में चंपारण में महात्मा गांधी की जान भोजन में जहर देकर मारने के प्रयास से किसने बचाई थी?", opts_en: ["Batakh Mian", "Rajkumar Shukla", "Peer Ali", "More than one of the above", "None of the above"], opts_hi: ["बतख मियां", "राजकुमार शुक्ल", "पीर अली", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Batakh Mian refused to serve poisoned milk to Gandhiji.", tip: "Batakh Mian saved Gandhiji." },
+  { gId: 33, sec: "GS", name: "Part II: General Studies", top: "Polity: Fundamental Rights", q_en: "Which Fundamental Right was referred to as the 'Heart and Soul of the Constitution' by Dr. B. R. Ambedkar?", q_hi: "डॉ. बी. आर. अम्बेडकर ने किस मौलिक अधिकार को 'संविधान का हृदय और आत्मा' कहा था?", opts_en: ["Right to Equality (Article 14)", "Right to Freedom of Speech (Article 19)", "Right to Constitutional Remedies (Article 32)", "More than one of the above", "None of the above"], opts_hi: ["समानता का अधिकार (अनुच्छेद 14)", "अभिव्यक्ति की स्वतंत्रता (अनुच्छेद 19)", "संवैधानिक उपचारों का अधिकार (अनुच्छेद 32)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 2, exp: "Article 32 provides writs for the enforcement of fundamental rights.", tip: "Article 32 = Heart & Soul." },
+  { gId: 34, sec: "GS", name: "Part II: General Studies", top: "Polity: CAG", q_en: "Under which Article of the Constitution of India is the Comptroller and Auditor General (CAG) appointed?", q_hi: "भारतीय संविधान के किस अनुच्छेद के तहत भारत के नियंत्रक एवं महालेखापरीक्षक (CAG) की नियुक्ति की जाती है?", opts_en: ["Article 148", "Article 280", "Article 324", "More than one of the above", "None of the above"], opts_hi: ["अनुच्छेद 148", "अनुच्छेद 280", "अनुच्छेद 324", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Article 148 establishes the office and appointment of CAG.", tip: "CAG = Article 148." },
+  { gId: 35, sec: "GS", name: "Part II: General Studies", top: "Geography: Bihar Boundary", q_en: "Which district of Bihar shares borders with both Nepal and the state of West Bengal?", q_hi: "बिहार का कौन-सा जिला नेपाल और पश्चिम बंगाल दोनों के साथ सीमा साझा करता है?", opts_en: ["Araria", "Kishanganj", "Purnia", "More than one of the above", "None of the above"], opts_hi: ["अररिया", "किशनगंज", "पूर्णिया", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Kishanganj is located in the eastern corner bordering Nepal and West Bengal.", tip: "Kishanganj borders Nepal & West Bengal." },
+  { gId: 36, sec: "GS", name: "Part II: General Studies", top: "Geography: Bihar Agriculture", q_en: "Which district of Bihar is the largest producer of 'Makhana' (Fox nuts)?", q_hi: "बिहार का कौन-सा जिला मखाना उत्पादन में देश में अग्रणी/शीर्ष स्थान रखता है?", opts_en: ["Madhubani", "Darbhanga", "Muzaffarpur", "More than one of the above", "None of the above"], opts_hi: ["मधुबनी", "दरभंगा", "मुजफ्फरपुर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 3, exp: "Both Madhubani and Darbhanga are major Makhana hubs in the Mithila belt (More than one).", tip: "Mithila Makhana belt = Darbhanga & Madhubani." },
+  { gId: 37, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Energy)", q_en: "A commercial electrical unit (1 kWh) is equal to how many Joules?", q_hi: "1 किलोवाट घंटा (1 kWh) विद्युत ऊर्जा कितने जूल के बराबर होती है?", opts_en: ["3.6 &times; 10^5 J", "3.6 &times; 10^6 J", "3.6 &times; 10^7 J", "More than one of the above", "None of the above"], opts_hi: ["3.6 &times; 10^5 J", "3.6 &times; 10^6 J", "3.6 &times; 10^7 J", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "1 kWh = 1000 W * 3600 s = 3.6 * 10^6 Joules.", tip: "1 kWh = 3.6 MJ." },
+  { gId: 38, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Plaster of Paris)", q_en: "What is the correct chemical formula of Plaster of Paris (POP)?", q_hi: "प्लास्टर ऑफ पेरिस (POP) का सही रासायनिक सूत्र क्या है?", opts_en: ["CaSO4 &middot; 2H2O", "CaSO4 &middot; &frac12;H2O", "CuSO4 &middot; 5H2O", "More than one of the above", "None of the above"], opts_hi: ["CaSO4 &middot; 2H2O", "CaSO4 &middot; &frac12;H2O", "CuSO4 &middot; 5H2O", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "POP is Calcium Sulphate Hemihydrate (CaSO4 . 1/2 H2O).", tip: "POP = Half hydrate; Gypsum = Dihydrate." },
+  { gId: 39, sec: "GS", name: "Part II: General Studies", top: "Science: Biology (Endocrine)", q_en: "Which hormone is secreted by Beta cells of the Islets of Langerhans in the pancreas?", q_hi: "अग्न्याशय में लैंगरहैंस के द्वीप समूह की बीटा कोशिकाओं द्वारा कौन-सा हार्मोन स्रावित होता है?", opts_en: ["Glucagon", "Insulin", "Somatostatin", "More than one of the above", "None of the above"], opts_hi: ["ग्लूकागॉन", "इंसुलिन (Insulin)", "सोमैटोस्टैटिन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Beta cells secrete Insulin to regulate glucose levels.", tip: "Beta cells = Insulin; Alpha cells = Glucagon." },
+  { gId: 40, sec: "GS", name: "Part II: General Studies", top: "Environment: Green House Gases", q_en: "Which gas has the highest heat-trapping contribution among greenhouse gases in Earth's atmosphere?", q_hi: "पृथ्वी के वायुमंडल में ग्रीनहाउस प्रभाव में सर्वाधिक योगदान देने वाला मुख्य घटक कौन-सा है?", opts_en: ["Carbon Dioxide (CO2)", "Water Vapor (H2O)", "Methane (CH4)", "More than one of the above", "None of the above"], opts_hi: ["कार्बन डाइऑक्साइड", "जलवाष्प (Water Vapor)", "मीथेन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Water vapor accounts for the largest percentage of the natural greenhouse effect (36-70%).", tip: "Water Vapor contributes the most." },
+  { gId: 41, sec: "GS", name: "Part II: General Studies", top: "Maths: Compound Interest", q_en: "What will be the compound interest on ₹8000 at 10% per annum for 2 years, compounded annually?", q_hi: "₹8000 की राशि पर 10% वार्षिक दर से 2 वर्ष का चक्रवृद्धि ब्याज क्या होगा?", opts_en: ["₹1600", "₹1680", "₹1720", "More than one of the above", "None of the above"], opts_hi: ["₹1600", "₹1680", "₹1720", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "A = 8000 * 1.21 = ₹9680. CI = 9680 - 8000 = ₹1680.", tip: "8000 * 21% = 1680." },
+  { gId: 42, sec: "GS", name: "Part II: General Studies", top: "Maths: Geometry", q_en: "If the radius of a sphere is doubled, its volume increases by what factor?", q_hi: "यदि किसी गोले की त्रिज्या को दोगुना कर दिया जाए, तो उसका आयतन कितने गुना बढ़ जाएगा?", opts_en: ["2 times", "4 times", "8 times", "More than one of the above", "None of the above"], opts_hi: ["2 गुना", "4 गुना", "8 गुना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 2, exp: "Volume is proportional to r^3. Doubling radius increases volume by 2^3 = 8 times.", tip: "r cubed factor = 2^3 = 8." },
+  { gId: 43, sec: "GS", name: "Part II: General Studies", top: "Maths: Work and Pipes", q_en: "Pipe A fills a tank in 12 hours and Pipe B empties it in 18 hours. Working together, in how many hours will the tank fill?", q_hi: "पाइप A 12 घंटे में भरता है और B 18 घंटे में खाली करता है। दोनों मिलकर टंकी कितने घंटे में भरेंगे?", opts_en: ["30 hours", "36 hours", "42 hours", "More than one of the above", "None of the above"], opts_hi: ["30 घंटे", "36 घंटे", "42 घंटे", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "1/12 - 1/18 = 1/36. Total time = 36 hours.", tip: "(12 * 18) / (18 - 12) = 216 / 6 = 36." },
+  { gId: 44, sec: "GS", name: "Part II: General Studies", top: "Maths: Linear Equations", q_en: "Father and son age sum is 50. Five years ago, father was 7 times the son. Father's present age:", q_hi: "पिता और पुत्र की आयु का योग 50 है। 5 वर्ष पूर्व पिता 7 गुना था। पिता की वर्तमान आयु:", opts_en: ["35 years", "40 years", "45 years", "More than one of the above", "None of the above"], opts_hi: ["35 वर्ष", "40 वर्ष", "45 वर्ष", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "8x = 40 => x = 5. Father 5 yrs ago = 35. Present age = 40.", tip: "Present = 40, Son = 10." },
+  { gId: 45, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Direction Sense", q_en: "A man walks 5 km North, 3 km East, then 5 km South. How far and in which direction is he from start?", q_hi: "एक व्यक्ति 5 किमी उत्तर, 3 किमी पूर्व, फिर 5 किमी दक्षिण चलता है। वह आरंभ से कितनी दूरी और किस दिशा में है?", opts_en: ["3 km East", "3 km West", "5 km South", "More than one of the above", "None of the above"], opts_hi: ["3 किमी पूर्व", "3 किमी पश्चिम", "5 किमी दक्षिण", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Vertical moves cancel out. Remaining displacement = 3 km East.", tip: "3 km East." },
+  { gId: 46, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Syllogisms", q_en: "Statements: All cats are dogs. All dogs are birds. Conclusions: I. All cats are birds. II. Some birds are cats.", q_hi: "कथन: सभी बिल्लियाँ कुत्ते हैं। सभी कुत्ते पक्षी हैं। निष्कर्ष: I. सभी बिल्लियाँ पक्षी हैं। II. कुछ पक्षी बिल्लियाँ हैं।", opts_en: ["Only conclusion I follows", "Only conclusion II follows", "Both conclusions I and II follow", "More than one of the above", "None of the above"], opts_hi: ["केवल निष्कर्ष I निकलता है", "केवल निष्कर्ष II निकलता है", "दोनों निष्कर्ष I और II निकलते हैं", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 2, exp: "Since Cats are a subset of Dogs and Dogs are a subset of Birds, both conclusions follow logically.", tip: "Both follow." },
+  { gId: 47, sec: "GS", name: "Part II: General Studies", top: "History: Bihar Congress Socialist", q_en: "In which year was the Bihar Socialist Party officially formed in Patna?", q_hi: "पटना में बिहार सोशलिस्ट पार्टी का औपचारिक गठन किस वर्ष हुआ था?", opts_en: ["1931", "1934", "1939", "More than one of the above", "None of the above"], opts_hi: ["1931", "1934", "1939", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Formally founded in 1934 with Acharya Narendra Deva as President and JP as Secretary.", tip: "1934 = Official Anjuman Islamia Hall meeting." },
+  { gId: 48, sec: "GS", name: "Part II: General Studies", top: "Economy: Five Year Plans", q_en: "The Second Five Year Plan of India was based on which economic model?", q_hi: "भारत की द्वितीय पंचवर्षीय योजना किस आर्थिक मॉडल पर आधारित थी?", opts_en: ["Harrod-Domar Model", "P. C. Mahalanobis Model", "Gadgil Yojana", "More than one of the above", "None of the above"], opts_hi: ["हैरोड-डोमर मॉडल", "पी. सी. महालनोबिस मॉडल", "गाडगिल योजना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Second Five-Year Plan (1956-61) focused on heavy industries via the Mahalanobis model.", tip: "Second Plan = Mahalanobis." },
+  { gId: 49, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Electricity)", q_en: "If two resistors of 6 &Omega; and 3 &Omega; are connected in parallel, what is their equivalent resistance?", q_hi: "यदि 6 &Omega; और 3 &Omega; के दो प्रतिरोध समानांतर में जुड़े हैं, तो तुल्य प्रतिरोध क्या होगा?", opts_en: ["2 &Omega;", "4.5 &Omega;", "9 &Omega;", "More than one of the above", "None of the above"], opts_hi: ["2 &Omega;", "4.5 &Omega;", "9 &Omega;", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Parallel resistance = (6 * 3) / (6 + 3) = 18 / 9 = 2 &Omega;.", tip: "(6 * 3) / (6 + 3) = 18 / 9 = 2 &Omega;." },
+  { gId: 50, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Reactivity)", q_en: "Which metal among the following is the MOST reactive in the electrochemical series?", q_hi: "अभिक्रियाशीलता श्रेणी में निम्नलिखित में से कौन-सी धातु सर्वाधिक अभिक्रियाशील है?", opts_en: ["Iron (Fe)", "Potassium (K)", "Copper (Cu)", "More than one of the above", "None of the above"], opts_hi: ["लोहा (Fe)", "पोटैशियम (K)", "तांबा (Cu)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Potassium sits at the top of the activity series.", tip: "K > Na > Ca > Mg." },
+  { gId: 51, sec: "GS", name: "Part II: General Studies", top: "Geography: World Straits", q_en: "Which strait connects the Atlantic Ocean to the Mediterranean Sea?", q_hi: "कौन-सा जलडमरूमध्य अटलांटिक महासागर को भूमध्य सागर से जोड़ता है?", opts_en: ["Strait of Malacca", "Strait of Gibraltar", "Bering Strait", "More than one of the above", "None of the above"], opts_hi: ["मलक्का जलडमरूमध्य", "जिब्राल्टर जलडमरूमध्य", "बेरिंग जलडमरूमध्य", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Strait of Gibraltar connects Atlantic with Mediterranean Sea.", tip: "Key of Mediterranean = Gibraltar." },
+  { gId: 52, sec: "GS", name: "Part II: General Studies", top: "Polity: Rajya Sabha", q_en: "Who is the ex-officio Chairman of the Rajya Sabha in India?", q_hi: "भारत में राज्य सभा का पदेन सभापति कौन होता है?", opts_en: ["President of India", "Vice-President of India", "Prime Minister", "More than one of the above", "None of the above"], opts_hi: ["भारत के राष्ट्रपति", "भारत के उपराष्ट्रपति", "प्रधानमंत्री", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Article 64 specifies Vice-President is ex-officio Chairman of Council of States.", tip: "Vice President = Ex-officio Chairman." },
+  { gId: 53, sec: "GS", name: "Part II: General Studies", top: "History: Battle of Buxar", q_en: "In which year was the historic Battle of Buxar fought?", q_hi: "ऐतिहासिक बक्सर का युद्ध किस वर्ष लड़ा गया था?", opts_en: ["1757", "1764", "1765", "More than one of the above", "None of the above"], opts_hi: ["1757", "1764", "1765", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Battle of Buxar occurred on 22 October 1764.", tip: "Plassey = 1757; Buxar = 1764." },
+  { gId: 54, sec: "GS", name: "Part II: General Studies", top: "Maths: Profit & Loss", q_en: "If CP of 12 pens equals SP of 8 pens, profit percentage is:", q_hi: "यदि 12 पेनों का क्रय मूल्य 8 पेनों के विक्रय मूल्य के बराबर है, तो लाभ प्रतिशत क्या होगा?", opts_en: ["33.33%", "50%", "66.66%", "More than one of the above", "None of the above"], opts_hi: ["33.33%", "50%", "66.66%", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Profit % = (12 - 8) / 8 * 100 = 4/8 * 100 = 50%.", tip: "Profit % = (12 - 8)/8 * 100 = 50%." },
+  { gId: 55, sec: "GS", name: "Part II: General Studies", top: "Maths: Probability", q_en: "Two coins tossed. Probability of getting at least one head:", q_hi: "दो सिक्कों को उछाला जाता है। कम से कम एक चित (Head) आने की प्रायिकता क्या है?", opts_en: ["1/4", "1/2", "3/4", "More than one of the above", "None of the above"], opts_hi: ["1/4", "1/2", "3/4", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 2, exp: "Outcomes: {HH, HT, TH, TT}. Favorable = 3/4.", tip: "1 - P(no head) = 1 - 1/4 = 3/4." },
+  { gId: 56, sec: "GS", name: "Part II: General Studies", top: "Science: Biology (Genetics)", q_en: "Who is known as the 'Father of Genetics'?", q_hi: "'आनुवंशिकी का जनक' किसे कहा जाता है?", opts_en: ["Charles Darwin", "Gregor Johann Mendel", "Thomas Hunt Morgan", "More than one of the above", "None of the above"], opts_hi: ["चार्ल्स डार्विन", "ग्रेगर जोहान मेंडल", "थॉमस हंट मॉर्गन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Gregor Mendel discovered fundamental principles of inheritance.", tip: "Father of Genetics = Mendel." },
+  { gId: 57, sec: "GS", name: "Part II: General Studies", top: "Geography: Indian Rivers", q_en: "Which river is called the 'Sorrow of Bihar'?", q_hi: "किस नदी को 'बिहार का शोक' कहा जाता है?", opts_en: ["Gandak River", "Kosi River", "Kamala River", "More than one of the above", "None of the above"], opts_hi: ["गंडक नदी", "कोसी नदी", "कमला नदी", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Kosi river causes recurring severe floods.", tip: "Kosi = Sorrow of Bihar." },
+  { gId: 58, sec: "GS", name: "Part II: General Studies", top: "Polity: Writs", q_en: "Which writ translates to 'We Command' in Latin?", q_hi: "किस रिट का लैटिन में शाब्दिक अर्थ 'हम आदेश देते हैं' (We Command) होता है?", opts_en: ["Habeas Corpus", "Mandamus", "Quo-Warranto", "More than one of the above", "None of the above"], opts_hi: ["बंदी प्रत्यक्षीकरण", "परमादेश (Mandamus)", "अधिकार पृच्छा", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Mandamus commands performance of public duty.", tip: "Mandamus = We Command." },
+  { gId: 59, sec: "GS", name: "Part II: General Studies", top: "History: Al-Hilal", q_en: "Who founded the Urdu weekly 'Al-Hilal' in 1912?", q_hi: "1912 में उर्दू साप्ताहिक 'अल-हिलाल' की स्थापना किसने की थी?", opts_en: ["Maulana Abul Kalam Azad", "Sir Syed Ahmad Khan", "Muhammad Ali Jinnah", "More than one of the above", "None of the above"], opts_hi: ["मौलाना अबुल कलाम आजाद", "सर सैयद अहमद खान", "मोहम्मद अली जिन्ना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Maulana Abul Kalam Azad launched Al-Hilal in Calcutta.", tip: "Al-Hilal = Abul Kalam Azad." },
+  { gId: 60, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Sound)", q_en: "Human audible frequency range is:", q_hi: "मानव कान के लिए ध्वनि की श्रव्य आवृत्ति सीमा क्या है?", opts_en: ["20 Hz to 20,000 Hz", "5 Hz to 5,000 Hz", "20,000 Hz to 40,000 Hz", "More than one of the above", "None of the above"], opts_hi: ["20 Hz से 20,000 Hz", "5 Hz से 5,000 Hz", "20,000 Hz से 40,000 Hz", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "20 Hz to 20 kHz is standard audible frequency range.", tip: "Audible = 20 Hz - 20 kHz." },
+  { gId: 61, sec: "GS", name: "Part II: General Studies", top: "Reasoning: Calendar", q_en: "If 1st Jan 2024 was Monday, what day was 31st Dec 2024?", q_hi: "यदि 1 जनवरी 2024 को सोमवार था, तो 31 दिसंबर 2024 को कौन-सा दिन था?", opts_en: ["Monday", "Tuesday", "Wednesday", "More than one of the above", "None of the above"], opts_hi: ["सोमवार", "मंगलवार", "बुधवार", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Leap year adds 1 extra day, so it ends on Tuesday.", tip: "Leap year starts and ends on consecutive days." },
+  { gId: 62, sec: "GS", name: "Part II: General Studies", top: "Maths: Number Systems", q_en: "Remainder when (7^19 + 2) is divided by 6:", q_hi: "जब (7^19 + 2) को 6 से विभाजित किया जाता है, तो शेषफल क्या होगा?", opts_en: ["1", "2", "3", "More than one of the above", "None of the above"], opts_hi: ["1", "2", "3", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 2, exp: "7 mod 6 = 1. (1^19 + 2) = 3.", tip: "Remainder = 1 + 2 = 3." },
+  { gId: 63, sec: "GS", name: "Part II: General Studies", top: "Science: Chemistry (Isotopes)", q_en: "Isotopes possess identical protons but differ in number of:", q_hi: "समस्थानिकों (Isotopes) में किसकी संख्या भिन्न होती है?", opts_en: ["Electrons", "Neutrons", "Positrons", "More than one of the above", "None of the above"], opts_hi: ["इलेक्ट्रॉन", "न्यूट्रॉन", "पॉज़िट्रॉन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Isotopes have different numbers of neutrons.", tip: "Isotopes = Different neutrons." },
+  { gId: 64, sec: "GS", name: "Part II: General Studies", top: "Environment: Ramsar Sites", q_en: "Which wetland in Begusarai is Bihar's first Ramsar site?", q_hi: "बेगूसराय में कौन-सी आर्द्रभूमि बिहार का पहला रामसर स्थल है?", opts_en: ["Kanwar Lake (Kabartal)", "Kusheshwar Asthan", "Baraila Lake", "More than one of the above", "None of the above"], opts_hi: ["कंवर झील (काबरताल)", "कुशेश्वर अस्थान", "बरैला झील", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Kabartal Wetland was declared Bihar's first Ramsar site.", tip: "Kabartal = First Ramsar site of Bihar." },
+  { gId: 65, sec: "GS", name: "Part II: General Studies", top: "History: Hunter Commission", q_en: "The Hunter Commission (1919) investigated which event?", q_hi: "हंटर आयोग (1919) ने किस घटना की जांच की थी?", opts_en: ["Chauri Chaura", "Jallianwala Bagh Massacre", "Kakori incident", "More than one of the above", "None of the above"], opts_hi: ["चौरी चौरा", "जलियांवाला बाग नरसंहार", "काकोरी कांड", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Appointed to investigate the 1919 Jallianwala Bagh shootings.", tip: "Hunter Commission = Jallianwala Bagh." },
+  { gId: 66, sec: "GS", name: "Part II: General Studies", top: "Polity: Emergency Provisions", q_en: "Under which Article can the President declare Financial Emergency?", q_hi: "राष्ट्रपति किस अनुच्छेद के तहत वित्तीय आपातकाल लागू कर सकते हैं?", opts_en: ["Article 352", "Article 356", "Article 360", "More than one of the above", "None of the above"], opts_hi: ["अनुच्छेद 352", "अनुच्छेद 356", "अनुच्छेद 360", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 2, exp: "Article 360 allows declaration of Financial Emergency.", tip: "Article 360 = Financial Emergency." },
+  { gId: 67, sec: "GS", name: "Part II: General Studies", top: "Geography: Highest Peak", q_en: "Highest peak in the Someshwar range in Bihar is:", q_hi: "बिहार में सोमेश्वर पर्वत श्रेणी की सबसे ऊंची चोटी कौन-सी है?", opts_en: ["Fort Someshwar Peak", "Kaimur Top", "Pretshila", "More than one of the above", "None of the above"], opts_hi: ["सोमेश्वर किला चोटी (880 मी)", "कैमूर शीर्ष", "प्रेतशिला", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Fort Someshwar peak reaches 880 meters elevation.", tip: "Someshwar Fort = 880m." },
+  { gId: 68, sec: "GS", name: "Part II: General Studies", top: "Maths: Set Theory", q_en: "If n(A)=5 and n(B)=3, the maximum number of elements in A &cap; B is:", q_hi: "यदि n(A)=5 और n(B)=3 है, तो A &cap; B में अधिकतम अवयव कितने होंगे?", opts_en: ["3", "5", "8", "More than one of the above", "None of the above"], opts_hi: ["3", "5", "8", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 0, exp: "Maximum possible intersection cannot exceed the smaller set (3).", tip: "Max intersection is 3." },
+  { gId: 69, sec: "GS", name: "Part II: General Studies", top: "Science: Physics (Units)", q_en: "Which unit equals approximately 9.46 &times; 10^12 km?", q_hi: "लगभग 9.46 &times; 10^12 किमी की दूरी किस इकाई के बराबर है?", opts_en: ["Astronomical Unit", "Light Year", "Parsec", "More than one of the above", "None of the above"], opts_hi: ["खगोलीय इकाई", "प्रकाश वर्ष (Light Year)", "पारसेक", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "1 light-year is ~9.46 * 10^12 km.", tip: "Light Year." },
+  { gId: 70, sec: "GS", name: "Part II: General Studies", top: "Economy: Inflation", q_en: "Stagnant growth with high unemployment and high inflation is:", q_hi: "धीमी वृद्धि, उच्च बेरोजगारी और उच्च मुद्रास्फीति की स्थिति कहलाती है:", opts_en: ["Deflation", "Stagflation", "Reflation", "More than one of the above", "None of the above"], opts_hi: ["अवस्फीति", "स्टैगफ्लेशन (Stagflation)", "रिफ्लेशन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"], a: 1, exp: "Stagnation + inflation = stagflation.", tip: "Stagflation." },
 
-  // PART III: COMPUTER SCIENCE (Q71 TO Q75)
+  // PART III: COMPUTER SCIENCE (Q71 TO Q150 - DUAL LANGUAGE & VECTOR SVGS)
   {
     gId: 71, sec: "CS", name: "Part III: Computer Science", top: "COA: IEEE 754 Floating Point",
-    q_en: "In IEEE 754 single-precision 32-bit floating-point format, what are the respective bit allocations for Sign, Exponent, and Mantissa (Fraction)?<div class='diagram-card'><svg width='340' height='60' viewBox='0 0 340 60'><rect x='10' y='10' width='40' height='35' fill='#7f1d1d' stroke='#ef4444' rx='3'/><text x='30' y='32' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>S (1)</text><rect x='55' y='10' width='100' height='35' fill='#1e3a8a' stroke='#38bdf8' rx='3'/><text x='105' y='32' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Exponent (8)</text><rect x='160' y='10' width='170' height='35' fill='#1e293b' stroke='#10b981' rx='3'/><text x='245' y='32' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Mantissa (23)</text></svg></div>",
-    q_hi: "IEEE 754 सिंगल-प्रिसिजन 32-बिट फ्लोटिंग-पॉइंट प्रारूप में साइन (Sign), एक्सपोनेंट (Exponent) और मैंटिसा (Fraction) के लिए क्रमशः बिट आवंटन क्या है?<div class='diagram-card'><svg width='340' height='60' viewBox='0 0 340 60'><rect x='10' y='10' width='40' height='35' fill='#7f1d1d' stroke='#ef4444' rx='3'/><text x='30' y='32' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>S (1)</text><rect x='55' y='10' width='100' height='35' fill='#1e3a8a' stroke='#38bdf8' rx='3'/><text x='105' y='32' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Exponent (8)</text><rect x='160' y='10' width='170' height='35' fill='#1e293b' stroke='#10b981' rx='3'/><text x='245' y='32' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Mantissa (23)</text></svg></div>",
+    q_en: "In IEEE 754 single-precision 32-bit floating-point format, what are the respective bit allocations for Sign, Exponent, and Mantissa?<div class='diagram-card'><svg width='320' height='55' viewBox='0 0 320 55'><rect x='10' y='10' width='35' height='30' fill='#7f1d1d' stroke='#ef4444' rx='2'/><text x='27' y='30' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>S (1)</text><rect x='50' y='10' width='90' height='30' fill='#1e3a8a' stroke='#38bdf8' rx='2'/><text x='95' y='30' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Exp (8)</text><rect x='145' y='10' width='165' height='30' fill='#1e293b' stroke='#10b981' rx='2'/><text x='227' y='30' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Mantissa (23)</text></svg></div>",
+    q_hi: "IEEE 754 सिंगल-प्रिसिजन 32-बिट फ्लोटिंग-पॉइंट प्रारूप में साइन, एक्सपोनेंट और मैंटिसा के लिए बिट आवंटन क्या है?<div class='diagram-card'><svg width='320' height='55' viewBox='0 0 320 55'><rect x='10' y='10' width='35' height='30' fill='#7f1d1d' stroke='#ef4444' rx='2'/><text x='27' y='30' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>S (1)</text><rect x='50' y='10' width='90' height='30' fill='#1e3a8a' stroke='#38bdf8' rx='2'/><text x='95' y='30' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Exp (8)</text><rect x='145' y='10' width='165' height='30' fill='#1e293b' stroke='#10b981' rx='2'/><text x='227' y='30' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>Mantissa (23)</text></svg></div>",
     opts_en: ["1 sign bit, 8 exponent bits, 23 mantissa bits", "1 sign bit, 11 exponent bits, 52 mantissa bits", "1 sign bit, 7 exponent bits, 24 mantissa bits", "More than one of the above", "None of the above"],
     opts_hi: ["1 साइन बिट, 8 एक्सपोनेंट बिट्स, 23 मैंटिसा बिट्स", "1 साइन बिट, 11 एक्सपोनेंट बिट्स, 52 मैंटिसा बिट्स", "1 साइन बिट, 7 एक्सपोनेंट बिट्स, 24 मैंटिसा बिट्स", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Single precision 32-bit: 1 Sign + 8 Exponent + 23 Mantissa. Double precision 64-bit: 1 Sign + 11 Exponent + 52 Mantissa.", tip: "Single Precision = 1-8-23."
+    a: 0, exp: "Single precision uses 1 bit for sign, 8 bits for exponent, and 23 bits for fraction (mantissa).", tip: "Single Precision = 1-8-23."
   },
   {
     gId: 72, sec: "CS", name: "Part III: Computer Science", top: "DBMS: B+ Tree Indices",
@@ -944,161 +664,135 @@ const questionsData = [
     q_hi: "B+ ट्री इंडेक्स में वास्तविक रिकॉर्ड पॉइंटर्स / डेटा प्रविष्टियाँ पूर्णतः कहाँ संग्रहीत होती हैं?",
     opts_en: ["Only in the Leaf Nodes", "Only in the Root Node", "Equally in Internal and Leaf Nodes", "More than one of the above", "None of the above"],
     opts_hi: ["केवल लीफ (Leaf) नोड्स में", "केवल रूट नोड में", "आंतरिक और लीफ नोड्स दोनों में समान रूप से", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "B+ Tree me data pointers exclusively leaf nodes me store hote hain jo aapas me linked list se connected hote hain. Internal nodes sirf navigation keys rakhte hain.", tip: "B+ tree stores data only in leaf nodes."
+    a: 0, exp: "B+ Trees hold data pointers solely in leaf nodes; internal nodes only store routing keys.", tip: "B+ tree stores data only in leaf nodes."
   },
   {
     gId: 73, sec: "CS", name: "Part III: Computer Science", top: "OS: Banker's Algorithm",
     q_en: "Dijkstra's Banker's Algorithm is deployed in operating systems for which primary purpose?",
-    q_hi: "ऑपरेटिंग सिस्टम में डिजक्स्ट्रा के बैंकर एल्गोरिदम (Banker's Algorithm) का उपयोग किस मुख्य उद्देश्य के लिए किया जाता है?",
+    q_hi: "ऑपरेटिंग सिस्टम में डिजक्स्ट्रा के बैंकर एल्गोरिदम का उपयोग किस मुख्य उद्देश्य के लिए किया जाता है?",
     opts_en: ["Deadlock Prevention", "Deadlock Avoidance", "Deadlock Detection and Recovery", "More than one of the above", "None of the above"],
     opts_hi: ["डेडलोक रोकथाम (Prevention)", "डेडलोक परिहार (Deadlock Avoidance)", "डेडलोक पहचान और पुनर्प्राप्ति", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "Banker's algorithm safe state check karke Deadlock Avoidance achieve karta hai.", tip: "Banker's Algorithm = Avoidance."
+    a: 1, exp: "Banker's Algorithm guarantees safe allocation to achieve Deadlock Avoidance.", tip: "Banker's Algorithm = Avoidance."
   },
   {
     gId: 74, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Universal Gates",
-    q_en: "How many 2-input NAND gates are minimally required to construct an XOR gate?<div class='diagram-card'><svg width='240' height='70' viewBox='0 0 240 70'><path d='M 40,15 A 25,25 0 0,0 40,55 M 48,15 A 25,25 0 0,0 48,55 M 48,15 Q 75,15 90,35 Q 75,55 48,55' fill='none' stroke='#60a5fa' stroke-width='2'/><text x='150' y='40' fill='#f59e0b' font-size='12' font-weight='bold'>= ? NAND Gates</text></svg></div>",
-    q_hi: "एक XOR गेट बनाने के लिए न्यूनतम कितने 2-इनपुट NAND गेट्स की आवश्यकता होती है?<div class='diagram-card'><svg width='240' height='70' viewBox='0 0 240 70'><path d='M 40,15 A 25,25 0 0,0 40,55 M 48,15 A 25,25 0 0,0 48,55 M 48,15 Q 75,15 90,35 Q 75,55 48,55' fill='none' stroke='#60a5fa' stroke-width='2'/><text x='150' y='40' fill='#f59e0b' font-size='12' font-weight='bold'>= ? NAND Gates</text></svg></div>",
+    q_en: "How many 2-input NAND gates are minimally required to construct an XOR gate?<div class='diagram-card'><svg width='200' height='50' viewBox='0 0 200 50'><path d='M 30,10 A 20,20 0 0,0 30,40 M 36,10 A 20,20 0 0,0 36,40 M 36,10 Q 55,10 70,25 Q 55,40 36,40' fill='none' stroke='#60a5fa' stroke-width='2'/><text x='130' y='30' fill='#f59e0b' font-size='12' font-weight='bold'>= ? NAND</text></svg></div>",
+    q_hi: "एक XOR गेट बनाने के लिए न्यूनतम कितने 2-इनपुट NAND गेट्स की आवश्यकता होती है?<div class='diagram-card'><svg width='200' height='50' viewBox='0 0 200 50'><path d='M 30,10 A 20,20 0 0,0 30,40 M 36,10 A 20,20 0 0,0 36,40 M 36,10 Q 55,10 70,25 Q 55,40 36,40' fill='none' stroke='#60a5fa' stroke-width='2'/><text x='130' y='30' fill='#f59e0b' font-size='12' font-weight='bold'>= ? NAND</text></svg></div>",
     opts_en: ["3", "4", "5", "More than one of the above", "None of the above"],
     opts_hi: ["3", "4", "5", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1, exp: "XOR requires 4 NAND gates (ya 5 NOR gates). XNOR requires 5 NAND gates (ya 4 NOR gates).", tip: "XOR = 4 NAND; XNOR = 5 NAND."
+    a: 1, exp: "4 NAND gates produce an XOR gate (5 NOR gates produce XOR).", tip: "XOR = 4 NAND; XNOR = 5 NAND."
   },
   {
     gId: 75, sec: "CS", name: "Part III: Computer Science", top: "DSA: Tree Post-Order",
-    q_en: "For the binary tree shown below, what is the Post-Order traversal sequence (Left-Right-Root)?<div class='diagram-card'><svg width='240' height='100' viewBox='0 0 240 100'><line x1='120' y1='20' x2='60' y2='60' stroke='#475569' stroke-width='2'/><line x1='120' y1='20' x2='180' y2='60' stroke='#475569' stroke-width='2'/><circle cx='120' cy='20' r='14' fill='#1e3a8a' stroke='#38bdf8'/><text x='120' y='24' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>1</text><circle cx='60' cy='60' r='14' fill='#1e293b' stroke='#94a3b8'/><text x='60' y='64' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>2</text><circle cx='180' cy='60' r='14' fill='#1e293b' stroke='#94a3b8'/><text x='180' y='64' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>3</text></svg></div>",
-    q_hi: "नीचे दिए गए बाइनरी ट्री का पोस्ट-ऑर्डर (Post-Order: Left-Right-Root) ट्रैवर्सल अनुक्रम क्या होगा?<div class='diagram-card'><svg width='240' height='100' viewBox='0 0 240 100'><line x1='120' y1='20' x2='60' y2='60' stroke='#475569' stroke-width='2'/><line x1='120' y1='20' x2='180' y2='60' stroke='#475569' stroke-width='2'/><circle cx='120' cy='20' r='14' fill='#1e3a8a' stroke='#38bdf8'/><text x='120' y='24' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>1</text><circle cx='60' cy='60' r='14' fill='#1e293b' stroke='#94a3b8'/><text x='60' y='64' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>2</text><circle cx='180' cy='60' r='14' fill='#1e293b' stroke='#94a3b8'/><text x='180' y='64' fill='#fff' font-size='11' font-weight='bold' text-anchor='middle'>3</text></svg></div>",
+    q_en: "For the binary tree shown below, what is the Post-Order traversal sequence?<div class='diagram-card'><svg width='200' height='80' viewBox='0 0 200 80'><line x1='100' y1='15' x2='50' y2='50' stroke='#475569' stroke-width='2'/><line x1='100' y1='15' x2='150' y2='50' stroke='#475569' stroke-width='2'/><circle cx='100' cy='15' r='12' fill='#1e3a8a' stroke='#38bdf8'/><text x='100' y='19' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>1</text><circle cx='50' cy='50' r='12' fill='#1e293b' stroke='#94a3b8'/><text x='50' y='54' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>2</text><circle cx='150' cy='50' r='12' fill='#1e293b' stroke='#94a3b8'/><text x='150' y='54' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>3</text></svg></div>",
+    q_hi: "नीचे दिए गए बाइनरी ट्री का पोस्ट-ऑर्डर ट्रैवर्सल अनुक्रम क्या होगा?<div class='diagram-card'><svg width='200' height='80' viewBox='0 0 200 80'><line x1='100' y1='15' x2='50' y2='50' stroke='#475569' stroke-width='2'/><line x1='100' y1='15' x2='150' y2='50' stroke='#475569' stroke-width='2'/><circle cx='100' cy='15' r='12' fill='#1e3a8a' stroke='#38bdf8'/><text x='100' y='19' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>1</text><circle cx='50' cy='50' r='12' fill='#1e293b' stroke='#94a3b8'/><text x='50' y='54' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>2</text><circle cx='150' cy='50' r='12' fill='#1e293b' stroke='#94a3b8'/><text x='150' y='54' fill='#fff' font-size='10' font-weight='bold' text-anchor='middle'>3</text></svg></div>",
     opts_en: ["2 - 3 - 1", "1 - 2 - 3", "2 - 1 - 3", "More than one of the above", "None of the above"],
     opts_hi: ["2 - 3 - 1", "1 - 2 - 3", "2 - 1 - 3", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0, exp: "Post-order = Left child (2) -> Right child (3) -> Root (1) = 2 - 3 - 1.", tip: "Left -> Right -> Root."
+    a: 0, exp: "Post-order: Left (2) -> Right (3) -> Root (1) = 2 - 3 - 1.", tip: "Left -> Right -> Root."
   },
   {
     gId: 76, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: K-Map Minimization",
-    q_en: "Analyze the 3-variable Karnaugh Map (K-Map) shown below for Boolean function F(A, B, C). What is the minimized Sum-of-Products (SOP) expression?<div class='table-scroll-container'><table class='quiz-table' style='max-width:320px;'><thead><tr><th>A \\ BC</th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead><tbody><tr><th>0</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr><tr><th>1</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr></tbody></table></div>",
-    q_hi: "बूलियन फलन F(A, B, C) के लिए नीचे दिखाए गए 3-वेरिएबल K-Map का विश्लेषण करें। न्यूनतम सम-ऑफ-प्रोडक्ट्स (SOP) व्यंजक क्या होगा?<div class='table-scroll-container'><table class='quiz-table' style='max-width:320px;'><thead><tr><th>A \\ BC</th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead><tbody><tr><th>0</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr><tr><th>1</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr></tbody></table></div>",
+    q_en: "Analyze the 3-variable K-Map shown below for Boolean function F(A, B, C). What is the minimized SOP expression?<div class='table-scroll-container'><table class='quiz-table' style='max-width:320px;'><thead><tr><th>A \\ BC</th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead><tbody><tr><th>0</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr><tr><th>1</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr></tbody></table></div>",
+    q_hi: "बूलियन फलन F(A, B, C) के लिए नीचे दिखाए गए 3-वेरिएबल K-Map का विश्लेषण करें। न्यूनतम SOP व्यंजक क्या होगा?<div class='table-scroll-container'><table class='quiz-table' style='max-width:320px;'><thead><tr><th>A \\ BC</th><th>00</th><th>01</th><th>11</th><th>10</th></tr></thead><tbody><tr><th>0</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr><tr><th>1</th><td style='color:#ef4444;font-weight:bold;'>0</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#10b981;font-weight:bold;'>1</td><td style='color:#ef4444;font-weight:bold;'>0</td></tr></tbody></table></div>",
     opts_en: ["F = C", "F = B", "F = A'C + AC", "More than one of the above", "None of the above"],
     opts_hi: ["F = C", "F = B", "F = A'C + AC", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Column BC=01 aur BC=11 dono rows (A=0 aur A=1) me 1 hain. Yeh 4-cell quad banata hai jahan A aur B dono eliminate ho jate hain aur sirf 'C' bachta hai (F = C).",
-    tip: "A 4-cell group in a 3-variable map eliminates 2 variables."
+    a: 0, exp: "Columns BC=01 and BC=11 are all 1s across both rows. Combining forms a 4-cell group simplifying strictly to C.", tip: "A 4-cell group in a 3-variable map eliminates 2 variables."
   },
   {
     gId: 77, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Relational Keys",
-    q_en: "Which of the following attributes or set of attributes can uniquely identify an entity in a relational table and is selected by the database designer as the primary identifier?",
-    q_hi: "निम्नलिखित में से कौन-सी विशेषता या विशेषताओं का समूह किसी रिलेशनल टेबल में इकाई को विशिष्ट रूप से पहचान सकता है और डेटाबेस डिज़ाइनर द्वारा प्राथमिक पहचानकर्ता के रूप में चुना जाता है?",
+    q_en: "Which attribute or set of attributes is chosen by the database designer as the principal unique identifier in a table?",
+    q_hi: "डेटाबेस डिज़ाइनर द्वारा किसी टेबल में मुख्य अद्वितीय पहचानकर्ता के रूप में किस विशेषता को चुना जाता है?",
     opts_en: ["Candidate Key", "Primary Key", "Foreign Key", "More than one of the above", "None of the above"],
-    opts_hi: ["कैंडिडेट की (Candidate Key)", "प्राइमरी की (Primary Key)", "फॉरेन की (Foreign Key)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Database designer un sabhi candidate keys me se ek ko strictly unique identification ke liye chunta hai jise Primary Key kaha jata hai.",
-    tip: "Primary Key is chosen from candidate keys; cannot be null."
+    opts_hi: ["कैंडिडेट की", "प्राइमरी की (Primary Key)", "फॉरेन की", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Primary key is chosen from candidate keys to uniquely identify tuples.", tip: "Primary Key is chosen from candidate keys; cannot be null."
   },
   {
     gId: 78, sec: "CS", name: "Part III: Computer Science", top: "OS: Disk Scheduling",
-    q_en: "Which disk scheduling algorithm services requests by moving the disk arm in one direction till the end, reversing direction, and servicing requests on the way back (Elevator Algorithm)?",
-    q_hi: "कौन-सा डिस्क शेड्यूलिंग एल्गोरिदम डिस्क आर्म को एक दिशा में अंत तक ले जाकर, दिशा उलटकर और रास्ते में अनुरोधों की सेवा करके अनुरोधों को पूरा करता है (एलिवेटर एल्गोरिदम)?",
+    q_en: "Which disk scheduling algorithm sweeps back and forth servicing requests in both directions (Elevator Algorithm)?",
+    q_hi: "कौन-सा डिस्क शेड्यूलिंग एल्गोरिदम एलिवेटर की तरह दोनों दिशाओं में अनुरोधों की सेवा करता है?",
     opts_en: ["SSTF", "SCAN", "C-SCAN", "More than one of the above", "None of the above"],
     opts_hi: ["SSTF", "SCAN (स्कैन)", "C-SCAN", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "SCAN algorithm elevator ki tarah ek end tak jata hai aur fir opposite direction me aate huye bache hue tracks ko service karta hai.",
-    tip: "SCAN = Elevator Algorithm; C-SCAN returns directly to start without servicing."
+    a: 1, exp: "SCAN algorithm behaves like an elevator, servicing requests in one direction and then reversing.", tip: "SCAN = Elevator Algorithm; C-SCAN returns directly to start without servicing."
   },
   {
     gId: 79, sec: "CS", name: "Part III: Computer Science", top: "Networking: Transport Protocols",
-    q_en: "Which protocol is connection-oriented, ensures reliable byte-stream delivery, and implements end-to-end flow and congestion control?",
-    q_hi: "कौन-सा प्रोटोकॉल कनेक्शन-उन्मुख (Connection-oriented) है, विश्वसनीय बाइट-स्ट्रीम डिलीवरी सुनिश्चित करता है, और एंड-टू-एंड प्रवाह और संकुलन नियंत्रण लागू करता है?",
+    q_en: "Which protocol is connection-oriented, ensures reliable byte delivery, and performs flow and congestion control?",
+    q_hi: "कौन-सा प्रोटोकॉल कनेक्शन-उन्मुख है और विश्वसनीय डिलीवरी तथा संकुलन नियंत्रण प्रदान करता है?",
     opts_en: ["User Datagram Protocol (UDP)", "Transmission Control Protocol (TCP)", "Internet Protocol (IP)", "More than one of the above", "None of the above"],
-    opts_hi: ["यूज़र डेटाग्राम प्रोटोकॉल (UDP)", "ट्रांसमिशन कंट्रोल प्रोटोकॉल (TCP)", "इंटरनेट प्रोटोकॉल (IP)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "TCP reliable, connection-oriented byte stream deliver karta hai aur sliding window se flow/congestion control manage karta hai.",
-    tip: "TCP = Reliable & Connection-oriented; UDP = Unreliable & Connectionless."
+    opts_hi: ["UDP", "TCP (टीसीपी)", "IP", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "TCP guarantees reliable byte-stream transfer and congestion management.", tip: "TCP = Reliable & Connection-oriented; UDP = Unreliable & Connectionless."
   },
   {
     gId: 80, sec: "CS", name: "Part III: Computer Science", top: "DSA: Queue Using Stacks",
-    q_en: "What is the minimum number of standard LIFO Stacks required to implement a FIFO Queue efficiently?",
-    q_hi: "एक फीफो कतार (FIFO Queue) को कुशलतापूर्वक लागू करने के लिए न्यूनतम कितने मानक LIFO स्टैक की आवश्यकता होती है?",
+    q_en: "What is the minimum number of standard LIFO Stacks required to implement a FIFO Queue?",
+    q_hi: "एक फीफो कतार (FIFO Queue) को लागू करने के लिए न्यूनतम कितने स्टैक की आवश्यकता होती है?",
     opts_en: ["1", "2", "3", "More than one of the above", "None of the above"],
     opts_hi: ["1", "2", "3", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Ek FIFO Queue ko simulate karne ke liye 2 Stacks (ek enqueue operation ke liye aur dusra dequeue operation ke liye) anivarya hote hain.",
-    tip: "2 Stacks are required to reverse order twice to get FIFO."
+    a: 1, exp: "Two stacks are required (one for push/enqueue and another for pop/dequeue reversal).", tip: "2 Stacks are required to reverse order twice to get FIFO."
   },
   {
     gId: 81, sec: "CS", name: "Part III: Computer Science", top: "C++: Pure Virtual & Abstract Class",
-    q_en: "What is a C++ class called if it contains at least one pure virtual function (e.g., <code>virtual void show() = 0;</code>)?",
-    q_hi: "C++ में ऐसी क्लास को क्या कहा जाता है जिसमें कम से कम एक शुद्ध वर्चुअल फ़ंक्शन (Pure Virtual Function) होता है?",
+    q_en: "What is a C++ class called if it contains at least one pure virtual function (<code>= 0</code>)?",
+    q_hi: "C++ में ऐसी क्लास को क्या कहा जाता है जिसमें कम से कम एक शुद्ध वर्चुअल फ़ंक्शन होता है?",
     opts_en: ["Concrete Class", "Abstract Class", "Template Class", "More than one of the above", "None of the above"],
     opts_hi: ["कंक्रीट क्लास", "एब्स्ट्रैक्ट क्लास (Abstract Class)", "टेम्पलेट क्लास", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Jis class me kam se kam ek pure virtual function ho, use Abstract Class kehte hain aur iska direct object create nahi ho sakta.",
-    tip: "Abstract classes cannot be instantiated directly."
+    a: 1, exp: "A class with at least one pure virtual function becomes an Abstract Class and cannot be instantiated directly.", tip: "Abstract classes cannot be instantiated directly."
   },
   {
     gId: 82, sec: "CS", name: "Part III: Computer Science", top: "Python: List vs Tuple",
     q_en: "Which of the following built-in collection types in Python is IMMUTABLE and uses round parentheses <code>()</code>?",
-    q_hi: "पायथन में निम्नलिखित में से कौन-सा अंतर्निहित संग्रह प्रकार अपरिवर्तनीय (IMMUTABLE) है और गोल कोष्ठक <code>()</code> का उपयोग करता है?",
+    q_hi: "पायथन में कौन-सा संग्रह प्रकार अपरिवर्तनीय (IMMUTABLE) है और गोल कोष्ठक <code>()</code> का उपयोग करता है?",
     opts_en: ["list", "set", "tuple", "More than one of the above", "None of the above"],
-    opts_hi: ["list (लिस्ट)", "set (सेट)", "tuple (टपल)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "Python me Tuples immutable hote hain aur unhe modify ya reassign nahi kiya ja sakta.",
-    tip: "Lists are mutable []; Tuples are immutable ()."
+    opts_hi: ["list", "set", "tuple (टपल)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2, exp: "Tuples in Python cannot be modified once defined (immutable).", tip: "Lists are mutable []; Tuples are immutable ()."
   },
   {
     gId: 83, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Universal Gates",
-    q_en: "Which of the following pairs of logic gates are known as 'Universal Logic Gates' because any Boolean function can be realized using only them?",
-    q_hi: "निम्नलिखित में से किस लॉजिक गेट युग्म को 'सार्वभौमिक लॉजिक गेट' (Universal Gates) कहा जाता है क्योंकि केवल उनका उपयोग करके किसी भी बूलियन फलन को महसूस किया जा सकता है?",
+    q_en: "Which of the following pairs of logic gates are known as 'Universal Logic Gates'?",
+    q_hi: "निम्नलिखित में से किस लॉजिक गेट युग्म को 'सार्वभौमिक लॉजिक गेट' (Universal Gates) कहा जाता है?",
     opts_en: ["AND and OR", "NAND and NOR", "XOR and XNOR", "More than one of the above", "None of the above"],
     opts_hi: ["AND और OR", "NAND और NOR", "XOR और XNOR", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "NAND aur NOR gates akele sabhi basic logic operations (NOT, AND, OR) create kar sakte hain, isliye inhe Universal Gates kehte hain.",
-    tip: "Universal Gates = NAND and NOR."
+    a: 1, exp: "NAND and NOR can independently realize any Boolean function.", tip: "Universal Gates = NAND and NOR."
   },
   {
     gId: 84, sec: "CS", name: "Part III: Computer Science", top: "COA: Instruction Pipelining Speedup",
-    q_en: "An ideal 5-stage CPU instruction pipeline with a clock cycle time of 10 ns executes a large number of instructions (N &rarr; &infin;). What is the theoretical maximum speedup compared to an unpipelined processor taking 50 ns per instruction?",
-    q_hi: "10 ns क्लॉक चक्र समय वाली एक आदर्श 5-स्टेज सीपीयू पाइपलाइन बड़ी संख्या में निर्देशों को निष्पादित करती है। 50 ns प्रति निर्देश लेने वाले गैर-पाइपलाइन प्रोसेसर की तुलना में सैद्धांतिक अधिकतम स्पीडअप क्या होगा?",
+    q_en: "An ideal 5-stage CPU pipeline with 10 ns clock cycle time executes many instructions. Theoretical maximum speedup over an unpipelined 50 ns processor is:",
+    q_hi: "10 ns क्लॉक वाली 5-स्टेज पाइपलाइन का 50 ns गैर-पाइपलाइन प्रोसेसर की तुलना में अधिकतम स्पीडअप क्या है?",
     opts_en: ["2.5", "5.0", "10.0", "More than one of the above", "None of the above"],
     opts_hi: ["2.5", "5.0", "10.0", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Maximum theoretical speedup = Number of pipeline stages (k) = 5.0 (Speedup = Non-pipelined time / Pipelined time = 50 / 10 = 5).",
-    tip: "Max speedup of a k-stage pipeline approaches k."
+    a: 1, exp: "Speedup = Unpipelined time / Pipelined time = 50 ns / 10 ns = 5.0.", tip: "Max speedup of a k-stage pipeline approaches k."
   },
   {
     gId: 85, sec: "CS", name: "Part III: Computer Science", top: "DBMS: SQL DDL vs DML",
-    q_en: "Which of the following SQL statements is a Data Definition Language (DDL) command rather than a Data Manipulation Language (DML) command?",
-    q_hi: "निम्नलिखित में से कौन-सा SQL कथन डेटा हेरफेर भाषा (DML) के बजाय डेटा परिभाषा भाषा (DDL) कमांड है?",
+    q_en: "Which of the following SQL statements is a Data Definition Language (DDL) command?",
+    q_hi: "निम्नलिखित में से कौन-सा SQL कथन DDL कमांड है?",
     opts_en: ["UPDATE", "INSERT", "ALTER", "More than one of the above", "None of the above"],
     opts_hi: ["UPDATE", "INSERT", "ALTER (अल्टर)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "ALTER table schema/structure ko modify karta hai jo DDL hai. UPDATE aur INSERT table data rows par operate karte hain jo DML hain.",
-    tip: "DDL: CREATE, ALTER, DROP, TRUNCATE. DML: SELECT, INSERT, UPDATE, DELETE."
+    a: 2, exp: "ALTER modifies schema structure (DDL); UPDATE and INSERT modify rows (DML).", tip: "DDL: CREATE, ALTER, DROP, TRUNCATE. DML: SELECT, INSERT, UPDATE, DELETE."
   },
   {
     gId: 86, sec: "CS", name: "Part III: Computer Science", top: "OS: Critical Section",
-    q_en: "To solve the Critical Section problem in concurrent programming, which three conditions must be strictly satisfied?",
-    q_hi: "समवर्ती प्रोग्रामिंग (Concurrent Programming) में क्रिटिकल सेक्शन समस्या को हल करने के लिए किन तीन शर्तों को पूरा किया जाना चाहिए?",
+    q_en: "Which three requirements must be satisfied to solve the Critical Section problem?",
+    q_hi: "क्रिटिकल सेक्शन समस्या को हल करने के लिए किन तीन शर्तों को पूरा किया जाना चाहिए?",
     opts_en: ["Mutual Exclusion, Progress, Bounded Waiting", "Deadlock, Starvation, Aging", "Preemption, Paging, Swapping", "More than one of the above", "None of the above"],
     opts_hi: ["पारस्परिक अपवर्जन, प्रगति, और परिबद्ध प्रतीक्षा (Bounded Waiting)", "गतिरोध, भुखमरी, एजिंग", "प्रीएम्प्शन, पेजिंग, स्वैपिंग", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Critical section solution ke 3 anivarya niyam: Mutual Exclusion, Progress, aur Bounded Waiting.",
-    tip: "ME + Progress + Bounded Waiting are mandatory criteria."
+    a: 0, exp: "Mutual Exclusion, Progress, and Bounded Waiting are the formal requirements.", tip: "ME + Progress + Bounded Waiting are mandatory criteria."
   },
   {
     gId: 87, sec: "CS", name: "Part III: Computer Science", top: "DSA: Binary Search Tree",
-    q_en: "In a Binary Search Tree (BST), traversing the tree in which order produces all key values in strictly sorted (ascending) order?",
-    q_hi: "एक बाइनरी सर्च ट्री (BST) में किस क्रम में ट्री को पार (traverse) करने पर सभी कुंजी मान आरोही (ascending) क्रम में प्राप्त होते हैं?",
+    q_en: "In a Binary Search Tree (BST), which traversal outputs all keys in sorted ascending order?",
+    q_hi: "एक बाइनरी सर्च ट्री में किस क्रम में ट्रैवर्स करने पर कुंजियाँ आरोही क्रम में मिलती हैं?",
     opts_en: ["Pre-order Traversal", "In-order Traversal", "Post-order Traversal", "More than one of the above", "None of the above"],
-    opts_hi: ["प्री-ऑर्डर ट्रैवर्सल", "इन-ऑर्डर ट्रैवर्सल (In-order)", "पोस्ट-ऑर्डर ट्रैवर्सल", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "BST me In-order traversal (Left -> Root -> Right) hamesha strictly sorted ascending sequence generate karta hai.",
-    tip: "Inorder traversal of BST is always sorted."
+    opts_hi: ["प्री-ऑर्डर", "इन-ऑर्डर (In-order)", "पोस्ट-ऑर्डर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "In-order traversal visits nodes as Left -> Root -> Right, yielding sorted order in a BST.", tip: "Inorder traversal of BST is always sorted."
   },
   {
     gId: 88, sec: "CS", name: "Part III: Computer Science", top: "Networking: IP Subnet Masks",
-    q_en: "What is the network address for an IP address 192.168.10.138 with subnet mask 255.255.255.192 (/26)?",
-    q_hi: "सबनेट मास्क 255.255.255.192 (/26) के साथ आईपी पते 192.168.10.138 के लिए नेटवर्क पता (Network Address) क्या होगा?",
+    q_en: "What is the network address for IP 192.168.10.138 with subnet mask 255.255.255.192 (/26)?",
+    q_hi: "मास्क 255.255.255.192 (/26) के साथ आईपी 192.168.10.138 के लिए नेटवर्क पता क्या होगा?",
     opts_en: ["192.168.10.128", "192.168.10.64", "192.168.10.192", "More than one of the above", "None of the above"],
     opts_hi: ["192.168.10.128", "192.168.10.64", "192.168.10.192", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Subnet interval = 256 - 192 = 64. Subnets: 0, 64, 128, 192. Host 138 block 128 se 191 me aata hai, isliye network address = 192.168.10.128.",
-    tip: "138 AND 192 = 128."
+    a: 0, exp: "138 in binary is 10001010. 192 in binary is 11000000. 138 & 192 = 128 -> 192.168.10.128.", tip: "138 AND 192 = 128."
   },
   {
     gId: 89, sec: "CS", name: "Part III: Computer Science", top: "C++: Polymorphism",
@@ -1106,619 +800,495 @@ const questionsData = [
     q_hi: "C++ में फ़ंक्शन ओवरलोडिंग और ऑपरेटर ओवरलोडिंग किसके उदाहरण हैं?",
     opts_en: ["Compile-time (Static) Polymorphism", "Runtime (Dynamic) Polymorphism", "Virtual Polymorphism", "More than one of the above", "None of the above"],
     opts_hi: ["कंपाइल-टाइम (स्टैटिक) बहुरूपता", "रनटाइम (डायनेमिक) बहुरूपता", "वर्चुअल बहुरूपता", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Overloading compile time par early binding ke dwara resolve hoti hai, isliye ise Compile-time/Static polymorphism kehte hain.",
-    tip: "Overloading = Static / Compile-time; Virtual functions = Dynamic / Runtime."
+    a: 0, exp: "Overloading is resolved at compile time via early binding.", tip: "Overloading = Static / Compile-time; Virtual functions = Dynamic / Runtime."
   },
   {
     gId: 90, sec: "CS", name: "Part III: Computer Science", top: "Python: Dictionaries",
-    q_en: "Which Python dictionary method removes all key-value pairs from the dictionary in-place, leaving it empty?",
-    q_hi: "कौन-सी पायथन डिक्शनरी विधि डिक्शनरी से सभी कुंजी-मूल्य युग्मों को हटाकर उसे खाली कर देती है?",
+    q_en: "Which Python dictionary method removes all items from the dictionary in-place?",
+    q_hi: "कौन-सी पायथन डिक्शनरी विधि डिक्शनरी से सभी आइटम हटाकर उसे खाली कर देती है?",
     opts_en: ["remove()", "clear()", "discard()", "More than one of the above", "None of the above"],
     opts_hi: ["remove()", "clear() (क्लियर)", "discard()", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "dict.clear() dictionary ke saare elements ko delete karke empty dict {} bana deta hai.",
-    tip: "clear() empties the dictionary."
+    a: 1, exp: "dict.clear() removes all key-value mappings from the dictionary.", tip: "clear() empties the dictionary."
   },
   {
     gId: 91, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: JK Flip-Flop Race Around",
     q_en: "The race-around condition occurs in a level-triggered JK flip-flop when:",
-    q_hi: "लेवल-ट्रिगर जेके फ्लिप-फ्लॉप में रेस-अराउंड स्थिति (Race-around condition) कब उत्पन्न होती है?",
+    q_hi: "जेके फ्लिप-फ्लॉप में रेस-अराउंड स्थिति कब उत्पन्न होती है?",
     opts_en: ["J = 0 and K = 0 with clock pulse width &gt; propagation delay", "J = 1 and K = 1 with clock pulse width &gt; propagation delay", "J = 1 and K = 0 with clock pulse width &lt; propagation delay", "More than one of the above", "None of the above"],
-    opts_hi: ["J = 0 और K = 0 जब क्लॉक पल्स &gt; प्रसार विलंब", "J = 1 और K = 1 जब क्लॉक पल्स की चौड़ाई &gt; फ्लिप-फ्लॉप का प्रसार विलंब", "J = 1 और K = 0", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Jab J=1, K=1 aur clock pulse ki duration flip-flop ke propagation delay se badi hoti hai, tab output clock ke dauran bar-bar toggle karta rehta hai (Race Around).",
-    tip: "Race around condition: J=1, K=1, and tp > tpd."
+    opts_hi: ["J = 0 और K = 0", "J = 1 और K = 1 जब क्लॉक पल्स &gt; प्रसार विलंब", "J = 1 और K = 0", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "When J=K=1 and pulse duration exceeds propagation delay, the output toggles repeatedly.", tip: "Race around condition: J=1, K=1, and tp > tpd."
   },
   {
     gId: 92, sec: "CS", name: "Part III: Computer Science", top: "COA: Memory Hierarchy",
-    q_en: "Arranging computer memory components in order of DECREASING access speed (Fastest to Slowest), what is the correct hierarchy?",
-    q_hi: "कंप्यूटर मेमोरी घटकों को एक्सेस गति के घटते क्रम (सबसे तेज़ से सबसे धीमा) में व्यवस्थित करने पर सही पदानुक्रम क्या है?",
+    q_en: "Arranging memory in decreasing access speed (Fastest to Slowest), what is the correct hierarchy?",
+    q_hi: "मेमोरी घटकों को एक्सेस गति के घटते क्रम (सबसे तेज़ से सबसे धीमा) में सही क्रम क्या है?",
     opts_en: ["CPU Registers &rarr; Cache &rarr; Main Memory &rarr; Secondary Storage", "Cache &rarr; CPU Registers &rarr; Main Memory &rarr; Magnetic Disk", "Main Memory &rarr; Cache &rarr; CPU Registers &rarr; Secondary Storage", "More than one of the above", "None of the above"],
-    opts_hi: ["सीपीयू रजिस्टर्स &rarr; कैश मेमोरी &rarr; मुख्य मेमोरी (RAM) &rarr; सेकेंडरी स्टोरेज", "कैश &rarr; रजिस्टर्स &rarr; रैम &rarr; डिस्क", "मुख्य मेमोरी &rarr; कैश &rarr; रजिस्टर्स &rarr; स्टोरेज", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Speed hierarchy: Registers (fastest, smallest) -> Cache (SRAM) -> Main Memory (DRAM) -> Secondary Storage (HDD/SSD).",
-    tip: "Fastest: Registers > Cache > RAM > Disk."
+    opts_hi: ["सीपीयू रजिस्टर्स &rarr; कैश मेमोरी &rarr; मुख्य मेमोरी &rarr; सेकेंडरी स्टोरेज", "कैश &rarr; रजिस्टर्स &rarr; रैम &rarr; डिस्क", "रैम &rarr; कैश &rarr; रजिस्टर्स &rarr; स्टोरेज", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "Registers are fastest, followed by SRAM cache, DRAM main memory, and magnetic/flash disk.", tip: "Fastest: Registers > Cache > RAM > Disk."
   },
   {
     gId: 93, sec: "CS", name: "Part III: Computer Science", top: "DBMS: 3NF vs BCNF",
-    q_en: "A relation R is in Third Normal Form (3NF) if for every functional dependency X &rarr; Y, which of the following conditions holds?",
-    q_hi: "एक संबंध R तृतीय सामान्य रूप (3NF) में होता है यदि प्रत्येक कार्यात्मक निर्भरता X &rarr; Y के लिए निम्नलिखित में से कौन-सी शर्त पूरी होती है?",
+    q_en: "A relation R is in 3NF if for every functional dependency X &rarr; Y:",
+    q_hi: "एक संबंध R 3NF में होता है यदि प्रत्येक कार्यात्मक निर्भरता X &rarr; Y के लिए:",
     opts_en: ["X is a Super Key OR Y is a Prime Attribute", "X is a Candidate Key AND Y is non-prime", "Y is a Super Key", "More than one of the above", "None of the above"],
-    opts_hi: ["X एक सुपर की है या Y एक प्राइम विशेषता (Prime Attribute) है", "X एक कैंडिडेट की है और Y नॉन-प्राइम है", "Y एक सुपर की है", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "3NF definition: Har non-trivial FD X -> Y ke liye ya toh X super key ho YA Y prime attribute (candidate key ka hissa) ho.",
-    tip: "3NF allows non-super key determinants if RHS is a prime attribute."
+    opts_hi: ["X एक सुपर की है या Y एक प्राइम विशेषता है", "X एक कैंडिडेट की है और Y नॉन-प्राइम है", "Y एक सुपर की है", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "3NF allows dependencies where determinant is not a super key, provided RHS is prime.", tip: "3NF allows non-super key determinants if RHS is a prime attribute."
   },
   {
     gId: 94, sec: "CS", name: "Part III: Computer Science", top: "OS: Process States",
-    q_en: "When a currently running process requests an I/O operation, the operating system transitions it to which state?",
-    q_hi: "जब वर्तमान में चल रही प्रक्रिया (Running Process) I/O ऑपरेशन का अनुरोध करती है, तो ऑपरेटिंग सिस्टम इसे किस स्थिति (State) में स्थानांतरित करता है?",
+    q_en: "When a running process issues an I/O request, the OS transitions it to:",
+    q_hi: "जब चल रही प्रक्रिया I/O अनुरोध करती है, तो वह किस स्थिति में जाती है?",
     opts_en: ["Ready State", "Terminated State", "Waiting / Blocked State", "More than one of the above", "None of the above"],
-    opts_hi: ["रेडी स्टेट (Ready)", "टर्मिनेटेड स्टेट", "वेटिंग / ब्लॉक्ड स्टेट (Waiting/Blocked)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "I/O ya kisi event ke wait me running process ko CPU se hata kar Waiting/Blocked state me daal diya jata hai.",
-    tip: "Running -> Waiting on I/O request."
+    opts_hi: ["रेडी स्टेट", "टर्मिनेटेड स्टेट", "वेटिंग / ब्लॉक्ड स्टेट (Waiting/Blocked)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2, exp: "A process waiting for I/O completion is placed in the Blocked/Waiting queue.", tip: "Running -> Waiting on I/O request."
   },
   {
     gId: 95, sec: "CS", name: "Part III: Computer Science", top: "DSA: Linked List",
-    q_en: "What is the time complexity to insert a new node at the beginning (head) of a singly linked list containing N elements?",
-    q_hi: "N तत्वों वाली सिंगली लिंक्ड लिस्ट के आरंभ (Head) में एक नया नोड डालने की समय जटिलता क्या है?",
+    q_en: "What is the time complexity to insert a new node at the head of a singly linked list?",
+    q_hi: "सिंगली लिंक्ड लिस्ट के हेड पर नया नोड डालने की समय जटिलता क्या है?",
     opts_en: ["O(1)", "O(log N)", "O(N)", "More than one of the above", "None of the above"],
     opts_hi: ["O(1)", "O(log N)", "O(N)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Head par insertion me sirf naye node ke next ko purane head se point karana hota hai aur head update karna hota hai, jo constant time O(1) me hota hai.",
-    tip: "Insertion at head is always O(1)."
+    a: 0, exp: "Directly rewiring the head pointer is an O(1) constant time operation.", tip: "Insertion at head is always O(1)."
   },
   {
     gId: 96, sec: "CS", name: "Part III: Computer Science", top: "Networking: OSI Reference Model",
-    q_en: "Data encryption, compression, and character code translation (e.g., ASCII to EBCDIC) are primary responsibilities of which OSI layer?",
-    q_hi: "डेटा एन्क्रिप्शन, संपीड़न (Compression), और वर्ण कोड अनुवाद ओएसआई (OSI) की किस परत के प्राथमिक कार्य हैं?",
+    q_en: "Data encryption, compression, and syntax code translation are primary functions of which OSI layer?",
+    q_hi: "डेटा एन्क्रिप्शन, संपीड़न (Compression), और सिंटैक्स अनुवाद ओएसआई की किस परत के कार्य हैं?",
     opts_en: ["Session Layer", "Presentation Layer", "Application Layer", "More than one of the above", "None of the above"],
-    opts_hi: ["सेशन लेयर", "प्रेज़ेंटेशन लेयर (Presentation Layer - Layer 6)", "एप्लिकेशन लेयर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Presentation Layer (Layer 6) syntax aur semantics of data ke liye responsible hoti hai (Encryption, Compression, Translation).",
-    tip: "Layer 6 = Presentation (Syntax, Encryption, Compression)."
+    opts_hi: ["सेशन लेयर", "प्रेज़ेंटेशन लेयर (Layer 6)", "एप्लिकेशन लेयर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Presentation Layer (Layer 6) handles formatting, compression, and encryption.", tip: "Layer 6 = Presentation (Syntax, Encryption, Compression)."
   },
   {
     gId: 97, sec: "CS", name: "Part III: Computer Science", top: "Software Engg: Waterfall Model",
-    q_en: "What is the primary drawback of the classical Waterfall software development life cycle model?",
-    q_hi: "शास्त्रीय वॉटरफॉल सॉफ्टवेयर विकास जीवन चक्र मॉडल का प्राथमिक दोष क्या है?",
-    opts_en: ["High complexity of planning", "Inability to accommodate changing requirements once phases are completed", "Excessive documentation", "More than one of the above", "None of the above"],
-    opts_hi: ["योजना की उच्च जटिलता", "एक बार चरण पूरे होने के बाद बदलती आवश्यकताओं को समायोजित करने में असमर्थता", "अत्यधिक दस्तावेज़ीकरण", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Waterfall model rigid aur linear hota hai; agar customer requirements baad me change kare toh peeche ke phases me jana impossible ya bahut mehanga hota hai.",
-    tip: "Waterfall cannot easily accommodate mid-project changes."
+    q_en: "What is the principal disadvantage of the classical Waterfall SDLC model?",
+    q_hi: "क्लासिकल वॉटरफॉल मॉडल की मुख्य कमी क्या है?",
+    opts_en: ["High planning overhead", "Difficulty accommodating changing requirements once phases end", "Lack of documentation", "More than one of the above", "None of the above"],
+    opts_hi: ["उच्च योजना लागत", "चरण समाप्त होने के बाद बदलती आवश्यकताओं को समायोजित करने में असमर्थता", "दस्तावेज़ों की कमी", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "The rigid sequential nature of Waterfall makes changes downstream extremely difficult.", tip: "Waterfall cannot easily accommodate mid-project changes."
   },
   {
     gId: 98, sec: "CS", name: "Part III: Computer Science", top: "Cybersecurity: Hashing",
-    q_en: "Which of the following is a cryptographic hash function that produces a 160-bit hash digest?",
-    q_hi: "निम्नलिखित में से कौन-सा एक क्रिप्टोग्राफ़िक हैश फ़ंक्शन है जो 160-बिट हैश डाइजेस्ट उत्पन्न करता है?",
+    q_en: "Which cryptographic hash function produces a 160-bit digest?",
+    q_hi: "कौन-सा क्रिप्टोग्राफ़िक हैश फ़ंक्शन 160-बिट डाइजेस्ट उत्पन्न करता है?",
     opts_en: ["MD5", "SHA-1", "SHA-256", "More than one of the above", "None of the above"],
-    opts_hi: ["MD5", "SHA-1", "SHA-256", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "MD5 128-bit hash banata hai, SHA-1 160-bit banata hai, aur SHA-256 256-bit banata hai.",
-    tip: "MD5 = 128 bits; SHA-1 = 160 bits; SHA-256 = 256 bits."
+    opts_hi: ["MD5", "SHA-1 (एसएचए-1)", "SHA-256", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "SHA-1 yields a 160-bit hash; MD5 produces 128-bit; SHA-256 produces 256-bit.", tip: "MD5 = 128 bits; SHA-1 = 160 bits; SHA-256 = 256 bits."
   },
   {
     gId: 99, sec: "CS", name: "Part III: Computer Science", top: "Web Tech: HTTP Methods",
-    q_en: "Which HTTP request method is defined as IDEMPOTENT (making multiple identical requests produces the same result as a single request)?",
-    q_hi: "कौन-सी HTTP अनुरोध विधि आइडम्पोटेंट (Idempotent) के रूप में परिभाषित है (समान अनुरोध कई बार करने पर भी वही प्रभाव पड़ता है)?",
+    q_en: "Which HTTP request method is IDEMPOTENT?",
+    q_hi: "कौन-सी HTTP अनुरोध विधि आइडम्पोटेंट (Idempotent) होती है?",
     opts_en: ["POST", "GET", "PUT", "More than one of the above", "None of the above"],
     opts_hi: ["POST", "GET", "PUT", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 3,
-    exp: "GET, PUT, DELETE, HEAD sabhi idempotent methods hain (POST idempotent nahi hai). Isliye (D) 'More than one' sahi hai.",
-    tip: "GET, PUT, DELETE are idempotent; POST is not."
+    a: 3, exp: "Both GET and PUT are idempotent (More than one). POST is not idempotent.", tip: "GET, PUT, DELETE are idempotent; POST is not."
   },
   {
     gId: 100, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Boolean Simplification",
     q_en: "Simplify the Boolean expression: <code>A + A'B</code>",
-    q_hi: "बूलियन व्यंजक <code>A + A'B</code> को सरल बनाएं:",
+    q_hi: "बूलियन व्यंजक <code>A + A'B</code> का सरलीकृत रूप क्या है?",
     opts_en: ["A + B", "A &middot; B", "A", "More than one of the above", "None of the above"],
     opts_hi: ["A + B", "A &middot; B", "A", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Distributive law: A + A'B = (A + A')(A + B) = (1)(A + B) = A + B.",
-    tip: "A + A'B = A + B."
+    a: 0, exp: "A + A'B = (A + A')(A + B) = 1 · (A + B) = A + B.", tip: "A + A'B = A + B."
   },
   {
     gId: 101, sec: "CS", name: "Part III: Computer Science", top: "DSA: Priority Queue",
-    q_en: "Which underlying data structure is most suitable for implementing an efficient Priority Queue with O(log N) insertion and deletion?",
-    q_hi: "O(log N) सम्मिलन और विलोपन के साथ एक कुशल प्राथमिकता कतार (Priority Queue) को लागू करने के लिए कौन-सी डेटा संरचना सबसे उपयुक्त है?",
+    q_en: "Which data structure is most efficient for implementing a Priority Queue?",
+    q_hi: "प्राथमिकता कतार (Priority Queue) को लागू करने के लिए कौन-सी संरचना सबसे कुशल है?",
     opts_en: ["Unsorted Array", "Binary Heap", "Singly Linked List", "More than one of the above", "None of the above"],
     opts_hi: ["अवर्गीकृत ऐरे", "बाइनरी हीप (Binary Heap)", "सिंगली लिंक्ड लिस्ट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Binary heap (Min-heap ya Max-heap) priority queue ke liye optimal structure hai jo O(log N) me insert aur extract operations deta hai.",
-    tip: "Priority Queue is best implemented using a Binary Heap."
+    a: 1, exp: "Binary heaps provide O(log N) insert and extract operations.", tip: "Priority Queue is best implemented using a Binary Heap."
   },
   {
     gId: 102, sec: "CS", name: "Part III: Computer Science", top: "COA: DMA Controller",
     q_en: "Direct Memory Access (DMA) transfers data directly between:",
     q_hi: "डायरेक्ट मेमोरी एक्सेस (DMA) डेटा को सीधे किसके बीच स्थानांतरित करता है?",
     opts_en: ["CPU registers and Cache", "I/O devices and Main Memory without continuous CPU involvement", "ALU and Control Unit", "More than one of the above", "None of the above"],
-    opts_hi: ["सीपीयू रजिस्टर्स और कैश", "I/O डिवाइस और मुख्य मेमोरी बिना सीपीयू के निरंतर हस्तक्षेप के", "ALU और नियंत्रण इकाई", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "DMA controller high-speed I/O devices aur RAM ke beech bulk data bypass CPU transfer karta hai.",
-    tip: "DMA bypasses the CPU for memory-I/O transfers."
+    opts_hi: ["रजिस्टर्स और कैश", "I/O उपकरण और मुख्य मेमोरी (बिना सीपीयू हस्तक्षेप)", "ALU और CU", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "DMA handles block transfer directly between memory and devices.", tip: "DMA bypasses the CPU for memory-I/O transfers."
   },
   {
     gId: 103, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Aggregate Functions",
-    q_en: "Which SQL aggregate function ignores NULL values when computing results?",
-    q_hi: "परिणामों की गणना करते समय कौन-सा SQL एग्रीगेट फ़ंक्शन NULL मानों को अनदेखा (ignore) करता है?",
+    q_en: "Which SQL aggregate function ignores NULL values when calculating?",
+    q_hi: "गणना करते समय कौन-सा SQL एग्रीगेट फ़ंक्शन NULL मानों को छोड़ देता है?",
     opts_en: ["COUNT(column_name)", "AVG(column_name)", "SUM(column_name)", "More than one of the above", "None of the above"],
-    opts_hi: ["COUNT(column_name)", "AVG(column_name)", "SUM(column_name)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 3,
-    exp: "COUNT(column), AVG(column), SUM(column) sabhi NULL values ko ignore karte hain (sirf COUNT(*) NULL rows ko bhi count karta hai). Isliye (D) sahi hai.",
-    tip: "Aggregate functions ignore NULLs except COUNT(*)."
+    opts_hi: ["COUNT(col)", "AVG(col)", "SUM(col)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 3, exp: "All column aggregate functions ignore NULLs (More than one).", tip: "Aggregate functions ignore NULLs except COUNT(*)."
   },
   {
     gId: 104, sec: "CS", name: "Part III: Computer Science", top: "OS: Virtual Memory Inverted Page Table",
     q_en: "An Inverted Page Table has exactly one entry for each:",
-    q_hi: "एक इनवर्टेड पेज टेबल (Inverted Page Table) में प्रत्येक किसके लिए ठीक एक प्रविष्टि (entry) होती है?",
-    opts_en: ["Virtual page of each process", "Physical frame of main memory", "Segment in the virtual memory", "More than one of the above", "None of the above"],
-    opts_hi: ["प्रत्येक प्रक्रिया के वर्चुअल पेज के लिए", "मुख्य मेमोरी के प्रत्येक फिजिकल फ्रेम (Frame) के लिए", "वर्चुअल मेमोरी के सेगमेंट के लिए", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Inverted page table physical memory ke frames par index hoti hai, isliye iska size total physical frames ke barabar hota hai.",
-    tip: "Inverted page table entries = Number of physical memory frames."
+    q_hi: "इनवर्टेड पेज टेबल में किसके लिए ठीक एक प्रविष्टि होती है?",
+    opts_en: ["Virtual page of each process", "Physical frame of main memory", "Segment in virtual memory", "More than one of the above", "None of the above"],
+    opts_hi: ["प्रत्येक वर्चुअल पेज", "मुख्य मेमोरी के प्रत्येक फिजिकल फ्रेम (Frame)", "सेगमेंट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Inverted page tables are indexed by physical frame numbers.", tip: "Inverted page table entries = Number of physical memory frames."
   },
   {
     gId: 105, sec: "CS", name: "Part III: Computer Science", top: "Python: Exception Handling",
-    q_en: "Which block in Python exception handling is guaranteed to execute whether an exception occurred or not?",
-    q_hi: "पायथन अपवाद प्रबंधन (Exception Handling) में कौन-सा ब्लॉक अपवाद उत्पन्न होने या न होने पर निष्पादित होने की गारंटी देता है?",
+    q_en: "Which block in Python exception handling executes regardless of whether an error was raised?",
+    q_hi: "पायथन में त्रुटि आने या न आने पर कौन-सा ब्लॉक अनिवार्य रूप से चलता है?",
     opts_en: ["except", "finally", "else", "More than one of the above", "None of the above"],
     opts_hi: ["except", "finally (फाइनली)", "else", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "'finally' block cleanup tasks ke liye use hota hai aur yeh hamesha execute hota hai chahe error aaye ya na aaye.",
-    tip: "finally block always runs."
+    a: 1, exp: "The finally block always runs for cleanup operations.", tip: "finally block always runs."
   },
   {
     gId: 106, sec: "CS", name: "Part III: Computer Science", top: "C++: Copy Constructor",
-    q_en: "What is the correct syntax for declaring a Copy Constructor in a class named 'Sample'?",
-    q_hi: "'Sample' नामक क्लास में कॉपी कंस्ट्रक्टर घोषित करने का सही सिंटैक्स क्या है?",
+    q_en: "What is the correct syntax for declaring a Copy Constructor in class 'Sample'?",
+    q_hi: "क्लास 'Sample' में कॉपी कंस्ट्रक्टर घोषित करने का सही सिंटैक्स क्या है?",
     opts_en: ["Sample(Sample s);", "Sample(const Sample &s);", "Sample(Sample *s);", "More than one of the above", "None of the above"],
     opts_hi: ["Sample(Sample s);", "Sample(const Sample &s);", "Sample(Sample *s);", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Copy constructor argument ko reference ke roop me leta hai (`const Sample &s`) taaki recursive infinite call se bacha ja sake.",
-    tip: "Copy constructor must take parameter by reference."
+    a: 1, exp: "A copy constructor must accept its object as a reference (`const Sample &s`).", tip: "Copy constructor must take parameter by reference."
   },
   {
     gId: 107, sec: "CS", name: "Part III: Computer Science", top: "Networking: Symmetric vs Asymmetric",
-    q_en: "Which of the following encryption algorithms relies on prime factorization difficulty for its mathematical security?",
-    q_hi: "निम्नलिखित में से कौन-सा एन्क्रिप्शन एल्गोरिदम अपनी सुरक्षा के लिए अभाज्य गुणनखंडन (Prime Factorization) की कठिनाई पर निर्भर करता है?",
+    q_en: "Which encryption algorithm relies on prime factorization difficulty?",
+    q_hi: "कौन-सा एन्क्रिप्शन एल्गोरिदम अभाज्य गुणनखंडन की कठिनाई पर आधारित है?",
     opts_en: ["DES", "AES", "RSA", "More than one of the above", "None of the above"],
     opts_hi: ["DES", "AES", "RSA (आरएसए)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "RSA do bade prime numbers ke product ko factor karne ki computational difficulty par aadharit hai.",
-    tip: "RSA = Prime factorization hardness."
+    a: 2, exp: "RSA security is anchored in the difficulty of factoring large composite primes.", tip: "RSA = Prime factorization hardness."
   },
   {
     gId: 108, sec: "CS", name: "Part III: Computer Science", top: "DSA: Circular Queue",
-    q_en: "In an array implementation of a Circular Queue of size N with front and rear pointers, what is the condition for Queue Full?",
-    q_hi: "फ्रंट और रियर पॉइंटर्स के साथ आकार N के सर्कुलर कतार (Circular Queue) में कतार पूरी तरह भरी होने (Queue Full) की शर्त क्या है?",
+    q_en: "In a circular queue of size N using array indices, what is the Queue Full condition?",
+    q_hi: "आकार N के सर्कुलर कतार में Queue Full की स्थिति क्या होती है?",
     opts_en: ["front == rear", "(rear + 1) % N == front", "rear == N - 1", "More than one of the above", "None of the above"],
     opts_hi: ["front == rear", "(rear + 1) % N == front", "rear == N - 1", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Circular queue me full condition hoti hai jab rear ka agla slot front ho: `(rear + 1) % N == front`.",
-    tip: "Full when (rear + 1) % capacity == front."
+    a: 1, exp: "When next rear wraps around to front, the circular queue is full.", tip: "Full when (rear + 1) % capacity == front."
   },
   {
     gId: 109, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Demorgan Theorem",
-    q_en: "According to De Morgan's Law, the expression <code>(A &middot; B)'</code> is equivalent to:",
-    q_hi: "डी मॉर्गन के नियम के अनुसार, व्यंजक <code>(A &middot; B)'</code> किसके बराबर है?",
+    q_en: "According to De Morgan's Law, <code>(A &middot; B)'</code> is equivalent to:",
+    q_hi: "डी मॉर्गन के नियम के अनुसार <code>(A &middot; B)'</code> किसके बराबर है?",
     opts_en: ["A' + B'", "A' &middot; B'", "(A + B)'", "More than one of the above", "None of the above"],
     opts_hi: ["A' + B'", "A' &middot; B'", "(A + B)'", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "NAND complement rule: (A . B)' = A' + B' (Invert inputs and change AND to OR).",
-    tip: "(AB)' = A' + B'."
+    a: 0, exp: "(A · B)' = A' + B'.", tip: "(AB)' = A' + B'."
   },
   {
     gId: 110, sec: "CS", name: "Part III: Computer Science", top: "OS: Banker's Safe State",
-    q_en: "In Banker's Algorithm, if the system is in a 'Safe State', which of the following is guaranteed?",
-    q_hi: "बैंकर एल्गोरिदम में यदि सिस्टम 'सुरक्षित स्थिति' (Safe State) में है, तो निम्नलिखित में से किसकी गारंटी है?",
-    opts_en: ["Deadlock cannot occur", "Deadlock has already occurred", "CPU utilization will be 100%", "More than one of the above", "None of the above"],
-    opts_hi: ["गतिरोध (Deadlock) नहीं हो सकता", "गतिरोध पहले ही हो चुका है", "सीपीयू उपयोग 100% होगा", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Safe state ka matlab hota hai ki kam se kam ek aisi sequence exist karti hai jisse sabhi processes bina deadlock ke execute ho sakte hain.",
-    tip: "Safe state guarantees absence of deadlock."
+    q_en: "If a system is in a 'Safe State' under Banker's algorithm, what is guaranteed?",
+    q_hi: "बैंकर एल्गोरिदम में यदि सिस्टम 'सुरक्षित स्थिति' में है, तो किसकी गारंटी है?",
+    opts_en: ["Deadlock cannot occur", "Deadlock has already occurred", "CPU utilization is 100%", "More than one of the above", "None of the above"],
+    opts_hi: ["गतिरोध (Deadlock) नहीं हो सकता", "गतिरोध हो चुका है", "सीपीयू उपयोग 100%", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "A safe state guarantees that at least one allocation sequence avoids deadlock entirely.", tip: "Safe state guarantees absence of deadlock."
   },
   {
     gId: 111, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Triggers",
-    q_en: "A database trigger is a procedural code that is automatically executed in response to:",
-    q_hi: "डेटाबेस ट्रिगर (Trigger) एक प्रक्रियात्मक कोड है जो किसके जवाब में स्वचालित रूप से निष्पादित होता है?",
-    opts_en: ["User login only", "Certain DML/DDL events occurring on a table (INSERT, UPDATE, DELETE)", "System restart", "More than one of the above", "None of the above"],
-    opts_hi: ["केवल उपयोगकर्ता लॉगिन पर", "तालिका पर होने वाली विशिष्ट DML/DDL घटनाओं (INSERT, UPDATE, DELETE) पर", "सिस्टम पुनरारंभ पर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Triggers table par DML actions (BEFORE/AFTER INSERT/UPDATE/DELETE) hone par database dwara automatic fire hote hain.",
-    tip: "Triggers fire automatically on DML events."
+    q_en: "A database trigger executes automatically in response to:",
+    q_hi: "डेटाबेस ट्रिगर किसके जवाब में स्वतः निष्पादित होता है?",
+    opts_en: ["User login only", "Table DML/DDL events (INSERT, UPDATE, DELETE)", "System restart", "More than one of the above", "None of the above"],
+    opts_hi: ["केवल लॉगिन पर", "तालिका पर DML/DDL घटनाओं (INSERT, UPDATE) पर", "रीस्टार्ट पर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Triggers execute automatically upon INSERT, UPDATE, or DELETE operations.", tip: "Triggers fire automatically on DML events."
   },
   {
     gId: 112, sec: "CS", name: "Part III: Computer Science", top: "Web Tech: CSS Selectors",
-    q_en: "Which CSS selector selects all <code>&lt;p&gt;</code> elements that are direct children of a <code>&lt;div&gt;</code> element?",
-    q_hi: "कौन-सा CSS चयनकर्ता उन सभी <code>&lt;p&gt;</code> तत्वों का चयन करता है जो सीधे <code>&lt;div&gt;</code> तत्व के बच्चे (Direct Children) हैं?",
+    q_en: "Which CSS selector targets <code>&lt;p&gt;</code> elements that are direct children of <code>&lt;div&gt;</code>?",
+    q_hi: "कौन-सा CSS चयनकर्ता <code>&lt;div&gt;</code> के प्रत्यक्ष चाइल्ड <code>&lt;p&gt;</code> तत्वों को लक्षित करता है?",
     opts_en: ["div p", "div &gt; p", "div + p", "More than one of the above", "None of the above"],
     opts_hi: ["div p", "div &gt; p", "div + p", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "`div > p` direct child selector hai. `div p` descendant selector hai jo nested children ko bhi select kar leta hai.",
-    tip: "`>` is the direct child combinator in CSS."
+    a: 1, exp: "`div > p` selects only direct child paragraphs.", tip: "`>` is the direct child combinator in CSS."
   },
   {
     gId: 113, sec: "CS", name: "Part III: Computer Science", top: "DSA: Recursion",
-    q_en: "Every valid recursive function must contain which terminating condition to avoid infinite recursion and stack overflow?",
-    q_hi: "अनंत पुनरावृत्ति (Infinite Recursion) और स्टैक ओवरफ्लो से बचने के लिए प्रत्येक वैध पुनरावर्ती फ़ंक्शन में कौन-सी शर्त होनी चाहिए?",
+    q_en: "Every recursive function must contain what terminating condition to avoid stack overflow?",
+    q_hi: "स्टैक ओवरफ्लो से बचने के लिए प्रत्येक पुनरावर्ती फ़ंक्शन में कौन-सी शर्त होनी चाहिए?",
     opts_en: ["Recursive Step", "Base Case", "Static Pointer", "More than one of the above", "None of the above"],
     opts_hi: ["पुनरावर्ती चरण", "बेस केस (Base Case)", "स्टैटिक पॉइंटर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Base case recursion ko terminate karke call stack ko unroll karta hai.",
-    tip: "Base case halts recursion."
+    a: 1, exp: "The base case halts recursion and unrolls the call stack.", tip: "Base case halts recursion."
   },
   {
     gId: 114, sec: "CS", name: "Part III: Computer Science", top: "COA: Micro-operations",
-    q_en: "Which register in a basic CPU holds the address of the next instruction to be fetched from memory?",
-    q_hi: "मूल सीपीयू में कौन-सा रजिस्टर मेमोरी से लाए जाने वाले अगले निर्देश का पता रखता है?",
+    q_en: "Which CPU register stores the address of the next instruction to fetch?",
+    q_hi: "कौन-सा सीपीयू रजिस्टर अगले निर्देश का मेमोरी पता रखता है?",
     opts_en: ["Instruction Register (IR)", "Program Counter (PC)", "Memory Buffer Register (MBR)", "More than one of the above", "None of the above"],
-    opts_hi: ["निर्देश रजिस्टर (IR)", "प्रोग्राम काउंटर (Program Counter - PC)", "मेमोरी बफर रजिस्टर (MBR)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Program Counter (PC) next instruction ka memory address hold karta hai aur fetch hone par increment ho jata hai.",
-    tip: "PC = Address of the NEXT instruction."
+    opts_hi: ["IR", "प्रोग्राम काउंटर (Program Counter - PC)", "MBR", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "The Program Counter points to the next instruction in memory.", tip: "PC = Address of the NEXT instruction."
   },
   {
     gId: 115, sec: "CS", name: "Part III: Computer Science", top: "Networking: Subnet Broadcasting",
-    q_en: "For the network 192.168.1.0/24, what is the Directed Broadcast Address used to send packets to all hosts on that network?",
-    q_hi: "नेटवर्क 192.168.1.0/24 के लिए, उस नेटवर्क के सभी होस्ट्स को पैकेट भेजने के लिए उपयोग किया जाने वाला डायरेक्टेड ब्रॉडकास्ट पता क्या है?",
+    q_en: "What is the directed broadcast address for network 192.168.1.0/24?",
+    q_hi: "नेटवर्क 192.168.1.0/24 के लिए डायरेक्टेड ब्रॉडकास्ट पता क्या है?",
     opts_en: ["192.168.1.0", "192.168.1.1", "192.168.1.255", "More than one of the above", "None of the above"],
     opts_hi: ["192.168.1.0", "192.168.1.1", "192.168.1.255", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "/24 mask me sabhi 8 host bits ko 1 karne par broadcast address 192.168.1.255 banta hai.",
-    tip: "All host bits set to 1 = Broadcast Address."
+    a: 2, exp: "Setting all host bits to 1 in a /24 network produces 192.168.1.255.", tip: "All host bits set to 1 = Broadcast Address."
   },
   {
     gId: 116, sec: "CS", name: "Part III: Computer Science", top: "C++: Scope Resolution",
-    q_en: "Which operator in C++ is used to access a global variable when a local variable has the same name, or to define class member functions outside the class declaration?",
-    q_hi: "C++ में किस ऑपरेटर का उपयोग तब ग्लोबल चर तक पहुँचने के लिए किया जाता है जब लोकल चर का नाम समान हो, या क्लास घोषणा के बाहर फ़ंक्शन को परिभाषित करने के लिए?",
+    q_en: "Which operator in C++ is used to access a shadowed global variable?",
+    q_hi: "C++ में ग्लोबल चर तक पहुँचने के लिए किस ऑपरेटर का उपयोग किया जाता है?",
     opts_en: ["Scope Resolution Operator (::)", "Member Access Operator (.)", "Pointer to Member (-&gt;)", "More than one of the above", "None of the above"],
-    opts_hi: ["स्कोप रिज़ॉल्यूशन ऑपरेटर (::)", "सदस्य एक्सेस ऑपरेटर (.)", "पॉइंटर ऑपरेटर (-&gt;)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Double colon `::` Scope Resolution Operator hai jo namespace, class scope aur global variable access ke liye use hota hai.",
-    tip: "`::` is the scope resolution operator."
+    opts_hi: ["स्कोप रिज़ॉल्यूशन ऑपरेटर (::)", "सदस्य एक्सेस ऑपरेटर (.)", "पॉइंटर (-&gt;)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "`::` accesses variables in the global namespace.", tip: "`::` is the scope resolution operator."
   },
   {
     gId: 117, sec: "CS", name: "Part III: Computer Science", top: "Python: Boolean True",
-    q_en: "In Python, which of the following evaluates to Boolean <code>False</code> when passed to <code>bool()</code>?",
-    q_hi: "पायथन में, <code>bool()</code> में पास करने पर निम्नलिखित में से कौन-सा बूलियन <code>False</code> का मूल्यांकन करता है?",
+    q_en: "In Python, which of the following evaluates to <code>False</code> in a Boolean context?",
+    q_hi: "पायथन में, बूलियन संदर्भ में कौन-सा मान <code>False</code> होता है?",
     opts_en: ["0 (zero)", "'' (empty string)", "[] (empty list)", "More than one of the above", "None of the above"],
-    opts_hi: ["0 (शून्य)", "'' (खाली स्ट्रिंग)", "[] (खाली लिस्ट)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 3,
-    exp: "Python me 0, empty string '', empty list [], empty dict {}, None sabhi Falsy values hain. Isliye (D) 'More than one' sahi hai.",
-    tip: "Empty collections and zero evaluate to False."
+    opts_hi: ["0", "'' (खाली स्ट्रिंग)", "[] (खाली लिस्ट)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 3, exp: "0, '', and [] are all falsy in Python (More than one).", tip: "Empty collections and zero evaluate to False."
   },
   {
     gId: 118, sec: "CS", name: "Part III: Computer Science", top: "OS: CPU Dispatcher",
-    q_en: "The module that gives control of the CPU to the process selected by the short-term CPU scheduler is the:",
-    q_hi: "वह मॉड्यूल जो शॉर्ट-टर्म सीपीयू शेड्यूलर द्वारा चयनित प्रक्रिया को सीपीयू का नियंत्रण देता है, वह है:",
+    q_en: "Which OS module transfers control of the CPU to the selected ready process?",
+    q_hi: "कौन-सा मॉड्यूल सीपीयू का नियंत्रण चयनित प्रक्रिया को सौंपता है?",
     opts_en: ["Dispatcher", "Spooler", "Swapper", "More than one of the above", "None of the above"],
     opts_hi: ["डिस्पैचर (Dispatcher)", "स्पूलर", "स्वैपर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Dispatcher context switch karta hai, user mode me switch karta hai aur program counter ke zariye process ko CPU par launch karta hai.",
-    tip: "Dispatcher handles context switching and hands over CPU."
+    a: 0, exp: "The Dispatcher performs context switching and resumes the process.", tip: "Dispatcher handles context switching and hands over CPU."
   },
   {
     gId: 119, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Normal Form 1NF",
-    q_en: "A relational database table is in First Normal Form (1NF) if and only if:",
-    q_hi: "एक रिलेशनल टेबल प्रथम सामान्य रूप (1NF) में केवल तभी होती है जब:",
-    opts_en: ["All column values are atomic and there are no repeating groups", "There are no transitive dependencies", "Every determinant is a candidate key", "More than one of the above", "None of the above"],
-    opts_hi: ["सभी कॉलम मान परमाणु (Atomic) हैं और कोई दोहराव समूह नहीं है", "कोई संक्रामक निर्भरता नहीं है", "प्रत्येक निर्धारक एक उम्मीदवार कुंजी है", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "1NF mandates atomic values in every attribute domain aur multi-valued attributes ya repeating groups prohibited hote hain.",
-    tip: "1NF = Atomicity of attribute values."
+    q_en: "A relational database table is in 1NF if:",
+    q_hi: "एक रिलेशनल टेबल 1NF में होती है यदि:",
+    opts_en: ["All column values are atomic and non-repeating", "No transitive dependencies exist", "Every determinant is a super key", "More than one of the above", "None of the above"],
+    opts_hi: ["सभी कॉलम मान परमाणु (Atomic) हैं", "संक्रामक निर्भरता नहीं है", "सुपर की है", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "1NF enforces scalar atomic values in every column.", tip: "1NF = Atomicity of attribute values."
   },
   {
     gId: 120, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Half Adder",
-    q_en: "A Digital Half Adder circuit consists of which combination of logic gates to produce Sum (S) and Carry (C)?",
-    q_hi: "एक डिजिटल हाफ एडर सर्किट में सम (S) और कैरी (C) उत्पन्न करने के लिए कौन-से लॉजिक गेट्स होते हैं?",
-    opts_en: ["One XOR gate for Sum and one AND gate for Carry", "One OR gate for Sum and one AND gate for Carry", "Two NAND gates only", "More than one of the above", "None of the above"],
-    opts_hi: ["सम के लिए एक XOR गेट और कैरी के लिए एक AND गेट", "सम के लिए एक OR गेट और कैरी के लिए एक AND गेट", "केवल दो NAND गेट्स", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Half Adder: Sum S = A ⊕ B (XOR gate) aur Carry C = A · B (AND gate).",
-    tip: "Sum = XOR; Carry = AND."
+    q_en: "A Half Adder uses which gates to produce Sum (S) and Carry (C)?",
+    q_hi: "हाफ एडर में Sum और Carry के लिए कौन-से गेट होते हैं?",
+    opts_en: ["XOR gate for Sum, AND gate for Carry", "OR gate for Sum, AND gate for Carry", "Two NAND gates only", "More than one of the above", "None of the above"],
+    opts_hi: ["Sum के लिए XOR, Carry के लिए AND", "Sum के लिए OR, Carry के लिए AND", "केवल NAND", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "Sum = A ⊕ B, Carry = A · B.", tip: "Sum = XOR; Carry = AND."
   },
   {
     gId: 121, sec: "CS", name: "Part III: Computer Science", top: "DSA: Complete Binary Tree",
-    q_en: "What is the maximum number of nodes in a binary tree of height 'h' (where a tree with single root node has height h = 0)?",
-    q_hi: "ऊंचाई 'h' वाले बाइनरी ट्री में नोड्स की अधिकतम संख्या क्या होती है (जहाँ एकल रूट नोड की ऊंचाई h = 0 है)?",
+    q_en: "Maximum number of nodes in a binary tree of height 'h' (root at h = 0):",
+    q_hi: "ऊंचाई 'h' (रूट h = 0) वाले बाइनरी ट्री में नोड्स की अधिकतम संख्या क्या है?",
     opts_en: ["2^h", "2^(h+1) - 1", "2^h - 1", "More than one of the above", "None of the above"],
     opts_hi: ["2^h", "2^(h+1) - 1", "2^h - 1", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Max nodes formula = 2^(h+1) - 1 (e.g., h=0 par 2^1 - 1 = 1 node; h=1 par 2^2 - 1 = 3 nodes).",
-    tip: "Max nodes at height h = 2^(h+1) - 1."
+    a: 1, exp: "Max nodes formula = 2^(h+1) - 1.", tip: "Max nodes at height h = 2^(h+1) - 1."
   },
   {
     gId: 122, sec: "CS", name: "Part III: Computer Science", top: "Networking: Symmetric vs Asymmetric Key",
-    q_en: "Which of the following is a drawback of Asymmetric (Public Key) cryptography compared to Symmetric cryptography?",
-    q_hi: "सममित (Symmetric) क्रिप्टोग्राफी की तुलना में असममित (Public Key) क्रिप्टोग्राफी की मुख्य कमी क्या है?",
-    opts_en: ["Higher computational overhead and slower encryption speed", "Difficulty in distributing public keys securely", "Inability to support digital signatures", "More than one of the above", "None of the above"],
-    opts_hi: ["उच्च कम्प्यूटेशनल भार और धीमी एन्क्रिप्शन गति", "सार्वजनिक कुंजियों को सुरक्षित रूप से वितरित करने में कठिनाई", "डिजिटल हस्ताक्षर का समर्थन करने में असमर्थता", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Asymmetric cryptography complex mathematical operations (modular exponentiation) karti hai, isliye yeh symmetric ciphers (jaise AES) se 100-1000 guna slow hoti hai.",
-    tip: "Asymmetric is computationally expensive and slow."
+    q_en: "What is a main disadvantage of Asymmetric cryptography over Symmetric cryptography?",
+    q_hi: "सममित की तुलना में असममित क्रिप्टोग्राफी की मुख्य कमी क्या है?",
+    opts_en: ["Higher computational overhead and slower execution", "Difficulty distributing public keys", "Inability to sign data", "More than one of the above", "None of the above"],
+    opts_hi: ["उच्च कम्प्यूटेशनल भार और धीमी गति", "सार्वजनिक कुंजी वितरण", "हस्ताक्षर असमर्थता", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "Asymmetric algorithms execute orders of magnitude slower than symmetric block ciphers.", tip: "Asymmetric is computationally expensive and slow."
   },
   {
     gId: 123, sec: "CS", name: "Part III: Computer Science", top: "C++: Default Arguments",
-    q_en: "In C++, default function arguments must be assigned starting from which position in the parameter list?",
-    q_hi: "C++ में पैरामीटर सूची में डिफ़ॉल्ट फ़ंक्शन तर्कों (Default Arguments) को किस स्थिति से सौंपा जाना चाहिए?",
-    opts_en: ["From the leftmost parameter to the right", "From the rightmost parameter to the left", "Any arbitrary position", "More than one of the above", "None of the above"],
-    opts_hi: ["सबसे बाएं पैरामीटर से दाईं ओर", "सबसे दाहिने पैरामीटर से बाईं ओर (Right to Left)", "किसी भी स्थिति में", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Default parameters strictly right-to-left assign hone chahiye; bina default wale parameters pehle aate hain.",
-    tip: "Default arguments must trail at the end (right to left)."
+    q_en: "In C++, default function arguments must be specified from:",
+    q_hi: "C++ में डिफ़ॉल्ट तर्क किस दिशा से निर्दिष्ट किए जाने चाहिए?",
+    opts_en: ["Left to right", "Right to left", "Any position", "More than one of the above", "None of the above"],
+    opts_hi: ["बाएं से दाएं", "दाएं से बाएं (Right to Left)", "किसी भी स्थिति में", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Default arguments must be added from right to left at the end of the parameter list.", tip: "Default arguments must trail at the end (right to left)."
   },
   {
     gId: 124, sec: "CS", name: "Part III: Computer Science", top: "OS: Deadlock Prevention",
-    q_en: "Which protocol prevents the Circular Wait condition of deadlock by imposing a total ordering on all resource types?",
-    q_hi: "सभी संसाधन प्रकारों पर एक पूर्ण क्रम लागू करके गतिरोध की सर्कुलर वेट स्थिति को कौन-सा प्रोटोकॉल रोकता है?",
-    opts_en: ["Resource hierarchy ordering (Numbering resources)", "Preemption rule", "Banker's Algorithm", "More than one of the above", "None of the above"],
-    opts_hi: ["संसाधन पदानुक्रम क्रम (रिसोर्स नंबरिंग)", "प्रीएम्प्शन नियम", "बैंकर का एल्गोरिदम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Agar har resource ko unique integer assign kiya jaye aur processes strictly increasing order me request karein, toh circular wait mathematically impossible ho jata hai.",
-    tip: "Global linear ordering of resources prevents circular wait."
+    q_en: "Which mechanism prevents the Circular Wait condition of deadlock?",
+    q_hi: "गतिरोध की सर्कुलर वेट स्थिति को रोकने के लिए क्या किया जाता है?",
+    opts_en: ["Imposing a total linear ordering on resource allocation", "Preemption of resources", "Banker's Algorithm", "More than one of the above", "None of the above"],
+    opts_hi: ["संसाधनों पर पूर्ण रैखिक क्रम (Linear ordering) लागू करना", "प्रीएम्प्शन", "बैंकर का एल्गोरिदम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "Numbering resource types and enforcing ascending requests breaks circular wait.", tip: "Global linear ordering of resources prevents circular wait."
   },
   {
     gId: 125, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Outer Join",
-    q_en: "Which relational join returns all rows from the left table along with matched rows from the right table, filling unmatched right columns with NULL?",
-    q_hi: "कौन-सा रिलेशनल जॉइन बाईं तालिका से सभी पंक्तियों को दाईं तालिका की मिलान पंक्तियों के साथ लौटाता है, और बेमेल दाईं कॉलम को NULL से भरता है?",
+    q_en: "Which join returns all left table rows and matched right rows (with NULLs for unmatched)?",
+    q_hi: "कौन-सा जॉइन बाईं तालिका की सभी पंक्तियों को लौटाता है और बेमेल दाईं पंक्तियों में NULL भरता है?",
     opts_en: ["INNER JOIN", "LEFT OUTER JOIN", "FULL OUTER JOIN", "More than one of the above", "None of the above"],
-    opts_hi: ["इनर जॉइन", "लेफ्ट आउटर जॉइन (LEFT OUTER JOIN)", "फुल आउटर जॉइन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "LEFT JOIN left table ke saare records preserve karta hai chahe right table me match mile ya na mile (unmatched jagah NULL aati hai).",
-    tip: "LEFT OUTER JOIN preserves all left relation tuples."
+    opts_hi: ["INNER JOIN", "LEFT OUTER JOIN", "FULL OUTER JOIN", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "LEFT OUTER JOIN preserves every tuple from the left relation.", tip: "LEFT OUTER JOIN preserves all left relation tuples."
   },
   {
     gId: 126, sec: "CS", name: "Part III: Computer Science", top: "Python: Set Operations",
-    q_en: "What is the result of the set operation: <code>{1, 2, 3} & {2, 3, 4}</code> in Python?",
-    q_hi: "पायथन में सेट ऑपरेशन <code>{1, 2, 3} & {2, 3, 4}</code> का परिणाम क्या होगा?",
+    q_en: "What is the output of <code>{1, 2, 3} & {2, 3, 4}</code> in Python?",
+    q_hi: "पायथन में <code>{1, 2, 3} & {2, 3, 4}</code> का मान क्या होगा?",
     opts_en: ["{1, 4}", "{2, 3}", "{1, 2, 3, 4}", "More than one of the above", "None of the above"],
     opts_hi: ["{1, 4}", "{2, 3}", "{1, 2, 3, 4}", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "The ampersand `&` operator computes set intersection (common elements) -> {2, 3}.",
-    tip: "`&` is set intersection in Python."
+    a: 1, exp: "The & operator returns the intersection: {2, 3}.", tip: "`&` is set intersection in Python."
   },
   {
     gId: 127, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Decoder",
-    q_en: "How many output lines are produced by an active-high 3-to-8 line binary decoder?",
-    q_hi: "एक 3-टू-8 लाइन बाइनरी डिकोडर द्वारा कितनी आउटपुट लाइनें उत्पन्न होती हैं?",
+    q_en: "How many outputs does a 3-to-8 line decoder have?",
+    q_hi: "3-टू-8 लाइन डिकोडर में कितने आउटपुट होते हैं?",
     opts_en: ["3", "6", "8", "More than one of the above", "None of the above"],
     opts_hi: ["3", "6", "8", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "An n-to-2^n decoder transforms n input lines into exactly 2^n output lines. 3 inputs produce 2^3 = 8 output lines.",
-    tip: "3-to-8 decoder has 8 output lines."
+    a: 2, exp: "2^3 = 8 output lines.", tip: "3-to-8 decoder has 8 output lines."
   },
   {
     gId: 128, sec: "CS", name: "Part III: Computer Science", top: "DSA: Doubly Linked List",
-    q_en: "Each node in a standard Doubly Linked List contains how many pointer fields?",
-    q_hi: "एक मानक डबली लिंक्ड लिस्ट (Doubly Linked List) के प्रत्येक नोड में कितने पॉइंटर फ़ील्ड होते हैं?",
+    q_en: "How many pointer fields does a standard Doubly Linked List node contain?",
+    q_hi: "डबली लिंक्ड लिस्ट के नोड में कितने पॉइंटर फ़ील्ड होते हैं?",
     opts_en: ["1", "2", "3", "More than one of the above", "None of the above"],
     opts_hi: ["1", "2", "3", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Doubly linked list ke har node me 2 pointers hote hain: ek previous node ke liye aur ek next node ke liye.",
-    tip: "DLL node = prev pointer + data + next pointer."
+    a: 1, exp: "A DLL node contains 2 pointers (prev and next).", tip: "DLL node = prev pointer + data + next pointer."
   },
   {
     gId: 129, sec: "CS", name: "Part III: Computer Science", top: "COA: Interrupts",
-    q_en: "An interrupt that cannot be delayed or ignored by the CPU via software control instructions is called a:",
-    q_hi: "वह इंटरप्ट जिसे सॉफ्टवेयर नियंत्रण निर्देशों द्वारा सीपीयू द्वारा विलंबित या अनदेखा नहीं किया जा सकता, क्या कहलाता है?",
+    q_en: "An interrupt that cannot be masked or disabled by software instructions is:",
+    q_hi: "वह इंटरप्ट जिसे सॉफ्टवेयर निर्देशों द्वारा अनदेखा नहीं किया जा सकता:",
     opts_en: ["Maskable Interrupt", "Non-Maskable Interrupt (NMI)", "Software Interrupt", "More than one of the above", "None of the above"],
-    opts_hi: ["मास्केबल इंटरप्ट", "नॉन-मास्केबल इंटरप्ट (NMI)", "सॉफ्टवेयर इंटरप्ट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Non-Maskable Interrupts (jaise hardware failure ya power failure) highest priority ke hote hain aur inhe mask nahi kiya ja sakta.",
-    tip: "NMI cannot be disabled by CLI instruction."
+    opts_hi: ["मास्केबल", "नॉन-मास्केबल (NMI)", "सॉफ्टवेयर इंटरप्ट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "NMI signals critical hardware errors and cannot be ignored.", tip: "NMI cannot be disabled by CLI instruction."
   },
   {
     gId: 130, sec: "CS", name: "Part III: Computer Science", top: "Networking: Congestion Window",
-    q_en: "In TCP Tahoe/Reno congestion control, what algorithm is triggered initially where the congestion window doubles every RTT?",
-    q_hi: "टीसीपी संकुलन नियंत्रण (TCP Congestion Control) में शुरू में कौन-सा एल्गोरिदम सक्रिय होता है जहाँ संकुलन विंडो प्रत्येक RTT में दोगुनी हो जाती है?",
+    q_en: "In TCP congestion control, the phase where window size doubles every RTT is:",
+    q_hi: "टीसीपी में वह चरण जहाँ विंडो का आकार हर RTT में दोगुना होता है:",
     opts_en: ["Congestion Avoidance", "Slow Start", "Fast Retransmit", "More than one of the above", "None of the above"],
     opts_hi: ["संकुलन परिहार", "धीमी शुरुआत (Slow Start)", "फास्ट रीट्रांसमिट", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Slow start phase me cwnd 1 MSS se shuru hokar har RTT par exponentially double hoti hai jab tak ssthresh tak na pahuche.",
-    tip: "Slow start grows exponentially (doubles each RTT)."
+    a: 1, exp: "Slow Start doubles cwnd exponentially each round-trip time.", tip: "Slow start grows exponentially (doubles each RTT)."
   },
   {
     gId: 131, sec: "CS", name: "Part III: Computer Science", top: "Software Engg: CMM Levels",
-    q_en: "How many maturity levels are defined in the Capability Maturity Model (CMM)?",
-    q_hi: "कैपेबिलिटी मैच्योरिटी मॉडल (CMM) में कितने परिपक्वता स्तर (Maturity Levels) परिभाषित हैं?",
+    q_en: "How many maturity levels are in the Capability Maturity Model (CMM)?",
+    q_hi: "CMM मॉडल में कितने परिपक्वता स्तर होते हैं?",
     opts_en: ["3", "4", "5", "More than one of the above", "None of the above"],
     opts_hi: ["3", "4", "5", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "CMM ke 5 levels hote hain: 1. Initial, 2. Repeatable, 3. Defined, 4. Managed, 5. Optimizing.",
-    tip: "CMM has exactly 5 levels."
+    a: 2, exp: "CMM defines 5 distinct process maturity levels.", tip: "CMM has exactly 5 levels."
   },
   {
     gId: 132, sec: "CS", name: "Part III: Computer Science", top: "C++: Inline Functions",
-    q_en: "The <code>inline</code> keyword in C++ is a request to the compiler to:",
-    q_hi: "C++ में <code>inline</code> कीवर्ड कंपाइलर से क्या अनुरोध करता है?",
-    opts_en: ["Allocate memory on heap", "Replace the function call with the actual function body code", "Execute function on a background thread", "More than one of the above", "None of the above"],
-    opts_hi: ["हीप पर मेमोरी आवंटित करें", "फ़ंक्शन कॉल को वास्तविक फ़ंक्शन कोड से बदलें (इनलाइन विस्तार)", "थ्रेड पर चलाएं", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Inline function call overhead (stack pushing/popping) ko eliminate karke code ko call site par directly expand karne ka compiler suggestion hai.",
-    tip: "Inline replaces call overhead with expanded code."
+    q_en: "The <code>inline</code> keyword in C++ suggests to the compiler to:",
+    q_hi: "C++ में <code>inline</code> कीवर्ड कंपाइलर को क्या सुझाव देता है?",
+    opts_en: ["Allocate on heap", "Expand function body at the call site", "Spawn thread", "More than one of the above", "None of the above"],
+    opts_hi: ["हीप पर आवंटित करें", "कॉल साइट पर कोड का विस्तार करें", "थ्रेड बनाएं", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Inlining substitutes the code directly to eliminate invocation overhead.", tip: "Inline replaces call overhead with expanded code."
   },
   {
     gId: 133, sec: "CS", name: "Part III: Computer Science", top: "DBMS: ACID Isolation Levels",
-    q_en: "Which SQL isolation level provides the HIGHEST level of consistency, preventing Dirty Reads, Non-repeatable Reads, and Phantom Reads?",
-    q_hi: "कौन-सा SQL आइसोलेशन स्तर डर्टी रीड, नॉन-रिपीटेबल रीड और फैंटम रीड को रोककर उच्चतम स्तर की स्थिरता प्रदान करता है?",
+    q_en: "Which SQL isolation level provides the HIGHEST level of data consistency?",
+    q_hi: "कौन-सा SQL आइसोलेशन स्तर उच्चतम स्तर की स्थिरता प्रदान करता है?",
     opts_en: ["Read Committed", "Repeatable Read", "Serializable", "More than one of the above", "None of the above"],
     opts_hi: ["रीड कमिटेड", "रिपीटेबल रीड", "सीरियलाइजेबल (Serializable)", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "Serializable highest isolation level hai jo transactions ko fully isolated execute karta hai aur sabhi concurrency anomalies ko block karta hai.",
-    tip: "Serializable is the strictest isolation level."
+    a: 2, exp: "Serializable guarantees execution is equivalent to serial order.", tip: "Serializable is the strictest isolation level."
   },
   {
     gId: 134, sec: "CS", name: "Part III: Computer Science", top: "Python: String Immutability",
-    q_en: "What happens when you execute the statement: <code>s = 'hello'; s[0] = 'H'</code> in Python?",
-    q_hi: "पायथन में <code>s = 'hello'; s[0] = 'H'</code> निष्पादित करने पर क्या होगा?",
-    opts_en: ["s becomes 'Hello'", "TypeError: 'str' object does not support item assignment", "SyntaxError", "More than one of the above", "None of the above"],
-    opts_hi: ["s 'Hello' बन जाता है", "TypeError: 'str' object does not support item assignment", "SyntaxError", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Python strings immutable hoti hain, isliye kisi index par direct assignment karne par TypeError throw hota hai.",
-    tip: "Strings are immutable in Python; item assignment raises TypeError."
+    q_en: "What occurs when doing <code>s = 'hello'; s[0] = 'H'</code> in Python?",
+    q_hi: "पायथन में <code>s = 'hello'; s[0] = 'H'</code> करने पर क्या होता है?",
+    opts_en: ["s becomes 'Hello'", "TypeError is raised", "SyntaxError", "More than one of the above", "None of the above"],
+    opts_hi: ["'Hello' बनता है", "TypeError उत्पन्न होता है", "SyntaxError", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Strings are immutable in Python; item assignment raises a TypeError.", tip: "Strings are immutable in Python; item assignment raises TypeError."
   },
   {
     gId: 135, sec: "CS", name: "Part III: Computer Science", top: "OS: Swapping",
-    q_en: "Moving an entire process temporarily from main memory to backing store (secondary disk) is called:",
-    q_hi: "किसी संपूर्ण प्रक्रिया को अस्थायी रूप से मुख्य मेमोरी से बैकिंग स्टोर (डिस्क) पर ले जाना क्या कहलाता है?",
+    q_en: "Moving an entire process temporarily between main memory and secondary disk is:",
+    q_hi: "किसी प्रक्रिया को मेमोरी और डिस्क के बीच अस्थायी रूप से ले जाना कहलाता है:",
     opts_en: ["Paging", "Swapping", "Segmentation", "More than one of the above", "None of the above"],
     opts_hi: ["पेजिंग", "स्वैपिंग (Swapping)", "सेगमेंटेशन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Swapping poore process ko RAM se swap space (disk) par move karta hai taaki dusre processes ke liye physical memory khali ho sake.",
-    tip: "Swapping moves whole process between RAM and disk."
+    a: 1, exp: "Swapping relocates full processes to backing store.", tip: "Swapping moves whole process between RAM and disk."
   },
   {
     gId: 136, sec: "CS", name: "Part III: Computer Science", top: "DSA: Deque",
-    q_en: "A Double-Ended Queue (Deque) permits insertion and deletion of elements at:",
-    q_hi: "डबल-एंडेड कतार (Deque) तत्वों को डालने और हटाने की अनुमति कहाँ देती है?",
-    opts_en: ["Only at the front end", "Only at the rear end", "At both the front and rear ends", "More than one of the above", "None of the above"],
-    opts_hi: ["केवल फ्रंट छोर पर", "केवल रियर छोर पर", "फ्रंट और रियर दोनों छोरों पर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "Deque (Double Ended Queue) dono ends (front aur rear) par insert aur delete karne ki flexibility deti hai.",
-    tip: "Deque = Double Ended Queue."
+    q_en: "A Double-Ended Queue (Deque) permits operations at:",
+    q_hi: "डबल-एंडेड कतार (Deque) संचालन की अनुमति कहाँ देती है?",
+    opts_en: ["Front only", "Rear only", "Both Front and Rear", "More than one of the above", "None of the above"],
+    opts_hi: ["केवल फ्रंट", "केवल रियर", "फ्रंट और रियर दोनों सिरों पर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 2, exp: "Deques allow push and pop at both front and back.", tip: "Deque = Double Ended Queue."
   },
   {
     gId: 137, sec: "CS", name: "Part III: Computer Science", top: "COA: Bus Arbitration",
-    q_en: "In daisy-chaining bus arbitration, how are device priorities determined?",
-    q_hi: "डेज़ी-चेनिंग बस मध्यस्थता (Daisy-chaining) में उपकरणों की प्राथमिकता कैसे निर्धारित की जाती है?",
-    opts_en: ["By the device's physical proximity to the bus controller", "Dynamically by software interrupts", "By polling device ID numbers", "More than one of the above", "None of the above"],
-    opts_hi: ["बस नियंत्रक के सबसे निकट भौतिक स्थिति द्वारा", "सॉफ्टवेयर द्वारा गतिशील रूप से", "डिवाइस आईडी द्वारा", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Daisy chain serial grant line use karti hai; jo device controller ke sabse paas hota hai use highest priority milti hai.",
-    tip: "Closer to controller = Higher priority in daisy chaining."
+    q_en: "In daisy-chaining bus arbitration, priority is determined by:",
+    q_hi: "डेज़ी-चेनिंग बस मध्यस्थता में प्राथमिकता किसके द्वारा तय होती है?",
+    opts_en: ["Physical closeness to the bus controller", "Software polling", "Random assignment", "More than one of the above", "None of the above"],
+    opts_hi: ["बस नियंत्रक से भौतिक निकटता द्वारा", "सॉफ्टवेयर द्वारा", "यादृच्छिक", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "The device closest to the controller intercepts the grant signal first.", tip: "Closer to controller = Higher priority in daisy chaining."
   },
   {
     gId: 138, sec: "CS", name: "Part III: Computer Science", top: "Networking: Port Numbers",
-    q_en: "Which transport layer port number is assigned by default to Secure Shell (SSH) remote protocol?",
-    q_hi: "सिक्योर शेल (SSH) रिमोट प्रोटोकॉल को डिफ़ॉल्ट रूप से कौन-सा पोर्ट नंबर सौंपा गया है?",
+    q_en: "Default port number for Secure Shell (SSH) is:",
+    q_hi: "SSH का डिफ़ॉल्ट पोर्ट नंबर क्या है?",
     opts_en: ["21", "22", "23", "More than one of the above", "None of the above"],
     opts_hi: ["21", "22", "23", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "FTP = Port 21, SSH = Port 22, Telnet = Port 23.",
-    tip: "SSH uses Port 22."
+    a: 1, exp: "SSH operates on TCP port 22.", tip: "SSH uses Port 22."
   },
   {
     gId: 139, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Binary Counters",
-    q_en: "How many flip-flops are minimally required to construct a MOD-16 ripple counter?",
-    q_hi: "एक MOD-16 रिपल काउंटर बनाने के लिए न्यूनतम कितने फ्लिप-फ्लॉप की आवश्यकता होती है?",
+    q_en: "Minimum number of flip-flops needed for a MOD-16 counter:",
+    q_hi: "MOD-16 काउंटर के लिए न्यूनतम कितने फ्लिप-फ्लॉप चाहिए?",
     opts_en: ["4", "8", "16", "More than one of the above", "None of the above"],
     opts_hi: ["4", "8", "16", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Formula: 2^n >= MOD number. 2^n >= 16 => n = 4 flip-flops.",
-    tip: "2^4 = 16 -> 4 flip-flops."
+    a: 0, exp: "2^4 = 16 states requires 4 flip-flops.", tip: "2^4 = 16 -> 4 flip-flops."
   },
   {
     gId: 140, sec: "CS", name: "Part III: Computer Science", top: "DBMS: CHECK Constraint",
-    q_en: "Which SQL constraint ensures that all values in a column satisfy a specific Boolean condition (e.g., <code>Age &gt;= 18</code>)?",
-    q_hi: "कौन-सा SQL कंस्ट्रेंट यह सुनिश्चित करता है कि कॉलम के सभी मान एक विशिष्ट स्थिति को पूरा करते हैं (उदा. <code>Age &gt;= 18</code>)?",
+    q_en: "Which SQL constraint validates values against a Boolean expression?",
+    q_hi: "कौन-सा SQL कंस्ट्रेंट बूलियन शर्त के विरुद्ध मानों की पुष्टि करता है?",
     opts_en: ["UNIQUE", "CHECK", "DEFAULT", "More than one of the above", "None of the above"],
     opts_hi: ["UNIQUE", "CHECK (चेक)", "DEFAULT", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "CHECK constraint custom predicate validate karta hai aur false hone par insert/update reject kar deta hai.",
-    tip: "CHECK constraint validates domain values."
+    a: 1, exp: "CHECK constraints enforce domain-level criteria.", tip: "CHECK constraint validates domain values."
   },
   {
     gId: 141, sec: "CS", name: "Part III: Computer Science", top: "C++: Namespaces",
-    q_en: "What is the primary purpose of introducing 'namespaces' in C++?",
-    q_hi: "C++ में 'नेमस्पेस' (Namespaces) शुरू करने का प्राथमिक उद्देश्य क्या है?",
-    opts_en: ["To speed up runtime execution", "To prevent global name collisions and conflicts", "To manage dynamic heap memory", "More than one of the above", "None of the above"],
-    opts_hi: ["निष्पादन में तेजी लाना", "वैश्विक नाम टकराव और संघर्षों (Name collisions) को रोकना", "मेमोरी का प्रबंधन करना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Namespaces identical identifiers ko alag scopes me group karke name collisions se bachate hain (e.g., std::cout).",
-    tip: "Namespaces prevent naming conflicts in large codebases."
+    q_en: "Namespaces in C++ are primarily designed to:",
+    q_hi: "C++ में नेमस्पेस का प्राथमिक उद्देश्य क्या है?",
+    opts_en: ["Speed up execution", "Avoid global name collisions", "Handle memory", "More than one of the above", "None of the above"],
+    opts_hi: ["गति बढ़ाना", "नाम टकराव (Name collisions) को रोकना", "मेमोरी संभालना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Namespaces organize code into logical scopes preventing symbol conflicts.", tip: "Namespaces prevent naming conflicts in large codebases."
   },
   {
     gId: 142, sec: "CS", name: "Part III: Computer Science", top: "Python: Arguments",
-    q_en: "In Python function definitions, what does the <code>*args</code> syntax permit?",
-    q_hi: "पायथन फ़ंक्शन परिभाषाओं में <code>*args</code> सिंटैक्स क्या अनुमति देता है?",
-    opts_en: ["Passing a variable number of positional arguments as a tuple", "Passing keyword arguments as a dictionary", "Defining pointer variables", "More than one of the above", "None of the above"],
-    opts_hi: ["टपल के रूप में परिवर्तनीय संख्या में स्थितीय तर्क (Positional arguments) पास करना", "कीवर्ड तर्कों को पास करना", "पॉइंटर परिभाषित करना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "`*args` variable positional arguments ko pack karke tuple ke roop me function ko pass karta hai.",
-    tip: "*args = variable positional tuple; **kwargs = keyword dictionary."
+    q_en: "What does <code>*args</code> allow in Python function parameters?",
+    q_hi: "पायथन फ़ंक्शन में <code>*args</code> क्या अनुमति देता है?",
+    opts_en: ["Variable positional arguments as a tuple", "Keyword arguments as a dict", "Pointer arithmetic", "More than one of the above", "None of the above"],
+    opts_hi: ["टपल के रूप में स्थितीय तर्क (Positional args)", "डिक्शनरी तर्क", "पॉइंटर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "`*args` packs variable positional parameters into a tuple.", tip: "*args = variable positional tuple; **kwargs = keyword dictionary."
   },
   {
     gId: 143, sec: "CS", name: "Part III: Computer Science", top: "OS: Translation Lookaside Buffer",
-    q_en: "If TLB access time is 20 ns and main memory access time is 100 ns, what is the Effective Memory Access Time (EMAT) assuming a 90% TLB hit ratio without page faults?",
-    q_hi: "यदि टीएलबी एक्सेस समय 20 ns है और मुख्य मेमोरी एक्सेस समय 100 ns है, तो 90% टीएलबी हिट अनुपात मानते हुए प्रभावी मेमोरी एक्सेस समय (EMAT) क्या होगा?",
+    q_en: "If TLB time is 20 ns, memory time is 100 ns, and hit ratio is 90%, what is Effective Memory Access Time (EMAT)?",
+    q_hi: "यदि TLB समय 20 ns, मेमोरी समय 100 ns और हिट अनुपात 90% है, तो EMAT क्या होगा?",
     opts_en: ["110 ns", "120 ns", "130 ns", "More than one of the above", "None of the above"],
     opts_hi: ["110 ns", "120 ns", "130 ns", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 2,
-    exp: "EMAT = Hit_ratio * (TLB + Mem) + (1 - Hit_ratio) * (TLB + 2*Mem) = 0.90 * (20 + 100) + 0.10 * (20 + 200) = 0.90 * 120 + 0.10 * 220 = 108 + 22 = 130 ns.",
-    tip: "EMAT = 0.9(120) + 0.1(220) = 130 ns."
+    a: 2, exp: "EMAT = 0.90*(20+100) + 0.10*(20+200) = 108 + 22 = 130 ns.", tip: "EMAT = 0.9(120) + 0.1(220) = 130 ns."
   },
   {
     gId: 144, sec: "CS", name: "Part III: Computer Science", top: "DSA: Hash Function Properties",
-    q_en: "A good hash function for hash table implementation should primarily ensure:",
-    q_hi: "हैश टेबल कार्यान्वयन के लिए एक अच्छे हैश फ़ंक्शन को मुख्य रूप से क्या सुनिश्चित करना चाहिए?",
-    opts_en: ["Uniform distribution of keys across all buckets to minimize collisions", "Generating identical values for all keys", "Maximizing time complexity", "More than one of the above", "None of the above"],
-    opts_hi: ["टकराव को कम करने के लिए सभी बकेट में कुंजियों का एकसमान वितरण (Uniform Distribution)", "सभी कुंजियों के लिए समान मान", "समय जटिलता बढ़ाना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "A good hash function computes quickly and distributes keys uniformly across slots to minimize clustering and collisions.",
-    tip: "Uniform distribution minimizes collisions."
+    q_en: "A good hash function should primarily ensure:",
+    q_hi: "एक अच्छे हैश फ़ंक्शन को क्या सुनिश्चित करना चाहिए?",
+    opts_en: ["Uniform distribution of keys to minimize collisions", "Identical outputs", "High complexity", "More than one of the above", "None of the above"],
+    opts_hi: ["टकराव कम करने के लिए कुंजियों का एकसमान वितरण", "समान आउटपुट", "उच्च जटिलता", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "Uniformly distributed hash values prevent clustering.", tip: "Uniform distribution minimizes collisions."
   },
   {
     gId: 145, sec: "CS", name: "Part III: Computer Science", top: "Networking: NAT",
-    q_en: "Network Address Translation (NAT) is fundamentally utilized to:",
-    q_hi: "नेटवर्क एड्रेस ट्रांसलेशन (NAT) का उपयोग मुख्य रूप से किसके लिए किया जाता है?",
-    opts_en: ["Translate private IP addresses of a local network into public IP addresses", "Encrypt data at transport layer", "Convert domain names to IP addresses", "More than one of the above", "None of the above"],
-    opts_hi: ["स्थानीय नेटवर्क के निजी आईपी पतों को सार्वजनिक आईपी पतों में अनुवादित करना", "डेटा को एन्क्रिप्ट करना", "डोमेन नाम परिवर्तित करना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "NAT private non-routable IPs (e.g., 192.168.x.x) ko internet routable public IP me translate karta hai, jisse IPv4 addresses conserve hote hain.",
-    tip: "NAT maps Private IP to Public IP."
+    q_en: "Network Address Translation (NAT) primarily functions to:",
+    q_hi: "NAT का प्राथमिक कार्य क्या है?",
+    opts_en: ["Translate private IP addresses to public routable IP addresses", "Encrypt packet headers", "Assign domain names", "More than one of the above", "None of the above"],
+    opts_hi: ["निजी आईपी पतों को सार्वजनिक आईपी में अनुवादित करना", "एन्क्रिप्शन", "डोमेन नाम", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "NAT maps local private network addresses to public WAN addresses.", tip: "NAT maps Private IP to Public IP."
   },
   {
     gId: 146, sec: "CS", name: "Part III: Computer Science", top: "Digital Electronics: Boolean Idempotent",
-    q_en: "According to Boolean Algebra Idempotent Law, the expression <code>A + A</code> simplifies to:",
-    q_hi: "बूलियन बीजगणित के आइडम्पोटेंट नियम (Idempotent Law) के अनुसार, <code>A + A</code> किसके बराबर है?",
+    q_en: "Under Boolean Idempotent Law, <code>A + A</code> equals:",
+    q_hi: "बूलियन आइडम्पोटेंट नियम के तहत <code>A + A</code> किसके बराबर है?",
     opts_en: ["1", "A", "2A", "More than one of the above", "None of the above"],
     opts_hi: ["1", "A", "2A", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Idempotent laws state: A + A = A and A · A = A.",
-    tip: "A + A = A."
+    a: 1, exp: "A + A = A.", tip: "A + A = A."
   },
   {
     gId: 147, sec: "CS", name: "Part III: Computer Science", top: "C++: Virtual Destructor",
-    q_en: "Why should a base class destructor in C++ be declared as <code>virtual</code> when deleting derived class objects through a base pointer?",
-    q_hi: "बेस पॉइंटर के माध्यम से व्युत्पन्न ऑब्जेक्ट्स को हटाते समय C++ में बेस क्लास डिस्ट्रक्टर को <code>virtual</code> घोषित क्यों किया जाना चाहिए?",
-    opts_en: ["To ensure the derived class destructor is invoked properly, preventing memory leaks", "To prevent inheritance", "To make the class abstract", "More than one of the above", "None of the above"],
-    opts_hi: ["यह सुनिश्चित करने के लिए कि व्युत्पन्न क्लास का डिस्ट्रक्टर ठीक से निष्पादित हो और मेमोरी लीक न हो", "इनहेरिटेंस को रोकने के लिए", "क्लास को अमूर्त बनाने के लिए", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Agar base class destructor virtual na ho, toh derived class ka destructor call nahi hoga aur undefined behavior/memory leak hoga.",
-    tip: "Virtual destructor ensures complete cleanup of derived object."
+    q_en: "Why declare a base class destructor virtual in C++?",
+    q_hi: "C++ में बेस क्लास डिस्ट्रक्टर को वर्चुअल क्यों घोषित किया जाता है?",
+    opts_en: ["Ensure derived class destructor is invoked on deletion, avoiding memory leaks", "Prevent inheritance", "Create abstract class", "More than one of the above", "None of the above"],
+    opts_hi: ["व्युत्पन्न क्लास का डिस्ट्रक्टर कॉल होना सुनिश्चित करने और मेमोरी लीक रोकने के लिए", "इनहेरिटेंस रोकना", "एब्स्ट्रैक्ट बनाना", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "Virtual destructors ensure polymorphic destruction cleans up derived resources.", tip: "Virtual destructor ensures complete cleanup of derived object."
   },
   {
     gId: 148, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Cardinality vs Arity",
-    q_en: "In relational database terminology, the number of tuples (rows) in a relation is called its:",
-    q_hi: "रिलेशनल डेटाबेस शब्दावली में, किसी संबंध में टुपल्स (पंक्तियों) की संख्या को क्या कहा जाता है?",
-    opts_en: ["Degree (Arity)", "Cardinality", "Domain", "More than one of the above", "None of the above"],
+    q_en: "The total number of tuples in a relational table is called its:",
+    q_hi: "एक टेबल में टुपल्स (पंक्तियों) की कुल संख्या क्या कहलाती है?",
+    opts_en: ["Degree", "Cardinality", "Domain", "More than one of the above", "None of the above"],
     opts_hi: ["डिग्री (Degree)", "कार्डिनैलिटी (Cardinality)", "डोमेन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Rows count = Cardinality. Columns (attributes) count = Degree (Arity).",
-    tip: "Cardinality = Number of Rows; Degree = Number of Columns."
+    a: 1, exp: "Number of rows is Cardinality; number of columns is Degree.", tip: "Cardinality = Number of Rows; Degree = Number of Columns."
   },
   {
     gId: 149, sec: "CS", name: "Part III: Computer Science", top: "OS: Real Time Operating Systems",
-    q_en: "In a Hard Real-Time Operating System, missing a task deadline is considered a:",
-    q_hi: "हार्ड रियल-टाइम ऑपरेटिंग सिस्टम (Hard RTOS) में किसी कार्य की समय-सीमा (Deadline) चूकना क्या माना जाता है?",
+    q_en: "In a Hard Real-Time OS, missing a task deadline is considered a:",
+    q_hi: "हार्ड आरटीओएस में डेडलाइन चूकना क्या माना जाता है?",
     opts_en: ["Tolerable minor delay", "Catastrophic total system failure", "Performance optimization opportunity", "More than one of the above", "None of the above"],
-    opts_hi: ["सहनशील मामूली देरी", "विनाशकारी कुल सिस्टम विफलता (Catastrophic Failure)", "अनुकूलन अवसर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 1,
-    exp: "Hard RTOS me deadline guarantee zero-tolerance hoti hai (e.g., pacemaker, missile guidance); deadline miss hona catastrophic failure hai.",
-    tip: "Hard RTOS deadline miss = Catastrophic failure."
+    opts_hi: ["मामूली देरी", "विनाशकारी सिस्टम विफलता (Catastrophic Failure)", "अनुकूलन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 1, exp: "Missing deadlines in Hard RTOS can cause total failure of life-critical systems.", tip: "Hard RTOS deadline miss = Catastrophic failure."
   },
   {
     gId: 150, sec: "CS", name: "Part III: Computer Science", top: "Software Engg: Agile Scrum",
-    q_en: "In the Agile Scrum framework, what is the fixed-length timeboxed iteration (typically 2-4 weeks) during which a product increment is developed called?",
-    q_hi: "एजाइल स्क्रम (Agile Scrum) ढांचे में निश्चित समयबद्ध पुनरावृत्ति (2-4 सप्ताह) को क्या कहा जाता है जिसमें एक उत्पाद वेतन वृद्धि विकसित की जाती है?",
+    q_en: "In Agile Scrum, what is the fixed-length iteration (2-4 weeks) called?",
+    q_hi: "एजाइल स्क्रम में 2-4 सप्ताह के निश्चित पुनरावृत्ति चक्र को क्या कहा जाता है?",
     opts_en: ["Sprint", "Epic", "Milestone", "More than one of the above", "None of the above"],
-    opts_hi: ["स्प्रिंट (Sprint)", "एपिक", "मील का पत्थर", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
-    a: 0,
-    exp: "Scrum me 2 se 4 weeks ki timeboxed development cycle ko 'Sprint' kaha jata hai.",
-    tip: "Scrum iteration = Sprint."
+    opts_hi: ["स्प्रिंट (Sprint)", "एपिक", "माइलस्टोन", "उपर्युक्त में से एक से अधिक", "उपर्युक्त में से कोई नहीं"],
+    a: 0, exp: "Sprints are fixed timeboxed development cycles in Scrum.", tip: "Scrum iteration = Sprint."
   }
 ];
 
@@ -2281,7 +1851,7 @@ function buildAdvancedAnalytics(resState, mNet, mPen) {
     if (it.wr > 0) {
       const lost = it.wr * (1/3);
       leaks.push({ topic: k, wrong: it.wr, lost: lost });
-      if (ac < 60) badge = "<span style='color:#f87171; font-weight:700;'>⚠️ Negative Trap</span>";
+      if (ac < 60) badge = "<span style='color:#f87171; font-weight:700;'>⚠️️ Negative Trap</span>";
       else badge = "<span style='color:#fbbf24; font-weight:700;'>🟡 Moderate</span>";
     }
 
@@ -2553,7 +2123,7 @@ function startReattempt() {
   if (confirm("Start fresh reattempt? Aapka pichla score safe rahega.")) {
     examState = null;
     document.getElementById("resultSummaryView").style.display = "none";
-    document.getElementById("modalHeading").innerText = "🚀 BPSC TRE 2.0 CS Official Paper (Mock 2)";
+    document.getElementById("modalHeading").innerText = "🚀 BPSC TRE Computer Science - Full Mock Test 2";
     document.getElementById("modalRulesList").innerHTML = `
       <li><strong>Part I: Language:</strong> Q1 to Q30 (Qualifying min 9 marks).</li>
       <li><strong>Part II & III: GS & CS:</strong> Q31 to Q150 (120 Merit Pool).</li>
