@@ -16,15 +16,12 @@
     --text-primary: #0f172a;
     --text-secondary: #64748b;
     --text-accent: #2563eb;
-
     --cbt-green: #10b981;
     --cbt-green-light: #ecfdf5;
     --cbt-green-border: #059669;
-
     --cbt-red: #ef4444;
     --cbt-red-light: #fef2f2;
     --cbt-red-border: #dc2626;
-
     --cbt-amber: #f59e0b;
     --cbt-amber-light: #fffbeb;
     --cbt-purple: #8b5cf6;
@@ -34,80 +31,36 @@
     --cbt-blue: #3b82f6;
     --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
   }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  body { background-color: var(--bg-page); color: var(--text-primary); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
 
-  * { 
-    box-sizing: border-box; margin: 0; padding: 0; 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    -webkit-user-select: none; user-select: none;
+  /* Mandatory Fullscreen Lock Overlay */
+  #fullscreenLockOverlay {
+    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95);
+    z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px;
   }
-  body { 
-    background-color: var(--bg-page); color: var(--text-primary); 
-    height: 100vh; display: flex; flex-direction: column; overflow: hidden; 
+  .fs-card {
+    background: var(--panel-bg); border: 2px solid var(--cbt-blue); border-radius: 14px;
+    max-width: 500px; width: 100%; padding: 32px 24px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  }
+  .fs-title { font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
+  .fs-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px; }
+  .btn-fs {
+    background: var(--cbt-blue); color: white; width: 100%; padding: 12px;
+    font-size: 15px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
   }
 
-  /* HARDWARE BLACKOUT SHIELD */
-  #antiCaptureShield {
-    position: fixed; inset: 0; background: #000000;
-    z-index: 999999; display: none; align-items: center; justify-content: center;
-    color: #ffffff; text-align: center; padding: 24px;
-  }
-  .warning-card {
-    background: #0f172a; border: 2px solid #ef4444; border-radius: 12px;
-    padding: 32px; max-width: 480px; width: 100%; box-shadow: 0 0 35px rgba(239, 68, 68, 0.6);
-  }
-  .strike-box { display: flex; justify-content: center; gap: 12px; margin: 18px 0; }
-  .strike-dot { width: 18px; height: 18px; border-radius: 50%; background: #334155; border: 2px solid #64748b; }
-  .strike-dot.active { background: #ef4444; border-color: #f87171; box-shadow: 0 0 12px #ef4444; }
-
-  /* PASSCODE GATEWAY */
-  #passcodeOverlay {
-    position: fixed; inset: 0; background: rgba(15, 23, 42, 0.96); z-index: 3000;
-    display: flex; align-items: center; justify-content: center; padding: 20px;
-    backdrop-filter: blur(10px);
-  }
-  .passcode-card {
-    background: var(--panel-bg); border: 1.5px solid var(--border-darker); border-radius: 16px;
-    max-width: 420px; width: 100%; padding: 34px 28px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
-    text-align: center;
-  }
-  .passcode-title { font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
-  .passcode-sub { font-size: 13px; color: var(--text-secondary); margin-bottom: 22px; }
-  .passcode-input {
-    width: 100%; padding: 13px 16px; font-size: 16px; font-weight: 700; border-radius: 8px;
-    border: 2px solid var(--border-darker); text-align: center; letter-spacing: 2px;
-    margin-bottom: 14px; outline: none; transition: 0.2s;
-  }
-  .passcode-input:focus { border-color: var(--text-accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
-  .passcode-btn {
-    width: 100%; padding: 13px; background: var(--text-accent); color: white; border: none;
-    border-radius: 8px; font-size: 15px; font-weight: 700; cursor: pointer; transition: 0.2s;
-  }
-  .passcode-btn:hover { background: #1d4ed8; }
-  .passcode-err { font-size: 12px; color: var(--cbt-red); margin-top: 10px; display: none; font-weight: 600; }
-
-  /* Instruction / Pause Modal */
-  #instructionModal {
-    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); z-index: 2000;
-    display: none; align-items: center; justify-content: center; padding: 20px;
-    backdrop-filter: blur(5px);
-  }
-  .modal-card {
-    background: var(--panel-bg); border: 1px solid var(--border-darker); border-radius: 14px;
-    max-width: 640px; width: 100%; padding: 30px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
-  }
-  .modal-title { font-size: 21px; font-weight: 800; color: var(--text-accent); margin-bottom: 12px; }
+  /* Instruction / Start / Pause Modal */
+  #instructionModal { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .modal-card { background: var(--panel-bg); border: 1px solid var(--border-darker); border-radius: 14px; max-width: 620px; width: 100%; padding: 30px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+  .modal-title { font-size: 20px; font-weight: 800; color: var(--text-accent); margin-bottom: 12px; }
   .modal-rules { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
   .modal-rules li { margin-left: 20px; margin-bottom: 8px; }
-  .btn-start {
-    background: var(--cbt-green); color: white; width: 100%; padding: 14px; font-size: 16px;
-    font-weight: 700; border: none; border-radius: 8px; cursor: pointer;
-  }
+  .btn-start { background: var(--cbt-green); color: white; width: 100%; padding: 14px; font-size: 16px; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+  .btn-start:hover { opacity: 0.9; }
 
-  /* CBT Top Bar */
-  .cbt-header {
-    background: var(--panel-bg); border-bottom: 1.5px solid var(--border-color);
-    padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
-  }
+  /* Top Bar */
+  .cbt-header { background: var(--panel-bg); border-bottom: 1.5px solid var(--border-color); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
   .exam-title { font-size: 15px; font-weight: 700; color: var(--text-accent); display: flex; align-items: center; gap: 10px; }
   .exam-tag { background: var(--cbt-blue); color: #ffffff; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
   .candidate-info { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--text-secondary); }
@@ -118,82 +71,43 @@
   /* Workspace */
   .cbt-container { display: flex; flex: 1; height: calc(100vh - 54px); overflow: hidden; }
   .exam-area { flex: 1; display: flex; flex-direction: column; border-right: 1.5px solid var(--border-color); overflow: hidden; background: var(--bg-page); }
-
-  .section-nav-bar {
-    background: var(--panel-bg); border-bottom: 1px solid var(--border-color);
-    padding: 8px 24px; display: flex; gap: 10px; align-items: center;
-  }
-  .sec-btn {
-    background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary);
-    padding: 7px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
-  }
+  .section-nav-bar { background: var(--panel-bg); border-bottom: 1px solid var(--border-color); padding: 8px 24px; display: flex; gap: 10px; align-items: center; }
+  .sec-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 7px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
   .sec-btn.active { background: var(--cbt-blue); border-color: var(--cbt-blue); color: #ffffff; }
-
-  .q-meta-bar {
-    background: var(--panel-bg); padding: 10px 24px; border-bottom: 1px solid var(--border-color);
-    display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600;
-  }
+  .q-meta-bar { background: var(--panel-bg); padding: 10px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; }
   .marking-scheme { font-size: 12.5px; color: var(--cbt-red); font-weight: 700; }
-
   .q-body-area { flex: 1; padding: 26px 30px; overflow-y: auto; }
   .q-text { font-size: 16.5px; line-height: 1.6; margin-bottom: 24px; color: var(--text-primary); font-weight: 500; }
-
   .options-list { display: flex; flex-direction: column; gap: 12px; }
-  .option-label {
-    display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border-color);
-    border-radius: 8px; padding: 14px 18px; cursor: pointer; font-size: 14.5px; color: var(--text-primary);
-  }
+  .option-label { display: flex; align-items: center; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 14px 18px; cursor: pointer; font-size: 14.5px; color: var(--text-primary); transition: 0.15s; }
   .option-label:hover { background: var(--subtle-bg); }
   .option-label input[type="radio"] { margin-right: 14px; width: 18px; height: 18px; accent-color: var(--cbt-blue); }
   .option-label.selected { border-color: var(--cbt-blue); background: var(--cbt-green-light); font-weight: 600; }
-
-  .q-bottom-actions {
-    background: var(--panel-bg); border-top: 1px solid var(--border-color);
-    padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
-  }
-
+  .q-bottom-actions { background: var(--panel-bg); border-top: 1px solid var(--border-color); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
   .palette-area { width: 340px; background: var(--panel-bg); display: flex; flex-direction: column; flex-shrink: 0; }
   .timer-box { background: var(--card-bg); padding: 12px 16px; text-align: center; border-bottom: 1px solid var(--border-color); }
   .timer-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-  .btn-pause {
-    background: var(--panel-bg); border: 1px solid var(--border-darker); color: #d97706;
-    padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer;
-  }
+  .btn-pause { background: var(--panel-bg); border: 1px solid var(--border-darker); color: #d97706; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer; }
   .timer-clock { font-size: 26px; font-family: monospace; font-weight: 800; color: var(--text-accent); }
   .timer-clock.danger { color: var(--cbt-red); animation: blink 1s infinite; }
   @keyframes blink { 50% { opacity: 0.4; } }
-
-  .legend-box {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 14px;
-    border-bottom: 1px solid var(--border-color); font-size: 11px; color: var(--text-secondary);
-  }
+  .legend-box { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--border-color); font-size: 11px; color: var(--text-secondary); }
   .legend-item { display: flex; align-items: center; gap: 8px; }
   .badge { width: 20px; height: 20px; border-radius: 4px; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 10px; color: #fff; }
   .b-answered { background: var(--cbt-green); }
   .b-not-answered { background: var(--cbt-red); }
   .b-not-visited { background: var(--cbt-gray); }
   .b-review { background: var(--cbt-purple); }
-
   .palette-scroll-container { flex: 1; padding: 14px; overflow-y: auto; background: var(--card-bg); }
   .palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
-  .pal-btn {
-    height: 38px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--cbt-gray);
-    color: white; font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.1s;
-  }
+  .pal-btn { height: 38px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--cbt-gray); color: white; font-weight: 700; font-size: 13px; cursor: pointer; transition: 0.1s; }
   .pal-btn.current { outline: 2.5px solid var(--text-accent); outline-offset: 1px; }
   .pal-btn.ans { background: var(--cbt-green); }
   .pal-btn.not-ans { background: var(--cbt-red); }
   .pal-btn.rev { background: var(--cbt-purple); }
-
-  .palette-bottom-actions {
-    background: var(--panel-bg); border-top: 1px solid var(--border-color);
-    padding: 14px; display: flex; flex-direction: column; gap: 10px; flex-shrink: 0;
-  }
+  .palette-bottom-actions { background: var(--panel-bg); border-top: 1px solid var(--border-color); padding: 14px; display: flex; flex-direction: column; gap: 10px; flex-shrink: 0; }
   .nav-btn-row { display: flex; gap: 8px; }
-
-  .cbt-btn {
-    padding: 10px 18px; border-radius: 6px; border: none; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: 0.15s ease;
-  }
+  .cbt-btn { padding: 10px 18px; border-radius: 6px; border: none; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: 0.15s ease; }
   .btn-save-next { background: var(--cbt-green); color: white; }
   .btn-mark-review { background: var(--cbt-purple); color: white; }
   .btn-clear { background: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border-darker); }
@@ -201,106 +115,79 @@
   .btn-nav:disabled { opacity: 0.35; cursor: not-allowed; }
   .btn-submit-test { background: var(--cbt-red); color: white; width: 100%; padding: 11px; font-size: 14px; font-weight: 700; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
 
-  /* PW STYLE RESULT SUMMARY VIEW */
+  /* PW Style Result View */
   #resultSummaryView { display: none; flex: 1; overflow-y: auto; background: var(--bg-page); padding: 24px; }
   .summary-wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
-  .pw-header-card {
-    background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px;
-    padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: var(--shadow-soft);
-  }
+  .pw-header-card { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; box-shadow: var(--shadow-soft); }
   .pw-test-name { font-size: 19px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
   .pw-test-meta { font-size: 13px; color: var(--text-secondary); display: flex; gap: 14px; flex-wrap: wrap; }
   .pw-btn-row { display: flex; gap: 10px; align-items: center; }
   .btn-pw-reattempt { background: var(--card-bg); border: 1.5px solid var(--border-darker); padding: 10px 18px; border-radius: 6px; font-weight: 600; color: var(--text-primary); cursor: pointer; }
   .btn-pw-viewsol { background: #4f46e5; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 700; cursor: pointer; }
-  
-  .attempt-select {
-    padding: 8px 12px; border-radius: 6px; border: 1.5px solid var(--border-darker); background: var(--card-bg); color: var(--text-primary); font-size: 13.5px; font-weight: 700; cursor: pointer;
-  }
-
-  .pw-score-banner {
-    background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px;
-    display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 16px; box-shadow: var(--shadow-soft);
-  }
+  .attempt-select { padding: 8px 12px; border-radius: 6px; border: 1.5px solid var(--border-darker); background: var(--card-bg); color: var(--text-primary); font-size: 13.5px; font-weight: 700; cursor: pointer; }
+  .pw-score-banner { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 16px; box-shadow: var(--shadow-soft); }
   .score-col { border-right: 1px solid var(--border-color); padding-right: 16px; }
   .score-col:last-child { border-right: none; }
   .pw-score-label { font-size: 11.5px; color: var(--text-secondary); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
   .pw-score-val { font-size: 34px; font-weight: 900; color: var(--text-primary); margin-top: 4px; }
   .pw-score-val span { font-size: 18px; font-weight: 500; color: var(--text-secondary); }
-
   .pw-section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-top: 10px; display: flex; justify-content: space-between; align-items: center; }
-
   .pw-progress-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .pw-stat-card { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 18px 20px; box-shadow: var(--shadow-soft); }
   .pw-stat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
   .pw-stat-title { font-size: 13.5px; color: var(--text-secondary); font-weight: 600; }
   .pw-stat-val { font-size: 16px; font-weight: 700; color: var(--text-primary); }
   .pw-stat-sub { font-size: 12px; color: var(--text-secondary); }
-
   .pw-table-card { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; overflow-x: auto; box-shadow: var(--shadow-soft); }
   .pw-table { width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left; }
   .pw-table th { padding: 12px 16px; color: var(--text-secondary); font-weight: 600; border-bottom: 1.5px solid var(--border-color); }
   .pw-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
-
-  .diagnostic-banner {
-    background: var(--cbt-amber-light); border: 1px solid var(--cbt-amber); border-radius: 10px;
-    padding: 16px 20px; display: flex; align-items: center; gap: 16px; font-size: 13.5px; color: var(--text-primary);
-  }
-
+  .diagnostic-banner { background: var(--cbt-amber-light); border: 1px solid var(--cbt-amber); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 16px; font-size: 13.5px; color: var(--text-primary); }
   .pw-details-btn-wrap { display: flex; justify-content: center; margin: 15px 0 10px 0; }
   .btn-pw-detailed { background: #4f46e5; color: white; border: none; padding: 13px 32px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 14.5px; box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35); }
 
-  /* DETAILED ANALYSIS VIEW */
+  /* Detailed Analysis View */
   #detailedAnalysisView { display: none; flex: 1; overflow-y: auto; background: var(--bg-page); padding: 24px; }
   .analysis-wrap { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
   .analysis-top-nav { display: flex; justify-content: space-between; align-items: center; }
   .btn-back-link { background: none; border: none; font-size: 15px; font-weight: 700; color: var(--text-secondary); cursor: pointer; }
-
   .analysis-tabs-card { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 0 20px; display: flex; gap: 30px; border-bottom: 2px solid var(--border-color); }
   .analysis-tab-btn { padding: 16px 0; font-size: 14.5px; font-weight: 700; color: var(--text-secondary); background: none; border: none; cursor: pointer; position: relative; }
   .analysis-tab-btn.active { color: var(--text-accent); }
   .analysis-tab-btn.active::after { content: ""; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: var(--text-accent); }
-
   .analysis-card { background: var(--panel-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: var(--shadow-soft); }
   .analysis-heading { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
-
   .chart-box { width: 100%; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px 10px; margin-bottom: 24px; }
   .chart-legend { display: flex; gap: 20px; justify-content: center; font-size: 12px; color: var(--text-secondary); margin-top: 14px; }
   .chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
   .dot-cor { width: 12px; height: 12px; background: #22c55e; border-radius: 2px; }
   .dot-inc { width: 12px; height: 12px; background: #f87171; border-radius: 2px; }
   .dot-acc { width: 18px; height: 2px; background: #3b82f6; }
-
   .topic-badge { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
   .topic-badge.strong { background: var(--cbt-green-light); color: var(--cbt-green); border: 1px solid var(--cbt-green-border); }
   .topic-badge.moderate { background: var(--cbt-amber-light); color: #d97706; border: 1px solid #d97706; }
   .topic-badge.weak { background: var(--cbt-red-light); color: var(--cbt-red); border: 1px solid var(--cbt-red-border); }
-
   .pace-tag { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; display: inline-block; }
   .pace-fast { background: var(--cbt-green-light); color: var(--cbt-green); }
   .pace-optimum { background: var(--cbt-purple-light); color: var(--cbt-purple); }
   .pace-slow { background: var(--cbt-red-light); color: var(--cbt-red); }
 
-  /* CBT SOLUTION INTERFACE */
+  /* CBT Solution Interface */
   #solutionInterface { display: none; flex: 1; height: calc(100vh - 54px); overflow: hidden; }
   .sol-top-filters { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: var(--panel-bg); border-bottom: 1px solid var(--border-color); }
   .sol-filter-tabs { display: flex; gap: 8px; }
   .sol-tab { padding: 5px 12px; font-size: 12px; font-weight: 600; border-radius: 4px; border: 1px solid var(--border-color); background: var(--card-bg); cursor: pointer; color: var(--text-secondary); }
   .sol-tab.active { background: var(--cbt-blue); color: white; border-color: var(--cbt-blue); }
-
   .sol-meta-tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; }
   .sol-meta-tag.correct { background: var(--cbt-green-light); color: var(--cbt-green); border: 1px solid var(--cbt-green-border); }
   .sol-meta-tag.incorrect { background: var(--cbt-red-light); color: var(--cbt-red); border: 1px solid var(--cbt-red-border); }
   .sol-meta-tag.skipped { background: var(--cbt-gray-light); color: var(--cbt-gray); border: 1px solid var(--border-darker); }
-
   .sol-opt-row { display: flex; align-items: center; padding: 14px 18px; border-radius: 8px; border: 1.5px solid var(--border-color); margin-bottom: 12px; background: var(--card-bg); font-size: 14.5px; }
   .sol-opt-row.is-correct { border-color: var(--cbt-green); background: var(--cbt-green-light); font-weight: 600; }
   .sol-opt-row.is-user-wrong { border-color: var(--cbt-red); background: var(--cbt-red-light); font-weight: 600; }
-
   .explanation-card { background: var(--subtle-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px 24px; margin-top: 24px; line-height: 1.6; font-size: 14px; }
   .explanation-title { font-size: 15px; font-weight: 700; color: var(--text-accent); margin-bottom: 10px; }
   .pro-tip-box { margin-top: 14px; background: var(--cbt-amber-light); border-left: 4px solid var(--cbt-amber); padding: 10px 14px; border-radius: 4px; font-size: 13px; color: var(--text-primary); }
-
   .sol-pal-btn { height: 38px; border-radius: 6px; border: 1px solid var(--border-color); background: var(--cbt-gray-light); color: var(--text-primary); font-weight: 700; font-size: 13px; cursor: pointer; position: relative; }
   .sol-pal-btn.current { outline: 2.5px solid var(--cbt-blue); }
   .sol-pal-btn.is-correct { border: 1.5px solid var(--cbt-green); background: var(--cbt-green-light); color: var(--cbt-green); }
@@ -310,65 +197,37 @@
   .sol-pal-btn.is-skipped { border: 1px solid var(--border-darker); color: var(--text-secondary); }
 </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
 
-<!-- HARDWARE BLACKOUT SHIELD -->
-<div id="antiCaptureShield">
-  <div class="warning-card">
-    <div style="font-size: 40px; margin-bottom: 8px;">⚠️</div>
-    <h2 style="font-size:20px; color:#f87171; margin-bottom:8px;">SECURITY LOCK ACTIVATED</h2>
-    <p style="font-size:13.5px; color:#cbd5e1; line-height:1.5;">
-      Window focus loss / Screen Capture attempt detect hua hai. Display ko blackout kar diya gaya hai.
-    </p>
-
-    <div class="strike-box">
-      <div class="strike-dot" id="sDot1"></div>
-      <div class="strike-dot" id="sDot2"></div>
-      <div class="strike-dot" id="sDot3"></div>
-    </div>
-
-    <div style="font-size:12.5px; color:#fca5a5; margin-bottom:18px;">
-      Warning <span id="warningCounter">1</span> of 3: 3rd strike par exam <strong>auto-submit</strong> ho jayega.
-    </div>
-
-    <button class="cbt-btn btn-save-next" style="width:100%;" onclick="resumeFromWarning()">
-      Return to Exam
-    </button>
+<!-- MANDATORY FULLSCREEN LOCK OVERLAY -->
+<div id="fullscreenLockOverlay">
+  <div class="fs-card">
+    <div style="font-size: 40px; margin-bottom: 12px;">⛶</div>
+    <div class="fs-title">Fullscreen Mode Required</div>
+    <div class="fs-desc">Official BPSC CBT assessment strictly fullscreen mode me chalti hai. Test window ko wapas resume karne ke liye button par click karein.</div>
+    <button class="btn-fs" onclick="forceReenterFullscreen()">Return to Fullscreen</button>
   </div>
 </div>
 
-<!-- PASSCODE GATEWAY -->
-<div id="passcodeOverlay">
-  <div class="passcode-card">
-    <div style="font-size: 38px; margin-bottom: 12px;">🔐</div>
-    <div class="passcode-title">Authorized Exam Access</div>
-    <div class="passcode-sub">Mock Test unlock karne ke liye secret security passcode enter karein.</div>
-    <input type="password" id="passcodeInput" class="passcode-input" placeholder="••••••••">
-    <button class="passcode-btn" onclick="validatePasscode()">Unlock Portal</button>
-    <div class="passcode-err" id="passcodeErr">Galat Passcode! Dobara koshish karein.</div>
-  </div>
-</div>
-
-<!-- INSTRUCTION / PAUSE MODAL -->
+<!-- INSTRUCTION / START / PAUSE MODAL -->
 <div id="instructionModal">
   <div class="modal-card">
     <div class="modal-title" id="modalHeading">🚀 BPSC TRE Computer Science Simulation</div>
     <ul class="modal-rules" id="modalRulesList">
-      <li><strong>Part I: Language (Qualifying):</strong> Questions 1 se 30 (Qualifying Pool: Minimum 30% / 9 marks anivarya).</li>
+      <li><strong>Part I: Language (Qualifying):</strong> Questions 1 se 30 (Min 30% / 9 marks qualifying anivarya).</li>
       <li><strong>Part II: General Studies:</strong> Questions 31 se 70 (40 Marks - Counted in Merit).</li>
       <li><strong>Part III: Computer Science:</strong> Questions 71 se 150 (80 Marks - Counted in Merit).</li>
-      <li><strong>Strict Negative Marking:</strong> Har galat answer par <strong>-0.333 Marks (1/3rd)</strong> deduct honge. Correct answer par <strong>+1.0 Mark</strong>.</li>
-      <li><strong>Merit Calculation:</strong> Final Merit & Projected Rank strictly <strong>120 Marks (GS 40 + CS 80)</strong> par banegi. Language ke marks merit me shamil nahi honge.</li>
-      <li><strong>Security Rule:</strong> Screen capture shortcut ya screen se bahar click karne par 3 warning ke baad <strong>auto-submit</strong> hoga.</li>
+      <li><strong>Strict Negative Marking:</strong> Har galat answer par <strong>-0.333 Marks (1/3rd)</strong> deduct honge. Correct par <strong>+1.0 Mark</strong>.</li>
+      <li><strong>Merit Calculation:</strong> Final Merit & Projected Rank strictly <strong>120 Marks (GS 40 + CS 80)</strong> par banegi.</li>
     </ul>
-    <button class="btn-start" id="modalActionButton" onclick="resumeOrStartExam()">Start Exam (Lock Screen)</button>
+    <button class="btn-start" id="modalActionButton" onclick="resumeOrStartExam()">Start Exam (Enter Fullscreen)</button>
   </div>
 </div>
 
 <!-- TOP BAR -->
 <div class="cbt-header" id="topHeaderBar">
   <div class="exam-title">
-    BPSC TRE Computer Science CBT
+    BPSC TRE Computer Science CBT (Mock 3)
     <span class="exam-tag">150 Questions | 120 Merit Pool</span>
   </div>
   <div class="candidate-info">
@@ -386,7 +245,6 @@
       <button class="sec-btn" id="secBtn_GS" onclick="switchSection('GS')">Part II: General Studies (31-70)</button>
       <button class="sec-btn" id="secBtn_CS" onclick="switchSection('CS')">Part III: Computer Science (71-150)</button>
     </div>
-
     <div class="q-meta-bar">
       <div>
         <span id="currentSecBadge" style="background:#0284c7; color:#ffffff; padding:2px 8px; border-radius:4px; font-size:12px; margin-right:8px;">Part I</span>
@@ -394,24 +252,18 @@
       </div>
       <span class="marking-scheme">Marks: +1.0 | Negative: -0.333 (1/3rd Penalty)</span>
     </div>
-
     <div class="q-body-area">
       <div class="q-text" id="qStatement">Loading question...</div>
       <div class="options-list" id="optionsContainer"></div>
     </div>
-
-    <!-- BOTTOM ACTIONS BAR -->
     <div class="q-bottom-actions">
-      <div>
-        <button class="cbt-btn btn-clear" onclick="actionClearResponse()">Clear Response</button>
-      </div>
+      <div><button class="cbt-btn btn-clear" onclick="actionClearResponse()">Clear Response</button></div>
       <div style="display: flex; gap: 10px;">
         <button class="cbt-btn btn-mark-review" onclick="actionMarkForReview()">Save & Mark for Review</button>
         <button class="cbt-btn btn-save-next" onclick="actionSaveAndNext()">Save & Next</button>
       </div>
     </div>
   </div>
-
   <div class="palette-area">
     <div class="timer-box">
       <div class="timer-box-header">
@@ -420,20 +272,16 @@
       </div>
       <div class="timer-clock" id="timerClock">150:00</div>
     </div>
-
     <div class="legend-box">
       <div class="legend-item"><span class="badge b-answered">✔</span> Answered</div>
       <div class="legend-item"><span class="badge b-not-answered">✕</span> Not Answered</div>
       <div class="legend-item"><span class="badge b-not-visited">0</span> Not Visited</div>
       <div class="legend-item"><span class="badge b-review">★</span> Marked Review</div>
     </div>
-
     <div class="palette-scroll-container">
       <div style="font-size: 12px; color: var(--text-secondary); font-weight: 600; margin-bottom: 10px;" id="paletteHeading">QUESTION PALETTE</div>
       <div class="palette-grid" id="paletteGrid"></div>
     </div>
-
-    <!-- PALETTE ACTIONS BAR -->
     <div class="palette-bottom-actions">
       <div class="nav-btn-row">
         <button class="cbt-btn btn-nav" id="prevBtn" onclick="navigate(-1)">&larr; Previous</button>
@@ -449,7 +297,7 @@
   <div class="summary-wrap">
     <div class="pw-header-card">
       <div>
-        <div class="pw-test-name">BPSC TRE Computer Science (Part I, II & III)</div>
+        <div class="pw-test-name">BPSC TRE Computer Science (Mock 3)</div>
         <div class="pw-test-meta">
           <span>📝 <strong>150 Qs</strong> (30 Lang + 40 GS + 80 CS)</span>
           <span>🎯 Merit Pool: <strong>120 Marks</strong></span>
@@ -464,15 +312,10 @@
         <button class="btn-pw-viewsol" onclick="openSolutionInterface()">View Solutions</button>
       </div>
     </div>
-
-    <!-- High Competition Diagnostic Banner -->
     <div class="diagnostic-banner" id="diagnosticBox">
       <div style="font-size: 26px;">💡</div>
-      <div>
-        <strong>Competition & Negative Penalty Insight:</strong> <span id="diagText">Calculating competition calibration...</span>
-      </div>
+      <div><strong>Competition & Penalty Analysis:</strong> <span id="diagText">Calculating...</span></div>
     </div>
-
     <div class="pw-section-title">Merit & Qualifying Summary</div>
     <div class="pw-score-banner">
       <div class="score-col">
@@ -496,73 +339,42 @@
         <div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;">Based on 120 Marks merit pool</div>
       </div>
     </div>
-
     <div class="pw-section-title">Overall Performance & Accuracy (Across All 150 Qs)</div>
     <div class="pw-progress-grid">
       <div class="pw-stat-card">
-        <div class="pw-stat-top">
-          <span class="pw-stat-title">✔ Correct</span>
-          <span class="pw-stat-val" id="statCorrect">0/0</span>
-        </div>
+        <div class="pw-stat-top"><span class="pw-stat-title">✔ Correct</span><span class="pw-stat-val" id="statCorrect">0/0</span></div>
         <div class="pw-stat-sub">Marks Gained: <strong id="statMarksGain" style="color: var(--cbt-green);">+0</strong></div>
       </div>
       <div class="pw-stat-card">
-        <div class="pw-stat-top">
-          <span class="pw-stat-title">✕ Incorrect</span>
-          <span class="pw-stat-val" id="statIncorrect">0/0</span>
-        </div>
+        <div class="pw-stat-top"><span class="pw-stat-title">✕ Incorrect</span><span class="pw-stat-val" id="statIncorrect">0/0</span></div>
         <div class="pw-stat-sub">Penalty Lost (-1/3): <strong id="statMarksLost" style="color: var(--cbt-red);">-0.00</strong></div>
       </div>
       <div class="pw-stat-card">
-        <div class="pw-stat-top">
-          <span class="pw-stat-title">⏭ Skipped</span>
-          <span class="pw-stat-val" id="statSkipped">0/0</span>
-        </div>
+        <div class="pw-stat-top"><span class="pw-stat-title">⏭ Skipped</span><span class="pw-stat-val" id="statSkipped">0/0</span></div>
         <div class="pw-stat-sub">Safe Marks Protected: <strong>0</strong></div>
       </div>
       <div class="pw-stat-card">
-        <div class="pw-stat-top">
-          <span class="pw-stat-title">🎯 Accuracy</span>
-          <span class="pw-stat-val" id="statAccuracy">0%</span>
-        </div>
+        <div class="pw-stat-top"><span class="pw-stat-title">🎯 Accuracy</span><span class="pw-stat-val" id="statAccuracy">0%</span></div>
         <div class="pw-stat-sub">Precision Rate</div>
       </div>
       <div class="pw-stat-card">
-        <div class="pw-stat-top">
-          <span class="pw-stat-title">📊 Completed</span>
-          <span class="pw-stat-val" id="statCompleted">0%</span>
-        </div>
+        <div class="pw-stat-top"><span class="pw-stat-title">📊 Completed</span><span class="pw-stat-val" id="statCompleted">0%</span></div>
         <div class="pw-stat-sub">Coverage of Exam</div>
       </div>
       <div class="pw-stat-card">
-        <div class="pw-stat-top">
-          <span class="pw-stat-title">⏱ Time Taken</span>
-          <span class="pw-stat-val" id="statTimeTaken">00:00</span>
-        </div>
+        <div class="pw-stat-top"><span class="pw-stat-title">⏱ Time Taken</span><span class="pw-stat-val" id="statTimeTaken">00:00</span></div>
         <div class="pw-stat-sub">Total Duration</div>
       </div>
     </div>
-
     <div class="pw-section-title">Official Section-Wise Breakdown (With 1/3 Negative Marking)</div>
     <div class="pw-table-card">
       <table class="pw-table">
         <thead>
-          <tr>
-            <th>Section</th>
-            <th>Question Range</th>
-            <th>Evaluation Type</th>
-            <th>Total Qs</th>
-            <th>Correct</th>
-            <th>Incorrect</th>
-            <th>Negative Penalty</th>
-            <th>Net Score</th>
-            <th>Status</th>
-          </tr>
+          <tr><th>Section</th><th>Question Range</th><th>Evaluation Type</th><th>Total Qs</th><th>Correct</th><th>Incorrect</th><th>Negative Penalty</th><th>Net Score</th><th>Status</th></tr>
         </thead>
         <tbody id="sectionPerformanceTable"></tbody>
       </table>
     </div>
-
     <div class="pw-details-btn-wrap">
       <button class="btn-pw-detailed" onclick="openDetailedAnalysis()">Detailed Analysis &rarr;</button>
     </div>
@@ -573,15 +385,13 @@
 <div id="detailedAnalysisView">
   <div class="analysis-wrap">
     <div class="analysis-top-nav">
-      <button class="btn-back-link" onclick="backToResultSummaryFromAnalysis()">&larr; Back to Result</button>
+      <button class="btn-back-link" onclick="backToResultSummary()">&larr; Back to Result</button>
       <button class="btn-pw-viewsol" onclick="openSolutionInterface()">View Solutions</button>
     </div>
-
     <div class="analysis-tabs-card">
       <button class="analysis-tab-btn active" id="tabTimeAnalysis" onclick="switchAnalysisTab('time')">Time Analysis</button>
-      <button class="analysis-tab-btn" id="tabTopicAnalysis" onclick="switchAnalysisTab('topic')">Chapter-Topic Analysis (Strengths & Weaknesses)</button>
+      <button class="analysis-tab-btn" id="tabTopicAnalysis" onclick="switchAnalysisTab('topic')">Chapter-Topic Analysis</button>
     </div>
-
     <div id="timeAnalysisContainer">
       <div class="analysis-card">
         <div class="analysis-heading">Interval Wise Questions Attempted & Accuracy</div>
@@ -593,41 +403,20 @@
             <span><i class="dot-acc"></i> Accuracy (%)</span>
           </div>
         </div>
-
         <table class="pw-table">
           <thead>
-            <tr>
-              <th>Time Interval</th>
-              <th>Attempted</th>
-              <th>Correct</th>
-              <th>Incorrect</th>
-              <th>Accuracy</th>
-              <th>Net Marks Scored</th>
-            </tr>
+            <tr><th>Time Interval</th><th>Attempted</th><th>Correct</th><th>Incorrect</th><th>Accuracy</th><th>Net Marks Scored</th></tr>
           </thead>
           <tbody id="intervalTableBody"></tbody>
         </table>
       </div>
     </div>
-
     <div id="topicAnalysisContainer" style="display: none;">
       <div class="analysis-card">
         <div class="analysis-heading">Topic Performance, Speed & Diagnostic Rating</div>
-        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
-          Har chapter ka speed pace aur accuracy rating neeche di gayi hai taaki aap negative penalties se bach sakein.
-        </p>
-
         <table class="pw-table">
           <thead>
-            <tr>
-              <th>Subject / Chapter</th>
-              <th>Total Qs</th>
-              <th>Attempted</th>
-              <th>Accuracy</th>
-              <th>Speed Pace</th>
-              <th>Time Spent</th>
-              <th>Analysis / Status</th>
-            </tr>
+            <tr><th>Subject / Chapter</th><th>Total Qs</th><th>Attempted</th><th>Accuracy</th><th>Speed Pace</th><th>Time Spent</th><th>Analysis / Status</th></tr>
           </thead>
           <tbody id="topicTableBody"></tbody>
         </table>
@@ -648,34 +437,24 @@
         <button class="sec-btn" id="solSecBtn_GS" onclick="solSwitchSection('GS')">General Studies (31-70)</button>
         <button class="sec-btn" id="solSecBtn_CS" onclick="solSwitchSection('CS')">Computer Science (71-150)</button>
       </div>
-      <div>
-        <span id="solStatusTag" class="sol-meta-tag correct">Correct</span>
-      </div>
+      <div><span id="solStatusTag" class="sol-meta-tag correct">Correct</span></div>
     </div>
-
     <div class="q-meta-bar">
       <div>
         <span id="solSecBadge" style="background:#0284c7; color:#ffffff; padding:2px 8px; border-radius:4px; font-size:12px; margin-right:8px;">Part I</span>
         <span id="solQNumberText">Question 1</span>
       </div>
-      <div style="font-size: 13px; color: var(--text-secondary);" id="solMarksDetail">
-        Marks: +1.0 | Negative: -0.333
-      </div>
+      <div style="font-size: 13px; color: var(--text-secondary);" id="solMarksDetail">Marks: +1.0 | Negative: -0.333</div>
     </div>
-
     <div class="q-body-area">
       <div class="q-text" id="solQStatement">Loading Question...</div>
       <div class="options-list" id="solOptionsContainer"></div>
-
       <div class="explanation-card">
         <div class="explanation-title">💡 Detailed Conceptual Derivation:</div>
         <div id="solExpText" style="color: var(--text-primary);">Explanation here...</div>
-        <div class="pro-tip-box" id="solProTip">
-          <strong>⚡ BPSC Strategy Tip:</strong> Strict 1/3 negative marking me 50-50 confusion wale questions par selective risk lena hi safe rank dilata hai.
-        </div>
+        <div class="pro-tip-box" id="solProTip"><strong>⚡ BPSC Strategy Tip:</strong> Strict 1/3 negative marking requires double verification.</div>
       </div>
     </div>
-
     <div class="q-bottom-actions">
       <button class="cbt-btn btn-clear" onclick="backToResultSummary()">&larr; Exit Solutions</button>
       <div style="display: flex; gap: 8px;">
@@ -684,7 +463,6 @@
       </div>
     </div>
   </div>
-
   <div class="palette-area">
     <div style="padding: 14px 16px; border-bottom: 1px solid var(--border-color); background: var(--card-bg);">
       <div style="font-size: 12px; color: var(--text-secondary); font-weight: 700; margin-bottom: 8px;">FILTER QUESTIONS</div>
@@ -695,11 +473,9 @@
         <button class="sol-tab" id="filterTab_skipped" onclick="setSolFilter('skipped')">Skipped (<span id="countSk">0</span>)</button>
       </div>
     </div>
-
     <div class="palette-scroll-container">
       <div class="palette-grid" id="solPaletteGrid"></div>
     </div>
-
     <div style="padding: 14px; border-top: 1px solid var(--border-color); background: var(--panel-bg);">
       <button class="cbt-btn btn-save-next" style="width: 100%;" onclick="backToResultSummary()">Back to Scorecard</button>
     </div>
@@ -708,169 +484,109 @@
 
 <script>
 // ==========================================================================
-// 1. PASSCODE: AKTRE2026 (SHA-256 Verified)
+// 1. UNIQUE CLEAN MOCK IDENTIFIER (MOCK 3 - ZERO OVERLAPS)
 // ==========================================================================
-const TARGET_HASH = "ca28b0f4eeb1d36d4ec95fcbcefa21559869a8449c3031eb5a7114660eb947eb";
+const MOCK_ID = "BPSC_TRE_MOCK_3";
+const STORAGE_KEY = `bpsc_cbt_${MOCK_ID}_data`;
+const CLIENT_ID = "269810018167-5jqc4fapm4mpmgu7reqsv5vekdnhvv1q.apps.googleusercontent.com";
 
-async function sha256(str) {
-  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
-}
-
-async function validatePasscode() {
-  const entered = document.getElementById("passcodeInput").value.trim();
-  const hash = await sha256(entered);
-
-  if (hash === TARGET_HASH || entered === "AKTRE2026") {
-    sessionStorage.setItem("bpsc_auth", "true");
-    document.getElementById("passcodeOverlay").style.display = "none";
-    document.getElementById("instructionModal").style.display = "flex";
-  } else {
-    document.getElementById("passcodeErr").style.display = "block";
-    document.getElementById("passcodeInput").value = "";
-  }
-}
-
-document.getElementById("passcodeInput").addEventListener("keyup", (e) => {
-  if (e.key === "Enter") validatePasscode();
-});
-
-// ==========================================================================
-// 2. INSTANT BLACKOUT ENGINE & SECURITY
-// ==========================================================================
-let warningStrikes = 0;
-let isExamRunning = false;
-let isPausedState = false;
-
-function blackoutScreen() {
-  if (!isExamRunning || isPausedState) return;
-  document.getElementById("testInterface").style.display = "none";
-  document.getElementById("antiCaptureShield").style.display = "flex";
-
-  warningStrikes++;
-  document.getElementById("warningCounter").innerText = warningStrikes;
-
-  for (let i = 1; i <= 3; i++) {
-    const dot = document.getElementById(`sDot${i}`);
-    if (i <= warningStrikes) dot.classList.add("active");
-  }
-
-  if (warningStrikes >= 3) {
-    alert("3rd Strike reached! Test automatically submitted.");
-    document.getElementById("antiCaptureShield").style.display = "none";
-    finalizeTest();
-  }
-}
-
-function resumeFromWarning() {
-  const elem = document.documentElement;
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen().finally(() => {
-      document.getElementById("antiCaptureShield").style.display = "none";
-      document.getElementById("testInterface").style.display = "flex";
-    });
-  } else {
-    document.getElementById("antiCaptureShield").style.display = "none";
-    document.getElementById("testInterface").style.display = "flex";
-  }
-}
-
-window.addEventListener("blur", blackoutScreen);
-document.addEventListener("fullscreenchange", () => {
-  if (!document.fullscreenElement && isExamRunning && !isPausedState) blackoutScreen();
-});
-
-// ==========================================================================
-// 3. CONTINUOUS OFFICIAL BPSC QUESTION DATA (1 to 150)
-// ==========================================================================
 const questionsData = [
-  // PART I: LANGUAGE (1 to 30) - Qualifying Pool
-  {
-    globalId: 1, secCode: "LANG", secName: "Part I: Language (Qualifying)", topic: "English: Prepositions",
-    q: "Choose the correct preposition: 'He is superior _____ me in technical competence.'",
-    options: ["than", "to", "from", "with", "None of the above/More than one of the above"],
-    ans: 1,
-    exp: "<strong>Option B is correct.</strong> Adjectives like 'superior', 'inferior', 'senior' govern the preposition 'to', never 'than'.",
-    tip: "Look for Latin comparative adjectives ending in '-ior'; they always take 'to'."
-  },
-  {
-    globalId: 2, secCode: "LANG", secName: "Part I: Language (Qualifying)", topic: "Hindi: Vartani & Grammar",
-    q: "निम्नलिखित में से शुद्ध वर्तनी वाला शब्द कौन सा है?",
-    options: ["उज्जवल", "उज्ज्वल", "उज्वल", "उज्वल्ल", "उपर्युक्त में से कोई नहीं/उपर्युक्त में से एक से अधिक"],
-    ans: 1,
-    exp: "<strong>Option B is correct.</strong> 'उज्ज्वल' में दोनों 'ज' अर्ध (आधे) होते हैं (उत् + ज्वल = उज्ज्वल)।",
-    tip: "संधि नियम के अनुसार त् के बाद ज् आने पर त् भी ज् में परिवर्तित हो जाता है।"
-  },
-  // PART II: GENERAL STUDIES (31 to 70) - 40 Marks Merit Pool
-  {
-    globalId: 31, secCode: "GS", secName: "Part II: General Studies", topic: "History: Bihar 1857 Revolt",
-    q: "Who was the paramount leader of the 1857 revolt in Bihar from Jagdishpur?",
-    options: ["Babu Veer Kunwar Singh", "Amar Singh", "Peer Ali", "Hare Krishna Singh", "None of the above/More than one of the above"],
-    ans: 0,
-    exp: "<strong>Option A is correct.</strong> Babu Veer Kunwar Singh of Jagdishpur (Bhojpur) led the Indian rebellion of 1857 in Bihar with exemplary guerrilla warfare.",
-    tip: "BPSC consistently tests Jagdishpur (Kunwar Singh) vs Patna City (Peer Ali)."
-  },
-  {
-    globalId: 32, secCode: "GS", secName: "Part II: General Studies", topic: "Mathematics: Geometry & Area",
-    q: "If the radius of a circle is increased by 50%, what will be the percentage increase in its area?",
-    options: ["100%", "125%", "150%", "200%", "None of the above/More than one of the above"],
-    ans: 1,
-    exp: "<strong>Option B is correct.</strong> Using successive change: $a + b + \\frac{ab}{100} = 50 + 50 + \\frac{2500}{100} = 125\\%$.",
-    tip: "Since Area is proportional to $r^2$, always use successive percentage increase formula."
-  },
-  // PART III: COMPUTER SCIENCE (71 to 150) - 80 Marks Merit Pool
-  {
-    globalId: 71, secCode: "CS", secName: "Part III: Computer Science", topic: "DBMS: Normalization",
-    q: "Which normal form is specifically defined to remove partial functional dependency of non-prime attributes?",
-    options: ["1NF", "2NF", "3NF", "BCNF", "None of the above/More than one of the above"],
-    ans: 1,
-    exp: "<strong>Option B is correct.</strong> 2NF requires the relation to be in 1NF and no non-prime attribute should be functionally dependent on a proper subset of candidate keys.",
-    tip: "Standard Rule: 1NF = Atomic attributes, 2NF = No Partial Dependency, 3NF = No Transitive Dependency, BCNF = Every determinant is a super key."
-  },
-  {
-    globalId: 72, secCode: "CS", secName: "Part III: Computer Science", topic: "Data Structures: Graph Traversals",
-    q: "Which data structure is primarily utilized to perform Breadth First Search (BFS) on a graph?",
-    options: ["Stack", "Queue", "Priority Queue", "Circular Array", "None of the above/More than one of the above"],
-    ans: 1,
-    exp: "<strong>Option B is correct.</strong> BFS operates in level-order traversal, requiring FIFO queue semantics to process unvisited adjacent vertices.",
-    tip: "Contrast: BFS uses a Queue (FIFO), whereas DFS uses a Stack (LIFO or recursive call stack)."
-  },
-  {
-    globalId: 73, secCode: "CS", secName: "Part III: Computer Science", topic: "Computer Architecture: Number Systems",
-    q: "In an 8-bit two's complement representation, what is the decimal equivalent of the binary pattern 11110000?",
-    options: ["-16", "-240", "+240", "-112", "None of the above/More than one of the above"],
-    ans: 0,
-    exp: "<strong>Option A is correct.</strong> The sign bit is 1. Inverting bits gives 00001111 (15), and adding 1 yields 16. With the sign, it represents -16.",
-    tip: "Direct evaluation: $-1(2^7) + 1(2^6) + 1(2^5) + 1(2^4) = -128 + 64 + 32 + 16 = -16$."
-  }
+  { gId: 1, sec: "LANG", name: "Part I: Language (Qualifying)", top: "English: Prepositions", q: "Choose the correct preposition: 'He is superior _____ me in technical competence.'", opts: ["than", "to", "from", "with", "None of the above/More than one of the above"], a: 1, exp: "<strong>Option B is correct.</strong> Adjectives ending in '-ior' govern 'to'.", tip: "Comparative adjectives ending in '-ior' always take 'to'." },
+  { gId: 2, sec: "LANG", name: "Part I: Language (Qualifying)", top: "Hindi: Vartani & Grammar", q: "निम्नलिखित में से शुद्ध वर्तनी वाला शब्द कौन सा है?", opts: ["उज्जवल", "उज्ज्वल", "उज्वल", "उज्वल्ल", "उपर्युक्त में से कोई नहीं/उपर्युक्त में से एक से अधिक"], a: 1, exp: "<strong>Option B is correct.</strong> 'उज्ज्वल' में दोनों 'ज' अर्ध (आधे) होते हैं।", tip: "संधि नियम के अनुसार त् के बाद ज् आने पर त् भी ज् बन जाता है।" },
+  { gId: 31, sec: "GS", name: "Part II: General Studies", top: "History: Bihar 1857", q: "Who was the paramount leader of the 1857 revolt in Bihar from Jagdishpur?", opts: ["Babu Veer Kunwar Singh", "Amar Singh", "Peer Ali", "Hare Krishna Singh", "None of the above/More than one of the above"], a: 0, exp: "<strong>Option A is correct.</strong> Babu Veer Kunwar Singh led the rebellion from Jagdishpur.", tip: "Jagdishpur = Kunwar Singh; Patna City = Peer Ali." },
+  { gId: 32, sec: "GS", name: "Part II: General Studies", top: "Maths: Geometry", q: "If the radius of a circle is increased by 50%, what will be the percentage increase in its area?", opts: ["100%", "125%", "150%", "200%", "None of the above/More than one of the above"], a: 1, exp: "<strong>Option B is correct.</strong> Area increase: 50 + 50 + (2500/100) = 125%.", tip: "Use successive percentage formula for Area = r^2." },
+  { gId: 71, sec: "CS", name: "Part III: Computer Science", top: "DBMS: Normalization", q: "Which normal form is specifically defined to remove partial functional dependency of non-prime attributes?", opts: ["1NF", "2NF", "3NF", "BCNF", "None of the above/More than one of the above"], a: 1, exp: "<strong>Option B is correct.</strong> 2NF eliminates partial dependency.", tip: "1NF = Atomic, 2NF = No Partial, 3NF = No Transitive, BCNF = Determinant is key." },
+  { gId: 72, sec: "CS", name: "Part III: Computer Science", top: "DSA: Graph", q: "Which data structure is primarily utilized to perform Breadth First Search (BFS) on a graph?", opts: ["Stack", "Queue", "Priority Queue", "Circular Array", "None of the above/More than one of the above"], a: 1, exp: "<strong>Option B is correct.</strong> BFS operates in level-order FIFO queue.", tip: "BFS = Queue (FIFO), DFS = Stack (LIFO)." },
+  { gId: 73, sec: "CS", name: "Part III: Computer Science", top: "COA: Number Systems", q: "In an 8-bit two's complement representation, what is the decimal equivalent of the binary pattern 11110000?", opts: ["-16", "-240", "+240", "-112", "None of the above/More than one of the above"], a: 0, exp: "<strong>Option A is correct.</strong> Sign bit is 1; bit value evaluates to -16.", tip: "-128 + 64 + 32 + 16 = -16." }
 ];
 
-const STORAGE_KEY = "bpsc_tre_attempts_db";
-let allAttempts = [];
-let currentAttemptIndex = 0;
-
-let state = questionsData.map(() => ({ status: 0, selectedOpt: null, tempOpt: null, timeSpentSec: 0, answeredAtIntervalIndex: 0 }));
+let examState = null;
 let currentIdx = 0;
 let currentSec = "LANG";
 let totalExamSec = 150 * 60;
 let timeRemaining = totalExamSec;
 let timerInterval = null;
+let isExamActive = false;
+let isPausedState = false;
+
+let allAttempts = [];
+let currentAttemptIdx = 0;
+let solCurrentQ = 0;
+let solCurrentSec = "ALL";
+let solFilter = "all";
+let accessToken = localStorage.getItem("bpsc_gdrive_token") || null;
 
 // ==========================================================================
-// 4. CBT RUNTIME & AUTO-TRANSITION LOGIC
+// 2. LIFECYCLE & MANDATORY FULLSCREEN ENGINE
 // ==========================================================================
+window.addEventListener("DOMContentLoaded", () => {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    allAttempts = raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    allAttempts = [];
+  }
+
+  // Exact PW Workflow: Agar pehle se attempt hai to Scorecard, nahi to Start Modal
+  if (allAttempts.length > 0) {
+    currentAttemptIdx = allAttempts.length - 1;
+    displayAttemptResult(currentAttemptIdx);
+  } else {
+    document.getElementById("instructionModal").style.display = "flex";
+  }
+
+  if (accessToken) {
+    document.getElementById("cloudStatusBadge").className = "badge-cloud badge-online";
+    document.getElementById("cloudStatusBadge").innerText = "Cloud: Connected";
+    document.getElementById("authBtn").style.display = "none";
+  }
+});
+
+// FULLSCREEN MONITOR: Jab tak test active hai aur pause nahi kiya gaya, tab tak fullscreen mandatory hai
+document.addEventListener("fullscreenchange", () => {
+  if (isExamActive && !isPausedState) {
+    if (!document.fullscreenElement) {
+      document.getElementById("fullscreenLockOverlay").style.display = "flex";
+    } else {
+      document.getElementById("fullscreenLockOverlay").style.display = "none";
+    }
+  }
+});
+
+function forceReenterFullscreen() {
+  const el = document.documentElement;
+  if (el.requestFullscreen) {
+    el.requestFullscreen().then(() => {
+      document.getElementById("fullscreenLockOverlay").style.display = "none";
+    }).catch(() => {
+      document.getElementById("fullscreenLockOverlay").style.display = "none";
+    });
+  } else {
+    document.getElementById("fullscreenLockOverlay").style.display = "none";
+  }
+}
+
 function resumeOrStartExam() {
-  const elem = document.documentElement;
-  if (elem.requestFullscreen) elem.requestFullscreen().catch(() => {});
-  isExamRunning = true;
+  const el = document.documentElement;
+  if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+
+  isExamActive = true;
   isPausedState = false;
 
+  if (!examState) {
+    examState = questionsData.map(() => ({ s: 0, so: null, to: null, ts: 0, ai: 0 }));
+    currentIdx = 0;
+    currentSec = "LANG";
+    timeRemaining = totalExamSec;
+    examState[0].s = 1;
+  }
+
+  document.getElementById("fullscreenLockOverlay").style.display = "none";
   document.getElementById("instructionModal").style.display = "none";
   document.getElementById("resultSummaryView").style.display = "none";
   document.getElementById("testInterface").style.display = "flex";
   document.getElementById("topHeaderBar").style.display = "flex";
 
-  if (state[0].status === 0) state[0].status = 1;
   loadQuestion(currentIdx);
   startTimer();
 }
@@ -883,24 +599,22 @@ function pauseExam() {
     document.exitFullscreen().catch(() => {});
   }
 
-  const answered = state.filter(s => s.status === 2 || s.status === 3).length;
-  const remaining = questionsData.length - answered;
+  const ans = examState.filter(x => x.s === 2 || x.s === 3).length;
+  const rem = questionsData.length - ans;
   const m = Math.floor(timeRemaining / 60);
   const s = timeRemaining % 60;
-  const timeFormatted = `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
 
   document.getElementById("modalHeading").innerText = "Test Paused ⏸";
   document.getElementById("modalRulesList").innerHTML = `
-    <li><strong>Status:</strong> Test safely paused. Timer stopped.</li>
-    <li><strong>Time Remaining:</strong> <span style="color:var(--text-accent); font-family:monospace; font-size:16px;">${timeFormatted}</span></li>
-    <li><strong>Answered:</strong> ${answered} / ${questionsData.length}</li>
-    <li><strong>Remaining:</strong> ${remaining} Questions</li>
-    <li>Click <strong>"Continue Exam"</strong> to lock screen and resume Fullscreen test.</li>
+    <li><strong>Status:</strong> Test safely paused. Aapki sari progress safe hai.</li>
+    <li><strong>Time Remaining:</strong> <span style="color:var(--text-accent); font-family:monospace; font-size:16px;">${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}</span></li>
+    <li><strong>Answered:</strong> ${ans} / ${questionsData.length}</li>
+    <li><strong>Remaining:</strong> ${rem} Questions</li>
+    <li>Click <strong>"Continue Exam"</strong> to lock screen and resume test in Fullscreen mode.</li>
   `;
-  
-  const btn = document.getElementById("modalActionButton");
-  btn.innerText = "Continue Exam (Re-Lock Fullscreen)";
-  btn.style.background = "var(--cbt-blue)";
+  const b = document.getElementById("modalActionButton");
+  b.innerText = "Continue Exam (Enter Fullscreen)";
+  b.style.background = "var(--cbt-blue)";
   document.getElementById("instructionModal").style.display = "flex";
 }
 
@@ -909,7 +623,7 @@ function startTimer() {
   timerInterval = setInterval(() => {
     if (timeRemaining > 0) {
       timeRemaining--;
-      state[currentIdx].timeSpentSec++;
+      examState[currentIdx].ts++;
       const m = Math.floor(timeRemaining / 60);
       const s = timeRemaining % 60;
       const el = document.getElementById("timerClock");
@@ -921,182 +635,166 @@ function startTimer() {
   }, 1000);
 }
 
-function loadQuestion(idx) {
-  currentIdx = idx;
-  const q = questionsData[idx];
-
-  // Auto-Sync Tab Highlight when crossing boundaries
-  if (currentSec !== q.secCode) {
-    currentSec = q.secCode;
-    document.querySelectorAll(".sec-btn").forEach(btn => btn.classList.remove("active"));
+function loadQuestion(i) {
+  currentIdx = i;
+  const q = questionsData[i];
+  if (currentSec !== q.sec) {
+    currentSec = q.sec;
+    document.querySelectorAll(".sec-btn").forEach(b => b.classList.remove("active"));
     document.getElementById(`secBtn_${currentSec}`).classList.add("active");
   }
 
-  document.getElementById("currentSecBadge").innerText = q.secName;
-  document.getElementById("qNumberText").innerText = `Question No. ${q.globalId}`;
-  document.getElementById("qStatement").innerText = `${q.globalId}. ${q.q}`;
+  document.getElementById("currentSecBadge").innerText = q.name;
+  document.getElementById("qNumberText").innerText = `Question No. ${q.gId}`;
+  document.getElementById("qStatement").innerText = `${q.gId}. ${q.q}`;
 
-  const cont = document.getElementById("optionsContainer");
-  cont.innerHTML = "";
-  const optLabels = ["(A)", "(B)", "(C)", "(D)", "(E)"];
-  const activeVal = state[idx].tempOpt !== null ? state[idx].tempOpt : state[idx].selectedOpt;
+  const c = document.getElementById("optionsContainer");
+  c.innerHTML = "";
+  const ol = ["(A)", "(B)", "(C)", "(D)", "(E)"];
+  const cur = examState[i].to !== null ? examState[i].to : examState[i].so;
 
-  q.options.forEach((optText, oIdx) => {
-    const label = document.createElement("label");
-    label.className = "option-label";
-    if (activeVal === oIdx) label.classList.add("selected");
+  q.opts.forEach((t, o) => {
+    const l = document.createElement("label");
+    l.className = "option-label";
+    if (cur === o) l.classList.add("selected");
 
-    const radio = document.createElement("input");
-    radio.type = "radio";
-    radio.name = "optionRadio";
-    radio.value = oIdx;
-    radio.checked = (activeVal === oIdx);
+    const r = document.createElement("input");
+    r.type = "radio";
+    r.name = "optR";
+    r.value = o;
+    r.checked = (cur === o);
 
-    radio.onchange = () => {
-      document.querySelectorAll(".option-label").forEach(l => l.classList.remove("selected"));
-      label.classList.add("selected");
-      state[idx].tempOpt = oIdx;
+    r.onchange = () => {
+      document.querySelectorAll(".option-label").forEach(x => x.classList.remove("selected"));
+      l.classList.add("selected");
+      examState[i].to = o;
     };
 
-    label.appendChild(radio);
-    label.appendChild(document.createTextNode(`${optLabels[oIdx]} ${optText}`));
-    cont.appendChild(label);
+    l.appendChild(r);
+    l.appendChild(document.createTextNode(`${ol[o]} ${t}`));
+    c.appendChild(l);
   });
 
-  document.getElementById("prevBtn").disabled = (idx === 0);
-  document.getElementById("nextBtn").disabled = (idx === questionsData.length - 1);
+  document.getElementById("prevBtn").disabled = (i === 0);
+  document.getElementById("nextBtn").disabled = (i === questionsData.length - 1);
   renderPalette();
 }
 
 function renderPalette() {
-  const grid = document.getElementById("paletteGrid");
-  grid.innerHTML = "";
+  const g = document.getElementById("paletteGrid");
+  g.innerHTML = "";
+  const sq = questionsData.map((q, idx) => ({ ...q, ai: idx })).filter(q => q.sec === currentSec);
+  document.getElementById("paletteHeading").innerText = sq[0].name.toUpperCase();
 
-  const secQuestions = questionsData.map((q, idx) => ({ ...q, arrayIdx: idx }))
-                                    .filter(q => q.secCode === currentSec);
+  sq.forEach(it => {
+    const idx = it.ai;
+    const s = examState[idx];
+    const b = document.createElement("button");
+    b.className = "pal-btn";
+    b.innerText = it.gId;
 
-  document.getElementById("paletteHeading").innerText = `${secQuestions[0].secName.toUpperCase()}`;
+    if (idx === currentIdx) b.classList.add("current");
+    if (s.s === 1) b.classList.add("not-ans");
+    else if (s.s === 2) b.classList.add("ans");
+    else if (s.s === 3) b.classList.add("rev");
 
-  secQuestions.forEach(qItem => {
-    const idx = qItem.arrayIdx;
-    const st = state[idx];
-    const btn = document.createElement("button");
-    btn.className = "pal-btn";
-    btn.innerText = qItem.globalId;
-
-    if (idx === currentIdx) btn.classList.add("current");
-    if (st.status === 1) btn.classList.add("not-ans");
-    else if (st.status === 2) btn.classList.add("ans");
-    else if (st.status === 3) btn.classList.add("rev");
-
-    btn.onclick = () => {
-      if (state[idx].status === 0) state[idx].status = 1;
+    b.onclick = () => {
+      if (examState[idx].s === 0) examState[idx].s = 1;
       loadQuestion(idx);
     };
-    grid.appendChild(btn);
+    g.appendChild(b);
   });
 }
 
-function switchSection(secCode) {
-  currentSec = secCode;
-  document.querySelectorAll(".sec-btn").forEach(btn => btn.classList.remove("active"));
-  document.getElementById(`secBtn_${secCode}`).classList.add("active");
-
-  const targetIdx = questionsData.findIndex(q => q.secCode === secCode);
-  if (targetIdx !== -1) {
-    if (state[targetIdx].status === 0) state[targetIdx].status = 1;
-    loadQuestion(targetIdx);
+function switchSection(sec) {
+  currentSec = sec;
+  document.querySelectorAll(".sec-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById(`secBtn_${sec}`).classList.add("active");
+  const ti = questionsData.findIndex(q => q.sec === sec);
+  if (ti !== -1) {
+    if (examState[ti].s === 0) examState[ti].s = 1;
+    loadQuestion(ti);
   }
 }
 
 function actionSaveAndNext() {
-  const elapsed = totalExamSec - timeRemaining;
-  const intervalIdx = Math.min(3, Math.floor(elapsed / 1800));
-
-  if (state[currentIdx].tempOpt !== null) {
-    state[currentIdx].selectedOpt = state[currentIdx].tempOpt;
-    state[currentIdx].status = 2;
-    state[currentIdx].answeredAtIntervalIndex = intervalIdx;
-  } else if (state[currentIdx].selectedOpt === null) {
-    state[currentIdx].status = 1;
+  const el = totalExamSec - timeRemaining;
+  const intv = Math.min(3, Math.floor(el / 1800));
+  if (examState[currentIdx].to !== null) {
+    examState[currentIdx].so = examState[currentIdx].to;
+    examState[currentIdx].s = 2;
+    examState[currentIdx].ai = intv;
+  } else if (examState[currentIdx].so === null) {
+    examState[currentIdx].s = 1;
   }
   navigate(1);
 }
 
 function actionMarkForReview() {
-  const elapsed = totalExamSec - timeRemaining;
-  const intervalIdx = Math.min(3, Math.floor(elapsed / 1800));
-
-  if (state[currentIdx].tempOpt !== null) {
-    state[currentIdx].selectedOpt = state[currentIdx].tempOpt;
-    state[currentIdx].status = 3;
-    state[currentIdx].answeredAtIntervalIndex = intervalIdx;
+  const el = totalExamSec - timeRemaining;
+  const intv = Math.min(3, Math.floor(el / 1800));
+  if (examState[currentIdx].to !== null) {
+    examState[currentIdx].so = examState[currentIdx].to;
+    examState[currentIdx].s = 3;
+    examState[currentIdx].ai = intv;
   } else {
-    state[currentIdx].status = 3;
+    examState[currentIdx].s = 3;
   }
   navigate(1);
 }
 
 function actionClearResponse() {
-  state[currentIdx].tempOpt = null;
-  state[currentIdx].selectedOpt = null;
-  state[currentIdx].status = 1;
+  examState[currentIdx].to = null;
+  examState[currentIdx].so = null;
+  examState[currentIdx].s = 1;
   loadQuestion(currentIdx);
 }
 
-function navigate(dir) {
-  const nextIdx = currentIdx + dir;
-  if (nextIdx >= 0 && nextIdx < questionsData.length) {
-    if (state[nextIdx].status === 0) state[nextIdx].status = 1;
-    loadQuestion(nextIdx);
+function navigate(d) {
+  const n = currentIdx + d;
+  if (n >= 0 && n < questionsData.length) {
+    if (examState[n].s === 0) examState[n].s = 1;
+    loadQuestion(n);
   }
 }
 
 function confirmSubmit() {
-  const answered = state.filter(s => s.status === 2 || s.status === 3).length;
-  const remaining = questionsData.length - answered;
-  if (confirm(`Do you really want to submit the test?\n\nAnswered: ${answered}\nUnattempted: ${remaining}`)) {
+  const ans = examState.filter(x => x.s === 2 || x.s === 3).length;
+  if (confirm(`Submit mock test?\nAnswered: ${ans}\nUnattempted: ${questionsData.length - ans}`)) {
     finalizeTest();
   }
 }
 
-// ==========================================================================
-// 5. OFFICIAL MERIT CALCULATION & COMPETITION CALIBRATION ENGINE
-// ==========================================================================
 function finalizeTest() {
   clearInterval(timerInterval);
-  isExamRunning = false;
+  isExamActive = false;
   if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
 
-  const attemptRecord = {
+  const rec = {
     id: allAttempts.length + 1,
-    dateStr: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + " " + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-    state: JSON.parse(JSON.stringify(state)),
-    timeUsedSec: totalExamSec - timeRemaining
+    date: new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) + " " + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    st: JSON.parse(JSON.stringify(examState)),
+    time: totalExamSec - timeRemaining
   };
 
-  allAttempts.push(attemptRecord);
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(allAttempts)); } catch(e){}
+  allAttempts.push(rec);
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(allAttempts)); } catch (e) {}
 
-  currentAttemptIndex = allAttempts.length - 1;
-  displayAttemptResult(currentAttemptIndex);
-
-  if (accessToken) {
-    syncAttemptsToGoogleDrive();
-  }
+  examState = null;
+  currentAttemptIdx = allAttempts.length - 1;
+  displayAttemptResult(currentAttemptIdx);
+  if (accessToken) syncToGoogleDrive();
 }
 
-function switchStoredAttempt(attemptIdxStr) {
-  currentAttemptIndex = parseInt(attemptIdxStr, 10);
-  displayAttemptResult(currentAttemptIndex);
-}
+// ==========================================================================
+// 3. RESULT VIEW & DETAILED PW ANALYTICS
+// ==========================================================================
+function displayAttemptResult(idx) {
+  const att = allAttempts[idx];
+  if (!att) return;
+  const resState = att.st;
 
-function displayAttemptResult(attemptIdx) {
-  const attemptData = allAttempts[attemptIdx];
-  if (!attemptData) return;
-
-  state = attemptData.state;
-
+  document.getElementById("fullscreenLockOverlay").style.display = "none";
   document.getElementById("testInterface").style.display = "none";
   document.getElementById("instructionModal").style.display = "none";
   document.getElementById("solutionInterface").style.display = "none";
@@ -1106,323 +804,216 @@ function displayAttemptResult(attemptIdx) {
 
   const sel = document.getElementById("attemptSelector");
   sel.innerHTML = "";
-  allAttempts.forEach((att, idx) => {
+  allAttempts.forEach((a, i) => {
     const opt = document.createElement("option");
-    opt.value = idx;
-    opt.innerText = `Attempt ${att.id}`;
-    if (idx === attemptIdx) opt.selected = true;
+    opt.value = i;
+    opt.innerText = `Attempt ${a.id}`;
+    if (i === idx) opt.selected = true;
     sel.appendChild(opt);
   });
+  document.getElementById("resAttemptDate").innerText = att.date;
 
-  document.getElementById("resAttemptDate").innerText = attemptData.dateStr;
-
-  let totalCorrect = 0;
-  let totalWrong = 0;
-  let totalSkipped = 0;
-
-  const sectionStats = {
-    LANG: { name: "Part I: Language", range: "Q1 - Q30", type: "Qualifying (Min 30%)", total: 0, att: 0, cor: 0, wr: 0, sk: 0, time: 0 },
-    GS:   { name: "Part II: General Studies", range: "Q31 - Q70", type: "Counted in Merit", total: 0, att: 0, cor: 0, wr: 0, sk: 0, time: 0 },
-    CS:   { name: "Part III: Computer Science", range: "Q71 - Q150", type: "Counted in Merit", total: 0, att: 0, cor: 0, wr: 0, sk: 0, time: 0 }
+  let tc = 0, tw = 0, ts = 0;
+  const ss = {
+    LANG: { name: "Part I: Language", rg: "Q1 - Q30", type: "Qualifying (Min 30%)", tot: 0, att: 0, cor: 0, wr: 0, time: 0 },
+    GS: { name: "Part II: General Studies", rg: "Q31 - Q70", type: "Counted in Merit", tot: 0, att: 0, cor: 0, wr: 0, time: 0 },
+    CS: { name: "Part III: Computer Science", rg: "Q71 - Q150", type: "Counted in Merit", tot: 0, att: 0, cor: 0, wr: 0, time: 0 }
   };
 
-  questionsData.forEach((q, idx) => {
-    const st = state[idx];
-    const isAnswered = (st.status === 2 || st.status === 3) && st.selectedOpt !== null;
-    const sStat = sectionStats[q.secCode];
+  questionsData.forEach((q, i) => {
+    const st = resState[i];
+    const isA = (st.s === 2 || st.s === 3) && st.so !== null;
+    const s = ss[q.sec];
+    s.tot++;
+    s.time += st.ts;
 
-    sStat.total++;
-    sStat.time += st.timeSpentSec;
-
-    if (isAnswered) {
-      sStat.att++;
-      if (st.selectedOpt === q.ans) {
-        totalCorrect++;
-        sStat.cor++;
-      } else {
-        totalWrong++;
-        sStat.wr++;
-      }
+    if (isA) {
+      s.att++;
+      if (st.so === q.a) { tc++; s.cor++; }
+      else { tw++; s.wr++; }
     } else {
-      totalSkipped++;
-      sStat.sk++;
+      ts++;
     }
   });
 
-  // STRICT 1/3 NEGATIVE PENALTY CALCULATION
-  const totalPenalty = totalWrong * (1 / 3);
-  
-  // Section-wise net calculations
-  const langPenalty = sectionStats.LANG.wr * (1 / 3);
-  const langRawNet = sectionStats.LANG.cor - langPenalty;
-  const langNetScore = Math.max(0, langRawNet);
-  const isLangQualified = langNetScore >= 9.0; // Official 30% of 30 marks
+  const totPen = tw * (1 / 3);
+  const lPen = ss.LANG.wr * (1 / 3);
+  const lNet = Math.max(0, ss.LANG.cor - lPen);
+  const isLQ = lNet >= 9.0;
 
-  const meritWrong = sectionStats.GS.wr + sectionStats.CS.wr;
-  const meritCorrect = sectionStats.GS.cor + sectionStats.CS.cor;
-  const meritPenalty = meritWrong * (1 / 3);
-  const meritRawNet = meritCorrect - meritPenalty;
-  const meritNetScore = Math.max(0, meritRawNet);
-  const meritTotalQs = sectionStats.GS.total + sectionStats.CS.total;
+  const mPen = (ss.GS.wr + ss.CS.wr) * (1 / 3);
+  const mNet = Math.max(0, (ss.GS.cor + ss.CS.cor) - mPen);
+  const mTot = ss.GS.tot + ss.CS.tot;
 
-  const totalAtt = totalCorrect + totalWrong;
-  const accuracy = totalAtt > 0 ? ((totalCorrect / totalAtt) * 100).toFixed(1) : 0;
-  const completedPct = ((totalAtt / questionsData.length) * 100).toFixed(1);
+  const totA = tc + tw;
+  const acc = totA > 0 ? ((tc / totA) * 100).toFixed(1) : 0;
+  const cml = ((totA / questionsData.length) * 100).toFixed(1);
+  const um = Math.floor(att.time / 60);
+  const us = att.time % 60;
 
-  const tuM = Math.floor(attemptData.timeUsedSec / 60);
-  const tuS = attemptData.timeUsedSec % 60;
-  const timeTakenStr = `${tuM < 10 ? '0' : ''}${tuM}:${tuS < 10 ? '0' : ''}${tuS}`;
+  document.getElementById("summaryScoreDisplay").innerHTML = `${mNet.toFixed(2)} <span>/ ${mTot}</span>`;
+  document.getElementById("summaryMeritPenalty").innerText = `-${mPen.toFixed(2)}`;
+  document.getElementById("summaryLangScoreDisplay").innerHTML = `${lNet.toFixed(2)} <span>/ 30</span>`;
+  document.getElementById("summaryLangStatus").innerHTML = isLQ ? '<span style="color:var(--cbt-green); font-weight:700;">QUALIFIED (>= 9.00) ✔</span>' : '<span style="color:var(--cbt-red); font-weight:700;">DISQUALIFIED (< 9.00) ✕</span>';
 
-  document.getElementById("summaryScoreDisplay").innerHTML = `${meritNetScore.toFixed(2)} <span>/ ${meritTotalQs}</span>`;
-  document.getElementById("summaryMeritPenalty").innerText = `-${meritPenalty.toFixed(2)}`;
+  const mR = mTot > 0 ? (mNet / mTot) : 0;
+  let pct = 0;
+  if (mR <= 0.3) pct = Math.max(5, mR * 100);
+  else if (mR <= 0.6) pct = 30 + ((mR - 0.3) / 0.3) * 45;
+  else if (mR <= 0.75) pct = 75 + ((mR - 0.6) / 0.15) * 18;
+  else pct = 93 + ((mR - 0.75) / 0.25) * 6.9;
+  pct = Math.min(99.9, Math.max(2.0, pct)).toFixed(1);
+  const rk = Math.max(1, Math.round(35000 * (1 - (pct / 100))));
 
-  document.getElementById("summaryLangScoreDisplay").innerHTML = `${langNetScore.toFixed(2)} <span>/ 30</span>`;
-  const lStatusEl = document.getElementById("summaryLangStatus");
-  if (isLangQualified) {
-    lStatusEl.innerHTML = `<span style="color:var(--cbt-green); font-weight:700;">QUALIFIED (>= 9.00) ✔</span>`;
+  document.getElementById("summaryPercentile").innerText = isLQ ? `${pct}%ile` : "N/A";
+  document.getElementById("summaryProjectedRank").innerText = isLQ ? `Rank ~${rk}` : "Disqualified";
+  const vEl = document.getElementById("summaryVerdict");
+  const dEl = document.getElementById("diagText");
+
+  if (!isLQ) {
+    vEl.innerText = "Language Disqualified 🔴";
+    vEl.style.color = "var(--cbt-red)";
+    dEl.innerHTML = `Language section me 1/3 penalty ke baad <strong>9 marks</strong> se kam score hai. Merit eligibility ke liye qualifying anivarya hai.`;
+  } else if (mR >= 0.68) {
+    vEl.innerText = "High Selection Probability 🟢";
+    vEl.style.color = "var(--cbt-green)";
+    dEl.innerHTML = `Zabardast! High-competition pool (Repeaters + STET) me aapka net score cutoff (~74-78) se upar hai. Projected Rank Top ~${rk} me hai.`;
+  } else if (mR >= 0.52) {
+    vEl.innerText = "Borderline / In Range 🟡";
+    vEl.style.color = "var(--cbt-amber)";
+    dEl.innerHTML = `Aap cut-off boundary zone me hain. Negative marking me <strong>-${mPen.toFixed(2)} marks</strong> loose hue hain. Safe score 80+ target karein.`;
   } else {
-    lStatusEl.innerHTML = `<span style="color:var(--cbt-red); font-weight:700;">DISQUALIFIED (< 9.00) ✕</span>`;
+    vEl.innerText = "Below Selection Cut-Off 🔴";
+    vEl.style.color = "var(--cbt-red)";
+    dEl.innerHTML = `Rank peeche hai. Core CS subjects me accuracy sudharkar negative penalty kam karein.`;
   }
 
-  // HIGH COMPETITION RANK PREDICTOR (Simulated on 35,000+ STET + Repeater pool)
-  const TOTAL_ASPIRANTS = 35000;
-  const meritRatio = meritTotalQs > 0 ? (meritNetScore / meritTotalQs) : 0;
-  
-  // Normalized sigmoid curve tailored for TRE CS (Cutoff threshold ~62-65% with 1/3 negative)
-  let estimatedPercentile = 0;
-  if (meritRatio <= 0.3) {
-    estimatedPercentile = Math.max(5, meritRatio * 100);
-  } else if (meritRatio <= 0.6) {
-    estimatedPercentile = 30 + ((meritRatio - 0.3) / 0.3) * 45; // 30%ile to 75%ile
-  } else if (meritRatio <= 0.75) {
-    estimatedPercentile = 75 + ((meritRatio - 0.6) / 0.15) * 18; // 75%ile to 93%ile
-  } else {
-    estimatedPercentile = 93 + ((meritRatio - 0.75) / 0.25) * 6.9; // 93%ile to 99.9%ile
-  }
-  estimatedPercentile = Math.min(99.9, Math.max(2.0, estimatedPercentile)).toFixed(1);
-  const projectedRank = Math.max(1, Math.round(TOTAL_ASPIRANTS * (1 - (estimatedPercentile / 100))));
+  document.getElementById("statCorrect").innerText = `${tc}/${questionsData.length}`;
+  document.getElementById("statMarksGain").innerText = `+${tc}.00`;
+  document.getElementById("statIncorrect").innerText = `${tw}/${questionsData.length}`;
+  document.getElementById("statMarksLost").innerText = `-${totPen.toFixed(2)}`;
+  document.getElementById("statSkipped").innerText = `${ts}/${questionsData.length}`;
+  document.getElementById("statAccuracy").innerText = `${acc}%`;
+  document.getElementById("statCompleted").innerText = `${cml}%`;
+  document.getElementById("statTimeTaken").innerText = `${um < 10 ? '0' : ''}${um}:${us < 10 ? '0' : ''}${us}`;
 
-  document.getElementById("summaryPercentile").innerText = isLangQualified ? `${estimatedPercentile}%ile` : "N/A";
-  document.getElementById("summaryProjectedRank").innerText = isLangQualified ? `Rank ~${projectedRank}` : "Disqualified";
-
-  const verdictEl = document.getElementById("summaryVerdict");
-  const diagEl = document.getElementById("diagText");
-
-  if (!isLangQualified) {
-    verdictEl.innerText = "Language Disqualified 🔴";
-    verdictEl.style.color = "var(--cbt-red)";
-    diagEl.innerHTML = `Part I Language me 1/3 negative marking ke baad <strong>9 marks</strong> se kam score hai. Merit list me aane ke liye Language qualify karna anivarya hai.`;
-  } else if (meritRatio >= 0.68) {
-    verdictEl.innerText = "High Selection Probability 🟢";
-    verdictEl.style.color = "var(--cbt-green)";
-    diagEl.innerHTML = `Zabardast! High-competition pool (STET + Repeaters) me aapka net score expected TRE cut-off (~74-78) se upar hai. Projected Rank Top ~${projectedRank} me hai.`;
-  } else if (meritRatio >= 0.52) {
-    verdictEl.innerText = "Borderline / In Range 🟡";
-    verdictEl.style.color = "var(--cbt-amber)";
-    diagEl.innerHTML = `Aap cut-off boundary zone me hain. Galat answers ki wajah se <strong>-${meritPenalty.toFixed(2)} marks</strong> loose hue hain. Negative marking control karke safe score 80+ le jayein.`;
-  } else {
-    verdictEl.innerText = "Below Selection Cut-Off 🔴";
-    verdictEl.style.color = "var(--cbt-red)";
-    diagEl.innerHTML = `High competition pool me rank peeche hai. Computer Science core subjects (DBMS, OS, Data Structures) me accuracy sudharne ki zaroorat hai.`;
-  }
-
-  document.getElementById("statCorrect").innerText = `${totalCorrect}/${questionsData.length}`;
-  document.getElementById("statMarksGain").innerText = `+${totalCorrect}.00`;
-  document.getElementById("statIncorrect").innerText = `${totalWrong}/${questionsData.length}`;
-  document.getElementById("statMarksLost").innerText = `-${totalPenalty.toFixed(2)}`;
-  document.getElementById("statSkipped").innerText = `${totalSkipped}/${questionsData.length}`;
-  document.getElementById("statAccuracy").innerText = `${accuracy}%`;
-  document.getElementById("statCompleted").innerText = `${completedPct}%`;
-  document.getElementById("statTimeTaken").innerText = timeTakenStr;
-
-  // Breakdown Table
-  const sTbody = document.getElementById("sectionPerformanceTable");
-  sTbody.innerHTML = "";
-  Object.keys(sectionStats).forEach(key => {
-    const s = sectionStats[key];
-    const sPenalty = s.wr * (1 / 3);
-    const sNet = Math.max(0, s.cor - sPenalty).toFixed(2);
-    let statusBadge = "";
-
-    if (key === "LANG") {
-      statusBadge = isLangQualified 
-        ? '<span style="color:var(--cbt-green); font-weight:700;">PASSED (Qualifying)</span>' 
-        : '<span style="color:var(--cbt-red); font-weight:700;">FAILED (< 9.0)</span>';
-    } else {
-      statusBadge = '<span style="color:var(--text-accent); font-weight:700;">COUNTED IN MERIT</span>';
-    }
-
+  const tb = document.getElementById("sectionPerformanceTable");
+  tb.innerHTML = "";
+  Object.keys(ss).forEach(k => {
+    const s = ss[k];
+    const pen = s.wr * (1 / 3);
+    const net = Math.max(0, s.cor - pen).toFixed(2);
+    const bd = k === "LANG" ? (isLQ ? '<span style="color:var(--cbt-green); font-weight:700;">PASSED</span>' : '<span style="color:var(--cbt-red); font-weight:700;">FAILED</span>') : '<span style="color:var(--text-accent); font-weight:700;">COUNTED IN MERIT</span>';
     const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td style="font-weight:600;">${s.name}</td>
-      <td style="font-size:12px; font-weight:700; color:var(--text-secondary);">${s.range}</td>
-      <td style="font-size:12.5px; color:var(--text-secondary);">${s.type}</td>
-      <td>${s.total}</td>
-      <td style="color:var(--cbt-green); font-weight:600;">${s.cor}</td>
-      <td style="color:var(--cbt-red); font-weight:600;">${s.wr}</td>
-      <td style="color:var(--cbt-red); font-weight:600;">-${sPenalty.toFixed(2)}</td>
-      <td style="font-weight:700; color:var(--text-primary);">${sNet} / ${s.total}</td>
-      <td>${statusBadge}</td>
-    `;
-    sTbody.appendChild(tr);
+    tr.innerHTML = `<td style="font-weight:600;">${s.name}</td><td>${s.rg}</td><td>${s.type}</td><td>${s.tot}</td><td style="color:var(--cbt-green); font-weight:600;">${s.cor}</td><td style="color:var(--cbt-red); font-weight:600;">${s.wr}</td><td style="color:var(--cbt-red); font-weight:600;">-${pen.toFixed(2)}</td><td style="font-weight:700;">${net} / ${s.tot}</td><td>${bd}</td>`;
+    tb.appendChild(tr);
   });
 
   document.getElementById("countAll").innerText = questionsData.length;
-  document.getElementById("countCor").innerText = totalCorrect;
-  document.getElementById("countWr").innerText = totalWrong;
-  document.getElementById("countSk").innerText = totalSkipped;
+  document.getElementById("countCor").innerText = tc;
+  document.getElementById("countWr").innerText = tw;
+  document.getElementById("countSk").innerText = ts;
 
-  generateDetailedAnalytics();
+  generateDetailedAnalytics(resState);
 }
 
-// ==========================================================================
-// 6. DETAILED ANALYTICS ENGINE (INTERVALS & TOPICS)
-// ==========================================================================
-function generateDetailedAnalytics() {
-  const intervals = [
-    { label: "0-30 Mins", att: 0, cor: 0, wr: 0, marks: 0, acc: 0 },
-    { label: "30-60 Mins", att: 0, cor: 0, wr: 0, marks: 0, acc: 0 },
-    { label: "60-100 Mins", att: 0, cor: 0, wr: 0, marks: 0, acc: 0 },
-    { label: "100-150 Mins", att: 0, cor: 0, wr: 0, marks: 0, acc: 0 }
+function generateDetailedAnalytics(resState) {
+  const inv = [
+    { l: "0-30 Mins", att: 0, cor: 0, wr: 0, m: 0, acc: 0 },
+    { l: "30-60 Mins", att: 0, cor: 0, wr: 0, m: 0, acc: 0 },
+    { l: "60-100 Mins", att: 0, cor: 0, wr: 0, m: 0, acc: 0 },
+    { l: "100-150 Mins", att: 0, cor: 0, wr: 0, m: 0, acc: 0 }
   ];
 
-  questionsData.forEach((q, idx) => {
-    const st = state[idx];
-    const isAnswered = (st.status === 2 || st.status === 3) && st.selectedOpt !== null;
-    if (isAnswered) {
-      const bIdx = st.answeredAtIntervalIndex || 0;
-      intervals[bIdx].att++;
-      if (st.selectedOpt === q.ans) {
-        intervals[bIdx].cor++;
-        intervals[bIdx].marks += 1.0;
-      } else {
-        intervals[bIdx].wr++;
-        intervals[bIdx].marks -= (1 / 3);
-      }
+  questionsData.forEach((q, i) => {
+    const st = resState[i];
+    if ((st.s === 2 || st.s === 3) && st.so !== null) {
+      const b = st.ai || 0;
+      inv[b].att++;
+      if (st.so === q.a) { inv[b].cor++; inv[b].m += 1.0; }
+      else { inv[b].wr++; inv[b].m -= (1 / 3); }
     }
   });
 
-  intervals.forEach(inv => {
-    inv.acc = inv.att > 0 ? Math.round((inv.cor / inv.att) * 100) : 0;
-  });
+  inv.forEach(x => { x.acc = x.att > 0 ? Math.round((x.cor / x.att) * 100) : 0; });
+  renderSvgChart(inv);
 
-  renderIntervalSvgChart(intervals);
-
-  const itBody = document.getElementById("intervalTableBody");
-  itBody.innerHTML = "";
-  intervals.forEach(inv => {
+  const ib = document.getElementById("intervalTableBody");
+  ib.innerHTML = "";
+  inv.forEach(x => {
     const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td style="font-weight:600;">${inv.label}</td>
-      <td>${inv.att}</td>
-      <td style="color:var(--cbt-green); font-weight:600;">${inv.cor}</td>
-      <td style="color:var(--cbt-red); font-weight:600;">${inv.wr}</td>
-      <td>${inv.acc}%</td>
-      <td style="font-weight:700; color:var(--text-accent);">${inv.marks.toFixed(2)} m</td>
-    `;
-    itBody.appendChild(tr);
+    tr.innerHTML = `<td style="font-weight:600;">${x.l}</td><td>${x.att}</td><td style="color:var(--cbt-green); font-weight:600;">${x.cor}</td><td style="color:var(--cbt-red); font-weight:600;">${x.wr}</td><td>${x.acc}%</td><td style="font-weight:700; color:var(--text-accent);">${x.m.toFixed(2)} m</td>`;
+    ib.appendChild(tr);
   });
 
-  const topicMap = {};
-  questionsData.forEach((q, idx) => {
-    const t = q.topic;
-    if (!topicMap[t]) topicMap[t] = { total: 0, att: 0, cor: 0, wr: 0, time: 0 };
-    topicMap[t].total++;
-    topicMap[t].time += state[idx].timeSpentSec;
-    const isAnswered = (state[idx].status === 2 || state[idx].status === 3) && state[idx].selectedOpt !== null;
-    if (isAnswered) {
-      topicMap[t].att++;
-      if (state[idx].selectedOpt === q.ans) topicMap[t].cor++;
-      else topicMap[t].wr++;
+  const tm = {};
+  questionsData.forEach((q, i) => {
+    if (!tm[q.top]) tm[q.top] = { tot: 0, att: 0, cor: 0, wr: 0, t: 0 };
+    tm[q.top].tot++;
+    tm[q.top].t += resState[i].ts;
+    if ((resState[i].s === 2 || resState[i].s === 3) && resState[i].so !== null) {
+      tm[q.top].att++;
+      if (resState[i].so === q.a) tm[q.top].cor++;
+      else tm[q.top].wr++;
     }
   });
 
-  const topicTableBody = document.getElementById("topicTableBody");
-  topicTableBody.innerHTML = "";
-  Object.keys(topicMap).forEach(topicName => {
-    const item = topicMap[topicName];
-    const acc = item.att > 0 ? Math.round((item.cor / item.att) * 100) : 0;
-    const avgTimePerQ = item.att > 0 ? Math.round(item.time / item.att) : item.time;
+  const tpb = document.getElementById("topicTableBody");
+  tpb.innerHTML = "";
+  Object.keys(tm).forEach(k => {
+    const it = tm[k];
+    const ac = it.att > 0 ? Math.round((it.cor / it.att) * 100) : 0;
+    const avg = it.att > 0 ? Math.round(it.t / it.att) : it.t;
+    let pc = "pace-optimum", pl = "⚡ Ideal";
+    if (avg > 90) { pc = "pace-slow"; pl = "🐢 Overtime"; }
+    else if (avg < 20) { pc = "pace-fast"; pl = "🚀 Rapid"; }
 
-    let paceClass = "pace-optimum";
-    let paceLabel = "⚡ Ideal Pace";
-    if (avgTimePerQ > 90) {
-      paceClass = "pace-slow";
-      paceLabel = "🐢 Overtime";
-    } else if (avgTimePerQ < 20) {
-      paceClass = "pace-fast";
-      paceLabel = "🚀 Rapid Fire";
-    }
-
-    let badgeClass = "moderate";
-    let badgeText = "Moderate";
-    if (acc >= 75) {
-      badgeClass = "strong";
-      badgeText = "Strong Concept 🌟";
-    } else if (item.wr > 0 || acc < 50) {
-      badgeClass = "weak";
-      badgeText = "Negative Trap / Weak ⚠️";
-    }
+    let bc = "moderate", bt = "Moderate";
+    if (ac >= 75) { bc = "strong"; bt = "Strong 🌟"; }
+    else if (it.wr > 0 || ac < 50) { bc = "weak"; bt = "Negative Trap ⚠️"; }
 
     const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td style="font-weight:600;">${topicName}</td>
-      <td>${item.total}</td>
-      <td>${item.att}</td>
-      <td><strong>${acc}%</strong></td>
-      <td><span class="pace-tag ${paceClass}">${paceLabel}</span></td>
-      <td>${item.time}s (${avgTimePerQ}s/q)</td>
-      <td><span class="topic-badge ${badgeClass}">${badgeText}</span></td>
-    `;
-    topicTableBody.appendChild(tr);
+    tr.innerHTML = `<td style="font-weight:600;">${k}</td><td>${it.tot}</td><td>${it.att}</td><td><strong>${ac}%</strong></td><td><span class="pace-tag ${pc}">${pl}</span></td><td>${it.t}s (${avg}s/q)</td><td><span class="topic-badge ${bc}">${bt}</span></td>`;
+    tpb.appendChild(tr);
   });
 }
 
-function renderIntervalSvgChart(data) {
+function renderSvgChart(data) {
   const svg = document.getElementById("intervalChartSvg");
   svg.innerHTML = "";
-
-  const barWidth = 42;
-  const startX = 90;
-  const gap = 160;
-  const maxQ = Math.max(3, ...data.map(d => d.att));
+  const bw = 42, sx = 90, gap = 160, maxQ = Math.max(3, ...data.map(d => d.att));
 
   for (let i = 0; i <= 4; i++) {
     const y = 30 + (i * 35);
     svg.innerHTML += `<line x1="50" y1="${y}" x2="710" y2="${y}" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="3"/>`;
   }
 
-  let linePoints = [];
+  let pts = [];
   data.forEach((d, i) => {
-    const x = startX + (i * gap);
-    const corHeight = (d.cor / maxQ) * 120;
-    const wrHeight = (d.wr / maxQ) * 120;
-    const baseLineY = 170;
+    const x = sx + (i * gap);
+    const ch = (d.cor / maxQ) * 120;
+    const wh = (d.wr / maxQ) * 120;
+    const by = 170;
 
     if (d.cor > 0) {
-      svg.innerHTML += `<rect x="${x}" y="${baseLineY - corHeight}" width="${barWidth}" height="${corHeight}" fill="#22c55e" rx="3"/>`;
-      svg.innerHTML += `<text x="${x + (barWidth / 2)}" y="${baseLineY - corHeight + 14}" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">${d.cor}</text>`;
+      svg.innerHTML += `<rect x="${x}" y="${by - ch}" width="${bw}" height="${ch}" fill="#22c55e" rx="3"/>`;
+      svg.innerHTML += `<text x="${x + (bw / 2)}" y="${by - ch + 14}" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">${d.cor}</text>`;
     }
-
     if (d.wr > 0) {
-      const wrY = baseLineY - corHeight - wrHeight;
-      svg.innerHTML += `<rect x="${x}" y="${wrY}" width="${barWidth}" height="${wrHeight}" fill="#f87171" rx="3"/>`;
-      svg.innerHTML += `<text x="${x + (barWidth / 2)}" y="${wrY + 14}" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">${d.wr}</text>`;
+      const wy = by - ch - wh;
+      svg.innerHTML += `<rect x="${x}" y="${wy}" width="${bw}" height="${wh}" fill="#f87171" rx="3"/>`;
+      svg.innerHTML += `<text x="${x + (bw / 2)}" y="${wy + 14}" fill="#ffffff" font-size="11" font-weight="700" text-anchor="middle">${d.wr}</text>`;
     }
 
-    svg.innerHTML += `<text x="${x + (barWidth / 2)}" y="200" fill="var(--text-secondary)" font-size="11" font-weight="600" text-anchor="middle">${d.label}</text>`;
-
-    const accY = 170 - ((d.acc / 100) * 130);
-    const pX = x + (barWidth / 2);
-    linePoints.push({ x: pX, y: accY, acc: d.acc });
+    svg.innerHTML += `<text x="${x + (bw / 2)}" y="200" fill="var(--text-secondary)" font-size="11" font-weight="600" text-anchor="middle">${d.l}</text>`;
+    const ay = 170 - ((d.acc / 100) * 130);
+    pts.push({ x: x + (bw / 2), y: ay, acc: d.acc });
   });
 
-  if (linePoints.length > 0) {
-    const pointsStr = linePoints.map(p => `${p.x},${p.y}`).join(" ");
-    svg.innerHTML += `<polyline fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4" points="${pointsStr}"/>`;
-    linePoints.forEach(p => {
-      svg.innerHTML += `<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>`;
-      svg.innerHTML += `<text x="${p.x}" y="${p.y - 8}" fill="#3b82f6" font-size="10" font-weight="800" text-anchor="middle">${p.acc}%</text>`;
+  if (pts.length > 0) {
+    svg.innerHTML += `<polyline fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4" points="${pts.map(p => `${p.x},${p.y}`).join(" ")}"/>`;
+    pts.forEach(p => {
+      svg.innerHTML += `<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/><text x="${p.x}" y="${p.y - 8}" fill="#3b82f6" font-size="10" font-weight="800" text-anchor="middle">${p.acc}%</text>`;
     });
   }
 }
@@ -1432,14 +1023,15 @@ function openDetailedAnalysis() {
   document.getElementById("detailedAnalysisView").style.display = "block";
 }
 
-function backToResultSummaryFromAnalysis() {
+function backToResultSummary() {
   document.getElementById("detailedAnalysisView").style.display = "none";
+  document.getElementById("solutionInterface").style.display = "none";
   document.getElementById("resultSummaryView").style.display = "block";
 }
 
-function switchAnalysisTab(tab) {
+function switchAnalysisTab(t) {
   document.querySelectorAll(".analysis-tab-btn").forEach(b => b.classList.remove("active"));
-  if (tab === 'time') {
+  if (t === 'time') {
     document.getElementById("tabTimeAnalysis").classList.add("active");
     document.getElementById("timeAnalysisContainer").style.display = "block";
     document.getElementById("topicAnalysisContainer").style.display = "none";
@@ -1451,12 +1043,8 @@ function switchAnalysisTab(tab) {
 }
 
 // ==========================================================================
-// 7. CBT SOLUTION INTERFACE
+// 4. SOLUTION ENGINE & QUESTION PALETTE BUILDER
 // ==========================================================================
-let solCurrentQ = 0;
-let solCurrentSec = "ALL";
-let solFilter = "all";
-
 function openSolutionInterface() {
   document.getElementById("resultSummaryView").style.display = "none";
   document.getElementById("detailedAnalysisView").style.display = "none";
@@ -1465,232 +1053,218 @@ function openSolutionInterface() {
   loadSolutionQuestion(0);
 }
 
-function backToResultSummary() {
-  document.getElementById("solutionInterface").style.display = "none";
-  document.getElementById("resultSummaryView").style.display = "block";
-}
-
-function solSwitchSection(code) {
-  solCurrentSec = code;
+function solSwitchSection(c) {
+  solCurrentSec = c;
   document.querySelectorAll(".sol-top-filters .sec-btn").forEach(b => {
-    if (b.id === `solSecBtn_${code}`) b.classList.add("active");
+    if (b.id === `solSecBtn_${c}`) b.classList.add("active");
     else if (b.id && b.id.startsWith("solSecBtn_")) b.classList.remove("active");
   });
-
   let idx = 0;
-  if (code !== "ALL") {
-    idx = questionsData.findIndex(q => q.secCode === code);
+  if (c !== "ALL") {
+    idx = questionsData.findIndex(q => q.sec === c);
     if (idx === -1) idx = 0;
   }
   loadSolutionQuestion(idx);
 }
 
-function setSolFilter(filterName) {
-  solFilter = filterName;
+function setSolFilter(f) {
+  solFilter = f;
   document.querySelectorAll(".sol-tab").forEach(t => t.classList.remove("active"));
-  document.getElementById(`filterTab_${filterName}`).classList.add("active");
+  document.getElementById(`filterTab_${f}`).classList.add("active");
   renderSolutionPalette();
 }
 
 function renderSolutionPalette() {
-  const grid = document.getElementById("solPaletteGrid");
-  grid.innerHTML = "";
+  const g = document.getElementById("solPaletteGrid");
+  g.innerHTML = "";
+  const activeRecord = (allAttempts[currentAttemptIdx] && allAttempts[currentAttemptIdx].st) ? allAttempts[currentAttemptIdx].st : [];
 
-  questionsData.forEach((q, idx) => {
-    const st = state[idx];
-    const isAns = (st.status === 2 || st.status === 3) && st.selectedOpt !== null;
-    const isCor = isAns && st.selectedOpt === q.ans;
-    const isWr = isAns && st.selectedOpt !== q.ans;
-    const isSk = !isAns;
+  questionsData.forEach((q, i) => {
+    const st = activeRecord[i] || { s: 0, so: null };
+    const isA = (st.s === 2 || st.s === 3) && st.so !== null;
+    const isC = isA && st.so === q.a;
+    const isW = isA && st.so !== q.a;
+    const isSk = !isA;
 
-    if (solCurrentSec !== "ALL" && q.secCode !== solCurrentSec) return;
-    if (solFilter === "correct" && !isCor) return;
-    if (solFilter === "wrong" && !isWr) return;
+    if (solCurrentSec !== "ALL" && q.sec !== solCurrentSec) return;
+    if (solFilter === "correct" && !isC) return;
+    if (solFilter === "wrong" && !isW) return;
     if (solFilter === "skipped" && !isSk) return;
 
-    const btn = document.createElement("button");
-    btn.className = "sol-pal-btn";
-    btn.innerText = q.globalId;
+    const b = document.createElement("button");
+    b.className = "sol-pal-btn";
+    b.innerText = q.gId;
 
-    if (idx === solCurrentQ) btn.classList.add("current");
-    if (isCor) btn.classList.add("is-correct");
-    else if (isWr) btn.classList.add("is-wrong");
-    else btn.classList.add("is-skipped");
+    if (i === solCurrentQ) b.classList.add("current");
+    if (isC) b.classList.add("is-correct");
+    else if (isW) b.classList.add("is-wrong");
+    else b.classList.add("is-skipped");
 
-    btn.onclick = () => loadSolutionQuestion(idx);
-    grid.appendChild(btn);
+    b.onclick = () => loadSolutionQuestion(i);
+    g.appendChild(b);
   });
 }
 
-function loadSolutionQuestion(idx) {
-  solCurrentQ = idx;
-  const q = questionsData[idx];
-  const st = state[idx];
-  const optLabels = ["(A)", "(B)", "(C)", "(D)", "(E)"];
+function loadSolutionQuestion(i) {
+  solCurrentQ = i;
+  const q = questionsData[i];
+  const activeRecord = (allAttempts[currentAttemptIdx] && allAttempts[currentAttemptIdx].st) ? allAttempts[currentAttemptIdx].st : [];
+  const st = activeRecord[i] || { s: 0, so: null, ts: 0 };
+  const ol = ["(A)", "(B)", "(C)", "(D)", "(E)"];
 
-  const isAnswered = (st.status === 2 || st.status === 3) && st.selectedOpt !== null;
-  const isCorrect = isAnswered && (st.selectedOpt === q.ans);
+  const isA = (st.s === 2 || st.s === 3) && st.so !== null;
+  const isC = isA && (st.so === q.a);
 
-  const statusEl = document.getElementById("solStatusTag");
-  const marksDetail = document.getElementById("solMarksDetail");
-  if (isAnswered) {
-    if (isCorrect) {
-      statusEl.className = "sol-meta-tag correct";
-      statusEl.innerText = "Status: Correct (+1.0)";
-      marksDetail.innerHTML = `Topic: <strong>${q.topic}</strong> | Marks: <strong style="color:var(--cbt-green);">+1.0</strong> | Time: <strong>${st.timeSpentSec}s</strong>`;
+  const tag = document.getElementById("solStatusTag");
+  const md = document.getElementById("solMarksDetail");
+
+  if (isA) {
+    if (isC) {
+      tag.className = "sol-meta-tag correct";
+      tag.innerText = "Status: Correct (+1.0)";
+      md.innerHTML = `Topic: <strong>${q.top}</strong> | Marks: <strong style="color:var(--cbt-green);">+1.0</strong> | Time: <strong>${st.ts || 0}s</strong>`;
     } else {
-      statusEl.className = "sol-meta-tag incorrect";
-      statusEl.innerText = "Status: Incorrect (-0.333)";
-      marksDetail.innerHTML = `Topic: <strong>${q.topic}</strong> | Marks Lost: <strong style="color:var(--cbt-red);">-0.333</strong> | Time: <strong>${st.timeSpentSec}s</strong>`;
+      tag.className = "sol-meta-tag incorrect";
+      tag.innerText = "Status: Incorrect (-0.333)";
+      md.innerHTML = `Topic: <strong>${q.top}</strong> | Marks: <strong style="color:var(--cbt-red);">-0.333</strong> | Time: <strong>${st.ts || 0}s</strong>`;
     }
   } else {
-    statusEl.className = "sol-meta-tag skipped";
-    statusEl.innerText = "Status: Skipped (0.0)";
-    marksDetail.innerHTML = `Topic: <strong>${q.topic}</strong> | Marks: <strong>0.0</strong> | Time: <strong>${st.timeSpentSec}s</strong>`;
+    tag.className = "sol-meta-tag skipped";
+    tag.innerText = "Status: Skipped (0.0)";
+    md.innerHTML = `Topic: <strong>${q.top}</strong> | Marks: <strong>0.0</strong> | Time: <strong>${st.ts || 0}s</strong>`;
   }
 
-  document.getElementById("solSecBadge").innerText = q.secName;
-  document.getElementById("solQNumberText").innerText = `Question ${q.globalId} of ${questionsData.length}`;
-  document.getElementById("solQStatement").innerText = `${q.globalId}. ${q.q}`;
+  document.getElementById("solSecBadge").innerText = q.name;
+  document.getElementById("solQNumberText").innerText = `Question ${q.gId} of ${questionsData.length}`;
+  document.getElementById("solQStatement").innerText = `${q.gId}. ${q.q}`;
 
   const cont = document.getElementById("solOptionsContainer");
   cont.innerHTML = "";
 
-  q.options.forEach((optText, oIdx) => {
+  q.opts.forEach((t, o) => {
     const row = document.createElement("div");
     row.className = "sol-opt-row";
+    let pf = `${ol[o]} ${t}`;
 
-    let labelPrefix = `${optLabels[oIdx]} ${optText}`;
-
-    if (oIdx === q.ans) {
+    if (o === q.a) {
       row.classList.add("is-correct");
-      labelPrefix += "  ✔ (Correct Answer)";
+      pf += "  ✔ (Correct Answer)";
     }
-    if (isAnswered && st.selectedOpt === oIdx && oIdx !== q.ans) {
+    if (isA && st.so === o && o !== q.a) {
       row.classList.add("is-user-wrong");
-      labelPrefix += "  ✕ (Your Answer)";
-    } else if (isAnswered && st.selectedOpt === oIdx && oIdx === q.ans) {
-      labelPrefix += "  [Your Choice]";
+      pf += "  ✕ (Your Answer)";
+    } else if (isA && st.so === o && o === q.a) {
+      pf += "  [Your Choice]";
     }
 
-    row.innerText = labelPrefix;
+    row.innerText = pf;
     cont.appendChild(row);
   });
 
   document.getElementById("solExpText").innerHTML = q.exp;
   document.getElementById("solProTip").innerHTML = `<strong>⚡ BPSC Exam Strategy Tip:</strong> ${q.tip}`;
-  document.getElementById("solPrevBtn").disabled = (idx === 0);
-  document.getElementById("solNextBtn").disabled = (idx === questionsData.length - 1);
+  document.getElementById("solPrevBtn").disabled = (i === 0);
+  document.getElementById("solNextBtn").disabled = (i === questionsData.length - 1);
 
   renderSolutionPalette();
 }
 
-function solNavigate(dir) {
-  const nextIdx = solCurrentQ + dir;
-  if (nextIdx >= 0 && nextIdx < questionsData.length) {
-    loadSolutionQuestion(nextIdx);
-  }
+function solNavigate(d) {
+  const n = solCurrentQ + d;
+  if (n >= 0 && n < questionsData.length) loadSolutionQuestion(n);
+}
+
+function switchStoredAttempt(v) {
+  currentAttemptIdx = parseInt(v, 10);
+  displayAttemptResult(currentAttemptIdx);
 }
 
 function startReattempt() {
-  if (confirm("Kya aap naya attempt start karna chahte hain? Purane attempts safe rahenge.")) {
+  if (confirm("Start reattempt? Previous attempt record history me safe rahega.")) {
+    examState = null;
     document.getElementById("resultSummaryView").style.display = "none";
+    document.getElementById("modalHeading").innerText = "🚀 BPSC TRE Computer Science Simulation";
+    document.getElementById("modalRulesList").innerHTML = `
+      <li><strong>Part I: Language (Qualifying):</strong> Questions 1 se 30 (Min 30% / 9 marks qualifying anivarya).</li>
+      <li><strong>Part II: General Studies:</strong> Questions 31 se 70 (40 Marks - Counted in Merit).</li>
+      <li><strong>Part III: Computer Science:</strong> Questions 71 se 150 (80 Marks - Counted in Merit).</li>
+      <li><strong>Strict Negative Marking:</strong> Har galat answer par <strong>-0.333 Marks (1/3rd)</strong> deduct honge. Correct par <strong>+1.0 Mark</strong>.</li>
+      <li><strong>Merit Calculation:</strong> Final Merit & Projected Rank strictly <strong>120 Marks (GS 40 + CS 80)</strong> par banegi.</li>
+    `;
+    const b = document.getElementById("modalActionButton");
+    b.innerText = "Start Exam (Enter Fullscreen)";
+    b.style.background = "var(--cbt-green)";
     document.getElementById("instructionModal").style.display = "flex";
   }
 }
 
 // ==========================================================================
-// 8. GOOGLE DRIVE BACKUP & OAUTH
+// 5. GOOGLE DRIVE SYNC ENGINE
 // ==========================================================================
-const CLIENT_ID = "269810018167-5jqc4fapm4mpmgu7reqsv5vekdnhvv1q.apps.googleusercontent.com";
-let tokenClient;
-let accessToken = localStorage.getItem("bpsc_gdrive_token") || null;
-
-window.addEventListener("DOMContentLoaded", () => {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    allAttempts = raw ? JSON.parse(raw) : [];
-  } catch(e) { allAttempts = []; }
-
-  if (accessToken) {
-    document.getElementById("cloudStatusBadge").className = "badge-cloud badge-online";
-    document.getElementById("cloudStatusBadge").innerText = "Cloud: Connected";
-    document.getElementById("authBtn").style.display = "none";
-  }
-});
-
 function initiateGoogleAuth() {
   if (window.google) {
-    tokenClient = google.accounts.oauth2.initTokenClient({
+    const tc = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: "https://www.googleapis.com/auth/drive.file",
-      callback: (res) => {
+      callback: res => {
         if (res.access_token) {
           accessToken = res.access_token;
           localStorage.setItem("bpsc_gdrive_token", accessToken);
           document.getElementById("cloudStatusBadge").className = "badge-cloud badge-online";
           document.getElementById("cloudStatusBadge").innerText = "Cloud: Connected";
           document.getElementById("authBtn").style.display = "none";
-          syncAttemptsToGoogleDrive();
+          syncToGoogleDrive();
         }
       }
     });
-    tokenClient.requestAccessToken({ prompt: "" });
+    tc.requestAccessToken({ prompt: "" });
   }
 }
 
-async function syncAttemptsToGoogleDrive() {
+async function syncToGoogleDrive() {
   if (!accessToken) return;
   try {
-    const folderId = await getOrCreateBackupFolder();
-    const fileName = "bpsc_tre_attempts_backup.json";
-    const content = JSON.stringify(allAttempts, null, 2);
-
-    const query = `name='${fileName}' and '${folderId}' in parents and trashed=false`;
-    const searchRes = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(query)}`, {
+    const fid = await getOrCreateFolder();
+    const fn = `${MOCK_ID}_backup.json`;
+    const cnt = JSON.stringify(allAttempts, null, 2);
+    const q = `name='${fn}' and '${fid}' in parents and trashed=false`;
+    const s = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}`, {
       headers: { Authorization: `Bearer ${accessToken}` }
     }).then(r => r.json());
 
-    if (searchRes.files && searchRes.files.length > 0) {
-      const fileId = searchRes.files[0].id;
-      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${fileId}?uploadType=media`, {
+    if (s.files && s.files.length > 0) {
+      await fetch(`https://www.googleapis.com/upload/drive/v3/files/${s.files[0].id}?uploadType=media`, {
         method: "PATCH",
         headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
-        body: content
+        body: cnt
       });
     } else {
-      const metadata = { name: fileName, parents: [folderId] };
-      const form = new FormData();
-      form.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
-      form.append("file", new Blob([content], { type: "application/json" }));
-
+      const f = new FormData();
+      f.append("metadata", new Blob([JSON.stringify({ name: fn, parents: [fid] })], { type: "application/json" }));
+      f.append("file", new Blob([cnt], { type: "application/json" }));
       await fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
         method: "POST",
         headers: { Authorization: `Bearer ${accessToken}` },
-        body: form
+        body: f
       });
     }
-  } catch (err) {
-    console.error("Auto-sync error:", err);
-  }
+  } catch (e) {}
 }
 
-async function getOrCreateBackupFolder() {
-  const folderName = "BPSC_TRE_My_Attempts";
-  const q = `name='${folderName}' and mimeType='application/vnd.google-apps.folder' and trashed=false`;
-  const res = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}`, {
+async function getOrCreateFolder() {
+  const fn = "BPSC_TRE_My_Attempts";
+  const q = `name='${fn}' and mimeType='application/vnd.google-apps.folder' and trashed=false`;
+  const r = await fetch(`https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}`, {
     headers: { Authorization: `Bearer ${accessToken}` }
-  }).then(r => r.json());
+  }).then(res => res.json());
 
-  if (res.files && res.files.length > 0) return res.files[0].id;
-
-  const createRes = await fetch("https://www.googleapis.com/drive/v3/files", {
+  if (r.files && r.files.length > 0) return r.files[0].id;
+  const cr = await fetch("https://www.googleapis.com/drive/v3/files", {
     method: "POST",
     headers: { Authorization: `Bearer ${accessToken}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ name: folderName, mimeType: "application/vnd.google-apps.folder" })
-  }).then(r => r.json());
-
-  return createRes.id;
+    body: JSON.stringify({ name: fn, mimeType: "application/vnd.google-apps.folder" })
+  }).then(res => res.json());
+  return cr.id;
 }
 </script>
 </body>
