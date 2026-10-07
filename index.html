@@ -37,7 +37,10 @@
   .card-left { display: flex; flex-direction: column; gap: 8px; }
   .test-title-row { display: flex; align-items: center; gap: 12px; }
   .test-badge { padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
-  .badge-pyq { background: #fef3c7; color: #b45309; }
+  .badge-mock {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
   .test-title { font-size: 17px; font-weight: 700; color: var(--text-primary); }
   .test-meta { display: flex; gap: 18px; font-size: 13px; color: var(--text-secondary); flex-wrap: wrap; }
   .meta-item { display: flex; align-items: center; gap: 6px; }
@@ -55,12 +58,12 @@
 <header class="dash-header">
   <div class="dash-brand">
     BPSC TRE Computer Science
-    <span class="dash-tag">Official CBT Series</span>
+    <span class="dash-tag">Full Length CBT Series</span>
   </div>
 </header>
 
 <main class="dash-container">
-  <h1 class="section-headline">Official Mock & Practice Tests</h1>
+  <h1 class="section-headline">Full Length Mock Tests</h1>
   <p class="section-sub">Actual BPSC TRE Exam Pattern: 150 Questions, Qualifying Language (Q1-30), 120 Merit Pool (Q31-150), Strict 1/3 Negative Marking aur Auto-Sync backup ke saath.</p>
 
   <div class="tab-bar">
@@ -73,22 +76,22 @@
 <script>
   const TESTS_REGISTRY = [
     {
-      id: "BPSC_TRE_PYQ_1",
-      title: "BPSC TRE Previous Year Paper Mock 1",
-      fileUrl: "pyq1.html",
-      type: "Official PYQ",
-      badgeClass: "badge-pyq",
+      id: "BPSC_TRE_MOCK_1",
+      title: "BPSC TRE Full Length Mock Test 1",
+      fileUrl: "mock1.html",
+      type: "Full Length Mock",
+      badgeClass: "badge-mock",
       questions: 150,
       meritPool: 120,
       timeMins: 150,
       negativePenalty: "-1/3"
     },
     {
-      id: "BPSC_TRE_PYQ_2",
-      title: "BPSC TRE Previous Year Paper Mock 2",
-      fileUrl: "pyq2.html",
-      type: "Official PYQ",
-      badgeClass: "badge-pyq",
+      id: "BPSC_TRE_MOCK_2",
+      title: "BPSC TRE Full Length Mock Test 2",
+      fileUrl: "mock2.html",
+      type: "Full Length Mock",
+      badgeClass: "badge-mock",
       questions: 150,
       meritPool: 120,
       timeMins: 150,
